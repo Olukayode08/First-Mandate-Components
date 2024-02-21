@@ -111,7 +111,7 @@ const Wrapper = styled.section`
     flex-shrink: 0;
   }
   .checkbox-input {
-    width: 20px;
+    /* width: 20px; */
   }
   @media screen and (max-width: 800px) {
     .input {

@@ -47,12 +47,11 @@ const Wrapper = styled.section`
   section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
   }
   h2 {
     margin: 15px 10px;
     font-size: 18px;
+    text-align: center;
   }
   .my-ppts {
     display: flex;
@@ -85,6 +84,7 @@ const Wrapper = styled.section`
     font-weight: 100;
     margin-right: 5px;
     opacity: 0.7;
+    flex-shrink: 0;
   }
   span {
     font-weight: 600;
@@ -100,18 +100,8 @@ const Wrapper = styled.section`
     font-size: 16px;
     cursor: pointer;
   }
-  @media screen and (max-width: 450px) {
-    .ppt,
-    section {
-      align-items: center;
-      justify-content: center;
-    }
-    h2 {
-      margin: 15px 0;
-    }
-  }
+
   @media screen and (max-width: 400px) {
-    .ppt,
     section {
       align-items: center;
       justify-content: center;
@@ -128,11 +118,6 @@ const Wrapper = styled.section`
       width: 250px;
     }
   }
-  @media screen and (max-width: 380px) {
-    h2 {
-      text-align: center;
-      margin: 15px 0;
-    }
-  }
+
 `
 export default MyProperties

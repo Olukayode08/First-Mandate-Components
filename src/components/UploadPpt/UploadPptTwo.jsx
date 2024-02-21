@@ -107,7 +107,7 @@ const Wrapper = styled.section`
     margin: 10px 0;
   }
   .btn-input {
-    width: 20px;
+    /* width: 20px; */
   }
   .ppt-details {
     margin-left: 10px;
