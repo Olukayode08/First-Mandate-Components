@@ -13,35 +13,35 @@ const UploadPptTwo = () => {
     <>
       <Wrapper>
         <section>
-          <div className='section'>
-            <div className='input'>
-              <label>
-                Rent Status (Are there occupants in the apartment already)
-              </label>
-              <div className='radio-btns'>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option1'
-                    checked={rentStatus === 'option1'}
-                    onChange={handleRentStatus}
-                    className='btn-input'
-                  />
-                  <p className='ppt-details'>Yes</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option2'
-                    checked={rentStatus === 'option2'}
-                    onChange={handleRentStatus}
-                    className='btn-input'
-                  />
-                  <p className='ppt-details'>No</p>
-                </div>
+
+          <div className='rent-status'>
+            <label>
+              Rent Status (Are there occupants in the apartment already)
+            </label>
+            <div className='radio-btns'>
+              <div className='radio-btn'>
+                <input
+                  type='radio'
+                  value='option1'
+                  checked={rentStatus === 'option1'}
+                  onChange={handleRentStatus}
+                  className='btn-input'
+                />
+                <p className='ppt-details'>Yes</p>
+              </div>
+              <div className='radio-btn'>
+                <input
+                  type='radio'
+                  value='option2'
+                  checked={rentStatus === 'option2'}
+                  onChange={handleRentStatus}
+                  className='btn-input'
+                />
+                <p className='ppt-details'>No</p>
               </div>
             </div>
           </div>
+
 
           <div className='section'>
             <div className='input'>
@@ -77,21 +77,13 @@ const UploadPptTwo = () => {
   )
 }
 const Wrapper = styled.section`
-  .section {
+  .rent-status {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
-    width: 100%;
   }
-  .input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
-    margin: 10px 0;
-  }
+
   label {
     margin: 10px 0;
     font-size: 18px;
@@ -107,18 +99,27 @@ const Wrapper = styled.section`
     margin: 10px 0;
   }
   .btn-input {
-    width: 20px;
+    /* width: 20px; */
   }
   .ppt-details {
     margin-left: 10px;
   }
 
-  span {
-    color: red;
-    font-size: 13px;
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    width: 100%;
+  }
+  .input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    margin: 10px 0;
   }
   input {
-    /* width: 300px; */
     height: 40px;
     outline: none;
     border: 1px solid black;
@@ -127,6 +128,10 @@ const Wrapper = styled.section`
     font-weight: 17px;
     color: #000;
     border-radius: 5px;
+  }
+  span {
+    color: red;
+    font-size: 13px;
   }
   .tenants-name {
     display: flex;
@@ -138,7 +143,7 @@ const Wrapper = styled.section`
   .t-name-input {
     width: 500px;
   }
-  .abt-ppt-input{
+  .abt-ppt-input {
     height: 65px;
   }
   .rent-duration,

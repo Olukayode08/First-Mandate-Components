@@ -150,6 +150,7 @@ const Wrapper = styled.section`
     background: transparent;
     border: none;
     cursor: pointer;
+    color: #000;
   }
   .icon {
     margin-right: 5px;

@@ -53,6 +53,9 @@ const Wrapper = styled.section`
     border: none;
     margin-right: 7px;
     outline: none;
+    background: transparent;
+    color: #000;
+    font-family: inherit;
     cursor: pointer;
   }
   .icons {

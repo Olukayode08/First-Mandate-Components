@@ -161,9 +161,6 @@ const Wrapper = styled.section`
     margin-left: 10px;
     flex-shrink: 0;
   }
-  .checkbox-input {
-    width: 20px;
-  }
   .section {
     display: flex;
     flex-direction: column;
@@ -194,9 +191,7 @@ const Wrapper = styled.section`
     align-items: center;
     margin: 10px 0;
   }
-  .btn-input {
-    width: 20px;
-  }
+
   .ppt-details {
     margin-left: 10px;
   }

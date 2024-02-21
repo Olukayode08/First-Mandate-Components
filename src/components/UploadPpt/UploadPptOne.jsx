@@ -15,11 +15,17 @@ const UploadPptOne = () => {
                 type='text'
                 placeholder='Enter a brief title / name of the property'
                 required
+                className='name-input-field'
               />
             </div>
             <div className='input'>
               <label>Address</label>
-              <input type='text' placeholder='Enter address' required />
+              <input
+                type='text'
+                placeholder='Enter address'
+                required
+                className='name-input-field'
+              />
             </div>
           </div>
           <div className='location'>
@@ -32,25 +38,32 @@ const UploadPptOne = () => {
                 Manager's Name
                 <span> (skip if you'll be managing the property yourself)</span>
               </label>
-              <input type='text' placeholder='Enter Full name' required />
+              <input
+                type='text'
+                placeholder='Enter Full name'
+                required
+                className='name-input-field'
+              />
             </div>
           </div>
           <div className='location'>
             <label>Property Type</label>
             <PropertyTypeDropdown />
           </div>
-          <div className='checkboxes'>
-            <div className='checkbox'>
-              <input type='checkbox' className='checkbox-input' />
-              <p className='ppt-details'>Furnished</p>
-            </div>
-            <div className='checkbox'>
-              <input type='checkbox' className='checkbox-input' />
-              <p className='ppt-details'>Serviced</p>
-            </div>
-            <div className='checkbox'>
-              <input type='checkbox' className='checkbox-input' />
-              <p className='ppt-details'>Newly built</p>
+          <div className='utilities'>
+            <div className='checkboxes'>
+              <div className='checkbox'>
+                <input type='checkbox' className='checkbox-input' />
+                <p className='ppt-details'>Furnished</p>
+              </div>
+              <div className='checkbox'>
+                <input type='checkbox' className='checkbox-input' />
+                <p className='ppt-details'>Serviced</p>
+              </div>
+              <div className='checkbox'>
+                <input type='checkbox' className='checkbox-input' />
+                <p className='ppt-details'>Newly built</p>
+              </div>
             </div>
           </div>
         </section>
@@ -83,15 +96,18 @@ const Wrapper = styled.section`
     font-size: 13px;
   }
   input {
-    /* width: 100%; */
     height: 40px;
     outline: none;
+    background: transparent;
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
     font-weight: 17px;
     color: #000;
     border-radius: 5px;
+  }
+  .name-input-field {
+    width: 100%;
   }
   .location {
     margin: 10px 0;
@@ -103,7 +119,7 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    border: 1px solid red;
+    border: 1px solid green;
   }
   .checkbox {
     display: flex;
@@ -115,9 +131,9 @@ const Wrapper = styled.section`
     flex-shrink: 0;
   }
   .checkbox-input {
-    width: 20px;
+    /* width: 20px; */
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 700px) {
     .input {
       width: 95%;
     }
@@ -133,7 +149,6 @@ const Wrapper = styled.section`
       width: 300px;
       grid-template-columns: repeat(2, 1fr);
     }
-
   }
 `
 export default UploadPptOne
