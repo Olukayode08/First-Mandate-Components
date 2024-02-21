@@ -88,6 +88,7 @@ const Wrapper = styled.section`
     background: transparent;
     outline: none;
     font-family: inherit;
+    color: #000;
   }
   @media screen and (max-width: 1120px) {
     .durations {

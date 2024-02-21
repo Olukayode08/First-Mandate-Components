@@ -83,7 +83,7 @@ const Wrapper = styled.section`
     font-size: 13px;
   }
   input {
-    width: 100%;
+    /* width: 100%; */
     height: 40px;
     outline: none;
     border: 1px solid black;
@@ -103,7 +103,7 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    border: 1px solid black;
+    border: 1px solid red;
   }
   .checkbox {
     display: flex;

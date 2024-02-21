@@ -116,7 +116,6 @@ const Wrapper = styled.section`
     border: 1px solid black;
     padding: 0 15px;
     border-radius: 5px;
-    font-family: inherit;
   }
   select {
     width: 100%;
@@ -125,6 +124,8 @@ const Wrapper = styled.section`
     background: transparent;
     border: transparent;
     outline: none;
+    color: #000;
+    font-family: inherit;
   }
 
   @media screen and (max-width: 1250px) {

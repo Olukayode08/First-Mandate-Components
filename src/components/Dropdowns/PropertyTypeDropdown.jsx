@@ -134,6 +134,7 @@ const Wrapper = styled.section`
     background: transparent;
     font-family: inherit;
     outline: none;
+    color: #000;
   }
 
   @media screen and (max-width: 1250px) {

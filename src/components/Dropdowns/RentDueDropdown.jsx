@@ -107,6 +107,7 @@ const Wrapper = styled.section`
     background: transparent;
     outline: none;
     font-family: inherit;
+    color: #000;
   }
   option {
     flex-shrink: 0;
