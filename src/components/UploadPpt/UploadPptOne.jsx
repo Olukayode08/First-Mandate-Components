@@ -50,6 +50,7 @@ const UploadPptOne = () => {
             <label>Property Type</label>
             <PropertyTypeDropdown />
           </div>
+
           <div className='utilities'>
             <div className='checkboxes'>
               <div className='checkbox'>
@@ -96,7 +97,6 @@ const Wrapper = styled.section`
     font-size: 13px;
   }
   input {
-    height: 40px;
     outline: none;
     background: transparent;
     border: 1px solid black;
@@ -108,6 +108,7 @@ const Wrapper = styled.section`
   }
   .name-input-field {
     width: 100%;
+    height: 40px;
   }
   .location {
     margin: 10px 0;
@@ -118,8 +119,8 @@ const Wrapper = styled.section`
     grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     align-items: center;
+    border: 2px solid green;
     margin: 10px 0;
-    border: 1px solid green;
   }
   .checkbox {
     display: flex;
@@ -131,8 +132,10 @@ const Wrapper = styled.section`
     flex-shrink: 0;
   }
   .checkbox-input {
-    /* width: 20px; */
+    width: 18px;
+    height: 18px;
   }
+
   @media screen and (max-width: 700px) {
     .input {
       width: 95%;

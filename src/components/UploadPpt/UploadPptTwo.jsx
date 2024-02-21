@@ -99,7 +99,8 @@ const Wrapper = styled.section`
     margin: 10px 0;
   }
   .btn-input {
-    /* width: 20px; */
+    width: 18px;
+    height: 18px;
   }
   .ppt-details {
     margin-left: 10px;
@@ -120,7 +121,6 @@ const Wrapper = styled.section`
     margin: 10px 0;
   }
   input {
-    height: 40px;
     outline: none;
     border: 1px solid black;
     padding: 0 20px;
@@ -142,6 +142,7 @@ const Wrapper = styled.section`
   .abt-ppt-input,
   .t-name-input {
     width: 500px;
+    height: 40px;
   }
   .abt-ppt-input {
     height: 65px;
