@@ -98,31 +98,42 @@ const Wrapper = styled.section`
   }
   .checkboxes {
     width: 500px;
-  }
-  .checkbox,
-  .checkboxes {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
+    border: 1px solid black;
+  }
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
   }
   .ppt-details {
     margin-left: 10px;
     flex-shrink: 0;
   }
   .checkbox-input {
-    /* width: 20px; */
+    width: 20px;
   }
   @media screen and (max-width: 800px) {
     .input {
       width: 95%;
     }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 530px) {
     .checkboxes {
-      width: 80%;
-      flex-wrap: wrap;
+      width: 350px;
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
+  @media screen and (max-width: 360px) {
+    .checkboxes {
+      width: 300px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
   }
 `
 export default UploadPptOne

@@ -131,6 +131,8 @@ const Wrapper = styled.section`
     margin: 0 auto;
     height: 100%;
     border: transparent;
+    background: transparent;
+    font-family: inherit;
     outline: none;
   }
 

@@ -116,11 +116,13 @@ const Wrapper = styled.section`
     border: 1px solid black;
     padding: 0 15px;
     border-radius: 5px;
+    font-family: inherit;
   }
   select {
     width: 100%;
     margin: 0 auto;
     height: 100%;
+    background: transparent;
     border: transparent;
     outline: none;
   }
