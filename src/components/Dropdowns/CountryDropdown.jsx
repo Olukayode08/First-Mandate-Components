@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const countries = {
   Nigeria: {
-    Lagos: ['Badagry', 'Epe', 'Ikeja', 'Ikorody', 'Lagos', 'Mushin', 'Shomolu'],
+    Lagos: ['Badagry', 'Epe', 'Ikeja', 'Ikorodu', 'Lagos', 'Mushin', 'Shomolu'],
     Ogun: ['Abeokuta', 'Ijebu-Ode', 'Ilaro', 'Shagamu'],
     Ondo: ['Badagry', 'Epe', 'Ikeja', 'Ikorodu', 'Lagos', 'Mushin', 'Shomolu'],
     Osun: ['Abeokuta', 'Ijebu-Ode', 'Ilaro', 'Shagamu'],

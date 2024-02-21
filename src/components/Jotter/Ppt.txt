@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const countries = {
+const flats = {
   Bungalow: {
     One: ['One', 'Two', 'Three', 'Four', 'Five', 'Six'],
     Two: ['One', 'Two', 'Three', 'Four', 'Five', 'Six'],
@@ -29,31 +29,31 @@ const countries = {
 }
 
 const PropertyTypeDropdown = () => {
-  const [selectedCountry, setSelectedCountry] = useState('')
-  const [selectedState, setSelectedState] = useState('')
-  const [selectedCity, setSelectedCity] = useState('')
-  const [states, setStates] = useState([])
-  const [cities, setCities] = useState([])
+  const [selectedFlat, setSelectedFlat] = useState('')
+  const [selectedBed, setSelectedBed] = useState('')
+  const [selectedBath, setSelectedBath] = useState('')
+  const [bedrooms, setBedrooms] = useState([])
+  const [bathrooms, setBathrooms] = useState([])
 
-  const handleCountryChange = (event) => {
-    const country = event.target.value
-    setSelectedCountry(country)
-    setSelectedState('')
-    setSelectedCity('')
-    setStates(Object.keys(countries[country]))
-    setCities([])
+  const handleFlatChange = (event) => {
+    const flat = event.target.value
+    setSelectedFlat(flat)
+    setSelectedBed('')
+    setSelectedBath('')
+    setBedrooms(Object.keys(flats[flat]))
+    setBathrooms([])
   }
 
-  const handleStateChange = (event) => {
-    const state = event.target.value
-    setSelectedState(state)
-    setSelectedCity('')
-    setCities(countries[selectedCountry][state])
+  const handleBedChange = (event) => {
+    const bed = event.target.value
+    setSelectedBed(bed)
+    setSelectedBath('')
+    setBathrooms(flats[selectedFlat][bed])
   }
 
-  const handleCityChange = (event) => {
-    const city = event.target.value
-    setSelectedCity(city)
+  const handleBathChange = (event) => {
+    const bath = event.target.value
+    setSelectedBed(bath)
   }
 
   return (
@@ -62,14 +62,14 @@ const PropertyTypeDropdown = () => {
         <section className='select-section'>
           <div className='select'>
             <select
-              id='country'
-              value={selectedCountry}
-              onChange={handleCountryChange}
+              id='flat'
+              value={selectedFlat}
+              onChange={handleFlatChange}
             >
               <option value=''>Flat</option>
-              {Object.keys(countries).map((country, index) => (
-                <option key={index} value={country}>
-                  {country}
+              {Object.keys(flats).map((flat, index) => (
+                <option key={index} value={flat}>
+                  {flat}
                 </option>
               ))}
             </select>
@@ -77,15 +77,15 @@ const PropertyTypeDropdown = () => {
 
           <div className='select'>
             <select
-              id='state'
-              value={selectedState}
-              onChange={handleStateChange}
-              disabled={!selectedCountry}
+              id='bed'
+              value={selectedBed}
+              onChange={handleBedChange}
+              disabled={!selectedFlat}
             >
               <option value=''>No. of bed</option>
-              {states.map((state, index) => (
-                <option key={index} value={state}>
-                  {state}
+              {bedrooms.map((bedroom, index) => (
+                <option key={index} value={bedroom}>
+                  {bedroom}
                 </option>
               ))}
             </select>
@@ -93,15 +93,15 @@ const PropertyTypeDropdown = () => {
 
           <div className='select'>
             <select
-              id='city'
-              value={selectedCity}
-              onChange={handleCityChange}
-              disabled={!selectedState}
+              id='bath'
+              value={selectedBath}
+              onChange={handleBathChange}
+              disabled={!selectedBed}
             >
               <option value=''>No. of bath</option>
-              {cities.map((city, index) => (
-                <option key={index} value={city}>
-                  {city}
+              {bathrooms.map((bathroom, index) => (
+                <option key={index} value={bathroom}>
+                  {bathroom}
                 </option>
               ))}
             </select>
