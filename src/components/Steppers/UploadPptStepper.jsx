@@ -1,15 +1,28 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import UploadPptOne from '../UploadPpt/UploadPptOne'
 import UploadPptTwo from '../UploadPpt/UploadPptTwo'
 import UploadPptThree from '../UploadPpt/UploadPptThree'
-import UploadPptFour from '../UploadPpt/UploadPptFour'
 import { IoMdArrowBack } from 'react-icons/io'
+import Reload from '../../hooks/Reload'
+import CongratsModal from '../modal/CongratsModal'
+import { FirstMandate } from '../../context/Context'
 
-const totalSteps = 4
+const totalSteps = 3
 
 const UploadPptStepper = () => {
   const [step, setStep] = useState(1)
+  const [uploadNewProperty, setUploadNewProperty] = useState(false)
+  const [rentStatus, setRentStatus] = useState('option2')
+  const {modal, toggleModal} = useContext(FirstMandate)
+
+  const handleRentStatus = (e) => {
+    setRentStatus(e.target.value)
+  }
+
+  const uploadProperty = () => {
+    setUploadNewProperty(true)
+  }
 
   const nextStep = () => {
     setStep(step + 1)
@@ -23,82 +36,166 @@ const UploadPptStepper = () => {
   return (
     <>
       <Wrapper>
-        <div className='multi-step-form'>
-          <h2>Upload New Property</h2>
-          {step === 1 && <p className='active-step'>1 of 4</p>}
-          {step === 2 && <p className='active-step'>2 of 4</p>}
-          {step === 3 && <p className='active-step'>3 of 4</p>}
-          {step === 4 && <p className='active-step'>4 of 4</p>}
-          <div className='step-indicator'>
-            <div className='progress-bar'>
-              <span
-                className='indicator'
-                style={{ width: `calc(${segmentWidth} * ${step})` }}
-              ></span>
+        {!uploadNewProperty ? (
+          <section className='upload-l-ppt'>
+            <Reload />
+            <h2>Upload New Property</h2>
+            <label className='upload-label'>
+              Please pick the type of property you’d love to Upload
+            </label>
+            <div className='radio-btns-unit'>
+              <div className='radio-btn-unit'>
+                <input
+                  type='radio'
+                  value='option1'
+                  checked={rentStatus === 'option1'}
+                  onChange={handleRentStatus}
+                  className='btn-input'
+                />
+                <p className='ppt-details'>Single Unit Property</p>
+              </div>
+              <div className='radio-btn-unit'>
+                <input
+                  type='radio'
+                  value='option2'
+                  checked={rentStatus === 'option2'}
+                  onChange={handleRentStatus}
+                  className='btn-input'
+                />
+                <p className='ppt-details'>Multiple Unit Property</p>
+              </div>
+            </div>
+            <p className='continue-btn' onClick={uploadProperty}>
+              Continue
+            </p>
+          </section>
+        ) : (
+          <div className='multi-step-form'>
+            <h2>Upload New Property</h2>
+            {step === 1 && <p className='active-step'>1 of 3</p>}
+            {step === 2 && <p className='active-step'>2 of 3</p>}
+            {step === 3 && <p className='active-step'>3 of 3</p>}
+            <div className='step-indicator'>
+              <div className='progress-bar'>
+                <span
+                  className='indicator'
+                  style={{ width: `calc(${segmentWidth} * ${step})` }}
+                ></span>
+              </div>
+            </div>
+            <div className='step-content'>
+              {step === 1 && <Step1 />}
+              {step === 2 && <Step2 />}
+              {step === 3 && <Step3 />}
+            </div>
+            <div className='step-buttons'>
+              {step === 1 && (
+                <button
+                  onClick={() => setUploadNewProperty(false)}
+                  className='prev-button'
+                >
+                  Cancel
+                </button>
+              )}
+              {step > 1 && (
+                <div className='prev-button back'>
+                  <IoMdArrowBack className='icon' />
+                  <button onClick={prevStep}>Go back</button>
+                </div>
+              )}
+              {step < 3 && (
+                <button className='next-button' onClick={nextStep}>
+                  Save & Continue
+                </button>
+              )}
+              {step === 3 && (
+                <button onClick={toggleModal} className='next-button'>
+                  Save & Upload Property
+                </button>
+              )}
             </div>
           </div>
-          <div className='step-content'>
-            {step === 1 && <Step1 />}
-            {step === 2 && <Step2 />}
-            {step === 3 && <Step3 />}
-            {step === 4 && <Step4 />}
-          </div>
-          <div className='step-buttons'>
-            {step === 1 && <button className='prev-button'>Cancel</button>}
-            {step > 1 && (
-              <div className='prev-button back'>
-                <IoMdArrowBack className='icon' />
-                <button onClick={prevStep}>Go back</button>
-              </div>
-            )}
-            {step < 4 && (
-              <button className='next-button' onClick={nextStep}>
-                Save & Continue
-              </button>
-            )}
-            {step === 4 && (
-              <button className='next-button'>Save & Upload Property</button>
-            )}
-          </div>
-        </div>
+        )}
+        {/* Congratulations Conponent */}
       </Wrapper>
+      <div>{modal && <CongratsModal />}</div>
     </>
   )
 }
 
 const Step1 = () => {
   return (
-    <div>
-      <UploadPptOne />
-    </div>
+      <div>
+        <Reload />
+        <UploadPptOne />
+      </div>
   )
 }
 
 const Step2 = () => {
   return (
-    <div>
-      <UploadPptTwo />
-    </div>
+      <div>
+        <Reload/>
+        <UploadPptTwo />
+      </div>
   )
 }
 
 const Step3 = () => {
   return (
     <div>
+      <Reload />
       <UploadPptThree />
     </div>
   )
 }
 
-const Step4 = () => {
-  return (
-    <div>
-      <UploadPptFour />
-    </div>
-  )
-}
 
 const Wrapper = styled.section`
+  width: 100%;
+  .upload-l-ppt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    margin: 10px auto;
+  }
+  .upload-label {
+    margin: 40px 0;
+    font-size: 18px;
+  }
+  .radio-btns-unit {
+    width: 100%;
+  }
+  .radio-btn-unit,
+  .radio-btns-unit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .radio-btn-unit {
+    border: 1px solid black;
+    padding: 20px;
+  }
+  .btn-input {
+    width: 18px;
+    height: 18px;
+  }
+  .ppt-details {
+    margin-left: 20px;
+  }
+  .continue-btn {
+    margin: 20px;
+    padding: 15px 0;
+    width: 280px;
+    text-align: center;
+    background-color: #fedf7e;
+    cursor: pointer;
+  }
+  /* Multi stepper */
   .multi-step-form {
     display: flex;
     flex-direction: column;
@@ -170,6 +267,8 @@ const Wrapper = styled.section`
   .next-button {
     background-color: #fedf7e;
   }
+
+
   @media screen and (max-width: 420px) {
     .step-indicator {
       width: 350px;
@@ -181,4 +280,5 @@ const Wrapper = styled.section`
     }
   }
 `
+
 export default UploadPptStepper

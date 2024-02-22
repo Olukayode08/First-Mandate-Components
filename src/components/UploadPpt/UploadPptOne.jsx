@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import CountryDropdown from '../Dropdowns/CountryDropdown'
-import PropertyTypeDropdown from '../Dropdowns/PropertyTypeDropdown'
-
 const UploadPptOne = () => {
   return (
     <>
@@ -10,7 +8,7 @@ const UploadPptOne = () => {
         <section>
           <div className='section'>
             <div className='input'>
-              <label>Property Title</label>
+              <label>Property Title*</label>
               <input
                 type='text'
                 placeholder='Enter a brief title / name of the property'
@@ -19,7 +17,7 @@ const UploadPptOne = () => {
               />
             </div>
             <div className='input'>
-              <label>Address</label>
+              <label>Address*</label>
               <input
                 type='text'
                 placeholder='Enter address'
@@ -34,10 +32,7 @@ const UploadPptOne = () => {
           </div>
           <div className='section'>
             <div className='input'>
-              <label>
-                Manager's Name
-                <span> (skip if you'll be managing the property yourself)</span>
-              </label>
+              <label>Manager's Name</label>
               <input
                 type='text'
                 placeholder='Enter Full name'
@@ -46,25 +41,39 @@ const UploadPptOne = () => {
               />
             </div>
           </div>
-          <div className='location'>
-            <label>Property Type</label>
-            <PropertyTypeDropdown />
+          <div className='section'>
+            <div className='input'>
+              <label>Manager's Email</label>
+              <input
+                type='email'
+                placeholder='Enter Email'
+                required
+                className='name-input-field'
+              />
+            </div>
           </div>
-
-          <div className='utilities'>
-            <div className='checkboxes'>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Furnished</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Serviced</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Newly built</p>
-              </div>
+          <div className='section'>
+            <div className='input'>
+              <label>Manager's Phone</label>
+              <input
+                type='text'
+                placeholder='+234'
+                required
+                className='name-input-field'
+              />
+            </div>
+          </div>
+          <div className='section'>
+            <label>No. of Units</label>
+            <div className='units'>
+              <select id='unit' required className='no-of-unit'>
+                <option value='one'>1</option>
+                <option value='two'>2</option>
+                <option value='three'>3</option>
+                <option value='four'>4</option>
+                <option value='five'>5</option>
+                <option value='six'>6</option>
+              </select>
             </div>
           </div>
         </section>
@@ -104,7 +113,7 @@ const Wrapper = styled.section`
     font-family: inherit;
     font-weight: 17px;
     color: #000;
-    border-radius: 5px;
+    border-radius: 2px;
   }
   .name-input-field {
     width: 100%;
@@ -113,44 +122,28 @@ const Wrapper = styled.section`
   .location {
     margin: 10px 0;
   }
-  .checkboxes {
-    width: 500px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: space-between;
-    align-items: center;
-    border: 2px solid green;
+  .units {
+    width: 100px;
     margin: 10px 0;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid black;
   }
-  .checkbox {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
+  select {
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    background: transparent;
+    border: transparent;
+    outline: none;
+    color: #000;
+    font-family: inherit;
   }
-  .ppt-details {
-    margin-left: 10px;
-    flex-shrink: 0;
-  }
-  .checkbox-input {
-    width: 18px;
-    height: 18px;
-  }
+
 
   @media screen and (max-width: 700px) {
     .input {
       width: 95%;
-    }
-  }
-  @media screen and (max-width: 530px) {
-    .checkboxes {
-      width: 350px;
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media screen and (max-width: 360px) {
-    .checkboxes {
-      width: 300px;
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 `

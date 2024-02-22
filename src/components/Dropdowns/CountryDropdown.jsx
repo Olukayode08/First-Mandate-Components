@@ -107,11 +107,11 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 70%;
+    width: 90%;
     margin: 10px 0;
   }
   .select {
-    width: 250px;
+    width: 200px;
     height: 40px;
     border: 1px solid black;
     padding: 0 15px;

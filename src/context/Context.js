@@ -1,8 +1,11 @@
 import React, { createContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const FirstMandate = createContext()
 
 const Context = ({ children }) => {
+  const navigate = useNavigate()
+
   const [password, setPassword] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState(false)
 
@@ -28,6 +31,16 @@ const Context = ({ children }) => {
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value })
   }
+
+  // Modal Section
+  const [modal, setModal] = useState(false)
+
+  const toggleModal = () => {
+    setModal(!modal)
+    setTimeout(() => {
+      navigate('/landlord')
+    }, 2000)
+  }
   return (
     <>
       <FirstMandate.Provider
@@ -39,6 +52,8 @@ const Context = ({ children }) => {
           confirmPassword,
           togglePassword,
           toggleConfirmPassword,
+          modal,
+          toggleModal,
         }}
       >
         {children}

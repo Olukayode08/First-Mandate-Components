@@ -9,6 +9,7 @@ import { TbReportSearch } from 'react-icons/tb'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
+import { BsThreeDots } from 'react-icons/bs'
 
 const FirstMandateSidebar = () => {
   const [active, setActive] = useState(true)
@@ -46,6 +47,9 @@ const FirstMandateSidebar = () => {
           <main className={active ? 'sidebar' : null}>
             {active && (
               <div className='left-sidebar'>
+                <div className='logo'>
+                  <BsThreeDots size={80} />
+                </div>
                 <Link className='links' to='#'>
                   <IoHomeOutline size={23} className='icon' />
                   <p className='desc'>Home</p>
@@ -116,11 +120,12 @@ const Wrapper = styled.section`
   .left-sidebar {
     display: flex;
     flex-direction: column;
-
-    margin: 60px 0 20px 0;
-    padding: 20px;
+    margin: 0 0 20px 0;
+    padding: 10px 20px;
   }
-
+.logo{
+  padding: 0 15px;
+}
   .links {
     display: flex;
     align-items: center;

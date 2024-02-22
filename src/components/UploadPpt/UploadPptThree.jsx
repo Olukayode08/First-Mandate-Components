@@ -1,22 +1,61 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import RentTermsDropdown from '../Dropdowns/RentTermsDropdown'
+import RentAmountDropdown from '../Dropdowns/RentAmountDropdown'
+import RentPaymentDropdown from '../Dropdowns/RentPaymentDropdown'
 
 const UploadPptThree = () => {
-  const [dueDateReminder, setDueDateReminder] = useState('option1')
-  const [recurringReminder, setRecurringReminder] = useState('option1')
-
-  const handleReminder = (e) => {
-    setDueDateReminder(e.target.value)
-  }
-  const handleRecurringReminder = (e) => {
-    setRecurringReminder(e.target.value)
-  }
   return (
     <>
       <Wrapper>
         <section>
+          <div className='section'>
+            <div className='input'>
+              <label>Tenants Name*</label>
+              <input
+                type='text'
+                placeholder='Enter Full Name '
+                className='phone-number'
+              />
+            </div>
+          </div>
+          <div className='section'>
+            <div className='input'>
+              <label>Tenant Email*</label>
+              <input
+                type='text'
+                placeholder='Enter Email'
+                className='phone-number'
+              />
+            </div>
+          </div>
+          <div className='section'>
+            <div className='input'>
+              <label>Tenant Phone*</label>
+              <input
+                type='text'
+                placeholder='Enter Phone Number'
+                className='phone-number'
+              />
+            </div>
+          </div>
+          <div>
+            <RentTermsDropdown />
+          </div>
+          <div>
+            <RentAmountDropdown />
+          </div>
+          <div className='section'>
+            <div className='input'>
+              <label>Current Rent Payment Status*</label>
+              <p className='part-payment'>Paid in Part</p>
+            </div>
+          </div>
+          <div>
+            <RentPaymentDropdown />
+          </div>
           <div className='utilities'>
-            <label>Please select utilities included in this property</label>
+            <label>Payments to be managed apart from Rent</label>
             <div className='checkboxes'>
               <div className='checkbox'>
                 <input type='checkbox' className='checkbox-input' />
@@ -24,118 +63,12 @@ const UploadPptThree = () => {
               </div>
               <div className='checkbox'>
                 <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Phone</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Gas</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
                 <p className='ppt-details'>Electricity</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Council Tax</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Internet</p>
               </div>
               <div className='checkbox'>
                 <input type='checkbox' className='checkbox-input' />
                 <p className='ppt-details'>Water</p>
               </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Appliances</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Trash & Recycling</p>
-              </div>
-            </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Rent Due Date Frequency</label>
-              <div className='radio-btns'>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option1'
-                    checked={dueDateReminder === 'option1'}
-                    onChange={handleReminder}
-                  />
-                  <p className='ppt-details'>Recurring</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option2'
-                    checked={dueDateReminder === 'option2'}
-                    onChange={handleReminder}
-                  />
-                  <p className='ppt-details'>Oneoff</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Order for recurring due dates</label>
-              <div className='radio-btns recurring-date'>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option1'
-                    checked={recurringReminder === 'option1'}
-                    onChange={handleRecurringReminder}
-                    className='btn-input'
-                  />
-                  <p className='ppt-details'>Daily</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option2'
-                    checked={recurringReminder === 'option2'}
-                    onChange={handleRecurringReminder}
-                    className='btn-input'
-                  />
-                  <p className='ppt-details'>Weekly</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option3'
-                    checked={recurringReminder === 'option3'}
-                    onChange={handleRecurringReminder}
-                    className='btn-input'
-                  />
-                  <p className='ppt-details'>Monthly</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option4'
-                    checked={recurringReminder === 'option4'}
-                    onChange={handleRecurringReminder}
-                    className='btn-input'
-                  />
-                  <p className='ppt-details'>Yearly</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Contact Details</label>
-              <input
-                type='text'
-                placeholder='Enter phone number'
-                className='phone-number'
-              />
             </div>
           </div>
         </section>
@@ -144,27 +77,6 @@ const UploadPptThree = () => {
   )
 }
 const Wrapper = styled.section`
-  .checkboxes {
-    width: 500px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-  }
-  .checkbox {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-  }
-  .ppt-details {
-    margin-left: 10px;
-    flex-shrink: 0;
-  }
-  .checkbox-input {
-    width: 18px;
-    height: 18px;
-  }
   .section {
     display: flex;
     flex-direction: column;
@@ -184,62 +96,69 @@ const Wrapper = styled.section`
     margin: 10px 0;
     font-size: 18px;
   }
-  .radio-btns {
-    width: 200px;
+  input {
+    outline: none;
+    border: 1px solid black;
+    padding: 0 20px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #000;
+    border-radius: 3px;
+    background: transparent;
   }
-
-  .radio-btn,
-  .radio-btns {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .phone-number {
+    height: 40px;
+    width: 500px;
+  }
+  .part-payment {
+    background-color: #ff7a00;
+    padding: 10px 0;
+    width: 200px;
+    border-radius: 3px;
+    color: #ffff;
+    text-align: center;
+  }
+  /* Checkbox */
+  .utilities {
     margin: 10px 0;
   }
-  .btn-input {
-    width: 18px;
-    height: 18px;
+  .checkboxes {
+    width: 500px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    align-items: center;
+  }
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
   }
   .ppt-details {
     margin-left: 10px;
+    flex-shrink: 0;
   }
-  .recurring-date {
-    width: 500px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
+  .checkbox-input {
+    width: 18px;
+    height: 18px;
   }
-  .phone-number {
-    width: 400px;
-    height: 40px;
-    padding: 0 20px;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid black;
-    font-family: inherit;
-    color: #000;
-    font-weight: 17px;
-  }
-  @media screen and (max-width: 530px) {
+
+  @media screen and (max-width: 520px) {
     .checkboxes {
       width: 350px;
       grid-template-columns: repeat(2, 1fr);
-    }
-    .recurring-date {
-      width: 350px;
-      flex-wrap: wrap;
     }
     .phone-number {
-      width: 300px;
+      width: 350px;
     }
   }
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 350px) {
     .checkboxes {
       width: 300px;
       grid-template-columns: repeat(2, 1fr);
     }
-    .recurring-date {
-      width: 300px;
+    .phone-number {
+      width: 280px;
     }
   }
 `

@@ -9,6 +9,12 @@ import UploadPptSidebar from './components/Sidebars/UploadPptSidebar'
 import UploadPpt from './components/UploadPpt/UploadPpt'
 import MyProperties from './components/Properties/MyProperties'
 import FirstMandateSidebar from './components/Sidebars/FirstMandateSidebar'
+import Reload from './hooks/Reload'
+import LandLord from './pages/Landlord/LandLord'
+import Reminder from './pages/Landlord/Reminder'
+import AddNewTenant from './components/Tenent/AddNewTenant'
+import AddManager from './components/Manager/AddManager'
+
 
 
 function App() {
@@ -16,6 +22,7 @@ function App() {
 
   return (
     <>
+      <Reload />
       <div className='app' id={theme}>
         <Routes>
           <Route path='/' element={<Signup />} />
@@ -25,7 +32,14 @@ function App() {
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/main-sidebar' element={<FirstMandateSidebar />} />
           <Route path='/my-ppts' element={<MyProperties />} />
-          <Route path='/upload-ppt' element={<UploadPpt />} />
+          <Route path='/add-tenant' element={<AddNewTenant />} />
+
+          <Route path='/landlord' element={<LandLord />}>
+            <Route path='' element={<Reminder />} />
+            <Route path='upload-ppt' element={<UploadPpt />} />
+            <Route path='add-tenant' element={<AddNewTenant />} />
+            <Route path='add-manager' element={<AddManager />} />
+          </Route>
         </Routes>
       </div>
     </>

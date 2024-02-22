@@ -1,5 +1,4 @@
 import React from 'react'
-import { BsThreeDots } from 'react-icons/bs'
 import { FaBell } from 'react-icons/fa'
 import { FaRegUser } from 'react-icons/fa'
 
@@ -11,7 +10,6 @@ const Header = () => {
       <Wrapper>
         <section>
           <div className='header'>
-            <BsThreeDots size={60} />
             <div className='select-user'>
               <select name='user' id='user'>
                 <option value='Landlord'>Landlord</option>
@@ -33,11 +31,12 @@ const Header = () => {
 const Wrapper = styled.section`
   .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
-    width: 100%;
     padding: 20px;
-    background: #ffe48e;
+    background: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 30;
   }
   .select-user {
     display: flex;
