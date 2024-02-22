@@ -34,7 +34,7 @@ function App() {
 
           {/* Landlord page */}
           <Route path='/landlord' element={<LandLord />}>
-            <Route path='' element={<Reminder />} />
+            <Route path='reminder' element={<Reminder />} />
             <Route path='upload-ppt' element={<UploadPpt />} />
             <Route path='add-tenant' element={<AddNewTenant />} />
             <Route path='add-manager' element={<AddManager />} />

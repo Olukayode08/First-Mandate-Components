@@ -75,6 +75,7 @@ const AddNewTenant = () => {
             <label>Rent Payment Due Date</label>
             <input type='date' className='r-date-input' />
           </div>
+          <button className='add-tenant'>Add Tenant</button>
         </section>
       </Wrapper>
     </>
@@ -116,6 +117,7 @@ const Wrapper = styled.section`
     font-weight: 17px;
     color: #000;
     border-radius: 3px;
+    background: transparent;
   }
   label {
     margin: 10px 0;
@@ -153,10 +155,22 @@ const Wrapper = styled.section`
   .not-p {
     background-color: #ff0000;
     color: #ffffff;
-    padding: 15px 0;
+    padding: 12px 0;
     width: 100px;
     text-align: center;
     border-radius: 4px;
+  }
+  .add-tenant {
+    width: 180px;
+    text-align: center;
+    background-color: #fedf7e;
+    height: 50px;
+    border-radius: 3px;
+    border: transparent;
+    margin: 10px 0;
+    font-size: 16px;
+    cursor: pointer;
+    color: #000;
   }
   @media screen and (max-width: 1100px) {
     section {
@@ -172,7 +186,7 @@ const Wrapper = styled.section`
       flex-direction: column;
       width: 90%;
     }
-    .end-date{
+    .end-date {
       margin-top: 10px;
     }
   }
