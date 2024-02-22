@@ -15,15 +15,23 @@ const UploadPpt = () => {
 }
 
 const Wrapper = styled.section`
-
+  position: relative;
   .upload-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 58%;
-    border: 2px solid red;
+    position: absolute;
+    top: 0;
+    left: 300px;
     margin: 0 auto;
+  }
+  @media screen and (max-width: 1100px) {
+    .upload-section {
+      width: 100%;
+      left: 0;
+    }
   }
 `
 export default UploadPpt

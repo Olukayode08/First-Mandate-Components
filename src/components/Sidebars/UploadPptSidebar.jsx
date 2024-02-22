@@ -150,7 +150,7 @@ const Wrapper = styled.section`
     padding: 15px;
     background-color: #fff;
     border-radius: 20px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: 0px 2px 16px 0px #00000026;
   }
   .tenants {
     display: flex;

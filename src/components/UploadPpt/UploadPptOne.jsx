@@ -94,7 +94,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
-    width: 50%;
+    width: 60%;
     margin: 10px 0;
   }
   label {

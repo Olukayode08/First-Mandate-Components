@@ -70,15 +70,18 @@ const AddManager = () => {
   )
 }
 const Wrapper = styled.section`
+  position: relative;
   section {
+    position: absolute;
+    top: 0;
+    left: 300px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
     width: 58%;
     margin: 0 auto;
-    border: 1px solid red;
-    padding: 20px 0;
+    padding: 20px;
   }
 
   .section {
@@ -124,14 +127,16 @@ const Wrapper = styled.section`
     font-size: 16px;
     cursor: pointer;
   }
-  @media screen and (max-width: 1000px) {
+
+  @media screen and (max-width: 1100px) {
     section {
       width: 90%;
+      left: 0;
     }
   }
   @media screen and (max-width: 600px) {
     .t-name-input {
-      width: 350px;
+      width: 320px;
       height: 40px;
     }
   }

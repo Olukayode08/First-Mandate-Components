@@ -62,7 +62,7 @@ const Wrapper = styled.section`
   .rent-terms {
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 95%;
   }
   .input {
     display: flex;
@@ -99,6 +99,11 @@ const Wrapper = styled.section`
   .rent-t-input {
     width: 200px;
     height: 40px;
+  }
+  @media screen and (max-width: 1200px) {
+      .rent-terms{
+        flex-direction: column;
+      }
   }
 `
 export default RentTermsDropdown

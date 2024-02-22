@@ -1,10 +1,10 @@
 import React, { createContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 const FirstMandate = createContext()
 
 const Context = ({ children }) => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const [password, setPassword] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState(false)
@@ -37,9 +37,9 @@ const Context = ({ children }) => {
 
   const toggleModal = () => {
     setModal(!modal)
-    setTimeout(() => {
-      navigate('/landlord')
-    }, 2000)
+    // setTimeout(() => {
+    //   navigate('/landlord')
+    // }, 2000)
   }
   return (
     <>

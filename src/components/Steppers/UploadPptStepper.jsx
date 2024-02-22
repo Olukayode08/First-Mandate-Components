@@ -14,7 +14,7 @@ const UploadPptStepper = () => {
   const [step, setStep] = useState(1)
   const [uploadNewProperty, setUploadNewProperty] = useState(false)
   const [rentStatus, setRentStatus] = useState('option2')
-  const {modal, toggleModal} = useContext(FirstMandate)
+  const { modal, toggleModal } = useContext(FirstMandate)
 
   const handleRentStatus = (e) => {
     setRentStatus(e.target.value)
@@ -52,7 +52,7 @@ const UploadPptStepper = () => {
                   onChange={handleRentStatus}
                   className='btn-input'
                 />
-                <p className='ppt-details'>Single Unit Property</p>
+                <p className='unit-ppt-details'>Single Unit Property</p>
               </div>
               <div className='radio-btn-unit'>
                 <input
@@ -62,7 +62,7 @@ const UploadPptStepper = () => {
                   onChange={handleRentStatus}
                   className='btn-input'
                 />
-                <p className='ppt-details'>Multiple Unit Property</p>
+                <p className='unit-ppt-details'>Multiple Unit Property</p>
               </div>
             </div>
             <p className='continue-btn' onClick={uploadProperty}>
@@ -125,19 +125,19 @@ const UploadPptStepper = () => {
 
 const Step1 = () => {
   return (
-      <div>
-        <Reload />
-        <UploadPptOne />
-      </div>
+    <div>
+      <Reload />
+      <UploadPptOne />
+    </div>
   )
 }
 
 const Step2 = () => {
   return (
-      <div>
-        <Reload/>
-        <UploadPptTwo />
-      </div>
+    <div>
+      <Reload />
+      <UploadPptTwo />
+    </div>
   )
 }
 
@@ -150,7 +150,6 @@ const Step3 = () => {
   )
 }
 
-
 const Wrapper = styled.section`
   width: 100%;
   .upload-l-ppt {
@@ -160,37 +159,41 @@ const Wrapper = styled.section`
     justify-content: center;
     width: 70%;
     margin: 10px auto;
+    padding: 20px;
   }
   .upload-label {
     margin: 40px 0;
+    text-align: center;
     font-size: 18px;
   }
-  .radio-btns-unit {
-    width: 100%;
-  }
-  .radio-btn-unit,
   .radio-btns-unit {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
+    width: 600px;
   }
 
   .radio-btn-unit {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    margin: 10px 0;
     border: 1px solid black;
     padding: 20px;
+    width: 250px;
   }
   .btn-input {
     width: 18px;
     height: 18px;
   }
-  .ppt-details {
+  .unit-ppt-details {
     margin-left: 20px;
   }
   .continue-btn {
-    margin: 20px;
+    margin: 20px 0;
     padding: 15px 0;
-    width: 280px;
+    width: 250px;
     text-align: center;
     background-color: #fedf7e;
     cursor: pointer;
@@ -200,7 +203,7 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px 0;
+    padding: 10px 20px;
   }
 
   .step-indicator {
@@ -267,11 +270,24 @@ const Wrapper = styled.section`
   .next-button {
     background-color: #fedf7e;
   }
-
+  @media screen and (max-width: 900px) {
+    .radio-btns-unit {
+      flex-direction: column;
+      width: 90%;
+    }
+    .upload-l-ppt {
+      width: 90%;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+  }
 
   @media screen and (max-width: 420px) {
     .step-indicator {
       width: 350px;
+    }
+    .radio-btns-unit {
+      flex-direction: column;
     }
   }
   @media screen and (max-width: 370px) {

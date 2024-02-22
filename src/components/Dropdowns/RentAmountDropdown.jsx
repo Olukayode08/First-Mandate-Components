@@ -89,5 +89,10 @@ const Wrapper = styled.section`
     width: 170px;
     height: 40px;
   }
+  @media screen and (max-width: 1200px) {
+    .rent-amt {
+      flex-direction: column;
+    }
+  }
 `
 export default RentAmountDropdown

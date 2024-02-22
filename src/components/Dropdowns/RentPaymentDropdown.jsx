@@ -129,5 +129,10 @@ const Wrapper = styled.section`
     width: 200px;
     height: 40px;
   }
+  @media screen and (max-width: 1200px) {
+    .rent-payment {
+      flex-direction: column;
+    }
+  }
 `
 export default RentPaymentDropdown

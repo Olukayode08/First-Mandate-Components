@@ -83,7 +83,7 @@ const Wrapper = styled.section`
     width: 170px;
     padding: 20px 0;
     background: #ffffff;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 10;
   }
   .left-sidebar {

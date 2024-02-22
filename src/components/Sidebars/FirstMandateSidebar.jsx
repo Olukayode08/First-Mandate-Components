@@ -112,8 +112,9 @@ const Wrapper = styled.section`
     top: 0;
     left: 0;
     width: 280px;
+    flex: 0 0 auto;
     background-color: #ffffff;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 50;
   }
 
@@ -123,9 +124,9 @@ const Wrapper = styled.section`
     margin: 0 0 20px 0;
     padding: 10px 20px;
   }
-.logo{
-  padding: 0 15px;
-}
+  .logo {
+    padding: 0 15px;
+  }
   .links {
     display: flex;
     align-items: center;

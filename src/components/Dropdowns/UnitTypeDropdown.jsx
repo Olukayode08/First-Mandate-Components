@@ -58,8 +58,8 @@ const Wrapper = styled.section`
   .unit-type {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    width: 53%;
+    align-items: last baseline;
+    width: 500px;
     margin: 10px 0;
   }
   .unit {
@@ -95,6 +95,16 @@ const Wrapper = styled.section`
     .rent-durations {
       flex-direction: column;
       align-items: flex-start;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .unit-type {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 90%;
+    }
+    .unit{
+      margin: 10px 0;
     }
   }
 `

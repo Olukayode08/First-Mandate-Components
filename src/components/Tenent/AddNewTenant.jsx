@@ -81,15 +81,18 @@ const AddNewTenant = () => {
   )
 }
 const Wrapper = styled.section`
+  position: relative;
   section {
+    position: absolute;
+    top: 0;
+    left: 300px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
     width: 58%;
     margin: 0 auto;
-    border: 1px solid red;
-    padding: 20px 0;
+    padding: 20px;
   }
   .section {
     display: flex;
@@ -127,7 +130,7 @@ const Wrapper = styled.section`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    width: 60%;
+    width: 500px;
     margin: 10px 0;
   }
   .r-date-input {
@@ -143,7 +146,8 @@ const Wrapper = styled.section`
     align-items: flex-start;
     justify-content: left;
   }
-  .due-date ,.rent-status {
+  .due-date,
+  .rent-status {
     margin: 10px 0;
   }
   .not-p {
@@ -154,15 +158,22 @@ const Wrapper = styled.section`
     text-align: center;
     border-radius: 4px;
   }
- 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1100px) {
     section {
       width: 90%;
+      left: 0;
     }
   }
   @media screen and (max-width: 600px) {
     .t-name-input {
-      width: 350px;
+      width: 320px;
+    }
+    .rent-date {
+      flex-direction: column;
+      width: 90%;
+    }
+    .end-date{
+      margin-top: 10px;
     }
   }
   @media screen and (max-width: 350px) {
