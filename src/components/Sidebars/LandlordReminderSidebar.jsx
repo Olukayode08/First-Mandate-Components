@@ -83,7 +83,7 @@ const Wrapper = styled.section`
     position: relative;
   }
   .upload-ppt-btn {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     color: #000;
