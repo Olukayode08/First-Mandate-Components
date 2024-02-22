@@ -6,7 +6,7 @@ import LandLordReminderSidebar from '../../components/Sidebars/LandlordReminderS
 const Reminder = () => {
   return (
     <>
-    <LandLordReminderSidebar />
+      <LandLordReminderSidebar />
       <Wrapper>
         <section>
           <div className='landlord-reminder'>

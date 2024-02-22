@@ -11,11 +11,9 @@ import MyProperties from './components/Properties/MyProperties'
 import FirstMandateSidebar from './components/Sidebars/FirstMandateSidebar'
 import Reload from './hooks/Reload'
 import LandLord from './pages/Landlord/LandLord'
-import Reminder from './pages/Landlord/Reminder'
 import AddNewTenant from './components/Tenent/AddNewTenant'
 import AddManager from './components/Manager/AddManager'
-
-
+import Reminder from './components/Reminder/Reminder'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -34,6 +32,7 @@ function App() {
           <Route path='/my-ppts' element={<MyProperties />} />
           <Route path='/add-tenant' element={<AddNewTenant />} />
 
+          {/* Landlord page */}
           <Route path='/landlord' element={<LandLord />}>
             <Route path='' element={<Reminder />} />
             <Route path='upload-ppt' element={<UploadPpt />} />
