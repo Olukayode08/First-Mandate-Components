@@ -22,7 +22,7 @@ const LandlordReminder = () => {
                     <h3 className='d-date'>Mr Kelly</h3>
                     <h3 className='d-date'>{reminder.amount}</h3>
                   </div>
-                  <p>{reminder.description}</p>
+                  <p className='r-desc'>{reminder.description}</p>
                   <div className='l-btns'>
                     <img
                       className='l-btn edit-icon'
@@ -68,6 +68,8 @@ const Wrapper = styled.section`
     margin: 10px 0;
     border-radius: 5px;
     width: 100%;
+    flex-shrink: 0;
+    overflow-x: auto;
   }
   .r-img {
     width: 10%;
@@ -84,11 +86,15 @@ const Wrapper = styled.section`
   .d-date,
   .r-img {
     margin-right: 20px;
+    flex-shrink: 0;
   }
   .desc {
     display: flex;
     align-items: center;
     margin: 15px 0;
+  }
+  .r-desc {
+    flex-shrink: 0;
   }
   .l-btns {
     display: flex;
@@ -114,11 +120,11 @@ const Wrapper = styled.section`
   }
   @media screen and (max-width: 1290px) {
     .r-section {
-      width: 50%;
+      width: 48%;
     }
   }
   @media screen and (max-width: 1200px) {
-    h3{
+    h3 {
       text-align: center;
     }
     .r-section {
@@ -126,10 +132,20 @@ const Wrapper = styled.section`
       left: 0;
     }
     .r-due-date {
+      width: 100%;
       background-color: none;
       box-shadow: none;
       align-items: center;
       justify-content: center;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .r-due-date {
+      align-items: center;
+      justify-content: left;
+    }
+    .r-img {
+      width: 17%;
     }
   }
 `

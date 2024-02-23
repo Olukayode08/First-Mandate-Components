@@ -22,7 +22,7 @@ const LandlordAddReminder = () => {
               />
             </div>
             <div className='desc input'>
-              <label>Description</label>
+              <label className='desc-h'>Description</label>
               <input type='text' className='r-desc-input' />
             </div>
           </div>
@@ -99,6 +99,7 @@ const LandlordAddReminder = () => {
 }
 const Wrapper = styled.section`
   position: relative;
+  margin: 10px 0;
   .n-section {
     position: absolute;
     left: 300px;
@@ -106,7 +107,6 @@ const Wrapper = styled.section`
     margin: 0 auto;
     padding: 20px 0;
   }
-
   .section {
     display: flex;
     flex-direction: column;
@@ -124,12 +124,15 @@ const Wrapper = styled.section`
   .desc {
     flex-direction: row;
     width: 90%;
-    justify-content: space-between;
+    justify-content: left;
     align-items: flex-start;
     margin: 20px 0;
   }
   .p-date {
     margin: 10px 0;
+  }
+  .desc-h {
+    margin-right: 20px;
   }
   input {
     outline: none;
@@ -146,7 +149,7 @@ const Wrapper = styled.section`
   }
   .r-desc-input {
     height: 60px;
-    width: 80%;
+    width: 430px;
   }
   .n-input {
     width: 250px;
@@ -164,7 +167,7 @@ const Wrapper = styled.section`
     outline: none;
     color: #000;
     font-family: inherit;
-    font-size: 17px;
+    font-size: 15px;
   }
 
   /* Notification Status */
@@ -179,13 +182,12 @@ const Wrapper = styled.section`
     margin: 10px 0;
     font-size: 18px;
   }
-  .radio-btns {
-    width: 70%;
-  }
+
   .radio-btn,
   .radio-btns {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
     align-items: center;
     margin: 10px 0;
   }
@@ -194,7 +196,7 @@ const Wrapper = styled.section`
     height: 18px;
   }
   .n-details {
-    margin-left: 20px;
+    margin-left: 10px;
     font-size: 17px;
   }
   .add-r {
@@ -208,8 +210,8 @@ const Wrapper = styled.section`
     text-decoration: none;
     color: #000;
   }
-.save-btn{
-    width: 90%;
+  .save-btn {
+    width: 550px;
     background-color: #000;
     text-align: center;
     color: #ffffff;
@@ -217,18 +219,35 @@ const Wrapper = styled.section`
     border-radius: 5px;
     margin: 20px 0;
     cursor: pointer;
-}
+  }
 
   @media screen and (max-width: 1290px) {
-    .r-section {
+    .n-section {
       width: 50%;
     }
   }
   @media screen and (max-width: 1200px) {
-    .r-section {
+    .n-section {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    .desc {
+      flex-direction: column;
+    }
+    .save-btn {
+      width: 450px;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .r-desc-input,
+    .save-btn {
+      width: 90%;
+    }
+  }
+
 `
 export default LandlordAddReminder
