@@ -4,6 +4,7 @@ import { Squash as Hamburger } from 'hamburger-react'
 import icon from '../../assets/Frame 1639.png'
 import { landlordTenants } from '../../datas/LandlordTenant'
 import Calendar from '../Calender/Calendar'
+import calenderIcon from '../../assets/Frame 1770.png'
 const LandLordReminderSidebar = () => {
   const [active, setActive] = useState(true)
   const [screenSize, setScreenSize] = useState(undefined)
@@ -41,12 +42,30 @@ const LandLordReminderSidebar = () => {
           <main className={active ? 'ppt-sidebar' : null}>
             {active && (
               <div className='left-sidebar'>
+                {/* Due Date count down */}
                 <div className='l-due-date'>
                   <div className='next-due-date'>
-                    <h3 className='l-tenant-h'>Next Due Date</h3>
-                    <input type="date" name="" id="" />
+                    <h1 className='l-due-date-h'>Next Due Date</h1>
+                    <img src={calenderIcon} alt='Calender' />
                   </div>
+                  <div className='date-countdown'>
+                    <div className='next-due-date-c'>
+                      <h3 className='num-c'>19</h3>
+                      <h3 className='num-c'>12</h3>
+                      <h3 className='num-c'>04</h3>
+                      <h3 className='num-c'>10</h3>
+                    </div>
+                    <div className='next-due-date-c'>
+                      <p className='days'>Days</p>
+                      <p className='days'>Hours</p>
+                      <p className='days'>Minutes</p>
+                      <p className='days'>Seconds</p>
+                    </div>
+                  </div>
+                  <p className='d-date'>Due Date</p>
+                  <h1>20, March 2024</h1>
                 </div>
+
                 <div className='users'>
                   <div className='tenants'>
                     <h3 className='l-tenant-h'>Tenants</h3>
@@ -67,8 +86,8 @@ const LandLordReminderSidebar = () => {
                     )
                   })}
                 </div>
-                <div className="clender">
-                    <Calendar />
+                <div className='calender'>
+                  <Calendar />
                 </div>
               </div>
             )}
@@ -103,7 +122,48 @@ const Wrapper = styled.section`
     justify-content: center;
   }
 
-.l-due-date,
+  .l-due-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0px 2px 16px 0px #00000026;
+  }
+  .next-due-date {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .l-due-date-h {
+    font-size: 19px;
+  }
+  .date-countdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 15px 0;
+  }
+  .next-due-date-c {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    width: 100%;
+
+  }
+  .num-c {
+    font-size: 25px;
+  }
+  .days {
+    font-size: 14px;
+  }
+  .d-date {
+    margin: 15px 0;
+  }
+
   .users {
     display: flex;
     flex-direction: column;
@@ -113,8 +173,17 @@ const Wrapper = styled.section`
     width: 100%;
     padding: 20px;
     background-color: #ffffff;
-    border-radius: 20px;
+    border-radius: 4px;
     box-shadow: 0px 2px 16px 0px #00000026;
+  }
+  .l-tenant-h {
+    font-size: 18px;
+  }
+  .l-tenant {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 12px 0;
   }
   .tenants {
     display: flex;
@@ -122,15 +191,6 @@ const Wrapper = styled.section`
     justify-content: space-between;
     width: 100%;
     margin: 10px 0;
-  }
-  .l-tenant-h {
-    font-size: 22px;
-  }
-  .l-tenant {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin: 12px 0;
   }
 
   .username {

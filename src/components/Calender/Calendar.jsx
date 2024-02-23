@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
+import leftIcon from '../../assets/Frame 1639 (1).png'
+import rightIcon from '../../assets/Frame 1365.png'
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const monthsOfYear = [
   'January',
@@ -76,11 +77,17 @@ const Calendar = () => {
         <section>
           <div className='calendar'>
             <div className='header'>
-              <button onClick={goToPreviousMonth}>Previous</button>
               <h2>
                 {monthsOfYear[date.getMonth()]} {date.getFullYear()}
               </h2>
-              <button onClick={goToNextMonth}>Next</button>
+              <div className='img-icons'>
+                <img
+                  onClick={goToPreviousMonth}
+                  src={rightIcon}
+                  alt='Left-Icon'
+                />
+                <img onClick={goToNextMonth} src={leftIcon} alt='Right-Icon' />
+              </div>
             </div>
             <div className='weekdays'>
               {daysOfWeek.map((day) => (
@@ -99,9 +106,11 @@ const Calendar = () => {
 const Wrapper = styled.section`
   .calendar {
     width: 280px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
+    height: 380px;
+    box-shadow: 0px 2px 16px 0px #00000026;
+    margin: 20px 0;
   }
 
   .header {
@@ -110,30 +119,42 @@ const Wrapper = styled.section`
     align-items: center;
     margin-bottom: 10px;
   }
-
+  h2 {
+    font-size: 17px;
+  }
   .weekdays {
     display: flex;
   }
-
+  .img-icons {
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+  }
+  img {
+    width: 45%;
+    cursor: pointer;
+  }
   .weekday {
     flex: 1;
     text-align: center;
+    font-size: 15px;
   }
 
   .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 3px;
   }
 
   .calendar-day {
     text-align: center;
-    padding: 5px;
+    padding: 15px 5px;
     cursor: pointer;
   }
 
   .calendar-day.active {
-    background-color: lightblue;
+    background-color: #FEDF7E;
+    border-radius: 20px;
   }
 
   .empty-day {

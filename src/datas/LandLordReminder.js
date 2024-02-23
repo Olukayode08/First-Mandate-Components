@@ -25,4 +25,16 @@ export const landlordReminder = [
     amount: '#40.00k',
     description: 'House rent for month of February 2024',
   },
+  {
+    id: 105,
+    image: houseImage,
+    amount: '#40.00k',
+    description: 'House rent for month of February 2024',
+  },
+  {
+    id: 106,
+    image: houseImage,
+    amount: '#40.00k',
+    description: 'House rent for month of February 2024',
+  },
 ]

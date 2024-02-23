@@ -4,7 +4,7 @@ import { FaRegUser } from 'react-icons/fa'
 
 import styled from 'styled-components'
 
-const Header = () => {
+const TenantHeader = () => {
   return (
     <>
       <Wrapper>
@@ -12,9 +12,9 @@ const Header = () => {
           <div className='header'>
             <div className='select-user'>
               <select name='user' id='user'>
-                <option value='Landlord'>Landlord</option>
                 <option value='Tenant'>Tenant</option>
-                <option value='Manager'>Manager</option>
+                <option value='Landlord'>Landlord</option>
+                <option value='Manager'>Property Manager</option>
               </select>
               <div className='icons'>
                 <FaBell className='icon' />
@@ -71,4 +71,4 @@ const Wrapper = styled.section`
     cursor: pointer;
   }
 `
-export default Header
+export default TenantHeader

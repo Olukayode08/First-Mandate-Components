@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { BsThreeDots } from 'react-icons/bs'
 
-const FirstMandateSidebar = () => {
+const TenantSidebar = () => {
   const [active, setActive] = useState(true)
   const [screenSize, setScreenSize] = useState(undefined)
 
@@ -170,4 +170,4 @@ const Wrapper = styled.section`
     margin-top: 60px;
   }
 `
-export default FirstMandateSidebar
+export default TenantSidebar

@@ -58,11 +58,19 @@ const AddNewTenant = () => {
           <div className='rent-date'>
             <div className='start-date'>
               <label>Rent Start Date</label>
-              <input type='date' className='r-date-input' />
+              <input
+                type='date'
+                placeholder='dd/mm/yyyy'
+                className='r-date-input'
+              />
             </div>
             <div className='end-date'>
               <label>Rent End Date</label>
-              <input type='date' className='r-date-input' />
+              <input
+                type='date'
+                placeholder='dd/mm/yyyy'
+                className='r-date-input'
+              />
             </div>
           </div>
           <div className='rent-status'>
@@ -73,7 +81,11 @@ const AddNewTenant = () => {
           </div>
           <div className='due-date'>
             <label>Rent Payment Due Date</label>
-            <input type='date' className='r-date-input' />
+            <input
+              type='date'
+              placeholder='dd/mm/yyyy'
+              className='r-date-input'
+            />
           </div>
           <button className='add-tenant'>Add Tenant</button>
         </section>

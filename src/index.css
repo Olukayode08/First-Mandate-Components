@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Varela Round', sans-serif;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 /* Theme */
 #light {

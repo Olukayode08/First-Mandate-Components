@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import FirstMandateSidebar from '../../components/Sidebars/FirstMandateSidebar'
-import Header from '../../components/Headers/Header'
+import LandlordSidebar from '../../components/Sidebars/LandlordSidebar'
+import LandlordHeader from '../../components/Headers/LandlordHeader'
 import { Outlet } from 'react-router-dom'
 
 const LandLord = () => {
@@ -10,10 +10,10 @@ const LandLord = () => {
       <Wrapper>
         <section>
           <div className='landlord-s'>
-            <FirstMandateSidebar />
+            <LandlordSidebar />
           </div>
           <div className='landlord-h'>
-            <Header />
+            <LandlordHeader />
           </div>
         </section>
         <main>
