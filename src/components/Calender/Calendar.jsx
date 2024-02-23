@@ -110,6 +110,8 @@ const Wrapper = styled.section`
     padding: 10px;
     height: 380px;
     box-shadow: 0px 2px 16px 0px #00000026;
+    background-color: #ffffff;
+    z-index: 50;
     margin: 20px 0;
   }
 
