@@ -182,12 +182,13 @@ const Wrapper = styled.section`
     margin: 10px 0;
     font-size: 18px;
   }
-
+  .radio-btn {
+    gap: 20px;
+  }
   .radio-btn,
   .radio-btns {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
     align-items: center;
     margin: 10px 0;
   }
@@ -248,6 +249,5 @@ const Wrapper = styled.section`
       width: 90%;
     }
   }
-
 `
 export default LandlordAddReminder
