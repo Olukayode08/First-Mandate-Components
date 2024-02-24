@@ -5,7 +5,7 @@ import houseIcon from '../../assets/Frame-2007.png'
 const TenantApartmentDetails = () => {
   return (
     <>
-      <Wrapper>
+      <TenantAD>
         <section>
           <div className='a-section'>
             <div className='rent-sec'>
@@ -56,11 +56,11 @@ const TenantApartmentDetails = () => {
             </div>
           </div>
         </section>
-      </Wrapper>
+      </TenantAD>
     </>
   )
 }
-const Wrapper = styled.section`
+const TenantAD = styled.section`
   position: relative;
   .a-section {
     position: absolute;
@@ -73,12 +73,7 @@ const Wrapper = styled.section`
     margin: 0 auto;
     padding: 20px;
   }
-  .a-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+
   .rent-sec {
     display: flex;
     flex-direction: column;
@@ -170,7 +165,7 @@ const Wrapper = styled.section`
       align-items: center;
       justify-content: center;
     }
-    .t-name{
+    .t-name {
       margin: 15px 0;
     }
   }

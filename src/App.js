@@ -32,6 +32,7 @@ import LandlordReminders from './components/Landlord/LandlordReminders'
 import ManagerReminders from './components/Manager/ManagerReminders'
 import TenantApartmentDetails from './components/Tenant/TenantApartmentDetails'
 import TenantApartmentDetailsTwo from './components/Tenant/TenantApartmentDetailsTwo'
+import ManagerPropertyPageTwo from './components/Manager/ManagerPropertyPageTwo'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -50,7 +51,8 @@ function App() {
           {/* Manager's Page */}
           <Route path='/manager' element={<PropertyManager />}>
             <Route path='' element={<ManagerHomePage />} />
-            <Route path='ppt-page' element={<ManagerPropertyPageOne />} />
+            <Route path='ppt-page-one' element={<ManagerPropertyPageOne />} />
+            <Route path='ppt-page-two' element={<ManagerPropertyPageTwo />} />
             <Route path='add-landlord' element={<ManagerAddLandlord />} />
             <Route
               path='add-new-landlord'
@@ -59,7 +61,6 @@ function App() {
             <Route path='tenant-list' element={<ManagerTenantList />} />
             <Route path='add-tenant' element={<ManagerAddNewTenant />} />
             <Route path='notify' element={<ManagerNotifications />} />
-
             <Route
               path='add-landord-details'
               element={<ManagerAddNewLandlord />}
@@ -84,6 +85,7 @@ function App() {
               element={<TenantApartmentDetailsTwo />}
             />
           </Route>
+
           {/* Landlord page */}
           <Route path='/landlord' element={<LandLord />}>
             <Route path='' element={<LandlordHomePage />} />

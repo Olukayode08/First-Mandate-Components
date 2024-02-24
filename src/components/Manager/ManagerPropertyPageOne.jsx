@@ -6,7 +6,7 @@ import { FaRegPlusSquare } from 'react-icons/fa'
 const ManagerPropertyPageOne = () => {
   return (
     <>
-      <Wrapper>
+      <ManagerPPO>
         <section className='l-section'>
           <div className='l-home-page'>
             <div className='a-ppt'>
@@ -32,11 +32,11 @@ const ManagerPropertyPageOne = () => {
             </div>
           </div>
         </section>
-      </Wrapper>
+      </ManagerPPO>
     </>
   )
 }
-const Wrapper = styled.section`
+const ManagerPPO = styled.section`
   position: relative;
   .l-section {
     position: absolute;
@@ -55,7 +55,6 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: flex-start;
   }
-
   .a-ppt {
     display: flex;
     align-items: center;

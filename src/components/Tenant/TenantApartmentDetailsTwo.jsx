@@ -1,52 +1,55 @@
 import React from 'react'
 import styled from 'styled-components'
-import { properties } from '../../datas/PropertiesData'
+
 const TenantApartmentDetailsTwo = () => {
   return (
     <>
-      <Wrapper>
+      <TenantADT>
         <section>
-          <div className='p-section'>
-            <h2>My Properties</h2>
-            <div className='my-ppts'>
-              {properties.map((property) => {
-                return (
-                  <div key={property.id} className='ppt'>
-                    <img src={property.image} alt={property.name} />
-                    <div className='ppt-details'>
-                      <p>Name:</p>
-                      <span>{property.name}</span>
-                    </div>
-                    <div className='ppt-details'>
-                      <p>Location:</p>
-                      <span>{property.location}</span>
-                    </div>
-                    <div className='ppt-details'>
-                      <p>Property Type:</p>
-                      <span>{property.type}</span>
-                    </div>
-                    <div className='ppt-details'>
-                      <p>Rent Status:</p>
-                      <span>{property.status}</span>
-                    </div>
-                    <div className='ppt-details'>
-                      <p>Availiability:</p>
-                      <span>{property.availiability}</span>
-                    </div>
-                    <button>Check More Details</button>
-                  </div>
-                )
-              })}
+          <div className='a-section'>
+            <h2>My Apartment</h2>
+            <div className='my-apart'>
+              <div className='apart'>
+                <img
+                  src='https://img.freepik.com/free-photo/modern-residential-district-with-green-roof-balcony-generated-by-ai_188544-10276.jpg?w=2000&t=st=1708296592~exp=1708297192~hmac=75445606fddce8a3dac44471b1b30399a08057fbefef9a1f0ba47f44d59f9aa4'
+                  alt='House'
+                />
+                <div className='apart-details'>
+                  <p>Name:</p>
+                  <span>Peace House</span>
+                </div>
+                <div className='apart-details'>
+                  <p>Location:</p>
+                  <span>17, Street 7, GRA, Osogbo, Osun State.</span>
+                </div>
+                <div className='apart-details'>
+                  <p>Rent Start Date:</p>
+                  <span>dd/mm/yyyy</span>
+                </div>
+                <div className='apart-details'>
+                  <p>Rent End Date:</p>
+                  <span>dd/mm/yyyy</span>
+                </div>
+                <div className='apart-details'>
+                  <p>Payment Status:</p>
+                  <span className='a-status'>Not Paid</span>
+                </div>
+                <div className='apart-details'>
+                  <p>Rent Payment Due Date:</p>
+                  <span>dd/mm/yyyy</span>
+                </div>
+                <button>Check More Details</button>
+              </div>
             </div>
           </div>
         </section>
-      </Wrapper>
+      </TenantADT>
     </>
   )
 }
-const Wrapper = styled.section`
+const TenantADT = styled.section`
   position: relative;
-  .p-section {
+  .a-section {
     position: absolute;
     top: 0;
     right: 0;
@@ -63,13 +66,14 @@ const Wrapper = styled.section`
     font-size: 18px;
     text-align: center;
   }
-  .my-ppts {
+  .my-apart {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: left;
+    background: #ffffff;
   }
-  .ppt {
+  .apart {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -84,7 +88,7 @@ const Wrapper = styled.section`
     border-radius: 10px;
     margin: 10px 0;
   }
-  .ppt-details {
+  .apart-details {
     display: flex;
     justify-content: center;
     align-items: baseline;
@@ -100,26 +104,32 @@ const Wrapper = styled.section`
     font-weight: 600;
     opacity: 1;
   }
+  .a-status {
+    background-color: red;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+  }
   button {
     width: 320px;
     background-color: #000;
     color: #fff;
     padding: 13px;
     border: none;
-    border-radius: 7px;
+    border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
   }
 
   @media screen and (max-width: 400px) {
-    section {
+    .a-section {
       align-items: center;
       justify-content: center;
     }
     h2 {
       margin: 15px 0;
     }
-    .ppt {
+    .apart {
       width: 280px;
       margin: 10px 0;
     }
@@ -129,7 +139,7 @@ const Wrapper = styled.section`
     }
   }
   @media screen and (max-width: 1200px) {
-    .p-section {
+    .a-section {
       width: 100%;
       left: 0;
     }
