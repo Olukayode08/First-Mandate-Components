@@ -31,6 +31,7 @@ import ManagerAddLandlord from './components/Manager/ManagerAddLandlord'
 import LandlordReminders from './components/Landlord/LandlordReminders'
 import ManagerReminders from './components/Manager/ManagerReminders'
 import TenantApartmentDetails from './components/Tenant/TenantApartmentDetails'
+import TenantApartmentDetailsTwo from './components/Tenant/TenantApartmentDetailsTwo'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -77,6 +78,10 @@ function App() {
             <Route
               path='apartment-details'
               element={<TenantApartmentDetails />}
+            />
+            <Route
+              path='apartment-details-two'
+              element={<TenantApartmentDetailsTwo />}
             />
           </Route>
           {/* Landlord page */}
