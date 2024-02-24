@@ -169,7 +169,6 @@ const Wrapper = styled.section`
     font-family: inherit;
     font-size: 15px;
   }
-
   /* Notification Status */
   .n-status {
     display: flex;

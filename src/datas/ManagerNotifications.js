@@ -1,6 +1,6 @@
-export const landlordNotififcations = [
+export const managerNotififcations = [
   {
-    id: 201,
+    id: 211,
     date: 'dd/mm/yyy',
     time: '10:15am',
     desc: 'This is to notify you that your Mr. Sina’s rent will be due on the 20th of Februa............ ',
@@ -8,7 +8,7 @@ export const landlordNotififcations = [
     style: { color: 'black', backgroundColor: 'white' },
   },
   {
-    id: 202,
+    id: 212,
     date: 'dd/mm/yyy',
     time: '2:00pm',
     desc: 'This is to notify you that your Mr. Sina’s rent will be due on the 20th of Februa............ ',
@@ -16,7 +16,7 @@ export const landlordNotififcations = [
     style: { color: 'white', backgroundColor: 'black' },
   },
   {
-    id: 203,
+    id: 213,
     date: 'dd/mm/yyy',
     time: '10:15am',
     desc: 'This is to notify you that your Mr. Sina’s rent will be due on the 20th of Februa............ ',
@@ -24,7 +24,7 @@ export const landlordNotififcations = [
     style: { color: 'black', backgroundColor: 'white' },
   },
   {
-    id: 204,
+    id: 214,
     date: 'dd/mm/yyy',
     time: '10:15am',
     desc: 'This is to notify you that your Mr. Sina’s rent will be due on the 20th of Februa............ ',

@@ -98,7 +98,7 @@ const Wrapper = styled.section`
     position: relative;
   }
   .sidebar-btn {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 0;
     color: #000;

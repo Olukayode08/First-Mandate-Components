@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { landlordNotififcations } from '../../datas/LandlordNotifications'
+import { managerNotififcations } from '../../datas/ManagerNotifications'
 
-const LandlordNotifications = () => {
+const ManagerNotifications = () => {
   return (
     <>
       <Wrapper>
@@ -19,13 +19,16 @@ const LandlordNotifications = () => {
                 </tr>
               </thead>
               <tbody>
-                {landlordNotififcations.map((notifications) => {
+                {managerNotififcations.map((notifications) => {
                   return (
                     <tr key={notifications.id} className='t-notifications'>
                       <td>{notifications.date}</td>
                       <td>{notifications.time}</td>
                       <td>{notifications.desc}</td>
-                      <td style={notifications.style} className='notification-status'>
+                      <td
+                        style={notifications.style}
+                        className='notification-status'
+                      >
                         {notifications.status}
                       </td>
                     </tr>
@@ -88,6 +91,8 @@ const Wrapper = styled.section`
     .l-notify {
       width: 75%;
     }
+    h3 {
+    }
   }
   @media screen and (max-width: 1200px) {
     .l-notify {
@@ -96,4 +101,4 @@ const Wrapper = styled.section`
     }
   }
 `
-export default LandlordNotifications
+export default ManagerNotifications

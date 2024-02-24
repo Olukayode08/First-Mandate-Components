@@ -1,0 +1,171 @@
+import React from 'react'
+import styled from 'styled-components'
+import houseIcon from '../../assets/Frame-2007.png'
+
+const TenantApartmentDetails = () => {
+  return (
+    <>
+      <Wrapper>
+        <section className='a-section'>
+          <div className='rent-sec'>
+            <h3 className='rent-det'>My Rent Details</h3>
+            <div className='apart-det'>
+              <img src={houseIcon} alt='House' />
+              <div className='apart-loc'>
+                <h3 className='h-name'>House of Elovia</h3>
+                <h3 className='location'>
+                  Location:
+                  <span> 32, Street 7, GRA, Osogbo, Osun State.</span>
+                </h3>
+              </div>
+            </div>
+            <div className='apartment-details'>
+              <h3>Apartment Details</h3>
+              <div className='t-details'>
+                <div className='input'>
+                  <h1>Lanlord's Name</h1>
+                  <h1 className='t-name'>Mr Adekola</h1>
+                </div>
+                <div className='input'>
+                  <h1>Manager's Name</h1>
+                  <h1 className='t-name'>Mr Adewumi</h1>
+                </div>
+              </div>
+              <div className='t-details'>
+                <div className='input'>
+                  <h1>Lanlord's Phone</h1>
+                  <h1 className='t-name'>+234 814 6573 112</h1>
+                </div>
+                <div className='input'>
+                  <h1>Managers's Phone</h1>
+                  <h1 className='t-name'>+234 814 6573 112</h1>
+                </div>
+              </div>
+              <div className='t-details'>
+                <div className='input'>
+                  <h1>Rent Amount per year</h1>
+                  <h1 className='t-name t-amt'>#800.000.00k</h1>
+                </div>
+                <div className='input'>
+                  <h1>Current Rent Status</h1>
+                  <h1 className='t-name'>Occupied</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Wrapper>
+    </>
+  )
+}
+const Wrapper = styled.section`
+  position: relative;
+  .a-section {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 78%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .a-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .rent-sec {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .apart-det {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    width: 600px;
+  }
+  .input,
+  .apart-loc {
+    display: flex;
+    flex-direction: column;
+  }
+  .location {
+    margin: 10px 0;
+  }
+  span {
+    opacity: 0.7;
+  }
+  .apartment-details {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 16px 0px #00000026;
+    width: 100%;
+  }
+  .t-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  .input {
+    padding: 10px 0;
+    width: 47%;
+    margin: 10px 0;
+    border-bottom: 1px solid black;
+  }
+  .t-name {
+    margin: 17px 0 15px 17px;
+    opacity: 0.7;
+  }
+  .t-amt {
+    opacity: 1;
+  }
+  @media screen and (max-width: 1270px) {
+    .a-section {
+      width: 75%;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .a-section {
+      width: 100%;
+      left: 0;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .apart-det,
+    .t-details {
+      flex-direction: column;
+    }
+    .apart-det {
+      width: 100%;
+      justify-content: center;
+    }
+    .rent-det,
+    .h-name,
+    .location {
+      text-align: center;
+    }
+    .h-name {
+      margin: 10px 0;
+    }
+    .apartment-details {
+      background-color: none;
+      box-shadow: none;
+    }
+    .input {
+      width: 300px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .input {
+      width: 200px;
+    }
+  }
+`
+export default TenantApartmentDetails
