@@ -6,68 +6,70 @@ const TenantAddApartmentDetails = () => {
   return (
     <>
       <Wrapper>
-        <section className='ap-section'>
-          <h3>Add Apartment</h3>
-          <div>
-            <div className='input'>
-              <label>Property Name</label>
-              <div className='tenants-name'>
+        <section>
+          <div className='ap-section'>
+            <h3>Add Apartment</h3>
+            <div>
+              <div className='input'>
+                <label>Property Name</label>
+                <div className='tenants-name'>
+                  <input
+                    type='text'
+                    placeholder="Enter tenant's name"
+                    className='t-name-input'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='section'>
+              <div className='input'>
+                <label>Location</label>
+                <div className='tenants-name'>
+                  <input
+                    type='text'
+                    placeholder='Enter Address'
+                    className='t-name-input'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='add-ap'>
+              <AddApartmentDropdown />
+            </div>
+            <div className='rent-date'>
+              <div className='start-date'>
+                <label>Rent Start Date</label>
                 <input
-                  type='text'
-                  placeholder="Enter tenant's name"
-                  className='t-name-input'
+                  type='date'
+                  placeholder='dd/mm/yyyy'
+                  className='r-date-input'
+                />
+              </div>
+              <div className='end-date'>
+                <label>Rent End Date</label>
+                <input
+                  type='date'
+                  placeholder='dd/mm/yyyy'
+                  className='r-date-input'
                 />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Location</label>
+            <div className='rent-status'>
+              <label>Rent Payment Status</label>
               <div className='tenants-name'>
-                <input
-                  type='text'
-                  placeholder='Enter Address'
-                  className='t-name-input'
-                />
+                <p className='not-p'>Not Paid</p>
               </div>
             </div>
-          </div>
-          <div className='add-ap'>
-            <AddApartmentDropdown />
-          </div>
-          <div className='rent-date'>
-            <div className='start-date'>
-              <label>Rent Start Date</label>
+            <div className='due-date'>
+              <label>Rent Payment Due Date</label>
               <input
                 type='date'
                 placeholder='dd/mm/yyyy'
                 className='r-date-input'
               />
             </div>
-            <div className='end-date'>
-              <label>Rent End Date</label>
-              <input
-                type='date'
-                placeholder='dd/mm/yyyy'
-                className='r-date-input'
-              />
-            </div>
+            <button className='add-tenant'>Add Apartment</button>
           </div>
-          <div className='rent-status'>
-            <label>Rent Payment Status</label>
-            <div className='tenants-name'>
-              <p className='not-p'>Not Paid</p>
-            </div>
-          </div>
-          <div className='due-date'>
-            <label>Rent Payment Due Date</label>
-            <input
-              type='date'
-              placeholder='dd/mm/yyyy'
-              className='r-date-input'
-            />
-          </div>
-          <button className='add-tenant'>Add Apartment</button>
         </section>
       </Wrapper>
     </>
@@ -78,12 +80,12 @@ const Wrapper = styled.section`
   .ap-section {
     position: absolute;
     top: 0;
-    left: 300px;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
-    width: 58%;
+    width: 78%;
     margin: 0 auto;
     padding: 20px;
   }
@@ -164,9 +166,9 @@ const Wrapper = styled.section`
     cursor: pointer;
     color: #000;
   }
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1200px) {
     .ap-section {
-      width: 90%;
+      width: 98%;
       left: 0;
     }
   }

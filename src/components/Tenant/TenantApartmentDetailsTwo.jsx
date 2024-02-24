@@ -1,42 +1,43 @@
 import React from 'react'
 import styled from 'styled-components'
 import { properties } from '../../datas/PropertiesData'
-
 const TenantApartmentDetailsTwo = () => {
   return (
     <>
       <Wrapper>
         <section>
-          <h2>My Properties</h2>
-          <div className='my-ppts'>
-            {properties.map((property) => {
-              return (
-                <div key={property.id} className='ppt'>
-                  <img src={property.image} alt={property.name} />
-                  <div className='ppt-details'>
-                    <p>Name:</p>
-                    <span>{property.name}</span>
+          <div className='p-section'>
+            <h2>My Properties</h2>
+            <div className='my-ppts'>
+              {properties.map((property) => {
+                return (
+                  <div key={property.id} className='ppt'>
+                    <img src={property.image} alt={property.name} />
+                    <div className='ppt-details'>
+                      <p>Name:</p>
+                      <span>{property.name}</span>
+                    </div>
+                    <div className='ppt-details'>
+                      <p>Location:</p>
+                      <span>{property.location}</span>
+                    </div>
+                    <div className='ppt-details'>
+                      <p>Property Type:</p>
+                      <span>{property.type}</span>
+                    </div>
+                    <div className='ppt-details'>
+                      <p>Rent Status:</p>
+                      <span>{property.status}</span>
+                    </div>
+                    <div className='ppt-details'>
+                      <p>Availiability:</p>
+                      <span>{property.availiability}</span>
+                    </div>
+                    <button>Check More Details</button>
                   </div>
-                  <div className='ppt-details'>
-                    <p>Location:</p>
-                    <span>{property.location}</span>
-                  </div>
-                  <div className='ppt-details'>
-                    <p>Property Type:</p>
-                    <span>{property.type}</span>
-                  </div>
-                  <div className='ppt-details'>
-                    <p>Rent Status:</p>
-                    <span>{property.status}</span>
-                  </div>
-                  <div className='ppt-details'>
-                    <p>Availiability:</p>
-                    <span>{property.availiability}</span>
-                  </div>
-                  <button>Check More Details</button>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </section>
       </Wrapper>
@@ -44,9 +45,18 @@ const TenantApartmentDetailsTwo = () => {
   )
 }
 const Wrapper = styled.section`
-  section {
+  position: relative;
+  .p-section {
+    position: absolute;
+    top: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    width: 78%;
+    margin: 0 auto;
+    padding: 20px;
   }
   h2 {
     margin: 15px 10px;
@@ -56,8 +66,8 @@ const Wrapper = styled.section`
   .my-ppts {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: left;
   }
   .ppt {
     display: flex;
@@ -116,6 +126,12 @@ const Wrapper = styled.section`
     button,
     img {
       width: 250px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .p-section {
+      width: 100%;
+      left: 0;
     }
   }
 `

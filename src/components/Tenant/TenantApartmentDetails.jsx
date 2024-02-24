@@ -6,49 +6,51 @@ const TenantApartmentDetails = () => {
   return (
     <>
       <Wrapper>
-        <section className='a-section'>
-          <div className='rent-sec'>
-            <h3 className='rent-det'>My Rent Details</h3>
-            <div className='apart-det'>
-              <img src={houseIcon} alt='House' />
-              <div className='apart-loc'>
-                <h3 className='h-name'>House of Elovia</h3>
-                <h3 className='location'>
-                  Location:
-                  <span> 32, Street 7, GRA, Osogbo, Osun State.</span>
-                </h3>
-              </div>
-            </div>
-            <div className='apartment-details'>
-              <h3>Apartment Details</h3>
-              <div className='t-details'>
-                <div className='input'>
-                  <h1>Lanlord's Name</h1>
-                  <h1 className='t-name'>Mr Adekola</h1>
-                </div>
-                <div className='input'>
-                  <h1>Manager's Name</h1>
-                  <h1 className='t-name'>Mr Adewumi</h1>
+        <section>
+          <div className='a-section'>
+            <div className='rent-sec'>
+              <h3 className='rent-det'>My Rent Details</h3>
+              <div className='apart-det'>
+                <img src={houseIcon} alt='House' />
+                <div className='apart-loc'>
+                  <h3 className='h-name'>House of Elovia</h3>
+                  <h3 className='location'>
+                    Location:
+                    <span> 32, Street 7, GRA, Osogbo, Osun State.</span>
+                  </h3>
                 </div>
               </div>
-              <div className='t-details'>
-                <div className='input'>
-                  <h1>Lanlord's Phone</h1>
-                  <h1 className='t-name'>+234 814 6573 112</h1>
+              <div className='apartment-details'>
+                <h3>Apartment Details</h3>
+                <div className='t-details'>
+                  <div className='input'>
+                    <h1>Lanlord's Name</h1>
+                    <h1 className='t-name'>Mr Adekola</h1>
+                  </div>
+                  <div className='input'>
+                    <h1>Manager's Name</h1>
+                    <h1 className='t-name'>Mr Adewumi</h1>
+                  </div>
                 </div>
-                <div className='input'>
-                  <h1>Managers's Phone</h1>
-                  <h1 className='t-name'>+234 814 6573 112</h1>
+                <div className='t-details'>
+                  <div className='input'>
+                    <h1>Lanlord's Phone</h1>
+                    <h1 className='t-name'>+234 814 6573 112</h1>
+                  </div>
+                  <div className='input'>
+                    <h1>Managers's Phone</h1>
+                    <h1 className='t-name'>+234 814 6573 112</h1>
+                  </div>
                 </div>
-              </div>
-              <div className='t-details'>
-                <div className='input'>
-                  <h1>Rent Amount per year</h1>
-                  <h1 className='t-name t-amt'>#800.000.00k</h1>
-                </div>
-                <div className='input'>
-                  <h1>Current Rent Status</h1>
-                  <h1 className='t-name'>Occupied</h1>
+                <div className='t-details'>
+                  <div className='input'>
+                    <h1>Rent Amount per year</h1>
+                    <h1 className='t-name t-amt'>#800.000.00k</h1>
+                  </div>
+                  <div className='input'>
+                    <h1>Current Rent Status</h1>
+                    <h1 className='t-name'>Occupied</h1>
+                  </div>
                 </div>
               </div>
             </div>
@@ -62,7 +64,7 @@ const Wrapper = styled.section`
   position: relative;
   .a-section {
     position: absolute;
-    right: 10px;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -102,6 +104,8 @@ const Wrapper = styled.section`
     opacity: 0.7;
   }
   .apartment-details {
+    display: flex;
+    flex-direction: column;
     margin: 20px 0;
     padding: 20px;
     background-color: #ffffff;
@@ -157,9 +161,17 @@ const Wrapper = styled.section`
     .apartment-details {
       background-color: none;
       box-shadow: none;
+      align-items: center;
+      justify-content: center;
     }
+
     .input {
       width: 300px;
+      align-items: center;
+      justify-content: center;
+    }
+    .t-name{
+      margin: 15px 0;
     }
   }
   @media screen and (max-width: 320px) {
