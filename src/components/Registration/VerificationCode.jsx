@@ -20,7 +20,7 @@ const VerificationCode = () => {
 
   const handleKeyDown = (index, e) => {
     if (e.key === 'Backspace' && index > 0 && !codes[index]) {
-      // Move to the previous input if Backspace is pressed on an empty input
+      // Move to the previous input if Backspace is pressed on an empty input.
       inputsRef.current[index - 1].focus()
     }
   }
