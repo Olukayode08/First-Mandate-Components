@@ -4,7 +4,7 @@ import LandlordSidebar from '../../components/Sidebars/LandlordSidebar'
 import LandlordHeader from '../../components/Headers/LandlordHeader'
 import { Outlet } from 'react-router-dom'
 
-const Landlord = () => {
+const LandLord = () => {
   return (
     <>
       <LandlordMP>
@@ -24,4 +24,4 @@ const Landlord = () => {
   )
 }
 const LandlordMP = styled.section``
-export default Landlord
+export default LandLord

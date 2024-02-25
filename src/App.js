@@ -8,7 +8,7 @@ import UploadPptSidebar from './components/Sidebars/UploadPptSidebar'
 import UploadPpt from './components/UploadPpt/UploadPpt'
 import MyProperties from './components/Properties/MyProperties'
 import Reload from './hooks/Reload'
-import Landlord from './pages/Landlord/Landlord'
+import LandLord from './pages/Landlord/LandLord'
 import TenantAddApartmentDetails from './components/Tenant/TenantAddApartmentDetails'
 import ManagerAddNewLandlord from './components/Manager/ManagerAddNewLandlord'
 import LandlordHomePage from './components/Landlord/LandlordHomePage'
@@ -62,7 +62,7 @@ function App() {
           <Route path='/my-ppts' element={<MyProperties />} />
 
           {/* Landlord page */}
-          <Route path='/landlord' element={<Landlord />}>
+          <Route path='/landlord' element={<LandLord />}>
             <Route path='' element={<LandlordHomePage />} />
             <Route path='reminders' element={<LandlordReminders />} />
             <Route path='upload-ppt' element={<UploadPpt />} />
