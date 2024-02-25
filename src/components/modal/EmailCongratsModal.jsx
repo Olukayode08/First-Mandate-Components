@@ -2,31 +2,28 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
 
-const SignupCongratsModal = () => {
-  const { toggleSignupModal } = useContext(FirstMandate)
+const EmailCongratsModal = () => {
+  const { toggleEmailModal } = useContext(FirstMandate)
 
   return (
     <>
-      <SignupCM>
+      <EmailCM>
         <section>
           <div className='modal'>
-            <div className='overlay' onClick={toggleSignupModal}></div>
+            <div className='overlay' onClick={toggleEmailModal}></div>
             <div className='modal-content'>
               <p className='modal-text'>
-                You have successfully signed up to 1st Mandate.
-              </p>
-              <p className='modal-text'>
-                Please check the email you provided to activate and confirm your
-                account.
+                Password reset request is successful and link to reset has been
+                sent to the email address provided.
               </p>
             </div>
           </div>
         </section>
-      </SignupCM>
+      </EmailCM>
     </>
   )
 }
-const SignupCM = styled.section`
+const EmailCM = styled.section`
   /* TOAST NOTIFICATION */
   body.active-modal {
     overflow-y: hidden;
@@ -73,4 +70,4 @@ const SignupCM = styled.section`
     color: #000;
   }
 `
-export default SignupCongratsModal
+export default EmailCongratsModal

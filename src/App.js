@@ -42,6 +42,9 @@ import WelcomeEmail from './components/Email/WelcomeEmail'
 import SignupPage from './components/Registration/SignupPage'
 import SigninPage from './components/Registration/SigninPage'
 import VerificationCode from './components/Registration/VerificationCode'
+import ResetPassword from './components/Registration/ResetPassword'
+import ResetEmailPassword from './components/Registration/ResetEmailPassword'
+import ErrorPage from './components/Error/ErrorPage'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -53,7 +56,12 @@ function App() {
         <Routes>
           <Route path='/' element={<SignupPage />} />
           <Route path='/sign-in' element={<SigninPage />} />
-          <Route path='/reset-password' element={<VerificationCode />} />
+          <Route path='/verify-code' element={<VerificationCode />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
+          <Route
+            path='/reset-email-password'
+            element={<ResetEmailPassword />}
+          />
 
           {/* <Route path='/' element={<Signup />} />
           <Route path='/login' element={<Login />} /> */}
@@ -120,6 +128,7 @@ function App() {
             <Route path='general-email' element={<GeneralEmail />} />
             <Route path='welcome-email' element={<WelcomeEmail />} />
           </Route>
+          <Route path='/*' element={<ErrorPage />} />
         </Routes>
       </div>
     </>

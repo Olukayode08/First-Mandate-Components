@@ -44,10 +44,16 @@ const Context = ({ children }) => {
 
   // Sign-up Congratulations
   const [signupCongrats, setSignupCongrats] = useState(false)
-
   const toggleSignupModal = () => {
     setSignupCongrats(!signupCongrats)
   }
+
+  // Email Reset Password Congratulations
+    const [emailResetCongrats, setEmailResetCongrats] = useState(false)
+    const toggleEmailModal = () => {
+      setEmailResetCongrats(!emailResetCongrats)
+    }
+
   return (
     <>
       <FirstMandate.Provider
@@ -61,8 +67,10 @@ const Context = ({ children }) => {
           toggleConfirmPassword,
           modal,
           toggleModal,
-          toggleSignupModal,
           signupCongrats,
+          toggleSignupModal,
+          emailResetCongrats,
+          toggleEmailModal,
         }}
       >
         {children}

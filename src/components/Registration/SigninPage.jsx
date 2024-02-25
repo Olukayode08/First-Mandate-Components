@@ -138,7 +138,6 @@ const SigninP = styled.section`
   @media screen and (max-width: 440px) {
     main {
       width: 360px;
-      height: 100%;
     }
     .terms,
     .google,
@@ -151,6 +150,7 @@ const SigninP = styled.section`
   @media screen and (max-width: 360px) {
     main {
       width: 320px;
+      height: 100%;
     }
     .terms,
     .google,
