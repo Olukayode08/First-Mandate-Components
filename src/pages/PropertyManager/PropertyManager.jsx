@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const PropertyManager = () => {
   return (
     <>
-      <Wrapper>
+      <PManagerMP>
         <section>
           <div className='p-manager-s'>
             <PropertyManagerSidebar />
@@ -19,11 +19,11 @@ const PropertyManager = () => {
         <main>
           <Outlet />
         </main>
-      </Wrapper>
+      </PManagerMP>
     </>
   )
 }
 
-const Wrapper = styled.section``
+const PManagerMP = styled.section``
 
 export default PropertyManager

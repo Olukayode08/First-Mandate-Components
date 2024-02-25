@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const Tenant = () => {
   return (
     <>
-      <Wrapper>
+      <TenantMP>
         <section>
           <div className='p-manager-s'>
             <TenantSidebar />
@@ -19,11 +19,11 @@ const Tenant = () => {
         <main>
           <Outlet />
         </main>
-      </Wrapper>
+      </TenantMP>
     </>
   )
 }
 
-const Wrapper = styled.section``
+const TenantMP = styled.section``
 
 export default Tenant

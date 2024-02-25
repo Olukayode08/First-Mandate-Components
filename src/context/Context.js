@@ -41,6 +41,13 @@ const Context = ({ children }) => {
     //   navigate('/landlord')
     // }, 2000)
   }
+
+  // Sign-up Congratulations
+  const [signupCongrats, setSignupCongrats] = useState(false)
+
+  const toggleSignupModal = () => {
+    setSignupCongrats(!signupCongrats)
+  }
   return (
     <>
       <FirstMandate.Provider
@@ -54,6 +61,8 @@ const Context = ({ children }) => {
           toggleConfirmPassword,
           modal,
           toggleModal,
+          toggleSignupModal,
+          signupCongrats,
         }}
       >
         {children}
