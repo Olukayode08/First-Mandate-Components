@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
 import EmailCongratsModal from '../modal/EmailCongratsModal'
@@ -82,6 +82,7 @@ const ResetEP = styled.section`
     main {
       width: 430px;
     }
+    button,
     .email-input {
       width: 350px;
     }
@@ -90,6 +91,7 @@ const ResetEP = styled.section`
     main {
       width: 360px;
     }
+    button,
     .email-input {
       width: 350px;
     }
@@ -98,6 +100,7 @@ const ResetEP = styled.section`
     main {
       width: 320px;
     }
+    button,
     .email-input {
       width: 280px;
     }

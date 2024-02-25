@@ -66,6 +66,7 @@ const ResetP = styled.section`
     main {
       width: 430px;
     }
+    button,
     .password-input {
       width: 350px;
     }
@@ -74,6 +75,7 @@ const ResetP = styled.section`
     main {
       width: 360px;
     }
+    button,
     .password-input {
       width: 350px;
     }
@@ -82,6 +84,7 @@ const ResetP = styled.section`
     main {
       width: 320px;
     }
+    button,
     .password-input {
       width: 280px;
     }
