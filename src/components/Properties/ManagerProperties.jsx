@@ -19,26 +19,35 @@ const ManagerProperties = () => {
                 <th>Rent amt. yearly</th>
               </tr>
             </thead>
-            <tbody>
               {managerProperties.map((property) => {
                 return (
-                  <tr key={property.id} className='t-list'>
-                    <td>{property.no}</td>
-                    <td>{property.size}</td>
-                    <td>{property.bed}</td>
-                    <td>{property.bath}</td>
-                    <td>{property.tenantName}</td>
-                    <td>{property.status}</td>
-                    <td>{property.amt}</td>
-                  </tr>
+                  <tbody key={property.id}>
+                    <tr className='t-list'>
+                      <td>{property.no}</td>
+                      <td>{property.size}</td>
+                      <td>{property.bed}</td>
+                      <td>{property.bath}</td>
+                      <td>{property.tenantName}</td>
+                      <td>{property.status}</td>
+                      <td>{property.amt}</td>
+                    </tr>
+                    <tr>
+                      <td colSpan='7'>
+                        <span style={{ float: 'right' }} className='delete'>
+                          Delete
+                        </span>
+                        <img
+                          className='edit-img'
+                          style={{ float: 'right' }}
+                          src={editIcon}
+                          alt='Edit'
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
                 )
               })}
-            </tbody>
           </table>
-          <div className='mp-btns'>
-            <img className='edit-img' src={editIcon} alt='Edit' />
-            <span className='delete'>Delete</span>
-          </div>
         </div>
       </ManagerP>
     </>
@@ -68,25 +77,21 @@ const ManagerP = styled.section`
   }
 
   .t-list {
-    height: 50px;
+    height: 40px;
   }
-  .mp-btns {
-    display: flex;
-    align-items: flex-start;
-    justify-content: right;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 20px;
-  }
+
   .delete {
     background: #ffdfe2;
-    padding: 8px 20px;
+    padding: 10px 20px;
     border-radius: 4px;
+    margin: 0 20px;
+    cursor: pointer;
   }
   .edit-img {
     padding: 8px 20px;
     border-radius: 4px;
     background: #fedf7e;
+    cursor: pointer;
   }
 `
 export default ManagerProperties

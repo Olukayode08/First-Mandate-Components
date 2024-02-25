@@ -33,6 +33,7 @@ import ManagerReminders from './components/Manager/ManagerReminders'
 import TenantApartmentDetails from './components/Tenant/TenantApartmentDetails'
 import TenantApartmentDetailsTwo from './components/Tenant/TenantApartmentDetailsTwo'
 import ManagerPropertyPageTwo from './components/Manager/ManagerPropertyPageTwo'
+import LandlordPropertyPage from './components/Landlord/LandlordPropertyPage'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -97,6 +98,7 @@ function App() {
             <Route path='add-new-manager' element={<LandlordAddNewManager />} />
             <Route path='notify' element={<LandlordNotifications />} />
             <Route path='add-reminder' element={<LandlordAddReminder />} />
+            <Route path='ppt-page' element={<LandlordPropertyPage />} />
           </Route>
         </Routes>
       </div>

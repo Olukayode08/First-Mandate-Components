@@ -134,7 +134,7 @@ const ManagerPPT = styled.section`
     }
     .a-ppt {
       width: 80%;
-      margin: 0 auto;
+      margin: 10px auto;
     }
   }
   @media screen and (max-width: 1200px) {
