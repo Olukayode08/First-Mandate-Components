@@ -2,45 +2,46 @@ import React from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
 import LandLordReminderSidebar from '../Sidebars/LandlordReminderSidebar'
-import editIcon from '../../assets/edit-01.png'
+import editIcon from '../../assets/edit-btn.png'
 const LandlordReminders = () => {
   return (
     <>
       <LandLordReminderSidebar />
-      <Wrapper>
-        <section className='r-section'>
-          <div className='landlord-reminder'>
-            <div className='reminder-h'>
-              <h3>Reminders</h3>
+      <LandlordR>
+        <section>
+          <main className='r-section'>
+            <div className='landlord-reminder'>
+              <div className='reminder-h'>
+                <h3>Reminders</h3>
+              </div>
+              {landlordReminder.map((reminder) => {
+                return (
+                  <div key={reminder.id} className='r-due-date'>
+                    <img className='r-img' src={reminder.image} alt='' />
+                    <div className='name-amt'>
+                      <h3 className='r-amt'>Mr Kelly</h3>
+                      <h3 className='r-amt'>{reminder.amount}</h3>
+                    </div>
+                    <p className='r-desc'>{reminder.description}</p>
+                    <div className='l-btns'>
+                      <img
+                        className='l-btn edit-icon'
+                        src={editIcon}
+                        alt='Edit'
+                      />
+                      <p className='l-btn delete'>Delete</p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
-
-            {landlordReminder.map((reminder) => {
-              return (
-                <div key={reminder.id} className='r-due-date'>
-                  <img className='r-img' src={reminder.image} alt='' />
-                  <div className='name-amt'>
-                    <h3 className='d-date'>Mr Kelly</h3>
-                    <h3 className='d-date'>{reminder.amount}</h3>
-                  </div>
-                  <p className='r-desc'>{reminder.description}</p>
-                  <div className='l-btns'>
-                    <img
-                      className='l-btn edit-icon'
-                      src={editIcon}
-                      alt='Edit'
-                    />
-                    <p className='l-btn delete'>Delete</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          </main>
         </section>
-      </Wrapper>
+      </LandlordR>
     </>
   )
 }
-const Wrapper = styled.section`
+const LandlordR = styled.section`
   position: relative;
   .r-section {
     position: absolute;
@@ -55,8 +56,6 @@ const Wrapper = styled.section`
     width: 100%;
   }
   .reminder-h {
-    width: 100%;
-    margin: 0 auto;
     padding: 20px;
   }
   .r-due-date {
@@ -72,7 +71,7 @@ const Wrapper = styled.section`
     overflow-x: auto;
   }
   .r-img {
-    width: 10%;
+    width: 90px;
   }
   .name-amt {
     display: flex;
@@ -80,10 +79,10 @@ const Wrapper = styled.section`
     align-items: flex-start;
     justify-content: left;
   }
-  .d-date {
+  .r-amt {
     margin: 5px 0;
   }
-  .d-date,
+  .r-amt,
   .r-img {
     margin-right: 20px;
     flex-shrink: 0;
@@ -100,22 +99,19 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: right;
     align-items: center;
-    margin: 10px 0;
+    margin: 0 15px;
   }
   .l-btn {
-    margin: 0 15px;
+    margin: 0 10px;
     border-radius: 5px;
     cursor: pointer;
   }
   .edit-icon {
-    width: 60px;
-    padding: 0 10px;
+    padding: 8px 13px;
     background-color: #fedf7e;
   }
   .delete {
-    width: 80px;
-    text-align: center;
-    padding: 11px 0;
+    padding: 11px 17px;
     background-color: #ffdfe2;
   }
   @media screen and (max-width: 1290px) {
@@ -145,7 +141,7 @@ const Wrapper = styled.section`
       justify-content: left;
     }
     .r-img {
-      width: 17%;
+      width: 70px;
     }
   }
 `

@@ -49,7 +49,7 @@ const CountryDropdown = () => {
 
   return (
     <>
-      <Wrapper>
+      <CountryDD>
         <section className='select-section'>
           <div className='select'>
             <select
@@ -98,11 +98,11 @@ const CountryDropdown = () => {
             </select>
           </div>
         </section>
-      </Wrapper>
+      </CountryDD>
     </>
   )
 }
-const Wrapper = styled.section`
+const CountryDD = styled.section`
   .select-section {
     display: flex;
     flex-direction: row;

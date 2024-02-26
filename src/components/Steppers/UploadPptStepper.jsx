@@ -7,22 +7,14 @@ import { IoMdArrowBack } from 'react-icons/io'
 import Reload from '../../hooks/Reload'
 import CongratsModal from '../modal/CongratsModal'
 import { FirstMandate } from '../../context/Context'
+import UploadProperty from '../UploadPpt/UploadProperty'
 
 const totalSteps = 3
 
 const UploadPptStepper = () => {
   const [step, setStep] = useState(1)
-  const [uploadNewProperty, setUploadNewProperty] = useState(false)
-  const [rentStatus, setRentStatus] = useState('option2')
-  const { modal, toggleModal } = useContext(FirstMandate)
-
-  const handleRentStatus = (e) => {
-    setRentStatus(e.target.value)
-  }
-
-  const uploadProperty = () => {
-    setUploadNewProperty(true)
-  }
+  const { modal, toggleModal, setUploadNewProperty, uploadNewProperty } =
+    useContext(FirstMandate)
 
   const nextStep = () => {
     setStep(step + 1)
@@ -35,89 +27,60 @@ const UploadPptStepper = () => {
 
   return (
     <>
-      <Wrapper>
-        {!uploadNewProperty ? (
-          <section className='upload-l-ppt'>
-            <Reload />
-            <h2>Upload New Property</h2>
-            <label className='upload-label'>
-              Please pick the type of property you’d love to Upload
-            </label>
-            <div className='radio-btns-unit'>
-              <div className='radio-btn-unit'>
-                <input
-                  type='radio'
-                  value='option1'
-                  checked={rentStatus === 'option1'}
-                  onChange={handleRentStatus}
-                  className='btn-input'
-                />
-                <p className='unit-ppt-details'>Single Unit Property</p>
-              </div>
-              <div className='radio-btn-unit'>
-                <input
-                  type='radio'
-                  value='option2'
-                  checked={rentStatus === 'option2'}
-                  onChange={handleRentStatus}
-                  className='btn-input'
-                />
-                <p className='unit-ppt-details'>Multiple Unit Property</p>
-              </div>
-            </div>
-            <p className='continue-btn' onClick={uploadProperty}>
-              Continue
-            </p>
-          </section>
-        ) : (
-          <div className='multi-step-form'>
-            <h2>Upload New Property</h2>
-            {step === 1 && <p className='active-step'>1 of 3</p>}
-            {step === 2 && <p className='active-step'>2 of 3</p>}
-            {step === 3 && <p className='active-step'>3 of 3</p>}
-            <div className='step-indicator'>
-              <div className='progress-bar'>
-                <span
-                  className='indicator'
-                  style={{ width: `calc(${segmentWidth} * ${step})` }}
-                ></span>
-              </div>
-            </div>
-            <div className='step-content'>
-              {step === 1 && <Step1 />}
-              {step === 2 && <Step2 />}
-              {step === 3 && <Step3 />}
-            </div>
-            <div className='step-buttons'>
-              {step === 1 && (
-                <button
-                  onClick={() => setUploadNewProperty(false)}
-                  className='prev-button'
-                >
-                  Cancel
-                </button>
-              )}
-              {step > 1 && (
-                <div className='prev-button back'>
-                  <IoMdArrowBack className='icon' />
-                  <button onClick={prevStep}>Go back</button>
+      <UploadPptS>
+        <section>
+          {!uploadNewProperty ? (
+            <UploadProperty />
+          ) : (
+            <div className='multi-step-form'>
+              <h2>Upload New Property</h2>
+              {step === 1 && <p className='active-step'>1 of 3</p>}
+              {step === 2 && <p className='active-step'>2 of 3</p>}
+              {step === 3 && <p className='active-step'>3 of 3</p>}
+              <div className='step-indicator'>
+                <div className='progress-bar'>
+                  <span
+                    className='indicator'
+                    style={{ width: `calc(${segmentWidth} * ${step})` }}
+                  ></span>
                 </div>
-              )}
-              {step < 3 && (
-                <button className='next-button' onClick={nextStep}>
-                  Save & Continue
-                </button>
-              )}
-              {step === 3 && (
-                <button onClick={toggleModal} className='next-button'>
-                  Save & Upload Property
-                </button>
-              )}
+              </div>
+              <div className='step-content'>
+                {step === 1 && <Step1 />}
+                {step === 2 && <Step2 />}
+                {step === 3 && <Step3 />}
+              </div>
+              <div className='step-buttons'>
+                {step === 1 && (
+                  <button
+                    onClick={() => setUploadNewProperty(false)}
+                    className='prev-button'
+                  >
+                    Cancel
+                  </button>
+                )}
+                {step > 1 && (
+                  <div className='prev-button back'>
+                    <IoMdArrowBack className='icon' />
+                    <button onClick={prevStep}>Go back</button>
+                  </div>
+                )}
+                {step < 3 && (
+                  <button className='next-button' onClick={nextStep}>
+                    Save & Continue
+                  </button>
+                )}
+                {step === 3 && (
+                  <button onClick={toggleModal} className='next-button'>
+                    Save & Upload Property
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        )}
-        {/* Congratulations Conponent */}
-      </Wrapper>
+          )}
+        </section>
+      </UploadPptS>
+      {/* Congratulations Conponent */}
       <div>{modal && <CongratsModal />}</div>
     </>
   )
@@ -150,59 +113,14 @@ const Step3 = () => {
   )
 }
 
-const Wrapper = styled.section`
-  width: 100%;
-  .upload-l-ppt {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 70%;
-    margin: 10px auto;
-    padding: 20px;
-  }
-  .upload-label {
-    margin: 40px 0;
-    text-align: center;
-    font-size: 18px;
-  }
-  .radio-btns-unit {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    width: 600px;
-  }
-
-  .radio-btn-unit {
-    display: flex;
-    justify-content: left;
-    align-items: flex-start;
-    margin: 10px 0;
-    border: 1px solid black;
-    padding: 20px;
-    width: 250px;
-  }
-  .btn-input {
-    width: 18px;
-    height: 18px;
-  }
-  .unit-ppt-details {
-    margin-left: 20px;
-  }
-  .continue-btn {
-    margin: 20px 0;
-    padding: 15px 0;
-    width: 250px;
-    text-align: center;
-    background-color: #fedf7e;
-    cursor: pointer;
-  }
+const UploadPptS = styled.section`
   /* Multi stepper */
   .multi-step-form {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    justify-content: left;
+    align-items: flex-start;
+    width: 80%;
     padding: 10px 20px;
   }
 
@@ -213,7 +131,6 @@ const Wrapper = styled.section`
     width: 400px;
     position: relative;
   }
-
   .active-step {
     margin: 20px 0;
     font-size: 17px;
@@ -245,19 +162,21 @@ const Wrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
   button {
     background: transparent;
     border: none;
     cursor: pointer;
     color: #000;
+    flex-shrink: 0;
   }
   .icon {
     margin-right: 5px;
   }
   .prev-button,
   .next-button {
-    padding: 15px 20px;
+    padding: 15px 18px;
     color: #000;
     border: none;
     border-radius: 10px;
@@ -270,29 +189,29 @@ const Wrapper = styled.section`
   .next-button {
     background-color: #fedf7e;
   }
-  @media screen and (max-width: 900px) {
-    .radio-btns-unit {
-      flex-direction: column;
+  @media screen and (max-width: 700px) {
+    .multi-step-form {
       width: 90%;
-    }
-    .upload-l-ppt {
-      width: 90%;
-      margin: 0 auto;
-      padding: 20px 0;
+      padding: 10px;
     }
   }
-
   @media screen and (max-width: 420px) {
     .step-indicator {
       width: 350px;
     }
-    .radio-btns-unit {
-      flex-direction: column;
+    .multi-step-form {
+      width: 97%;
     }
   }
   @media screen and (max-width: 370px) {
     .step-indicator {
       width: 280px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+
+    button {
+      font-size: 13px;
     }
   }
 `

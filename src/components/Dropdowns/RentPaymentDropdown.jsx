@@ -38,7 +38,7 @@ const RentPaymentDropdown = () => {
 
   return (
     <>
-      <Wrapper>
+      <RentPayDD>
         <div className='rent-payment'>
           <div className='input'>
             <label>Rent Payment Type*</label>
@@ -83,11 +83,11 @@ const RentPaymentDropdown = () => {
             />
           </div>
         </div>
-      </Wrapper>
+      </RentPayDD>
     </>
   )
 }
-const Wrapper = styled.section`
+const RentPayDD = styled.section`
   .rent-payment {
     display: flex;
     justify-content: space-between;

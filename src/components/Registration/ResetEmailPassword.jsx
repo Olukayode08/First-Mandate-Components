@@ -33,6 +33,7 @@ const ResetEP = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 450px;
     margin: 0 auto;
@@ -53,7 +54,9 @@ const ResetEP = styled.section`
   .error {
     color: #ff0000;
     text-align: left;
-    margin: 0;
+    margin: 0 auto;
+    align-self: flex-start;
+    width: 400px;
   }
   .email-input {
     width: 400px;
@@ -82,6 +85,7 @@ const ResetEP = styled.section`
     main {
       width: 430px;
     }
+    .error,
     button,
     .email-input {
       width: 350px;
@@ -91,6 +95,7 @@ const ResetEP = styled.section`
     main {
       width: 360px;
     }
+    .error,
     button,
     .email-input {
       width: 350px;
@@ -100,6 +105,7 @@ const ResetEP = styled.section`
     main {
       width: 320px;
     }
+    .error,
     button,
     .email-input {
       width: 280px;

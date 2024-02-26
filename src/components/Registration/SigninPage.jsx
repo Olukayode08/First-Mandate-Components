@@ -14,7 +14,6 @@ const SigninPage = () => {
               <p>Continue with Google</p>
             </div>
             <p>or</p>
-            {/* <p className='error'>Please enter a valid email address</p> */}
             <input
               type='text'
               className='email-input'
@@ -27,15 +26,9 @@ const SigninPage = () => {
               placeholder='Password'
               required
             />
-            <div className='terms'>
-              <input className='check-box-input icon' type='checkbox' />
-              <p className='mail-listing'>
-                I agree to join Figma’s mailing list
-              </p>
-            </div>
             <button>Log in</button>
-            <p className='create-account'>Reset Password</p>
-            <p className='create-account'>
+            <p className='reset-p'>Reset Password</p>
+            <p>
               No account? <span>Create one</span>
             </p>
           </main>
@@ -49,20 +42,18 @@ const SigninP = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 450px;
     margin: 0 auto;
     padding: 10px;
   }
-  .terms,
   .google {
     width: 400px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .google {
     margin-top: 10px;
     border: 1px solid black;
     cursor: pointer;
@@ -71,11 +62,6 @@ const SigninP = styled.section`
     margin-right: 10px;
     font-size: 20px;
   }
-  /* .error {
-    color: #ff0000;
-    text-align: left;
-    margin: 0;
-  } */
   button,
   h3,
   p {
@@ -98,10 +84,6 @@ const SigninP = styled.section`
     font-size: 16px;
     margin: 10px 0;
   }
-  .check-box-input {
-    height: 17px;
-    width: 20px;
-  }
   button {
     background-color: #000;
     color: #ffffff;
@@ -112,22 +94,19 @@ const SigninP = styled.section`
     margin: 10px 0;
     cursor: pointer;
   }
-  .create-account {
+  .reset-p {
+    cursor: pointer;
     font-weight: 200;
-    font-size: 15px;
-    line-height: 23px;
   }
   span {
     font-weight: 600;
+    cursor: pointer;
   }
-  .mail-listing {
-    flex-shrink: 0;
-  }
+
   @media screen and (max-width: 470px) {
     main {
       width: 430px;
     }
-    .terms,
     .google,
     button,
     .password-input,
@@ -139,7 +118,6 @@ const SigninP = styled.section`
     main {
       width: 360px;
     }
-    .terms,
     .google,
     button,
     .password-input,
@@ -152,7 +130,6 @@ const SigninP = styled.section`
       width: 320px;
       height: 100%;
     }
-    .terms,
     .google,
     button,
     .password-input,

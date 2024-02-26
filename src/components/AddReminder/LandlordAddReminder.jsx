@@ -9,95 +9,97 @@ const LandlordAddReminder = () => {
   }
   return (
     <>
-      <Wrapper>
-        <section className='n-section'>
-          <h3>Add Reminder</h3>
-          <div className='section'>
-            <div className='input'>
-              <label className='p-date'>Pick a Date</label>
-              <input
-                type='date'
-                placeholder='dd/mm/yyy'
-                className='r-date-input'
-              />
-            </div>
-            <div className='desc input'>
-              <label className='desc-h'>Description</label>
-              <input type='text' className='r-desc-input' />
-            </div>
-          </div>
-          <div className='section'>
-            <label>What are you setting a reminder for?</label>
-            <div className='n-input'>
-              <select className='n-select' id='unit' required>
-                <option value='one'>Rent Due Date</option>
-                <option value='two'>Option 2</option>
-                <option value='three'>Option 3</option>
-              </select>
-            </div>
-          </div>
-          <div className='n-status'>
-            <label>Notification Type:</label>
-            <div className='radio-btns'>
-              <div className='radio-btn'>
+      <LAReminder>
+        <section>
+          <main className='n-section'>
+            <h3>Add Reminder</h3>
+            <div className='section'>
+              <div className='input'>
+                <label className='p-date'>Pick a Date</label>
                 <input
-                  type='radio'
-                  value='option1'
-                  checked={notificationType === 'option1'}
-                  onChange={handleNotificationType}
-                  className='btn-input'
+                  type='date'
+                  placeholder='dd/mm/yyy'
+                  className='r-date-input'
                 />
-                <p className='n-details'>Emails</p>
               </div>
-              <div className='radio-btn'>
-                <input
-                  type='radio'
-                  value='option2'
-                  checked={notificationType === 'option2'}
-                  onChange={handleNotificationType}
-                  className='btn-input'
-                />
-                <p className='n-details'>SMS</p>
-              </div>
-              <div className='radio-btn'>
-                <input
-                  type='radio'
-                  value='option3'
-                  checked={notificationType === 'option3'}
-                  onChange={handleNotificationType}
-                  className='btn-input'
-                />
-                <p className='n-details'>App Notifications</p>
+              <div className='desc input'>
+                <label className='desc-h'>Description</label>
+                <input type='text' className='r-desc-input' />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <label>Set frequency on notification</label>
-            <div className='n-input'>
-              <select className='n-select' id='unit' required>
-                <option value='one'>1 week to due date</option>
-                <option value='two'>Option 2</option>
-                <option value='three'>Option 3</option>
-              </select>
+            <div className='section'>
+              <label>What are you setting a reminder for?</label>
+              <div className='n-input'>
+                <select className='n-select' id='unit' required>
+                  <option value='one'>Rent Due Date</option>
+                  <option value='two'>Option 2</option>
+                  <option value='three'>Option 3</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div className='section'>
-            <label>
-              You will be notified everyday until the due date based on your
-              preference
-            </label>
-            <div className='add-r'>
-              <h4>Add New Reminder</h4>
-              <FaRegPlusSquare size={20} />
+            <div className='n-status'>
+              <label>Notification Type:</label>
+              <div className='radio-btns'>
+                <div className='radio-btn'>
+                  <input
+                    type='radio'
+                    value='option1'
+                    checked={notificationType === 'option1'}
+                    onChange={handleNotificationType}
+                    className='btn-input'
+                  />
+                  <p className='n-details'>Emails</p>
+                </div>
+                <div className='radio-btn'>
+                  <input
+                    type='radio'
+                    value='option2'
+                    checked={notificationType === 'option2'}
+                    onChange={handleNotificationType}
+                    className='btn-input'
+                  />
+                  <p className='n-details'>SMS</p>
+                </div>
+                <div className='radio-btn'>
+                  <input
+                    type='radio'
+                    value='option3'
+                    checked={notificationType === 'option3'}
+                    onChange={handleNotificationType}
+                    className='btn-input'
+                  />
+                  <p className='n-details'>App Notifications</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <p className="save-btn">Save</p>
+            <div className='section'>
+              <label>Set frequency on notification</label>
+              <div className='n-input'>
+                <select className='n-select' id='unit' required>
+                  <option value='one'>1 week to due date</option>
+                  <option value='two'>Option 2</option>
+                  <option value='three'>Option 3</option>
+                </select>
+              </div>
+            </div>
+            <div className='section'>
+              <label>
+                You will be notified everyday until the due date based on your
+                preference
+              </label>
+              <div className='add-r'>
+                <h4>Add New Reminder</h4>
+                <FaRegPlusSquare size={20} />
+              </div>
+            </div>
+            <p className='save-btn'>Save</p>
+          </main>
         </section>
-      </Wrapper>
+      </LAReminder>
     </>
   )
 }
-const Wrapper = styled.section`
+const LAReminder = styled.section`
   position: relative;
   margin: 10px 0;
   .n-section {

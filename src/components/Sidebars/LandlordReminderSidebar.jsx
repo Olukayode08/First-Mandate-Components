@@ -26,7 +26,7 @@ const LandLordReminderSidebar = () => {
 
   return (
     <>
-      <Wrapper>
+      <LandlordRS>
         <section>
           {/* Landlord Reminder Tenant Sidebar Content */}
           <div className='upload-ppt-btn'>
@@ -77,7 +77,7 @@ const LandLordReminderSidebar = () => {
                   {landlordTenants.map((tenant) => {
                     return (
                       <div key={tenant.id} className='l-tenant'>
-                        <img src={tenant.icon} alt='Tenant-Icon' />{' '}
+                        <img src={tenant.icon} alt='Tenant-Icon' />
                         <div className='username'>
                           <h3>{tenant.user}</h3>
                           <p className='location'>{tenant.ppt}</p>
@@ -93,11 +93,11 @@ const LandLordReminderSidebar = () => {
             )}
           </main>
         </section>
-      </Wrapper>
+      </LandlordRS>
     </>
   )
 }
-const Wrapper = styled.section`
+const LandlordRS = styled.section`
   section {
     position: relative;
   }
@@ -152,7 +152,6 @@ const Wrapper = styled.section`
     grid-template-columns: repeat(4, 1fr);
     gap: 3px;
     width: 100%;
-
   }
   .num-c {
     font-size: 25px;

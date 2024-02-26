@@ -49,3 +49,10 @@ body {
   background: #fff;
   color: #13131a;
 }
+
+@media screen and (min-width: 2000px) {
+  .app{
+    max-width: 1900px;
+    margin: 0 auto;
+  }
+}

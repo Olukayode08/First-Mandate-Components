@@ -58,6 +58,7 @@ const SignupP = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 450px;
     margin: 0 auto;
@@ -80,11 +81,7 @@ const SignupP = styled.section`
     margin-right: 10px;
     font-size: 20px;
   }
-  .error {
-    color: #ff0000;
-    text-align: left;
-    margin: 0;
-  }
+
   button,
   h3,
   p {
@@ -93,6 +90,13 @@ const SignupP = styled.section`
     font-size: 16px;
     line-height: 28px;
     letter-spacing: 0em;
+  }
+  .error {
+    color: #ff0000;
+    text-align: left;
+    margin: 0 auto;
+    align-self: flex-start;
+    width: 400px;
   }
   .password-input,
   .email-input {
@@ -128,6 +132,7 @@ const SignupP = styled.section`
   }
   span {
     font-weight: 600;
+    cursor: pointer;
   }
   .mail-listing {
     flex-shrink: 0;
@@ -136,6 +141,7 @@ const SignupP = styled.section`
     main {
       width: 430px;
     }
+    .error,
     .terms,
     .google,
     button,
@@ -148,6 +154,7 @@ const SignupP = styled.section`
     main {
       width: 360px;
     }
+    .error,
     .terms,
     .google,
     button,
@@ -161,6 +168,7 @@ const SignupP = styled.section`
       width: 320px;
       height: 100%;
     }
+    .error,
     .terms,
     .google,
     button,

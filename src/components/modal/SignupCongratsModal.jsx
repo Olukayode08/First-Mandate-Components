@@ -31,7 +31,6 @@ const SignupCM = styled.section`
   body.active-modal {
     overflow-y: hidden;
   }
-
   .modal,
   .overlay {
     width: 100vw;
@@ -41,7 +40,7 @@ const SignupCM = styled.section`
     right: 0;
     bottom: 0;
     position: fixed;
-    z-index: 5;
+    z-index: 50;
   }
 
   .overlay {
@@ -63,7 +62,7 @@ const SignupCM = styled.section`
     height: 200px;
     padding: 20px;
     min-width: 300px;
-    z-index: 10;
+    z-index: 100;
   }
 
   .modal-text {

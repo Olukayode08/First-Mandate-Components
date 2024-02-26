@@ -4,13 +4,13 @@ import styled from 'styled-components'
 const LandlordAddNewManager = () => {
   return (
     <>
-      <Wrapper>
-        <section>
-          <h3>Add New Manager</h3>
-          <div className='section'>
-            <div className='input'>
-              <label>Name</label>
-              <div className='tenants-name'>
+      <LANManager>
+        <section className='m-section'>
+          <main>
+            <h3>Add New Manager</h3>
+            <div className='section'>
+              <div className='input'>
+                <label>Name</label>
                 <input
                   type='text'
                   placeholder="Enter manager's name"
@@ -18,11 +18,9 @@ const LandlordAddNewManager = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Email</label>
-              <div className='tenants-name'>
+            <div className='section'>
+              <div className='input'>
+                <label>Email</label>
                 <input
                   type='email'
                   placeholder='Enter email address'
@@ -30,11 +28,9 @@ const LandlordAddNewManager = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Phone</label>
-              <div className='tenants-name'>
+            <div className='section'>
+              <div className='input'>
+                <label>Phone</label>
                 <input
                   type='text'
                   placeholder='+234'
@@ -42,11 +38,9 @@ const LandlordAddNewManager = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Phone</label>
-              <div className='tenants-name'>
+            <div className='section'>
+              <div className='input'>
+                <label>Phone</label>
                 <input
                   type='text'
                   placeholder='+234'
@@ -54,36 +48,32 @@ const LandlordAddNewManager = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Property Name</label>
-              <div className='tenants-name'>
+            <div className='section'>
+              <div className='input'>
+                <label>Property Name</label>
                 <input type='text' className='t-name-input' />
               </div>
             </div>
-          </div>
-          <button className='add-manager'>Add Manager</button>
+            <button className='add-manager'>Add Manager</button>
+          </main>
         </section>
-      </Wrapper>
+      </LANManager>
     </>
   )
 }
-const Wrapper = styled.section`
+const LANManager = styled.section`
   position: relative;
-  section {
+  .m-section {
     position: absolute;
     top: 0;
-    left: 300px;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
-    width: 58%;
-    margin: 0 auto;
+    width: 78%;
     padding: 20px;
   }
-
   .section {
     display: flex;
     flex-direction: column;
@@ -103,7 +93,7 @@ const Wrapper = styled.section`
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
-    font-weight: 17px;
+    font-size: 17px;
     color: #000;
     border-radius: 3px;
   }
@@ -111,7 +101,6 @@ const Wrapper = styled.section`
     margin: 10px 0;
     font-size: 18px;
   }
-
   .t-name-input {
     width: 500px;
     height: 50px;
@@ -129,13 +118,13 @@ const Wrapper = styled.section`
     color: #000;
   }
 
-  @media screen and (max-width: 1100px) {
-    section {
-      width: 90%;
+  @media screen and (max-width: 1200px) {
+    .m-section {
+      width: 98%;
       left: 0;
     }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 550px) {
     .t-name-input {
       width: 320px;
       height: 40px;

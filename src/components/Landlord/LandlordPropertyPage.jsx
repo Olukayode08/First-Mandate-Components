@@ -154,7 +154,6 @@ const LandlordPP = styled.section`
     margin: 0 auto;
     padding: 20px;
   }
-
   .add-r {
     display: flex;
     align-items: flex-start;

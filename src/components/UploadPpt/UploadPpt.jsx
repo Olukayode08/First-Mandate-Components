@@ -5,29 +5,26 @@ const UploadPpt = () => {
 
   return (
     <>
-        <Wrapper>
-          <section className='upload-section'>
+      <UploadPMP>
+        <section>
+          <main className='upload-section'>
             <UploadPptStepper />
-          </section>
-        </Wrapper>
+          </main>
+        </section>
+      </UploadPMP>
     </>
   )
 }
 
-const Wrapper = styled.section`
+const UploadPMP = styled.section`
   position: relative;
   .upload-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 58%;
+    width: 78%;
     position: absolute;
     top: 0;
-    left: 300px;
-    margin: 0 auto;
+    right: 0;
   }
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1200px) {
     .upload-section {
       width: 100%;
       left: 0;

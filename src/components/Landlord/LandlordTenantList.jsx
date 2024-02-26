@@ -6,51 +6,51 @@ import { landlordTenantList } from '../../datas/LandlordTenantList'
 const LandlordTenantList = () => {
   return (
     <>
-      <Wrapper>
-        <section className='a-t-section'>
-          <div className='a-t-page'>
-            <div className='a-tenant'>
-              <h3>My Tenants</h3>
-              <div className='add-r'>
-                <h4>Add New Tenant</h4>
-                <FaRegPlusSquare size={20} />
-              </div>
+      <LTenantL>
+        <section>
+          <main className='a-t-section'>
+              <div className='a-tenant'>
+                <h3>My Tenants</h3>
+                <div className='add-r'>
+                  <h4>Add New Tenant</h4>
+                  <FaRegPlusSquare size={20} />
+                </div>
             </div>
-          </div>
-          <div className='table'>
-            <table>
-              <thead>
-                <tr className='t-heading'>
-                  <th>SN</th>
-                  <th>Rent Location</th>
-                  <th>Tenant's Name</th>
-                  <th>Amount Paid</th>
-                  <th>Rent Payment Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {landlordTenantList.map((list) => {
-                  return (
-                    <tr key={list.id} className='t-list'>
-                      <td>{list.no}</td>
-                      <td>{list.location}</td>
-                      <td>{list.name}</td>
-                      <td>{list.amount}</td>
-                      <td style={list.style} className='list-status'>
-                        {list.status}
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
+            <div className='table'>
+              <table>
+                <thead>
+                  <tr className='t-heading'>
+                    <th>SN</th>
+                    <th>Rent Location</th>
+                    <th>Tenant's Name</th>
+                    <th>Amount Paid</th>
+                    <th>Rent Payment Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {landlordTenantList.map((list) => {
+                    return (
+                      <tr key={list.id} className='t-list'>
+                        <td>{list.no}</td>
+                        <td>{list.location}</td>
+                        <td>{list.name}</td>
+                        <td>{list.amount}</td>
+                        <td style={list.style} className='list-status'>
+                          {list.status}
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </main>
         </section>
-      </Wrapper>
+      </LTenantL>
     </>
   )
 }
-const Wrapper = styled.section`
+const LTenantL = styled.section`
   position: relative;
   .a-t-section {
     position: absolute;
@@ -63,13 +63,6 @@ const Wrapper = styled.section`
     margin: 0 auto;
     padding: 20px;
   }
-  .a-t-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .a-tenant {
     display: flex;
     align-items: center;
@@ -85,7 +78,6 @@ const Wrapper = styled.section`
     padding: 15px;
     border-radius: 10px;
     width: 250px;
-    text-decoration: none;
     color: #000;
     cursor: pointer;
   }
@@ -96,7 +88,6 @@ const Wrapper = styled.section`
   table {
     border-collapse: separate;
     border-spacing: 0 20px;
-
     width: 100%;
   }
 

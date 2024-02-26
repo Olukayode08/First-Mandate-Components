@@ -19,7 +19,7 @@ const UnitTypeDropdown = () => {
 
   return (
     <>
-      <Wrapper>
+      <UnitTypeD>
         <div className='unit-type'>
           <div className='unit'>
             <label>Unit Type*</label>
@@ -50,11 +50,11 @@ const UnitTypeDropdown = () => {
             </div>
           </div>
         </div>
-      </Wrapper>
+      </UnitTypeD>
     </>
   )
 }
-const Wrapper = styled.section`
+const UnitTypeD = styled.section`
   .unit-type {
     display: flex;
     justify-content: space-between;
@@ -87,14 +87,13 @@ const Wrapper = styled.section`
     flex-shrink: 0;
   }
 
-
   @media screen and (max-width: 700px) {
     .unit-type {
       flex-direction: column;
       align-items: flex-start;
       width: 90%;
     }
-    .unit{
+    .unit {
       margin: 10px 0;
     }
   }

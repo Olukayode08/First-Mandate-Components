@@ -26,6 +26,7 @@ const ResetP = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 450px;
     margin: 0 auto;

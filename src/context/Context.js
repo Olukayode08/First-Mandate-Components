@@ -54,6 +54,12 @@ const Context = ({ children }) => {
       setEmailResetCongrats(!emailResetCongrats)
     }
 
+
+    // Upload Property
+  const [uploadNewProperty, setUploadNewProperty] = useState(false)
+      const uploadProperty = () => {
+        setUploadNewProperty(true)
+      }
   return (
     <>
       <FirstMandate.Provider
@@ -71,6 +77,9 @@ const Context = ({ children }) => {
           toggleSignupModal,
           emailResetCongrats,
           toggleEmailModal,
+          uploadProperty,
+          uploadNewProperty,
+          setUploadNewProperty,
         }}
       >
         {children}

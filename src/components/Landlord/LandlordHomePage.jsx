@@ -5,35 +5,37 @@ import { landlordOptions } from '../../datas/LandlordHomePage'
 const LandlordHomePage = () => {
   return (
     <>
-      <Wrapper>
-        <section className='l-section'>
-          <div className='l-home-page'>
-            <div className='l-name'>
-              <h3>Hello, Peace</h3>
-              <p>What would you like to do today?</p>
+      <LandlordHP>
+        <section>
+          <main className='l-section'>
+            <div className='l-home-page'>
+              <div className='l-name'>
+                <h3>Hello, Peace</h3>
+                <p>What would you like to do today?</p>
+              </div>
+              <div className='l-options'>
+                {landlordOptions.map((option) => {
+                  return (
+                    <div className='options' key={option.id}>
+                      <img className='h-img' src={option.icon} alt='Icon' />
+                      <h1 className='option-h'>{option.heading}</h1>
+                      <p className='option-text'>{option.text}</p>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
-            <div className='l-options'>
-              {landlordOptions.map((option) => {
-                return (
-                  <div className='options' key={option.id}>
-                    <img className='h-img' src={option.icon} alt='Icon' />
-                    <h1 className='option-h'>{option.heading}</h1>
-                    <p className='option-text'>{option.text}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+          </main>
         </section>
-      </Wrapper>
+      </LandlordHP>
     </>
   )
 }
-const Wrapper = styled.section`
+const LandlordHP = styled.section`
   position: relative;
   .l-section {
     position: absolute;
-    right: 10px;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -58,6 +60,7 @@ const Wrapper = styled.section`
     box-shadow: -2px 4px 16px 0px #eeeeee;
     width: 100%;
     height: 100px;
+    border-radius: 4px;
   }
   .l-options {
     display: grid;
@@ -94,7 +97,10 @@ const Wrapper = styled.section`
     opacity: 0.8;
     line-height: 22px;
   }
-
+  p {
+    text-align: center;
+    line-height: 27px;
+  }
   @media screen and (max-width: 1270px) {
     .l-section {
       width: 75%;
@@ -113,38 +119,15 @@ const Wrapper = styled.section`
       width: 100%;
     }
   }
-
   @media screen and (max-width: 1200px) {
     .l-section {
       width: 100%;
       left: 0;
     }
-    .l-name {
-      align-items: center;
-      justify-content: center;
-    }
-    .l-options {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  @media screen and (max-width: 1000px) {
-    .l-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
-    .l-name {
-      align-items: center;
-      justify-content: center;
-      background-color: none;
-      box-shadow: none;
-    }
   }
   @media screen and (max-width: 500px) {
     .options {
-        width: 280px;
+      width: 280px;
     }
   }
 `

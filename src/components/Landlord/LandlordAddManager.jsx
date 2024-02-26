@@ -6,9 +6,9 @@ import { landlordManagerList } from '../../datas/LandlordManagerList'
 const LandlordAddManager = () => {
   return (
     <>
-      <Wrapper>
-        <section className='a-t-section'>
-          <div className='a-t-page'>
+      <LAManager>
+        <section>
+          <main className='a-t-section'>
             <div className='a-tenant'>
               <h3>My Manager</h3>
               <div className='add-r'>
@@ -16,35 +16,35 @@ const LandlordAddManager = () => {
                 <FaRegPlusSquare size={20} />
               </div>
             </div>
-          </div>
-          <div className='table'>
-            <table>
-              <thead>
-                <tr className='l-m-heading'>
-                  <th>SN</th>
-                  <th>Property Name / Location</th>
-                  <th>Managers's Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                {landlordManagerList.map((list) => {
-                  return (
-                    <tr key={list.id} className='m-list'>
-                      <td>{list.no}</td>
-                      <td>{list.location}</td>
-                      <td>{list.name}</td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
+            <div className='table'>
+              <table>
+                <thead>
+                  <tr className='l-m-heading'>
+                    <th>SN</th>
+                    <th>Property Name / Location</th>
+                    <th>Managers's Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {landlordManagerList.map((list) => {
+                    return (
+                      <tr key={list.id} className='m-list'>
+                        <td>{list.no}</td>
+                        <td>{list.location}</td>
+                        <td>{list.name}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </main>
         </section>
-      </Wrapper>
+      </LAManager>
     </>
   )
 }
-const Wrapper = styled.section`
+const LAManager = styled.section`
   position: relative;
   .a-t-section {
     position: absolute;
@@ -54,16 +54,8 @@ const Wrapper = styled.section`
     align-items: flex-start;
     justify-content: center;
     width: 78%;
-    margin: 0 auto;
     padding: 20px;
   }
-  .a-t-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .a-tenant {
     display: flex;
     align-items: center;
@@ -92,14 +84,12 @@ const Wrapper = styled.section`
     border-spacing: 0 20px;
     width: 100%;
   }
-
   th,
   td {
     white-space: nowrap;
     padding: 0 20px;
     text-align: center;
   }
-
   .l-m-heading {
     text-align: center;
     height: 60px;
@@ -116,7 +106,7 @@ const Wrapper = styled.section`
   }
   @media screen and (max-width: 1200px) {
     .a-t-section {
-      width: 100%;
+      width: 98%;
       left: 0;
     }
   }

@@ -73,7 +73,7 @@ const Calendar = () => {
 
   return (
     <>
-      <Wrapper>
+      <RCalender>
         <section>
           <div className='calendar'>
             <div className='header'>
@@ -99,11 +99,11 @@ const Calendar = () => {
             <div className='days'>{renderCalendarDays()}</div>
           </div>
         </section>
-      </Wrapper>
+      </RCalender>
     </>
   )
 }
-const Wrapper = styled.section`
+const RCalender = styled.section`
   .calendar {
     width: 280px;
     border-radius: 5px;
@@ -155,7 +155,7 @@ const Wrapper = styled.section`
   }
 
   .calendar-day.active {
-    background-color: #FEDF7E;
+    background-color: #fedf7e;
     border-radius: 20px;
   }
 

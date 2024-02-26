@@ -32,7 +32,7 @@ const LandlordSidebar = () => {
 
   return (
     <>
-      <Wrapper>
+      <LandlordS>
         <section>
           {/* Sidebar Btn */}
           <div className='sidebar-btn'>
@@ -89,11 +89,11 @@ const LandlordSidebar = () => {
             )}
           </main>
         </section>
-      </Wrapper>
+      </LandlordS>
     </>
   )
 }
-const Wrapper = styled.section`
+const LandlordS = styled.section`
   section {
     position: relative;
   }

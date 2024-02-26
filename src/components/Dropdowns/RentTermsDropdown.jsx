@@ -20,7 +20,7 @@ const RentTermsDropdown = () => {
 
   return (
     <>
-      <Wrapper>
+      <RentTermsDD>
         <div className='rent-terms'>
           <div className='input'>
             <label>Rent terms</label>
@@ -54,11 +54,11 @@ const RentTermsDropdown = () => {
             />
           </div>
         </div>
-      </Wrapper>
+      </RentTermsDD>
     </>
   )
 }
-const Wrapper = styled.section`
+const RentTermsDD = styled.section`
   .rent-terms {
     display: flex;
     justify-content: space-between;
@@ -101,9 +101,9 @@ const Wrapper = styled.section`
     height: 40px;
   }
   @media screen and (max-width: 1200px) {
-      .rent-terms{
-        flex-direction: column;
-      }
+    .rent-terms {
+      flex-direction: column;
+    }
   }
 `
 export default RentTermsDropdown

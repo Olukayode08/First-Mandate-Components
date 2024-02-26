@@ -4,7 +4,7 @@ import CountryDropdown from '../Dropdowns/CountryDropdown'
 const UploadPptOne = () => {
   return (
     <>
-      <Wrapper>
+      <UploadPO>
         <section>
           <div className='section'>
             <div className='input'>
@@ -77,11 +77,11 @@ const UploadPptOne = () => {
             </div>
           </div>
         </section>
-      </Wrapper>
+      </UploadPO>
     </>
   )
 }
-const Wrapper = styled.section`
+const UploadPO = styled.section`
   .section {
     display: flex;
     flex-direction: column;
@@ -94,16 +94,12 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
-    width: 60%;
+    width: 500px;
     margin: 10px 0;
   }
   label {
     margin: 10px 0;
     font-size: 18px;
-  }
-  span {
-    color: red;
-    font-size: 13px;
   }
   input {
     outline: none;
@@ -111,7 +107,7 @@ const Wrapper = styled.section`
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
-    font-weight: 17px;
+    font-size: 16px;
     color: #000;
     border-radius: 2px;
   }
@@ -139,7 +135,6 @@ const Wrapper = styled.section`
     color: #000;
     font-family: inherit;
   }
-
 
   @media screen and (max-width: 700px) {
     .input {

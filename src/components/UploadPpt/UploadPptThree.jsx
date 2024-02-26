@@ -7,7 +7,7 @@ import RentPaymentDropdown from '../Dropdowns/RentPaymentDropdown'
 const UploadPptThree = () => {
   return (
     <>
-      <Wrapper>
+      <UploadPThree>
         <section>
           <div className='section'>
             <div className='input'>
@@ -23,7 +23,7 @@ const UploadPptThree = () => {
             <div className='input'>
               <label>Tenant Email*</label>
               <input
-                type='text'
+                type='email'
                 placeholder='Enter Email'
                 className='phone-number'
               />
@@ -45,12 +45,10 @@ const UploadPptThree = () => {
           <div>
             <RentAmountDropdown />
           </div>
-          <div className='section'>
             <div className='input'>
               <label>Current Rent Payment Status*</label>
               <p className='part-payment'>Paid in Part</p>
             </div>
-          </div>
           <div>
             <RentPaymentDropdown />
           </div>
@@ -72,11 +70,11 @@ const UploadPptThree = () => {
             </div>
           </div>
         </section>
-      </Wrapper>
+      </UploadPThree>
     </>
   )
 }
-const Wrapper = styled.section`
+const UploadPThree = styled.section`
   .section {
     display: flex;
     flex-direction: column;
@@ -133,6 +131,8 @@ const Wrapper = styled.section`
     display: flex;
     align-items: center;
     margin: 20px 0;
+    width: 130px;
+    flex-shrink: 0;
   }
   .ppt-details {
     margin-left: 10px;
@@ -155,7 +155,6 @@ const Wrapper = styled.section`
   @media screen and (max-width: 350px) {
     .checkboxes {
       width: 300px;
-      grid-template-columns: repeat(2, 1fr);
     }
     .phone-number {
       width: 280px;

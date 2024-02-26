@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const LandlordHeader = () => {
   return (
     <>
-      <Wrapper>
+      <LandlordH>
         <section>
           <div className='header'>
             <div className='select-user'>
@@ -23,19 +23,19 @@ const LandlordHeader = () => {
             </div>
           </div>
         </section>
-      </Wrapper>
+      </LandlordH>
     </>
   )
 }
 
-const Wrapper = styled.section`
+const LandlordH = styled.section`
   .header {
     display: flex;
     justify-content: right;
     align-items: center;
     padding: 20px;
     background: #ffffff;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 30;
   }
   .select-user {

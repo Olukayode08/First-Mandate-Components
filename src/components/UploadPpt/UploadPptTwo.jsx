@@ -10,19 +10,17 @@ const UploadPptTwo = () => {
   }
   return (
     <>
-      <Wrapper>
+      <UploadPT>
         <section>
           <div className='unit-h'>Unit 1</div>
           <div className='section'>
             <div className='input'>
               <label>Unit Name</label>
-              <div className='tenants-name'>
                 <input
                   type='text'
                   placeholder='Enter full name'
-                  className='t-name-input'
+                  className='u-name-input'
                 />
-              </div>
             </div>
           </div>
           <div className='unit-type'>
@@ -72,11 +70,11 @@ const UploadPptTwo = () => {
             </div>
           </div>
         </section>
-      </Wrapper>
+      </UploadPT>
     </>
   )
 }
-const Wrapper = styled.section`
+const UploadPT = styled.section`
   .unit-h {
     width: 80px;
     margin: 10px 0;
@@ -85,7 +83,6 @@ const Wrapper = styled.section`
     border-radius: 4px;
     padding: 13px 0;
   }
-
   .section {
     display: flex;
     flex-direction: column;
@@ -109,29 +106,37 @@ const Wrapper = styled.section`
     color: #000;
     border-radius: 3px;
   }
+  .u-name-input {
+    width: 500px;
+    height: 40px;
+  }
   .unit-type {
     margin: 10px 0;
   }
+  /* Rent Status */
   .rent-status {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
   }
-
   label {
     margin: 10px 0;
     font-size: 18px;
   }
   .radio-btns {
-    width: 200px;
-  }
-  .radio-btn,
-  .radio-btns {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
+    width: 200px;
+  }
+  .radio-btn {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    width: 80px;
+    flex-shrink: 0;
   }
   .btn-input {
     width: 18px;
@@ -139,61 +144,45 @@ const Wrapper = styled.section`
   }
   .ppt-details {
     margin-left: 10px;
+    flex-shrink: 0;
   }
   /* Checkbox */
   .utilities {
-    margin: 10px 0;
+    margin: 15px 0;
   }
   .checkboxes {
     width: 500px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
   }
   .checkbox {
     display: flex;
     align-items: center;
-    margin: 20px 0;
-  }
-  .ppt-details {
-    margin-left: 10px;
-    flex-shrink: 0;
+    margin: 10px 0;
+    width: 130px;
   }
   .checkbox-input {
     width: 18px;
     height: 18px;
   }
 
-  .tenants-name {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 90%;
-  }
-  .t-name-input {
-    width: 500px;
-    height: 40px;
-  }
-  .abt-ppt-input {
-    height: 65px;
-  }
-
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: 550px) {
     .checkboxes {
       width: 350px;
       grid-template-columns: repeat(2, 1fr);
     }
-    .t-name-input {
+    .u-name-input {
       width: 350px;
     }
   }
   @media screen and (max-width: 350px) {
     .checkboxes {
       width: 300px;
-      grid-template-columns: repeat(2, 1fr);
     }
-    .t-name-input {
+    .u-name-input {
       width: 280px;
     }
   }
