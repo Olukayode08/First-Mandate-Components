@@ -84,7 +84,7 @@ function App() {
             <Route path='add-reminder' element={<LandlordAddReminder />} />
             <Route path='ppt-page' element={<LandlordPropertyPage />} />
             <Route path='edit-profile' element={<LandlordEditProfilePage />} />
-            <Route path='p-settings' element={<LandlordProfileSettings />} />
+            <Route path='profile-settings' element={<LandlordProfileSettings />} />
           </Route>
 
           {/* Manager's Page */}
