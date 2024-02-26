@@ -45,6 +45,8 @@ import VerificationCode from './components/Registration/VerificationCode'
 import ResetPassword from './components/Registration/ResetPassword'
 import ResetEmailPassword from './components/Registration/ResetEmailPassword'
 import ErrorPage from './components/Error/ErrorPage'
+import LandlordEditProfilePage from './components/Landlord/LandlordEditProfilePage'
+import LandlordProfileSettings from './components/Landlord/LandlordProfileSettings'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -81,6 +83,8 @@ function App() {
             <Route path='notify' element={<LandlordNotifications />} />
             <Route path='add-reminder' element={<LandlordAddReminder />} />
             <Route path='ppt-page' element={<LandlordPropertyPage />} />
+            <Route path='edit-profile' element={<LandlordEditProfilePage />} />
+            <Route path='p-settings' element={<LandlordProfileSettings />} />
           </Route>
 
           {/* Manager's Page */}
