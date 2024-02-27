@@ -5,44 +5,46 @@ import { managerNotififcations } from '../../datas/ManagerNotifications'
 const ManagerNotifications = () => {
   return (
     <>
-      <Wrapper>
-        <section className='l-notify'>
-          <h1>Notifications</h1>
-          <div className='table'>
-            <table>
-              <thead>
-                <tr className='t-heading'>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Description</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {managerNotififcations.map((notifications) => {
-                  return (
-                    <tr key={notifications.id} className='t-notifications'>
-                      <td>{notifications.date}</td>
-                      <td>{notifications.time}</td>
-                      <td>{notifications.desc}</td>
-                      <td
-                        style={notifications.style}
-                        className='notification-status'
-                      >
-                        {notifications.status}
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
+      <ManagerN>
+        <section>
+          <main className='l-notify'>
+            <h1>Notifications</h1>
+            <div className='table'>
+              <table>
+                <thead>
+                  <tr className='t-heading'>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {managerNotififcations.map((notifications) => {
+                    return (
+                      <tr key={notifications.id} className='t-notifications'>
+                        <td>{notifications.date}</td>
+                        <td>{notifications.time}</td>
+                        <td>{notifications.desc}</td>
+                        <td
+                          style={notifications.style}
+                          className='notification-status'
+                        >
+                          {notifications.status}
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </main>
         </section>
-      </Wrapper>
+      </ManagerN>
     </>
   )
 }
-const Wrapper = styled.section`
+const ManagerN = styled.section`
   position: relative;
   .l-notify {
     position: absolute;
@@ -65,10 +67,8 @@ const Wrapper = styled.section`
   table {
     border-collapse: separate;
     border-spacing: 0 20px;
-
     width: 100%;
   }
-
   th,
   td {
     white-space: nowrap;

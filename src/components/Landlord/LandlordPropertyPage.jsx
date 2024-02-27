@@ -18,7 +18,7 @@ const LandlordPropertyPage = () => {
             {landlordProperties.map((property) => (
               <div key={property.id} className='manager-p'>
                 <div className='apart-det'>
-                  <img src={property.image} alt='House' />
+                  <img className='p-img' src={property.image} alt='House' />
                   <div className='apart-loc'>
                     <h3 className='h-name'>{property.title}</h3>
                     <h1 className='location'>
@@ -179,10 +179,15 @@ const LandlordPP = styled.section`
   .apart-det {
     display: flex;
     align-items: center;
+    gap: 20px;
     margin: 20px 0;
     width: 100%;
   }
-
+  .p-img{
+    width: 100px;
+    height: 90px;
+    border-radius: 4px;
+  }
   .apart-loc {
     display: flex;
     flex-direction: column;
@@ -229,7 +234,6 @@ const LandlordPP = styled.section`
       align-items: center;
       justify-content: center;
     }
-    .rent-det,
     .h-name,
     .location {
       text-align: center;

@@ -5,31 +5,33 @@ import { tenantOptions } from '../../datas/TenantHomePage'
 const TenantHomePage = () => {
   return (
     <>
-      <Wrapper>
-        <section className='t-section'>
-          <div className='l-home-page'>
-            <div className='l-name'>
-              <h3>Hello, Peace</h3>
-              <p>What would you like to do today?</p>
+      <TenantHP>
+        <section>
+          <main className='t-section'>
+            <div className='l-home-page'>
+              <div className='l-name'>
+                <h3>Hello, Peace</h3>
+                <p>What would you like to do today?</p>
+              </div>
+              <div className='l-options'>
+                {tenantOptions.map((option) => {
+                  return (
+                    <div className='options' key={option.id}>
+                      <img className='h-img' src={option.icon} alt='Icon' />
+                      <h1 className='option-h'>{option.heading}</h1>
+                      <p className='option-text'>{option.text}</p>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
-            <div className='l-options'>
-              {tenantOptions.map((option) => {
-                return (
-                  <div className='options' key={option.id}>
-                    <img className='h-img' src={option.icon} alt='Icon' />
-                    <h1 className='option-h'>{option.heading}</h1>
-                    <p className='option-text'>{option.text}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+          </main>
         </section>
-      </Wrapper>
+      </TenantHP>
     </>
   )
 }
-const Wrapper = styled.section`
+const TenantHP = styled.section`
   position: relative;
   .t-section {
     position: absolute;
@@ -60,10 +62,10 @@ const Wrapper = styled.section`
     height: 100px;
   }
   .l-options {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     align-items: flex-start;
-    justify-content: space-between;
+    gap: 10px;
     width: 100%;
   }
   .options {
@@ -74,7 +76,7 @@ const Wrapper = styled.section`
     background-color: #ffffff;
     padding: 20px;
     box-shadow: -2px 4px 16px 0px #eeeeee;
-    width: 320px;
+    width: 310px;
     height: 300px;
     margin: 20px 0;
     border-radius: 4px;
@@ -94,6 +96,10 @@ const Wrapper = styled.section`
     opacity: 0.8;
     line-height: 22px;
   }
+  p {
+    text-align: center;
+    line-height: 27px;
+  }
   @media screen and (max-width: 1270px) {
     .t-section {
       width: 75%;
@@ -112,18 +118,15 @@ const Wrapper = styled.section`
       width: 100%;
     }
   }
-
   @media screen and (max-width: 1200px) {
     .t-section {
       width: 100%;
       left: 0;
     }
-    .l-name {
-      align-items: center;
-      justify-content: center;
-    }
-    .l-options {
-      grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 500px) {
+    .options {
+      width: 280px;
     }
   }
 `

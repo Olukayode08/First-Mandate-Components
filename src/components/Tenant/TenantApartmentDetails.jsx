@@ -25,31 +25,39 @@ const TenantApartmentDetails = () => {
                 <div className='t-details'>
                   <div className='input'>
                     <h1>Lanlord's Name</h1>
-                    <h1 className='t-name'>Mr Adekola</h1>
+                    <input type='text' disabled placeholder='Mr Adekola' />
                   </div>
                   <div className='input'>
                     <h1>Manager's Name</h1>
-                    <h1 className='t-name'>Mr Adewumi</h1>
+                    <input type='text' disabled placeholder='Mr. Adewumi' />
                   </div>
                 </div>
                 <div className='t-details'>
                   <div className='input'>
                     <h1>Lanlord's Phone</h1>
-                    <h1 className='t-name'>+234 814 6573 112</h1>
+                    <input
+                      type='text'
+                      disabled
+                      placeholder='+234 814 6573 112'
+                    />
                   </div>
                   <div className='input'>
                     <h1>Managers's Phone</h1>
-                    <h1 className='t-name'>+234 814 6573 112</h1>
+                    <input
+                      type='text'
+                      disabled
+                      placeholder='+234 814 6573 112'
+                    />
                   </div>
                 </div>
                 <div className='t-details'>
                   <div className='input'>
                     <h1>Rent Amount per year</h1>
-                    <h1 className='t-name t-amt'>#800.000.00k</h1>
+                    <input type='text' disabled placeholder='#800.000.00k' />
                   </div>
                   <div className='input'>
                     <h1>Current Rent Status</h1>
-                    <h1 className='t-name'>Occupied</h1>
+                    <input type='text' disabled placeholder='Occupied' />
                   </div>
                 </div>
               </div>
@@ -73,7 +81,6 @@ const TenantAD = styled.section`
     margin: 0 auto;
     padding: 20px;
   }
-
   .rent-sec {
     display: flex;
     flex-direction: column;
@@ -116,14 +123,17 @@ const TenantAD = styled.section`
     padding: 10px 0;
     width: 47%;
     margin: 10px 0;
+  }
+  input {
+    background: transparent;
+    border: none;
     border-bottom: 1px solid black;
-  }
-  .t-name {
-    margin: 17px 0 15px 17px;
-    opacity: 0.7;
-  }
-  .t-amt {
-    opacity: 1;
+    outline: none;
+    margin: 10px 0 0 0;
+    padding: 0 20px;
+    height: 30px;
+    font-size: 16px;
+    font-family: inherit;
   }
   @media screen and (max-width: 1270px) {
     .a-section {
@@ -159,14 +169,13 @@ const TenantAD = styled.section`
       align-items: center;
       justify-content: center;
     }
-
     .input {
       width: 300px;
       align-items: center;
       justify-content: center;
     }
-    .t-name {
-      margin: 15px 0;
+    input {
+      text-align: center;
     }
   }
   @media screen and (max-width: 320px) {

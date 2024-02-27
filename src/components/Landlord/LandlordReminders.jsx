@@ -71,7 +71,9 @@ const LandlordR = styled.section`
     overflow-x: auto;
   }
   .r-img {
-    width: 90px;
+    width: 70px;
+    height: 60px;
+    border-radius: 4px;
   }
   .name-amt {
     display: flex;
@@ -139,9 +141,6 @@ const LandlordR = styled.section`
     .r-due-date {
       align-items: center;
       justify-content: left;
-    }
-    .r-img {
-      width: 70px;
     }
   }
 `

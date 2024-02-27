@@ -2,45 +2,47 @@ import React from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
 import LandLordReminderSidebar from '../Sidebars/LandlordReminderSidebar'
-import editIcon from '../../assets/edit-01.png'
+import editIcon from '../../assets/edit-01 (3).png'
 const ManagerReminders = () => {
   return (
     <>
       <LandLordReminderSidebar />
-      <Wrapper>
-        <section className='r-section'>
-          <div className='landlord-reminder'>
-            <div className='reminder-h'>
-              <h3>Reminders</h3>
-            </div>
+      <ManagerR>
+        <section>
+          <main className='r-section'>
+            <div className='landlord-reminder'>
+              <div className='reminder-h'>
+                <h3>Reminders</h3>
+              </div>
 
-            {landlordReminder.map((reminder) => {
-              return (
-                <div key={reminder.id} className='r-due-date'>
-                  <img className='r-img' src={reminder.image} alt='' />
-                  <div className='name-amt'>
-                    <h3 className='d-date'>Mr Kelly</h3>
-                    <h3 className='d-date'>{reminder.amount}</h3>
+              {landlordReminder.map((reminder) => {
+                return (
+                  <div key={reminder.id} className='r-due-date'>
+                    <img className='r-img' src={reminder.image} alt='House' />
+                    <div className='name-amt'>
+                      <h3 className='d-date'>Mr Kelly</h3>
+                      <h3 className='d-date'>{reminder.amount}</h3>
+                    </div>
+                    <p className='r-desc'>{reminder.description}</p>
+                    <div className='l-btns'>
+                      <img
+                        className='l-btn edit-icon'
+                        src={editIcon}
+                        alt='Edit'
+                      />
+                      <p className='l-btn delete'>Delete</p>
+                    </div>
                   </div>
-                  <p className='r-desc'>{reminder.description}</p>
-                  <div className='l-btns'>
-                    <img
-                      className='l-btn edit-icon'
-                      src={editIcon}
-                      alt='Edit'
-                    />
-                    <p className='l-btn delete'>Delete</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
+          </main>
         </section>
-      </Wrapper>
+      </ManagerR>
     </>
   )
 }
-const Wrapper = styled.section`
+const ManagerR = styled.section`
   position: relative;
   .r-section {
     position: absolute;
@@ -72,7 +74,9 @@ const Wrapper = styled.section`
     overflow-x: auto;
   }
   .r-img {
-    width: 10%;
+    width: 80px;
+    height: 70px;
+    border-radius: 4px;
   }
   .name-amt {
     display: flex;
@@ -87,11 +91,6 @@ const Wrapper = styled.section`
   .r-img {
     margin-right: 20px;
     flex-shrink: 0;
-  }
-  .desc {
-    display: flex;
-    align-items: center;
-    margin: 15px 0;
   }
   .r-desc {
     flex-shrink: 0;
@@ -108,8 +107,7 @@ const Wrapper = styled.section`
     cursor: pointer;
   }
   .edit-icon {
-    width: 60px;
-    padding: 0 10px;
+    padding: 8px 12px;
     background-color: #fedf7e;
   }
   .delete {
@@ -143,9 +141,6 @@ const Wrapper = styled.section`
     .r-due-date {
       align-items: center;
       justify-content: left;
-    }
-    .r-img {
-      width: 17%;
     }
   }
 `

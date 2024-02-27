@@ -118,6 +118,11 @@ const LANManager = styled.section`
     color: #000;
   }
 
+  @media screen and (max-width: 1270px) {
+    .m-section {
+      width: 75%;
+    }
+  }
   @media screen and (max-width: 1200px) {
     .m-section {
       width: 98%;

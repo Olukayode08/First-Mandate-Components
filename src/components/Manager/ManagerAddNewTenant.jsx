@@ -4,13 +4,13 @@ import styled from 'styled-components'
 const ManagerAddNewTenant = () => {
   return (
     <>
-      <Wrapper>
-        <section className='m-section'>
-          <h3>Add New Tenant</h3>
-          <div className='section'>
-            <div className='input'>
-              <label>Name</label>
-              <div className='tenants-name'>
+      <ManagerANT>
+        <section>
+          <main className='m-section'>
+            <h3>Add New Tenant</h3>
+            <div className='section'>
+              <div className='input'>
+                <label>Name</label>
                 <input
                   type='text'
                   placeholder="Enter tenant's name"
@@ -18,11 +18,9 @@ const ManagerAddNewTenant = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Email</label>
-              <div className='tenants-name'>
+            <div className='section'>
+              <div className='input'>
+                <label>Email</label>
                 <input
                   type='email'
                   placeholder='Enter email address'
@@ -30,11 +28,9 @@ const ManagerAddNewTenant = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Phone</label>
-              <div className='tenants-name'>
+            <div className='section'>
+              <div className='input'>
+                <label>Phone</label>
                 <input
                   type='text'
                   placeholder='+234'
@@ -42,11 +38,9 @@ const ManagerAddNewTenant = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='section'>
-            <div className='input'>
-              <label>Phone</label>
-              <div className='tenants-name'>
+            <div className='section'>
+              <div className='input'>
+                <label>Phone</label>
                 <input
                   type='text'
                   placeholder='+234'
@@ -54,56 +48,56 @@ const ManagerAddNewTenant = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='rent-date'>
-            <div className='start-date'>
-              <label>Rent Start Date</label>
+            <div className='rent-date'>
+              <div className='start-date'>
+                <label>Rent Start Date</label>
+                <input
+                  type='date'
+                  placeholder='dd/mm/yyyy'
+                  className='r-date-input'
+                />
+              </div>
+              <div className='end-date'>
+                <label>Rent End Date</label>
+                <input
+                  type='date'
+                  placeholder='dd/mm/yyyy'
+                  className='r-date-input'
+                />
+              </div>
+            </div>
+            <div className='rent-status'>
+              <label>Rent Payment Status</label>
+              <div className='tenants-name'>
+                <p className='not-p'>Not Paid</p>
+              </div>
+            </div>
+            <div className='due-date'>
+              <label>Rent Payment Due Date</label>
               <input
                 type='date'
-                placeholder='dd/mm/yyyy'
+                placeholder='mm/dd/yyy'
                 className='r-date-input'
               />
             </div>
-            <div className='end-date'>
-              <label>Rent End Date</label>
-              <input
-                type='date'
-                placeholder='dd/mm/yyyy'
-                className='r-date-input'
-              />
-            </div>
-          </div>
-          <div className='rent-status'>
-            <label>Rent Payment Status</label>
-            <div className='tenants-name'>
-              <p className='not-p'>Not Paid</p>
-            </div>
-          </div>
-          <div className='due-date'>
-            <label>Rent Payment Due Date</label>
-            <input
-              type='date'
-              placeholder='dd/mm/yyyy'
-              className='r-date-input'
-            />
-          </div>
-          <button className='add-tenant'>Add Tenant</button>
+            <button className='add-tenant'>Add Tenant</button>
+          </main>
         </section>
-      </Wrapper>
+      </ManagerANT>
     </>
   )
 }
-const Wrapper = styled.section`
+const ManagerANT = styled.section`
   position: relative;
   .m-section {
     position: absolute;
     top: 0;
-    left: 300px;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
-    width: 58%;
+    width: 78%;
     margin: 0 auto;
     padding: 20px;
   }
@@ -135,7 +129,6 @@ const Wrapper = styled.section`
     margin: 10px 0;
     font-size: 18px;
   }
-
   .t-name-input {
     width: 500px;
     height: 40px;
@@ -184,9 +177,14 @@ const Wrapper = styled.section`
     cursor: pointer;
     color: #000;
   }
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1270px) {
     .m-section {
-      width: 90%;
+      width: 78%;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .m-section {
+      width: 98%;
       left: 0;
     }
   }

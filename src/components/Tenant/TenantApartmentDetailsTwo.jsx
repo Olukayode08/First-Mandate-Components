@@ -71,7 +71,6 @@ const TenantADT = styled.section`
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: left;
-    background: #ffffff;
   }
   .apart {
     display: flex;
@@ -85,6 +84,7 @@ const TenantADT = styled.section`
   }
   img {
     width: 320px;
+    height: 200px;
     border-radius: 10px;
     margin: 10px 0;
   }
@@ -121,6 +121,12 @@ const TenantADT = styled.section`
     cursor: pointer;
   }
 
+  @media screen and (max-width: 1200px) {
+    .a-section {
+      width: 100%;
+      left: 0;
+    }
+  }
   @media screen and (max-width: 400px) {
     .a-section {
       align-items: center;
@@ -136,12 +142,6 @@ const TenantADT = styled.section`
     button,
     img {
       width: 250px;
-    }
-  }
-  @media screen and (max-width: 1200px) {
-    .a-section {
-      width: 100%;
-      left: 0;
     }
   }
 `

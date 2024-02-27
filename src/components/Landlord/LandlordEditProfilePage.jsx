@@ -17,27 +17,39 @@ const LandlordEditProfilePage = () => {
                 <div className='t-details'>
                   <div className='input'>
                     <h1>First Name</h1>
-                    <h1 className='t-name'>Peace</h1>
+                    <input type='text' disabled placeholder='Peace' />
                   </div>
                   <div className='input'>
                     <h1>Last Name</h1>
-                    <h1 className='t-name'>Adekola</h1>
+                    <input type='text' disabled placeholder='Adekola' />
                   </div>
                 </div>
                 <div className='t-details'>
                   <div className='input'>
                     <h1>Email address</h1>
-                    <h1 className='t-name'>peaceadekola2@gmail.com</h1>
+                    <input
+                      type='text'
+                      disabled
+                      placeholder='peaceadekola2@gmail.com'
+                    />
                   </div>
                   <div className='input'>
                     <h1>Phone</h1>
-                    <h1 className='t-name'>+234 814 6573 112</h1>
+                    <input
+                      type='text'
+                      disabled
+                      placeholder='+234 814 6573 112'
+                    />
                   </div>
                 </div>
                 <div className='t-details'>
                   <div className='input'>
                     <h1>Whatsapp Number</h1>
-                    <h1 className='t-name'>+234 814 6573 112</h1>
+                    <input
+                      type='text'
+                      disabled
+                      placeholder='+234 814 6573 112'
+                    />
                   </div>
                   <p className='save-edits'>Save Edits</p>
                 </div>
@@ -106,11 +118,17 @@ const LandlordEPP = styled.section`
     padding: 10px 0;
     width: 47%;
     margin: 10px 0;
-    border-bottom: 1px solid black;
   }
-  .t-name {
-    margin: 17px 0 15px 17px;
-    opacity: 0.7;
+  input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    margin: 10px 0 0 0;
+    padding: 0 20px;
+    height: 30px;
+    font-size: 16px;
+    font-family: inherit;
   }
   .save-edits {
     position: absolute;
@@ -153,8 +171,8 @@ const LandlordEPP = styled.section`
       align-items: center;
       justify-content: center;
     }
-    .t-name {
-      margin: 15px 0;
+    input {
+      text-align: center;
     }
   }
   @media screen and (max-width: 320px) {

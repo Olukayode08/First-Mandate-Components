@@ -5,32 +5,24 @@ import AddApartmentDropdown from '../Dropdowns/AddApartmentDropdown'
 const TenantAddApartmentDetails = () => {
   return (
     <>
-      <Wrapper>
+      <TenantAAD>
         <section>
           <div className='ap-section'>
             <h3>Add Apartment</h3>
             <div>
               <div className='input'>
                 <label>Property Name</label>
-                <div className='tenants-name'>
-                  <input
-                    type='text'
-                    placeholder="Enter tenant's name"
-                    className='t-name-input'
-                  />
-                </div>
+                <input type='text' className='t-name-input' />
               </div>
             </div>
             <div className='section'>
               <div className='input'>
                 <label>Location</label>
-                <div className='tenants-name'>
-                  <input
-                    type='text'
-                    placeholder='Enter Address'
-                    className='t-name-input'
-                  />
-                </div>
+                <input
+                  type='text'
+                  placeholder='Enter Address'
+                  className='t-name-input'
+                />
               </div>
             </div>
             <div className='add-ap'>
@@ -56,9 +48,7 @@ const TenantAddApartmentDetails = () => {
             </div>
             <div className='rent-status'>
               <label>Rent Payment Status</label>
-              <div className='tenants-name'>
-                <p className='not-p'>Not Paid</p>
-              </div>
+              <p className='not-p'>Not Paid</p>
             </div>
             <div className='due-date'>
               <label>Rent Payment Due Date</label>
@@ -71,11 +61,11 @@ const TenantAddApartmentDetails = () => {
             <button className='add-tenant'>Add Apartment</button>
           </div>
         </section>
-      </Wrapper>
+      </TenantAAD>
     </>
   )
 }
-const Wrapper = styled.section`
+const TenantAAD = styled.section`
   position: relative;
   .ap-section {
     position: absolute;
@@ -89,7 +79,7 @@ const Wrapper = styled.section`
     margin: 0 auto;
     padding: 20px;
   }
-  section {
+  .section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -117,10 +107,9 @@ const Wrapper = styled.section`
     margin: 10px 0;
     font-size: 18px;
   }
-
   .t-name-input {
     width: 500px;
-    height: 40px;
+    height: 45px;
   }
   .rent-date {
     display: flex;

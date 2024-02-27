@@ -6,9 +6,9 @@ import { managerTenantList } from '../../datas/ManagerTenantList'
 const ManagerTenantList = () => {
   return (
     <>
-      <Wrapper>
-        <section className='a-t-section'>
-          <div className='a-t-page'>
+      <ManagerTL>
+        <section>
+          <main className='a-t-section'>
             <div className='a-tenant'>
               <h3>Tenants</h3>
               <div className='add-r'>
@@ -16,41 +16,41 @@ const ManagerTenantList = () => {
                 <FaRegPlusSquare size={20} />
               </div>
             </div>
-          </div>
-          <div className='table'>
-            <table>
-              <thead>
-                <tr className='t-heading'>
-                  <th>SN</th>
-                  <th>Rent Location</th>
-                  <th>Tenant's Name</th>
-                  <th>Amount Paid</th>
-                  <th>Rent Payment Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {managerTenantList.map((list) => {
-                  return (
-                    <tr key={list.id} className='t-list'>
-                      <td>{list.no}</td>
-                      <td>{list.location}</td>
-                      <td>{list.name}</td>
-                      <td>{list.amount}</td>
-                      <td style={list.style} className='list-status'>
-                        {list.status}
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
+            <div className='table'>
+              <table>
+                <thead>
+                  <tr className='t-heading'>
+                    <th>SN</th>
+                    <th>Rent Location</th>
+                    <th>Tenant's Name</th>
+                    <th>Amount Paid</th>
+                    <th>Rent Payment Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {managerTenantList.map((list) => {
+                    return (
+                      <tr key={list.id} className='t-list'>
+                        <td>{list.no}</td>
+                        <td>{list.location}</td>
+                        <td>{list.name}</td>
+                        <td>{list.amount}</td>
+                        <td style={list.style} className='list-status'>
+                          {list.status}
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </main>
         </section>
-      </Wrapper>
+      </ManagerTL>
     </>
   )
 }
-const Wrapper = styled.section`
+const ManagerTL = styled.section`
   position: relative;
   .a-t-section {
     position: absolute;
@@ -63,13 +63,6 @@ const Wrapper = styled.section`
     margin: 0 auto;
     padding: 20px;
   }
-  .a-t-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .a-tenant {
     display: flex;
     align-items: center;
@@ -96,16 +89,13 @@ const Wrapper = styled.section`
   table {
     border-collapse: separate;
     border-spacing: 0 20px;
-
     width: 100%;
   }
-
   th,
   td {
     white-space: nowrap;
     padding: 0 20px;
   }
-
   .t-heading {
     text-align: left;
     height: 60px;

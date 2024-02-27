@@ -19,7 +19,7 @@ const ManagerPropertyPageTwo = () => {
             </div>
             <div className='manager-p'>
               <div className='apart-det'>
-                <img src={houseIcon} alt='House' />
+                <img className='a-img' src={houseIcon} alt='House' />
                 <div className='apart-loc'>
                   <h3 className='h-name'>House of Elovia</h3>
                   <h1 className='location'>
@@ -99,11 +99,15 @@ const ManagerPPT = styled.section`
   .apart-det {
     display: flex;
     align-items: center;
+    gap: 20px;
     margin: 20px 0;
     width: 100%;
-
   }
-
+  .a-img{
+    width: 100px;
+    height: 90px;
+    border-radius: 4px;
+  }
   .apart-loc {
     display: flex;
     flex-direction: column;
@@ -124,6 +128,7 @@ const ManagerPPT = styled.section`
   p {
     font-weight: 200;
     margin: 3px 5px;
+    text-align: center;
   }
   span {
     font-weight: 800;
@@ -154,7 +159,6 @@ const ManagerPPT = styled.section`
       align-items: center;
       justify-content: center;
     }
-    .rent-det,
     .h-name,
     .location {
       text-align: center;
@@ -171,10 +175,10 @@ const ManagerPPT = styled.section`
   }
   @media screen and (max-width: 700px) {
     .status-active {
-      width: 90%;
+      width: 95%;
     }
     p {
-      margin: 3px 10px;
+      margin: 10px;
     }
   }
 `

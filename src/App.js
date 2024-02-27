@@ -100,10 +100,6 @@ function App() {
             <Route path='tenant-list' element={<ManagerTenantList />} />
             <Route path='add-tenant' element={<ManagerAddNewTenant />} />
             <Route path='notify' element={<ManagerNotifications />} />
-            <Route
-              path='add-landord-details'
-              element={<ManagerAddNewLandlord />}
-            />
             <Route path='reminders' element={<ManagerReminders />} />
           </Route>
 

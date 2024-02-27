@@ -144,6 +144,7 @@ const LAReminder = styled.section`
     font-weight: 17px;
     color: #000;
     border-radius: 3px;
+    background: transparent;
   }
   .r-date-input {
     height: 40px;

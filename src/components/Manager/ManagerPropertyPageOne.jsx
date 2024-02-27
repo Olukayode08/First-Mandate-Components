@@ -7,30 +7,32 @@ const ManagerPropertyPageOne = () => {
   return (
     <>
       <ManagerPPO>
-        <section className='l-section'>
-          <div className='l-home-page'>
-            <div className='a-ppt'>
-              <h3>Properties</h3>
-              <div className='add-r'>
-                <h4>Add New Reminder</h4>
-                <FaRegPlusSquare size={20} />
+        <section>
+          <main className='l-section'>
+            <div className='l-home-page'>
+              <div className='a-ppt'>
+                <h3>Properties</h3>
+                <div className='add-r'>
+                  <h4>Add New Reminder</h4>
+                  <FaRegPlusSquare size={20} />
+                </div>
+              </div>
+              <div className='l-options'>
+                {managerProperty.map((property) => {
+                  return (
+                    <div className='options' key={property.id}>
+                      <img src={property.icon} alt='Icon' />
+                      <h1 className='option-h'>{property.heading}</h1>
+                      <p className='option-text'>{property.street}</p>
+                      <p className='option-text'>{property.type}</p>
+                      <p className='option-text'>{property.unit}</p>
+                      <p className='option-text'>{property.status}</p>
+                    </div>
+                  )
+                })}
               </div>
             </div>
-            <div className='l-options'>
-              {managerProperty.map((property) => {
-                return (
-                  <div className='options' key={property.id}>
-                    <img src={property.icon} alt='Icon' />
-                    <h1 className='option-h'>{property.heading}</h1>
-                    <p className='option-text'>{property.street}</p>
-                    <p className='option-text'>{property.type}</p>
-                    <p className='option-text'>{property.unit}</p>
-                    <p className='option-text'>{property.status}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+          </main>
         </section>
       </ManagerPPO>
     </>
@@ -78,8 +80,8 @@ const ManagerPPO = styled.section`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: flex-start;
-    justify-content: space-between;
     width: 100%;
+    gap: 10px;
   }
   .options {
     display: flex;
@@ -90,14 +92,17 @@ const ManagerPPO = styled.section`
     padding: 20px;
     box-shadow: -2px 4px 16px 0px #eeeeee;
     width: 340px;
-    height: 350px;
+    height: 370px;
     margin: 20px 0;
     border-radius: 4px;
     cursor: pointer;
   }
-
+  img {
+    width: 112px;
+    height: 100px;
+  }
   .option-h {
-    margin: 15px 0;
+    margin: 20px 0;
   }
   .option-text {
     text-align: center;
@@ -105,13 +110,12 @@ const ManagerPPO = styled.section`
     line-height: 22px;
     margin: 5px 0;
   }
-
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1280px) {
     .l-section {
       width: 75%;
     }
     .a-ppt {
-      width: 80%;
+      width: 75%;
       margin: 0 auto;
     }
     .l-options {
@@ -122,7 +126,6 @@ const ManagerPPO = styled.section`
       width: 100%;
     }
   }
-
   @media screen and (max-width: 1200px) {
     .l-section {
       width: 100%;
@@ -132,21 +135,10 @@ const ManagerPPO = styled.section`
       align-items: center;
       justify-content: center;
     }
-    .l-options {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 
   @media screen and (max-width: 1000px) {
-    .l-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
     .l-name {
-      align-items: center;
-      justify-content: center;
       background-color: none;
       box-shadow: none;
     }

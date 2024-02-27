@@ -66,8 +66,8 @@ const LandlordHP = styled.section`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: flex-start;
-    justify-content: space-between;
     width: 100%;
+    gap: 10px;
   }
   .options {
     display: flex;
@@ -77,7 +77,7 @@ const LandlordHP = styled.section`
     background-color: #ffffff;
     padding: 20px;
     box-shadow: -2px 4px 16px 0px #eeeeee;
-    width: 320px;
+    width: 310px;
     height: 300px;
     margin: 20px 0;
     border-radius: 4px;

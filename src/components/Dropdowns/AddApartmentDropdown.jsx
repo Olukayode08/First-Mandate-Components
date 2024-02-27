@@ -19,7 +19,7 @@ const AddApartmentDropdown = () => {
 
   return (
     <>
-      <Wrapper>
+      <AADropdown>
         <div className='add-ap'>
           <div className='ap-select'>
             <select
@@ -45,11 +45,11 @@ const AddApartmentDropdown = () => {
             </select>
           </div>
         </div>
-      </Wrapper>
+      </AADropdown>
     </>
   )
 }
-const Wrapper = styled.section`
+const AADropdown = styled.section`
   .add-ap {
     display: flex;
     justify-content: space-between;
@@ -57,7 +57,6 @@ const Wrapper = styled.section`
     width: 500px;
     margin: 10px 0;
   }
-
   .ap-select {
     width: 200px;
     height: 40px;
