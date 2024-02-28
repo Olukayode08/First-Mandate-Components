@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { FaRegPlusSquare } from 'react-icons/fa'
 
 const LandlordAddReminder = () => {
   const [notificationType, setNotificationType] = useState('option1')
@@ -13,32 +12,8 @@ const LandlordAddReminder = () => {
         <section>
           <main className='n-section'>
             <h3>Add Reminder</h3>
-            <div className='section'>
-              <div className='input'>
-                <label className='p-date'>Pick a Date</label>
-                <input
-                  type='date'
-                  placeholder='dd/mm/yyy'
-                  className='r-date-input'
-                />
-              </div>
-              <div className='desc input'>
-                <label className='desc-h'>Description</label>
-                <input type='text' className='r-desc-input' />
-              </div>
-            </div>
-            <div className='section'>
-              <label>What are you setting a reminder for?</label>
-              <div className='n-input'>
-                <select className='n-select' id='unit' required>
-                  <option value='one'>Rent Due Date</option>
-                  <option value='two'>Option 2</option>
-                  <option value='three'>Option 3</option>
-                </select>
-              </div>
-            </div>
             <div className='n-status'>
-              <label>Notification Type:</label>
+              <label>Reminder Type</label>
               <div className='radio-btns'>
                 <div className='radio-btn'>
                   <input
@@ -48,7 +23,7 @@ const LandlordAddReminder = () => {
                     onChange={handleNotificationType}
                     className='btn-input'
                   />
-                  <p className='n-details'>Emails</p>
+                  <p className='n-details'>Rent due date</p>
                 </div>
                 <div className='radio-btn'>
                   <input
@@ -58,7 +33,7 @@ const LandlordAddReminder = () => {
                     onChange={handleNotificationType}
                     className='btn-input'
                   />
-                  <p className='n-details'>SMS</p>
+                  <p className='n-details'>Electricity Payment</p>
                 </div>
                 <div className='radio-btn'>
                   <input
@@ -68,28 +43,45 @@ const LandlordAddReminder = () => {
                     onChange={handleNotificationType}
                     className='btn-input'
                   />
-                  <p className='n-details'>App Notifications</p>
+                  <p className='n-details'>Water bill</p>
+                </div>
+                <div className='radio-btn'>
+                  <input
+                    type='radio'
+                    value='option4'
+                    checked={notificationType === 'option4'}
+                    onChange={handleNotificationType}
+                    className='btn-input'
+                  />
+                  <p className='n-details'>Security fee</p>
                 </div>
               </div>
             </div>
             <div className='section'>
-              <label>Set frequency on notification</label>
-              <div className='n-input'>
-                <select className='n-select' id='unit' required>
-                  <option value='one'>1 week to due date</option>
-                  <option value='two'>Option 2</option>
-                  <option value='three'>Option 3</option>
-                </select>
+              <div className='input'>
+                <label className='p-date'>Short description</label>
+                <input type='text' className='r-desc-input' />
+              </div>
+              <div className='input'>
+                <label className='p-date'>
+                  When do you want to be notified
+                </label>
+                <input
+                  type='date'
+                  placeholder='dd/mm/yyy'
+                  className='r-date-input'
+                />
               </div>
             </div>
             <div className='section'>
-              <label>
-                You will be notified everyday until the due date based on your
-                preference
-              </label>
-              <div className='add-r'>
-                <h4>Add New Reminder</h4>
-                <FaRegPlusSquare size={20} />
+              <label>Time</label>
+              <div className='n-input'>
+                <select className='n-select' id='unit' required>
+                  <option value='one'>Immediately</option>
+                  <option value='one'>1 week to due date</option>
+                  <option value='two'>2 weeks to due date</option>
+                  <option value='three'>1 month to due date</option>
+                </select>
               </div>
             </div>
             <p className='save-btn'>Save</p>
@@ -101,13 +93,52 @@ const LandlordAddReminder = () => {
 }
 const LAReminder = styled.section`
   position: relative;
-  margin: 10px 0;
   .n-section {
     position: absolute;
-    left: 300px;
-    width: 52%;
-    margin: 0 auto;
-    padding: 20px 0;
+    right: 10px;
+    width: 78%;
+    margin: 10px 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+  }
+  h3 {
+    margin: 10px 0 25px 0;
+  }
+  /* Notification Status */
+  .n-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    width: 100%;
+  }
+  label {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  .radio-btns {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px 0;
+    gap: 20px;
+  }
+  .radio-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 5px 0;
+    flex-shrink: 0;
+  }
+  .btn-input {
+    width: 18px;
+    height: 18px;
+  }
+  .n-details {
+    font-size: 16px;
   }
   .section {
     display: flex;
@@ -122,19 +153,10 @@ const LAReminder = styled.section`
     align-items: flex-start;
     justify-content: left;
     margin: 10px 0;
-  }
-  .desc {
-    flex-direction: row;
-    width: 90%;
-    justify-content: left;
-    align-items: flex-start;
-    margin: 20px 0;
+    width: 100%;
   }
   .p-date {
     margin: 10px 0;
-  }
-  .desc-h {
-    margin-right: 20px;
   }
   input {
     outline: none;
@@ -147,19 +169,20 @@ const LAReminder = styled.section`
     background: transparent;
   }
   .r-date-input {
-    height: 40px;
-    width: 200px;
+    height: 50px;
+    width: 250px;
   }
   .r-desc-input {
-    height: 60px;
-    width: 430px;
+    height: 80px;
+    width: 500px;
   }
   .n-input {
     width: 250px;
     margin: 10px 0;
-    height: 40px;
+    height: 50px;
     padding: 0 10px;
     border: 1px solid black;
+    border-radius: 3px;
   }
   .n-select {
     width: 100%;
@@ -172,82 +195,35 @@ const LAReminder = styled.section`
     font-family: inherit;
     font-size: 15px;
   }
-  /* Notification Status */
-  .n-status {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-  }
-
-  label {
-    margin: 10px 0;
-    font-size: 18px;
-  }
-  .radio-btn {
-    gap: 20px;
-  }
-  .radio-btn,
-  .radio-btns {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 10px 0;
-  }
-  .btn-input {
-    width: 18px;
-    height: 18px;
-  }
-  .n-details {
-    margin-left: 10px;
-    font-size: 17px;
-  }
-  .add-r {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    background-color: #ffe48e;
-    padding: 15px;
-    border-radius: 10px;
-    width: 250px;
-    text-decoration: none;
-    color: #000;
-  }
   .save-btn {
-    width: 550px;
-    background-color: #000;
+    width: 80px;
+    background-color: #fedf7e;
     text-align: center;
-    color: #ffffff;
+    color: #000;
     padding: 15px 0;
     border-radius: 5px;
     margin: 20px 0;
     cursor: pointer;
   }
-
-  @media screen and (max-width: 1290px) {
+  @media screen and (max-width: 1280px) {
     .n-section {
-      width: 50%;
+      width: 74%;
     }
   }
   @media screen and (max-width: 1200px) {
     .n-section {
       width: 100%;
       left: 0;
-      padding: 10px;
     }
   }
 
   @media screen and (max-width: 600px) {
-    .desc {
-      flex-direction: column;
-    }
-    .save-btn {
-      width: 450px;
+    .radio-btns {
+      width: 95%;
     }
   }
-  @media screen and (max-width: 500px) {
-    .r-desc-input,
-    .save-btn {
+  @media screen and (max-width: 550px) {
+    .r-desc-input {
       width: 90%;
     }
   }

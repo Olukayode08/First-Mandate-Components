@@ -132,7 +132,7 @@ const LandlordEPP = styled.section`
   }
   .save-edits {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     right: 0;
     background: #f6f6f8;
     padding: 10px 15px;

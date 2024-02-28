@@ -133,7 +133,7 @@ const LandlordPS = styled.section`
   .r-s-btns {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 40px;
     margin: 10px 0;
   }
   .r-btn {

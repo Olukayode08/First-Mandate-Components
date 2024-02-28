@@ -47,7 +47,7 @@ import ResetEmailPassword from './components/Registration/ResetEmailPassword'
 import ErrorPage from './components/Error/ErrorPage'
 import LandlordEditProfilePage from './components/Landlord/LandlordEditProfilePage'
 import LandlordProfileSettings from './components/Landlord/LandlordProfileSettings'
-
+import FCheckbox from './components/Checkbox/Checkbox'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -70,6 +70,7 @@ function App() {
           <Route path='/sidebar' element={<Sidebar />} />
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/my-ppts' element={<MyProperties />} />
+          <Route path='/checkbox' element={<FCheckbox />} />
 
           {/* Landlord page */}
           <Route path='/landlord' element={<LandLord />}>
@@ -84,7 +85,10 @@ function App() {
             <Route path='add-reminder' element={<LandlordAddReminder />} />
             <Route path='ppt-page' element={<LandlordPropertyPage />} />
             <Route path='edit-profile' element={<LandlordEditProfilePage />} />
-            <Route path='profile-settings' element={<LandlordProfileSettings />} />
+            <Route
+              path='profile-settings'
+              element={<LandlordProfileSettings />}
+            />
           </Route>
 
           {/* Manager's Page */}
