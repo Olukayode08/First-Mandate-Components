@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { landlordOptions } from '../../datas/LandlordHomePage'
+import { Link } from 'react-router-dom'
 
 const LandlordHomePage = () => {
   return (
@@ -16,11 +17,11 @@ const LandlordHomePage = () => {
               <div className='l-options'>
                 {landlordOptions.map((option) => {
                   return (
-                    <div className='options' key={option.id}>
+                    <Link to={option.navigate} className='options' key={option.id}>
                       <img className='h-img' src={option.icon} alt='Icon' />
                       <h1 className='option-h'>{option.heading}</h1>
                       <p className='option-text'>{option.text}</p>
-                    </div>
+                    </Link>
                   )
                 })}
               </div>
@@ -82,6 +83,8 @@ const LandlordHP = styled.section`
     margin: 20px 0;
     border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
+    color: #000;
   }
   .h-img {
     background-color: #f6f6f8;

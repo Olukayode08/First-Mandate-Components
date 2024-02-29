@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { landlordTenantList } from '../../datas/LandlordTenantList'
+import { Link } from 'react-router-dom'
 
 const LandlordTenantList = () => {
   return (
@@ -9,12 +10,12 @@ const LandlordTenantList = () => {
       <LTenantL>
         <section>
           <main className='a-t-section'>
-              <div className='a-tenant'>
-                <h3>My Tenants</h3>
-                <div className='add-r'>
-                  <h4>Add New Tenant</h4>
-                  <FaRegPlusSquare size={20} />
-                </div>
+            <div className='a-tenant'>
+              <h3>My Tenants</h3>
+              <Link to='/landlord/add-tenant' className='add-r'>
+                <h4>Add New Tenant</h4>
+                <FaRegPlusSquare size={20} />
+              </Link>
             </div>
             <div className='table'>
               <table>
@@ -80,6 +81,7 @@ const LTenantL = styled.section`
     width: 250px;
     color: #000;
     cursor: pointer;
+    text-decoration: none;
   }
   .table {
     overflow-x: scroll;
@@ -109,7 +111,7 @@ const LTenantL = styled.section`
   .list-status {
     text-align: center;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1320px) {
     .a-t-section {
       width: 75%;
     }

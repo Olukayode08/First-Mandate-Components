@@ -175,3 +175,45 @@ const Wrapper = styled.section`
   }
 `
 export default PropertyTypeDropdown
+
+
+Edit and delete
+
+import React, { useState } from 'react';
+
+const App = () => {
+  const initialData = [
+    { id: 1, content: 'Item 1' },
+    { id: 2, content: 'Item 2' },
+    { id: 3, content: 'Item 3' },
+    { id: 4, content: 'Item 4' }
+  ];
+
+  const [data, setData] = useState(initialData);
+
+  const handleEdit = (id, newContent) => {
+    setData(prevData =>
+      prevData.map(item => (item.id === id ? { ...item, content: newContent } : item))
+    );
+  };
+
+  const handleDelete = id => {
+    setData(prevData => prevData.filter(item => item.id !== id));
+  };
+
+  return (
+    <div>
+      {data.map(item => (
+        <div key={item.id}>
+          <p>{item.content}</p>
+          <button onClick={() => handleEdit(item.id, prompt('Enter new content:'))}>
+            Edit
+          </button>
+          <button onClick={() => handleDelete(item.id)}>Delete</button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default App;

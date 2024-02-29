@@ -5,9 +5,8 @@ import { IoHomeOutline } from 'react-icons/io5'
 import { FaFileImport } from 'react-icons/fa'
 import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
 import { LuWalletCards } from 'react-icons/lu'
-import { TbReportSearch } from 'react-icons/tb'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { BsThreeDots } from 'react-icons/bs'
 
@@ -30,9 +29,12 @@ const TenantSidebar = () => {
     }
   }, [screenSize])
 
+  const location = useLocation()
+
+
   return (
     <>
-      <Wrapper>
+      <TenantS>
         <section>
           {/* Sidebar Btn */}
           <div className='sidebar-btn'>
@@ -50,29 +52,42 @@ const TenantSidebar = () => {
                 <div className='logo'>
                   <BsThreeDots size={80} />
                 </div>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/tenant' ||
+                    location.pathname === '/tenant/notifications'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/tenant'
+                >
                   <IoHomeOutline size={23} className='icon' />
                   <p className='desc'>Home</p>
                 </Link>
-                <Link className='links active' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/tenant/apartment-details' ||
+                    location.pathname === '/tenant/apartment-details-two' ||
+                    location.pathname === '/tenant/add-apartment-details'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/tenant/apartment-details'
+                >
                   <FaFileImport size={23} className='icon' />
-                  <p className='desc'>My Properties</p>
+                  <p className='desc'>Apartment</p>
                 </Link>
                 <Link className='links' to='#'>
                   <HiOutlineSquare3Stack3D size={23} className='icon' />
-                  <p className='desc'>Tenants</p>
+                  <p className='desc'>Landlord</p>
                 </Link>
                 <Link className='links' to='#'>
                   <MdOutlineOnDeviceTraining size={23} className='icon' />
-                  <p className='desc'>Messages</p>
+                  <p className='desc'>Manager</p>
                 </Link>
                 <Link className='links' to='#'>
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
-                </Link>
-                <Link className='links buttom-img' to='#'>
-                  <TbReportSearch size={23} className='icon' />
-                  <p className='desc'>Rent Due Dates</p>
                 </Link>
                 <div className='banner-add'>
                   <img
@@ -89,11 +104,11 @@ const TenantSidebar = () => {
             )}
           </main>
         </section>
-      </Wrapper>
+      </TenantS>
     </>
   )
 }
-const Wrapper = styled.section`
+const TenantS = styled.section`
   section {
     position: relative;
   }
@@ -104,7 +119,6 @@ const Wrapper = styled.section`
     color: #000;
     z-index: 100;
   }
-
   .sidebar {
     display: flex;
     flex-direction: column;
@@ -117,7 +131,6 @@ const Wrapper = styled.section`
     box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 50;
   }
-
   .left-sidebar {
     display: flex;
     flex-direction: column;

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { landlordManagerList } from '../../datas/LandlordManagerList'
+import { Link } from 'react-router-dom'
 
 const LandlordAddManager = () => {
   return (
@@ -11,10 +12,10 @@ const LandlordAddManager = () => {
           <main className='a-t-section'>
             <div className='a-tenant'>
               <h3>My Manager</h3>
-              <div className='add-r'>
+              <Link to='/landlord/add-manager' className='add-r'>
                 <h4>Add New Manager</h4>
                 <FaRegPlusSquare size={20} />
-              </div>
+              </Link>
             </div>
             <div className='table'>
               <table>
@@ -74,6 +75,7 @@ const LAManager = styled.section`
     text-decoration: none;
     color: #000;
     cursor: pointer;
+    text-decoration: none;
   }
   .table {
     overflow-x: scroll;

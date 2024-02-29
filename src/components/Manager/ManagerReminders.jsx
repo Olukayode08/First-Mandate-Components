@@ -1,27 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
-import LandLordReminderSidebar from '../Sidebars/LandlordReminderSidebar'
-import editIcon from '../../assets/edit-01 (3).png'
+import editIcon from '../../assets/edit-btn.png'
+import { Link } from 'react-router-dom'
+import { FaRegPlusSquare } from 'react-icons/fa'
+
 const ManagerReminders = () => {
   return (
     <>
-      <LandLordReminderSidebar />
       <ManagerR>
         <section>
           <main className='r-section'>
             <div className='landlord-reminder'>
-              <div className='reminder-h'>
+              <div className='a-tenant'>
                 <h3>Reminders</h3>
+                <Link to='/manager/add-reminder' className='add-r'>
+                  <h4>Add Reminder</h4>
+                  <FaRegPlusSquare size={20} />
+                </Link>
               </div>
-
               {landlordReminder.map((reminder) => {
                 return (
                   <div key={reminder.id} className='r-due-date'>
-                    <img className='r-img' src={reminder.image} alt='House' />
+                    <img className='r-img' src={reminder.image} alt='' />
                     <div className='name-amt'>
-                      <h3 className='d-date'>Mr Kelly</h3>
-                      <h3 className='d-date'>{reminder.amount}</h3>
+                      <h3 className='r-amt'>Mr Kelly</h3>
+                      <h3 className='r-amt'>{reminder.amount}</h3>
                     </div>
                     <p className='r-desc'>{reminder.description}</p>
                     <div className='l-btns'>
@@ -46,20 +50,36 @@ const ManagerR = styled.section`
   position: relative;
   .r-section {
     position: absolute;
-    left: 300px;
-    width: 52%;
+    right: 10px;
+    width: 78%;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px;
   }
   .landlord-reminder {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
     width: 100%;
   }
-  .reminder-h {
+  .a-tenant {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 20px 0;
+  }
+  .add-r {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #ffe48e;
+    padding: 15px;
+    border-radius: 10px;
+    width: 200px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
   }
   .r-due-date {
     display: flex;
@@ -74,8 +94,8 @@ const ManagerR = styled.section`
     overflow-x: auto;
   }
   .r-img {
-    width: 80px;
-    height: 70px;
+    width: 70px;
+    height: 60px;
     border-radius: 4px;
   }
   .name-amt {
@@ -84,63 +104,59 @@ const ManagerR = styled.section`
     align-items: flex-start;
     justify-content: left;
   }
-  .d-date {
+  .r-amt {
     margin: 5px 0;
   }
-  .d-date,
+  .r-amt,
   .r-img {
     margin-right: 20px;
     flex-shrink: 0;
   }
+  .desc {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+  }
   .r-desc {
     flex-shrink: 0;
+    margin: 0 15px;
   }
   .l-btns {
     display: flex;
+    gap: 20px;
     justify-content: right;
-    align-items: center;
-    margin: 10px 0;
+    align-items: flex-end;
+    width: 100%;
   }
   .l-btn {
-    margin: 0 15px;
     border-radius: 5px;
     cursor: pointer;
   }
   .edit-icon {
-    padding: 8px 12px;
+    padding: 8px 13px;
     background-color: #fedf7e;
   }
   .delete {
-    width: 80px;
-    text-align: center;
-    padding: 11px 0;
+    padding: 11px 17px;
     background-color: #ffdfe2;
   }
-  @media screen and (max-width: 1290px) {
+  @media screen and (max-width: 1320px) {
     .r-section {
-      width: 48%;
+      width: 74%;
     }
   }
   @media screen and (max-width: 1200px) {
-    h3 {
-      text-align: center;
-    }
     .r-section {
       width: 100%;
       left: 0;
     }
-    .r-due-date {
-      width: 100%;
-      background-color: none;
-      box-shadow: none;
-      align-items: center;
-      justify-content: center;
-    }
   }
-  @media screen and (max-width: 700px) {
-    .r-due-date {
-      align-items: center;
-      justify-content: left;
+  @media screen and (max-width: 900px) {
+    .a-tenant {
+      flex-direction: column;
+    }
+    .add-r {
+      margin: 20px 0 10px 0;
     }
   }
 `

@@ -7,7 +7,7 @@ import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
 import { LuWalletCards } from 'react-icons/lu'
 import { TbReportSearch } from 'react-icons/tb'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { BsThreeDots } from 'react-icons/bs'
 
@@ -30,6 +30,8 @@ const LandlordSidebar = () => {
     }
   }, [screenSize])
 
+  const location = useLocation()
+
   return (
     <>
       <LandlordS>
@@ -50,23 +52,63 @@ const LandlordSidebar = () => {
                 <div className='logo'>
                   <BsThreeDots size={80} />
                 </div>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/landlord' ||
+                    location.pathname === '/landlord/notifications'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/landlord'
+                >
                   <IoHomeOutline size={23} className='icon' />
                   <p className='desc'>Home</p>
                 </Link>
-                <Link className='links active' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/landlord/properties' ||
+                    location.pathname === '/landlord/upload-property'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/landlord/properties'
+                >
                   <FaFileImport size={23} className='icon' />
                   <p className='desc'>My Properties</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/landlord/tenants' ||
+                    location.pathname === '/landlord/add-tenant'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/landlord/tenants'
+                >
                   <HiOutlineSquare3Stack3D size={23} className='icon' />
                   <p className='desc'>Tenants</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/landlord/managers' ||
+                    location.pathname === '/landlord/add-manager'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/landlord/managers'
+                >
                   <MdOutlineOnDeviceTraining size={23} className='icon' />
-                  <p className='desc'>Messages</p>
+                  <p className='desc'>Managers</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/landlord/reminders' ||
+                    location.pathname === '/landlord/add-reminder'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/landlord/reminders'
+                >
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
                 </Link>

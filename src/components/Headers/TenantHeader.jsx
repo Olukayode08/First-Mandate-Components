@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const TenantHeader = () => {
   return (
     <>
-      <Wrapper>
+      <THeader>
         <section>
           <div className='header'>
             <div className='select-user'>
@@ -23,12 +23,12 @@ const TenantHeader = () => {
             </div>
           </div>
         </section>
-      </Wrapper>
+      </THeader>
     </>
   )
 }
 
-const Wrapper = styled.section`
+const THeader = styled.section`
   .header {
     display: flex;
     justify-content: right;

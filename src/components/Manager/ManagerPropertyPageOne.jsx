@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { managerProperty } from '../../datas/ManagerPropertyPageOne'
 import { FaRegPlusSquare } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const ManagerPropertyPageOne = () => {
   return (
@@ -12,10 +13,10 @@ const ManagerPropertyPageOne = () => {
             <div className='l-home-page'>
               <div className='a-ppt'>
                 <h3>Properties</h3>
-                <div className='add-r'>
-                  <h4>Add New Reminder</h4>
+               <Link to='#' className='add-r'>
+                  <h4>Add New Property</h4>
                   <FaRegPlusSquare size={20} />
-                </div>
+                </Link>
               </div>
               <div className='l-options'>
                 {managerProperty.map((property) => {

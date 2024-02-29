@@ -30,7 +30,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <Wrapper>
+      <MobileS>
         <section>
           {/* Sidebar Btn */}
           <div className='sidebar-btn'>
@@ -60,11 +60,11 @@ const Sidebar = () => {
             )}
           </main>
         </section>
-      </Wrapper>
+      </MobileS>
     </>
   )
 }
-const Wrapper = styled.section`
+const MobileS = styled.section`
   section {
     position: relative;
     height: 100%;

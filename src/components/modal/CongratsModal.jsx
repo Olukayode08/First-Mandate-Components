@@ -37,7 +37,7 @@ const Modal = styled.section`
     right: 0;
     bottom: 0;
     position: fixed;
-    z-index: 5;
+    z-index: 1000;
   }
 
   .overlay {
@@ -59,7 +59,7 @@ const Modal = styled.section`
     height: 200px;
     padding: 20px;
     min-width: 300px;
-    z-index: 10;
+    z-index: 2000;
   }
 
   .modal-text {

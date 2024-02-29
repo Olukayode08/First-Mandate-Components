@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
-import LandLordReminderSidebar from '../Sidebars/LandlordReminderSidebar'
 import editIcon from '../../assets/edit-btn.png'
+import { Link } from 'react-router-dom'
+import { FaRegPlusSquare } from 'react-icons/fa'
+
 const LandlordReminders = () => {
+  const [data, setData] = useState(landlordReminder)
+
+
+  const handleDelete = (id) => {
+    setData(data.filter((item) => item.id !== id))
+  }
+
+
+
   return (
     <>
-      <LandLordReminderSidebar />
       <LandlordR>
         <section>
           <main className='r-section'>
             <div className='landlord-reminder'>
-              <div className='reminder-h'>
+              <div className='a-tenant'>
                 <h3>Reminders</h3>
+                <Link to='/landlord/add-reminder' className='add-r'>
+                  <h4>Add Reminder</h4>
+                  <FaRegPlusSquare size={20} />
+                </Link>
               </div>
-              {landlordReminder.map((reminder) => {
+              {data.map((reminder) => {
                 return (
                   <div key={reminder.id} className='r-due-date'>
                     <img className='r-img' src={reminder.image} alt='' />
@@ -29,7 +43,12 @@ const LandlordReminders = () => {
                         src={editIcon}
                         alt='Edit'
                       />
-                      <p className='l-btn delete'>Delete</p>
+                      <p
+                        className='l-btn delete'
+                        onClick={() => handleDelete(reminder.id)}
+                      >
+                        Delete
+                      </p>
                     </div>
                   </div>
                 )
@@ -45,18 +64,36 @@ const LandlordR = styled.section`
   position: relative;
   .r-section {
     position: absolute;
-    left: 300px;
-    width: 52%;
+    right: 10px;
+    width: 78%;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px;
   }
   .landlord-reminder {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
     width: 100%;
   }
-  .reminder-h {
-    padding: 20px;
+  .a-tenant {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0;
+  }
+  .add-r {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #ffe48e;
+    padding: 15px;
+    border-radius: 10px;
+    width: 200px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
   }
   .r-due-date {
     display: flex;
@@ -96,15 +133,16 @@ const LandlordR = styled.section`
   }
   .r-desc {
     flex-shrink: 0;
+    margin: 0 15px;
   }
   .l-btns {
     display: flex;
+    gap: 20px;
     justify-content: right;
-    align-items: center;
-    margin: 0 15px;
+    align-items: flex-end;
+    width: 100%;
   }
   .l-btn {
-    margin: 0 10px;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -116,31 +154,23 @@ const LandlordR = styled.section`
     padding: 11px 17px;
     background-color: #ffdfe2;
   }
-  @media screen and (max-width: 1290px) {
+  @media screen and (max-width: 1320px) {
     .r-section {
-      width: 48%;
+      width: 74%;
     }
   }
   @media screen and (max-width: 1200px) {
-    h3 {
-      text-align: center;
-    }
     .r-section {
       width: 100%;
       left: 0;
     }
-    .r-due-date {
-      width: 100%;
-      background-color: none;
-      box-shadow: none;
-      align-items: center;
-      justify-content: center;
-    }
   }
-  @media screen and (max-width: 700px) {
-    .r-due-date {
-      align-items: center;
-      justify-content: left;
+  @media screen and (max-width: 900px) {
+    .a-tenant {
+      flex-direction: column;
+    }
+    .add-r {
+      margin: 20px 0 10px 0;
     }
   }
 `

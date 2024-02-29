@@ -27,7 +27,7 @@ const UploadPptSidebar = () => {
 
   return (
     <>
-      <Wrapper>
+      <UPSidebar>
         <section>
           {/* Upload Property Sidebar Btn */}
           <div className='upload-ppt-btn'>
@@ -82,11 +82,11 @@ const UploadPptSidebar = () => {
             )}
           </main>
         </section>
-      </Wrapper>
+      </UPSidebar>
     </>
   )
 }
-const Wrapper = styled.section`
+const UPSidebar = styled.section`
   section {
     position: relative;
   }

@@ -7,7 +7,7 @@ import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
 import { LuWalletCards } from 'react-icons/lu'
 import { TbReportSearch } from 'react-icons/tb'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { BsThreeDots } from 'react-icons/bs'
 
@@ -30,9 +30,11 @@ const PropertyManagerSidebar = () => {
     }
   }, [screenSize])
 
+  const location = useLocation()
+
   return (
     <>
-      <Wrapper>
+      <PMSidebar>
         <section>
           {/* Sidebar Btn */}
           <div className='sidebar-btn'>
@@ -50,23 +52,62 @@ const PropertyManagerSidebar = () => {
                 <div className='logo'>
                   <BsThreeDots size={80} />
                 </div>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/manager' ||
+                    location.pathname === '/manager/notifications'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/manager'
+                >
                   <IoHomeOutline size={23} className='icon' />
                   <p className='desc'>Home</p>
                 </Link>
-                <Link className='links active' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/manager/properties'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/manager/properties'
+                >
                   <FaFileImport size={23} className='icon' />
                   <p className='desc'>My Properties</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/manager/tenants' ||
+                    location.pathname === '/manager/add-tenant'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/manager/tenants'
+                >
                   <HiOutlineSquare3Stack3D size={23} className='icon' />
                   <p className='desc'>Tenants</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/manager/landlords' ||
+                    location.pathname === '/manager/add-landlord'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/manager/landlords'
+                >
                   <MdOutlineOnDeviceTraining size={23} className='icon' />
-                  <p className='desc'>Messages</p>
+                  <p className='desc'>Landlords</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link
+                  className={
+                    location.pathname === '/manager/reminders' ||
+                    location.pathname === '/manager/add-reminder'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/manager/reminders'
+                >
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
                 </Link>
@@ -89,11 +130,11 @@ const PropertyManagerSidebar = () => {
             )}
           </main>
         </section>
-      </Wrapper>
+      </PMSidebar>
     </>
   )
 }
-const Wrapper = styled.section`
+const PMSidebar = styled.section`
   section {
     position: relative;
   }

@@ -17,7 +17,7 @@ import ManagerHomePage from './components/Manager/ManagerHomePage'
 import TenantHomePage from './components/Tenant/TenantHomePage'
 import Tenant from './pages/Tenant/Tenant'
 import LandlordNotifications from './components/Landlord/LandlordNotifications'
-import LandlordAddReminder from './components/AddReminder/LandlordAddReminder'
+import LandlordAddReminder from './components/Landlord/LandlordAddReminder'
 import TenantNotifications from './components/Tenant/TenantNotifications'
 import ManagerNotifications from './components/Manager/ManagerNotifications'
 import ManagerPropertyPageOne from './components/Manager/ManagerPropertyPageOne'
@@ -47,7 +47,8 @@ import ResetEmailPassword from './components/Registration/ResetEmailPassword'
 import ErrorPage from './components/Error/ErrorPage'
 import LandlordEditProfilePage from './components/Landlord/LandlordEditProfilePage'
 import LandlordProfileSettings from './components/Landlord/LandlordProfileSettings'
-import FCheckbox from './components/Checkbox/Checkbox'
+import Checkbox from './components/Checkbox/Checkbox'
+import ManagerAddReminder from './components/Manager/ManagerAddReminder'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -64,26 +65,27 @@ function App() {
             path='/reset-email-password'
             element={<ResetEmailPassword />}
           />
+          <Route path='/reset-password' element={<ResetPassword />} />
 
           {/* <Route path='/' element={<Signup />} />
           <Route path='/login' element={<Login />} /> */}
           <Route path='/sidebar' element={<Sidebar />} />
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/my-ppts' element={<MyProperties />} />
-          <Route path='/checkbox' element={<FCheckbox />} />
+          <Route path='/checkbox' element={<Checkbox />} />
 
           {/* Landlord page */}
           <Route path='/landlord' element={<LandLord />}>
             <Route path='' element={<LandlordHomePage />} />
-            <Route path='reminders' element={<LandlordReminders />} />
-            <Route path='upload-ppt' element={<UploadPpt />} />
-            <Route path='tenant-list' element={<LandlordTenantList />} />
+            <Route path='notifications' element={<LandlordNotifications />} />
+            <Route path='properties' element={<LandlordPropertyPage />} />
+            <Route path='upload-property' element={<UploadPpt />} />
+            <Route path='tenants' element={<LandlordTenantList />} />
             <Route path='add-tenant' element={<LandlordAddNewTenant />} />
-            <Route path='add-manager' element={<LandlordAddManager />} />
-            <Route path='add-new-manager' element={<LandlordAddNewManager />} />
-            <Route path='notify' element={<LandlordNotifications />} />
+            <Route path='managers' element={<LandlordAddManager />} />
+            <Route path='add-manager' element={<LandlordAddNewManager />} />
+            <Route path='reminders' element={<LandlordReminders />} />
             <Route path='add-reminder' element={<LandlordAddReminder />} />
-            <Route path='ppt-page' element={<LandlordPropertyPage />} />
             <Route path='edit-profile' element={<LandlordEditProfilePage />} />
             <Route
               path='profile-settings'
@@ -94,27 +96,21 @@ function App() {
           {/* Manager's Page */}
           <Route path='/manager' element={<PropertyManager />}>
             <Route path='' element={<ManagerHomePage />} />
-            <Route path='ppt-page-one' element={<ManagerPropertyPageOne />} />
-            <Route path='ppt-page-two' element={<ManagerPropertyPageTwo />} />
-            <Route path='add-landlord' element={<ManagerAddLandlord />} />
-            <Route
-              path='add-new-landlord'
-              element={<ManagerAddNewLandlord />}
-            />
-            <Route path='tenant-list' element={<ManagerTenantList />} />
+            <Route path='notifications' element={<ManagerNotifications />} />
+            <Route path='properties' element={<ManagerPropertyPageOne />} />
+            <Route path='property' element={<ManagerPropertyPageTwo />} />
+            <Route path='landlords' element={<ManagerAddLandlord />} />
+            <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
+            <Route path='tenants' element={<ManagerTenantList />} />
             <Route path='add-tenant' element={<ManagerAddNewTenant />} />
-            <Route path='notify' element={<ManagerNotifications />} />
             <Route path='reminders' element={<ManagerReminders />} />
+            <Route path='add-reminder' element={<ManagerAddReminder />} />
           </Route>
 
           {/* Tenant Page */}
           <Route path='/tenant' element={<Tenant />}>
             <Route path='' element={<TenantHomePage />} />
-            <Route path='notify' element={<TenantNotifications />} />
-            <Route
-              path='add-apartment-details'
-              element={<TenantAddApartmentDetails />}
-            />
+            <Route path='notifications' element={<TenantNotifications />} />
             <Route
               path='apartment-details'
               element={<TenantApartmentDetails />}
@@ -122,6 +118,10 @@ function App() {
             <Route
               path='apartment-details-two'
               element={<TenantApartmentDetailsTwo />}
+            />
+            <Route
+              path='add-apartment-details'
+              element={<TenantAddApartmentDetails />}
             />
           </Route>
 

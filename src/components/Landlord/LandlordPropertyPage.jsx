@@ -3,17 +3,19 @@ import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { landlordProperties } from '../../datas/LandlordProperties'
 import editIcon from '../../assets/edit-btn.png'
+import { Link } from 'react-router-dom'
 
 const LandlordPropertyPage = () => {
+
   return (
     <>
       <LandlordPP>
         <section>
           <div className='m-section'>
-            <div className='add-r'>
+            <Link to='/landlord/upload-property' className='add-r' >
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
-            </div>
+            </Link>
 
             {landlordProperties.map((property) => (
               <div key={property.id} className='manager-p'>
@@ -166,6 +168,7 @@ const LandlordPP = styled.section`
     color: #000;
     cursor: pointer;
     margin: 20px 0;
+    text-decoration: none;
   }
   .manager-p {
     display: flex;

@@ -40,7 +40,7 @@ const SignupCM = styled.section`
     right: 0;
     bottom: 0;
     position: fixed;
-    z-index: 50;
+    z-index: 1000;
   }
 
   .overlay {
@@ -62,7 +62,7 @@ const SignupCM = styled.section`
     height: 200px;
     padding: 20px;
     min-width: 300px;
-    z-index: 100;
+    z-index: 2000;
   }
 
   .modal-text {
