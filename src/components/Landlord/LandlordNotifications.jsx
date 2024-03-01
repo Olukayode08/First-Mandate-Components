@@ -69,7 +69,6 @@ const LNotify = styled.section`
     border-spacing: 0 20px;
     width: 100%;
   }
-
   th,
   td {
     white-space: nowrap;
@@ -78,7 +77,6 @@ const LNotify = styled.section`
   .t-heading {
     text-align: left;
     height: 60px;
-    background-color: #ffffff;
     box-shadow: -2px 4px 16px 0px #eeeeee;
   }
   .t-notifications {

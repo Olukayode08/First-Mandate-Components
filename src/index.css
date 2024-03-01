@@ -10,6 +10,12 @@ body {
   font-family: 'Varela Round', sans-serif;
   overflow-x: hidden;
 }
+
+.dark-mode {
+ background-color: #fedf7e;
+  color: #000;
+}
+
 /* Theme */
 #light {
   width: 100vw;
@@ -19,39 +25,12 @@ body {
   width: 100vw;
   height: 100%;
 }
-#light .sidebar-btn {
-  color: #000;
-}
-#dark .sidebar-btn {
-  color: #ffe48e;
-}
-
-#light .sidebar {
-  background: #ffffff;
-  color: #000;
-}
-#dark .sidebar {
-  background: #000;
-  color: #fff;
-}
-#light .header {
-  background: #ffffff;
-  color: #000;
-}
-#dark .header {
-  background: #000;
-  color: #fff;
-}
-#dark .links {
-  color: #fff;
-}
 #dark .active {
   background: #fff;
   color: #13131a;
 }
-
 @media screen and (min-width: 2000px) {
-  .app{
+  .app {
     max-width: 1900px;
     margin: 0 auto;
   }

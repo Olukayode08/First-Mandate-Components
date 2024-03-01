@@ -80,7 +80,6 @@ const LandlordEPP = styled.section`
   .rent-sec {
     width: 100%;
     padding: 20px;
-    background-color: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
     display: flex;
     flex-direction: column;

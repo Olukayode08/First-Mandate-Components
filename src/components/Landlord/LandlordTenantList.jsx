@@ -105,7 +105,6 @@ const LTenantL = styled.section`
   }
   .t-list {
     height: 50px;
-    background-color: #ffffff;
     box-shadow: -2px 4px 16px 0px #eeeeee;
   }
   .list-status {

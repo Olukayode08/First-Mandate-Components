@@ -61,7 +61,6 @@ const ManagerHP = styled.section`
     align-items: flex-start;
     justify-content: space-between;
     padding: 20px;
-    background-color: #ffffff;
     box-shadow: -2px 4px 16px 0px #eeeeee;
     width: 100%;
     height: 100px;
@@ -78,7 +77,6 @@ const ManagerHP = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
     padding: 20px;
     box-shadow: -2px 4px 16px 0px #eeeeee;
     width: 310px;

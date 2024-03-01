@@ -77,7 +77,6 @@ const TenantADT = styled.section`
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
-    background: #ffffff;
     width: 350px;
     padding: 15px;
     margin: 10px;
@@ -120,7 +119,6 @@ const TenantADT = styled.section`
     font-size: 16px;
     cursor: pointer;
   }
-
   @media screen and (max-width: 1200px) {
     .a-section {
       width: 100%;

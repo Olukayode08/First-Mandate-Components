@@ -77,7 +77,6 @@ const ManagerN = styled.section`
   .t-heading {
     text-align: left;
     height: 60px;
-    background-color: #ffffff;
     box-shadow: -2px 4px 16px 0px #eeeeee;
   }
   .t-notifications {

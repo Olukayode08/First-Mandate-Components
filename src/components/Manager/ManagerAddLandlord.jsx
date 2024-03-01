@@ -96,7 +96,6 @@ const ManagerAL = styled.section`
   .l-m-heading {
     text-align: center;
     height: 60px;
-    background-color: #ffffff;
     box-shadow: -2px 4px 16px 0px #eeeeee;
   }
   .m-list {

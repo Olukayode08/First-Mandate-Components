@@ -96,6 +96,7 @@ const LANManager = styled.section`
     font-size: 17px;
     color: #000;
     border-radius: 3px;
+    background: transparent;
   }
   label {
     margin: 10px 0;

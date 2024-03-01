@@ -110,24 +110,19 @@ const LandlordP = styled.section`
     border-spacing: 0 20px;
     width: 100%;
   }
-
   th,
   td {
     white-space: nowrap;
     padding: 0 20px;
     text-align: center;
   }
-
   .t-heading {
     text-align: center;
     height: 60px;
-    background: #f6f6f8;
   }
-
   .t-list {
     height: 40px;
   }
-
   .delete {
     background: #ffdfe2;
     padding: 10px 20px;
@@ -142,7 +137,6 @@ const LandlordP = styled.section`
     cursor: pointer;
   }
 `
-
 const LandlordPP = styled.section`
   position: relative;
   .m-section {
@@ -176,7 +170,6 @@ const LandlordPP = styled.section`
     padding: 20px;
     width: 100%;
     margin: 20px 0;
-    background: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
   }
   .apart-det {

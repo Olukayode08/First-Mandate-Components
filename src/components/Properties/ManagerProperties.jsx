@@ -73,7 +73,6 @@ const ManagerP = styled.section`
   .t-heading {
     text-align: left;
     height: 60px;
-    background: #f6f6f8;
   }
 
   .t-list {

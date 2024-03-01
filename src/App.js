@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 // import Signup from './components/Registration/Signup'
 // import Login from './components/Registration/Login'
@@ -52,6 +52,14 @@ import ManagerAddReminder from './components/Manager/ManagerAddReminder'
 function App() {
   const { theme } = useContext(ThemeContext)
 
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.body.classList.add('dark-mode')
+    } else {
+      document.body.classList.remove('dark-mode')
+    }
+  }, [theme])
+
   return (
     <>
       <Reload />
@@ -99,10 +107,10 @@ function App() {
             <Route path='notifications' element={<ManagerNotifications />} />
             <Route path='properties' element={<ManagerPropertyPageOne />} />
             <Route path='property' element={<ManagerPropertyPageTwo />} />
-            <Route path='landlords' element={<ManagerAddLandlord />} />
-            <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
             <Route path='tenants' element={<ManagerTenantList />} />
             <Route path='add-tenant' element={<ManagerAddNewTenant />} />
+            <Route path='landlords' element={<ManagerAddLandlord />} />
+            <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
             <Route path='reminders' element={<ManagerReminders />} />
             <Route path='add-reminder' element={<ManagerAddReminder />} />
           </Route>

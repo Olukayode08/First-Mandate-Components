@@ -98,7 +98,6 @@ const LandlordR = styled.section`
   .r-due-date {
     display: flex;
     align-items: center;
-    background-color: #ffffff;
     padding: 20px;
     box-shadow: -2px 4px 16px 0px #eeeeee;
     margin: 10px 0;

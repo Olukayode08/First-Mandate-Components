@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import houseIcon from '../../assets/Frame-2007.png'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import ManagerProperties from '../Properties/ManagerProperties'
+import { Link } from 'react-router-dom'
 
 const ManagerPropertyPageTwo = () => {
   return (
@@ -12,10 +13,10 @@ const ManagerPropertyPageTwo = () => {
           <div className='m-section'>
             <div className='a-ppt'>
               <h3>Properties</h3>
-              <div className='add-r'>
+              <Link to='/manager/add-reminder' className='add-r'>
                 <h4>Add New Reminder</h4>
                 <FaRegPlusSquare size={20} />
-              </div>
+              </Link>
             </div>
             <div className='manager-p'>
               <div className='apart-det'>
@@ -48,7 +49,6 @@ const ManagerPropertyPageTwo = () => {
               <div className='m-property'>
                 <ManagerProperties />
               </div>
-              
             </div>
           </div>
         </section>
@@ -93,7 +93,6 @@ const ManagerPPT = styled.section`
     flex-direction: column;
     padding: 20px;
     width: 100%;
-    background: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
   }
   .apart-det {

@@ -92,7 +92,6 @@ const LandlordPS = styled.section`
     width: 100%;
     padding: 20px;
     margin: 10px 0;
-    background-color: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
   }
   .p-img {
@@ -127,7 +126,6 @@ const LandlordPS = styled.section`
     width: 100%;
     margin: 10px 0;
     padding: 20px;
-    background-color: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
   }
   .r-s-btns {

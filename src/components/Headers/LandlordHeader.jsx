@@ -34,7 +34,6 @@ const LandlordH = styled.section`
     justify-content: right;
     align-items: center;
     padding: 20px;
-    background: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 30;
   }

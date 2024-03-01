@@ -94,6 +94,7 @@ const ManagerANL = styled.section`
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
+    background: transparent;
     font-weight: 17px;
     color: #000;
     border-radius: 3px;

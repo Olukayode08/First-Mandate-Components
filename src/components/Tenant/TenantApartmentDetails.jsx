@@ -110,7 +110,6 @@ const TenantAD = styled.section`
     flex-direction: column;
     margin: 20px 0;
     padding: 20px;
-    background-color: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
     width: 100%;
   }

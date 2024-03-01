@@ -100,6 +100,7 @@ const UploadPT = styled.section`
   input {
     outline: none;
     border: 1px solid black;
+    background: transparent;
     padding: 0 20px;
     font-family: inherit;
     font-weight: 17px;
