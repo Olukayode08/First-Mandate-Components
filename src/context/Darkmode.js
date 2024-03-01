@@ -4,6 +4,7 @@ const ThemeContext = createContext(null)
 
 const Darkmode = ({ children }) => {
   const [theme, setTheme] = useState('light')
+  const [active, setActive] = useState(true)
 
   const toggleTheme = () => {
     setTheme((curr) => (curr === 'light' ? 'dark' : 'light'))
@@ -14,6 +15,8 @@ const Darkmode = ({ children }) => {
         value={{
           theme,
           toggleTheme,
+          active,
+          setActive,
         }}
       >
         {children}

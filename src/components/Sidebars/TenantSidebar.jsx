@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import { Squash as Hamburger } from 'hamburger-react'
 import { IoHomeOutline } from 'react-icons/io5'
@@ -9,9 +9,10 @@ import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { BsThreeDots } from 'react-icons/bs'
+import { ThemeContext } from '../../context/Darkmode'
 
 const TenantSidebar = () => {
-  const [active, setActive] = useState(true)
+  const { active, setActive } = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
 
   useEffect(() => {
@@ -27,10 +28,15 @@ const TenantSidebar = () => {
     } else {
       setActive(true)
     }
-  }, [screenSize])
+  }, [screenSize, setActive])
+
+  const closeSidebar = () => {
+    if (window.innerWidth <= 1200) {
+      setActive(false)
+    }
+  }
 
   const location = useLocation()
-
 
   return (
     <>
@@ -53,6 +59,7 @@ const TenantSidebar = () => {
                   <BsThreeDots size={80} />
                 </div>
                 <Link
+                  onClick={closeSidebar}
                   className={
                     location.pathname === '/tenant' ||
                     location.pathname === '/tenant/notifications'
@@ -65,6 +72,7 @@ const TenantSidebar = () => {
                   <p className='desc'>Home</p>
                 </Link>
                 <Link
+                  onClick={closeSidebar}
                   className={
                     location.pathname === '/tenant/apartment-details' ||
                     location.pathname === '/tenant/apartment-details-two' ||
@@ -77,15 +85,15 @@ const TenantSidebar = () => {
                   <FaFileImport size={23} className='icon' />
                   <p className='desc'>Apartment</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link onClick={closeSidebar} className='links' to='#'>
                   <HiOutlineSquare3Stack3D size={23} className='icon' />
                   <p className='desc'>Landlord</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link onClick={closeSidebar} className='links' to='#'>
                   <MdOutlineOnDeviceTraining size={23} className='icon' />
                   <p className='desc'>Manager</p>
                 </Link>
-                <Link className='links' to='#'>
+                <Link onClick={closeSidebar} className='links' to='#'>
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
                 </Link>

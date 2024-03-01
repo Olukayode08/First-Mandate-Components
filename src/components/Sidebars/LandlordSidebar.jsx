@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import { Squash as Hamburger } from 'hamburger-react'
 import { IoHomeOutline } from 'react-icons/io5'
@@ -10,9 +10,10 @@ import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { BsThreeDots } from 'react-icons/bs'
+import { ThemeContext } from '../../context/Darkmode'
 
 const LandlordSidebar = () => {
-  const [active, setActive] = useState(true)
+  const {active, setActive} = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
 
   useEffect(() => {
@@ -28,7 +29,13 @@ const LandlordSidebar = () => {
     } else {
       setActive(true)
     }
-  }, [screenSize])
+  }, [screenSize, setActive])
+
+  const closeSidebar = () => {
+    if (window.innerWidth <= 1200) {
+      setActive(false)
+    }
+  }
 
   const location = useLocation()
 
@@ -53,6 +60,7 @@ const LandlordSidebar = () => {
                   <BsThreeDots size={80} />
                 </div>
                 <Link
+                  onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord' ||
                     location.pathname === '/landlord/notifications'
@@ -65,6 +73,7 @@ const LandlordSidebar = () => {
                   <p className='desc'>Home</p>
                 </Link>
                 <Link
+                  onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/properties' ||
                     location.pathname === '/landlord/upload-property'
@@ -77,6 +86,7 @@ const LandlordSidebar = () => {
                   <p className='desc'>My Properties</p>
                 </Link>
                 <Link
+                  onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/tenants' ||
                     location.pathname === '/landlord/add-tenant'
@@ -89,6 +99,7 @@ const LandlordSidebar = () => {
                   <p className='desc'>Tenants</p>
                 </Link>
                 <Link
+                  onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/managers' ||
                     location.pathname === '/landlord/add-manager'
@@ -101,6 +112,7 @@ const LandlordSidebar = () => {
                   <p className='desc'>Managers</p>
                 </Link>
                 <Link
+                  onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/reminders' ||
                     location.pathname === '/landlord/add-reminder'
@@ -112,7 +124,11 @@ const LandlordSidebar = () => {
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
                 </Link>
-                <Link className='links buttom-img' to='#'>
+                <Link
+                  onClick={closeSidebar}
+                  className='links buttom-img'
+                  to='#'
+                >
                   <TbReportSearch size={23} className='icon' />
                   <p className='desc'>Rent Due Dates</p>
                 </Link>
