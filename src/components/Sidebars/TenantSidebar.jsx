@@ -127,7 +127,7 @@ const TenantS = styled.section`
     left: 0;
     width: 280px;
     flex: 0 0 auto;
-    /* background-color: #ffffff; */
+    background-color: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 50;
   }

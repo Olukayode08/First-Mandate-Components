@@ -29,6 +29,10 @@ body {
   background: #fff;
   color: #13131a;
 }
+#dark .sidebar {
+  background: #fedf7e;
+  color: #13131a;
+}
 @media screen and (min-width: 2000px) {
   .app {
     max-width: 1900px;
