@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { FirstMandate } from '../../context/Context'
+import ResetPasswordCongrats from '../modal/ResetPasswordCongrats'
 
 const ResetPassword = () => {
+  const { toggleResetPasswordModal, resetPasswordCongrats } =
+    useContext(FirstMandate)
+
   return (
     <>
       <ResetP>
@@ -14,10 +19,19 @@ const ResetPassword = () => {
               placeholder='Password'
               required
             />
-            <button>Reset Password</button>
+            <label>Confirm Password</label>
+            <input
+              type='text'
+              className='password-input'
+              placeholder='Confirm Password'
+              required
+            />
+            <label className='error'>Password Incorrect</label>
+            <button onClick={toggleResetPasswordModal}>Reset Password</button>
           </main>
         </section>
       </ResetP>
+      <div>{resetPasswordCongrats && <ResetPasswordCongrats />}</div>
     </>
   )
 }
@@ -40,6 +54,9 @@ const ResetP = styled.section`
     line-height: 28px;
     letter-spacing: 0em;
   }
+  h3 {
+    font-size: 22px;
+  }
   .password-input {
     width: 400px;
     border: 1px solid black;
@@ -49,13 +66,22 @@ const ResetP = styled.section`
     border-radius: 4px;
     outline: none;
     background: transparent;
-    font-size: 16px;
+    font-size: 15px;
     margin: 10px 0;
+  }
+  label {
+    text-align: left;
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    width: 400px;
+  }
+  .error {
+    color: #ff0000;
   }
   button {
     background-color: #000;
     color: #ffffff;
-    padding: 8px 0;
+    padding: 12px 0;
     border: transparent;
     border-radius: 4px;
     width: 400px;
@@ -67,6 +93,7 @@ const ResetP = styled.section`
     main {
       width: 430px;
     }
+    label,
     button,
     .password-input {
       width: 350px;
@@ -76,6 +103,7 @@ const ResetP = styled.section`
     main {
       width: 360px;
     }
+    label,
     button,
     .password-input {
       width: 350px;
@@ -85,6 +113,7 @@ const ResetP = styled.section`
     main {
       width: 320px;
     }
+    label,
     button,
     .password-input {
       width: 280px;

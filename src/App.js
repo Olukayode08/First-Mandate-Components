@@ -77,7 +77,6 @@ function App() {
             path='/reset-email-password'
             element={<ResetEmailPassword />}
           />
-          <Route path='/reset-password' element={<ResetPassword />} />
 
           {/* <Route path='/' element={<Signup />} />
           <Route path='/login' element={<Login />} /> */}

@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import welcomeIcon from '../../assets/undraw_welcome_cats_thqn 1.png'
-
+import { BsInstagram } from 'react-icons/bs'
+import { FaXTwitter } from 'react-icons/fa6'
+import { FiFacebook } from 'react-icons/fi'
 const WelcomeEmail = () => {
   return (
     <>
@@ -10,17 +12,21 @@ const WelcomeEmail = () => {
           <main>
             <h3>1st Mandate Logo</h3>
             <img src={welcomeIcon} alt='Welcome' />
-            <p>Hello Peace Adekola,</p>
-            <p>You're in good company!</p>
+            <p>Welcome to 1st Mandate</p>
             <p>
-              Now that you’re a 1st Mandate user you can collect rent online,
-              find tenants, accept applications.
+              Thanks for signing up for 1st Mandate. Please take a sec to
+              confirm your email.
             </p>
-            <p>
-              No more phone calls in the middle of the night from tenants
-              because now all communication can be done online.
-            </p>
-            <button>Get Started Now</button>
+            <button>Yep, confirmed!</button>
+            <footer>
+              <h5>1st Mandate, Inc.</h5>
+              <h5>7a, Surulere Street, Lagos, Nigeria.</h5>
+              <div className='socials'>
+                <BsInstagram />
+                <FaXTwitter />
+                <FiFacebook />
+              </div>
+            </footer>
           </main>
         </section>
       </WelcomeE>
@@ -34,7 +40,7 @@ const WelcomeE = styled.section`
     align-items: center;
     justify-content: center;
     height: 100vh;
-    width: 450px;
+    width: 500px;
     margin: 0 auto;
     padding: 10px;
   }
@@ -54,13 +60,36 @@ const WelcomeE = styled.section`
   button {
     background-color: #000;
     color: #ffffff;
-    padding: 8px 0;
+    padding: 12px 0;
     border: transparent;
     border-radius: 5px;
     width: 280px;
     cursor: pointer;
   }
-  @media screen and (max-width: 450px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 7px 0;
+  }
+  h5 {
+    text-align: center;
+    line-height: 22px;
+    font-size: 14px;
+  }
+  .socials {
+    display: flex;
+    gap: 15px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  @media screen and (max-width: 500px) {
+    main {
+      width: 400px;
+    }
+  }
+  @media screen and (max-width: 410px) {
     main {
       width: 350px;
     }
@@ -68,6 +97,10 @@ const WelcomeE = styled.section`
   @media screen and (max-width: 360px) {
     main {
       width: 280px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    main {
       height: 100%;
     }
   }

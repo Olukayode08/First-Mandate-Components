@@ -47,6 +47,9 @@ const ResetEP = styled.section`
     line-height: 28px;
     letter-spacing: 0em;
   }
+  h3{
+    font-size: 22px;
+  }
   p {
     margin: 10px 0;
     text-align: center;

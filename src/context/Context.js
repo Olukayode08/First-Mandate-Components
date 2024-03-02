@@ -48,18 +48,23 @@ const Context = ({ children }) => {
     setSignupCongrats(!signupCongrats)
   }
 
+  // Reset Password Congratulations
+  const [resetPasswordCongrats, setPasswordCongrats] = useState(false)
+  const toggleResetPasswordModal = () => {
+    setPasswordCongrats(!resetPasswordCongrats)
+  }
+
   // Email Reset Password Congratulations
-    const [emailResetCongrats, setEmailResetCongrats] = useState(false)
-    const toggleEmailModal = () => {
-      setEmailResetCongrats(!emailResetCongrats)
-    }
+  const [emailResetCongrats, setEmailResetCongrats] = useState(false)
+  const toggleEmailModal = () => {
+    setEmailResetCongrats(!emailResetCongrats)
+  }
 
-
-    // Upload Property
+  // Upload Property
   const [uploadNewProperty, setUploadNewProperty] = useState(false)
-      const uploadProperty = () => {
-        setUploadNewProperty(true)
-      }
+  const uploadProperty = () => {
+    setUploadNewProperty(true)
+  }
   return (
     <>
       <FirstMandate.Provider
@@ -75,6 +80,8 @@ const Context = ({ children }) => {
           toggleModal,
           signupCongrats,
           toggleSignupModal,
+          resetPasswordCongrats,
+          toggleResetPasswordModal,
           emailResetCongrats,
           toggleEmailModal,
           uploadProperty,

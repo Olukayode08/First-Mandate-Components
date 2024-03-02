@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FcGoogle } from 'react-icons/fc'
 import { useContext } from 'react'
 import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
@@ -13,14 +12,9 @@ const SignupPage = () => {
         <section>
           <main>
             <h3>Sign Up for 1st Mandate</h3>
-            <div className='google'>
-              <FcGoogle className='icon' />
-              <p>Continue with Google</p>
-            </div>
-            <p>or</p>
             <p className='error'>Please enter a valid email address</p>
             <input
-              type='text'
+              type='email'
               className='email-input'
               required
               placeholder='E-mail'
@@ -31,12 +25,6 @@ const SignupPage = () => {
               placeholder='Password'
               required
             />
-            <div className='terms'>
-              <input className='check-box-input icon' type='checkbox' />
-              <p className='mail-listing'>
-                I agree to join Figma’s mailing list
-              </p>
-            </div>
             <button onClick={toggleSignupModal}>Create account</button>
             <p className='create-account'>
               By clicking “Create account” or “Continue with Google”, you agree
@@ -64,24 +52,6 @@ const SignupP = styled.section`
     margin: 0 auto;
     padding: 10px;
   }
-  .terms,
-  .google {
-    width: 400px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .google {
-    margin-top: 10px;
-    border: 1px solid black;
-    cursor: pointer;
-  }
-  .icon {
-    margin-right: 10px;
-    font-size: 20px;
-  }
-
   button,
   h3,
   p {
@@ -89,7 +59,9 @@ const SignupP = styled.section`
     margin: 15px 0;
     font-size: 16px;
     line-height: 28px;
-    letter-spacing: 0em;
+  }
+  h3 {
+    font-size: 21px;
   }
   .error {
     color: #ff0000;
@@ -111,14 +83,10 @@ const SignupP = styled.section`
     font-size: 16px;
     margin: 10px 0;
   }
-  .check-box-input {
-    height: 17px;
-    width: 20px;
-  }
   button {
     background-color: #000;
     color: #ffffff;
-    padding: 8px 0;
+    padding: 12px 0;
     border: transparent;
     border-radius: 4px;
     width: 400px;
@@ -134,16 +102,11 @@ const SignupP = styled.section`
     font-weight: 600;
     cursor: pointer;
   }
-  .mail-listing {
-    flex-shrink: 0;
-  }
   @media screen and (max-width: 470px) {
     main {
       width: 430px;
     }
     .error,
-    .terms,
-    .google,
     button,
     .password-input,
     .email-input {
@@ -155,8 +118,6 @@ const SignupP = styled.section`
       width: 360px;
     }
     .error,
-    .terms,
-    .google,
     button,
     .password-input,
     .email-input {
@@ -169,8 +130,6 @@ const SignupP = styled.section`
       height: 100%;
     }
     .error,
-    .terms,
-    .google,
     button,
     .password-input,
     .email-input {

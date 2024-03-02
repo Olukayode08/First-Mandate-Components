@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FcGoogle } from 'react-icons/fc'
 
 const SigninPage = () => {
   return (
@@ -8,14 +7,9 @@ const SigninPage = () => {
       <SigninP>
         <section>
           <main>
-            <h3>Sign in to 1st Mandate</h3>
-            <div className='google'>
-              <FcGoogle className='icon' />
-              <p>Continue with Google</p>
-            </div>
-            <p>or</p>
+            <h3>Sign In to 1st Mandate</h3>
             <input
-              type='text'
+              type='email'
               className='email-input'
               required
               placeholder='E-mail'
@@ -27,9 +21,9 @@ const SigninPage = () => {
               required
             />
             <button>Log in</button>
-            <p className='reset-p'>Reset Password</p>
-            <p>
-              No account? <span>Create one</span>
+            <p className='create-account'>Reset password</p>
+            <p className='create-account'>
+              No account?<span> Create one</span>
             </p>
           </main>
         </section>
@@ -48,20 +42,6 @@ const SigninP = styled.section`
     margin: 0 auto;
     padding: 10px;
   }
-  .google {
-    width: 400px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    border: 1px solid black;
-    cursor: pointer;
-  }
-  .icon {
-    margin-right: 10px;
-    font-size: 20px;
-  }
   button,
   h3,
   p {
@@ -69,7 +49,9 @@ const SigninP = styled.section`
     margin: 15px 0;
     font-size: 16px;
     line-height: 28px;
-    letter-spacing: 0em;
+  }
+  h3 {
+    font-size: 21px;
   }
   .password-input,
   .email-input {
@@ -87,27 +69,26 @@ const SigninP = styled.section`
   button {
     background-color: #000;
     color: #ffffff;
-    padding: 8px 0;
+    padding: 12px 0;
     border: transparent;
     border-radius: 4px;
     width: 400px;
     margin: 10px 0;
     cursor: pointer;
   }
-  .reset-p {
-    cursor: pointer;
+  .create-account {
     font-weight: 200;
+    font-size: 15px;
+    line-height: 23px;
   }
   span {
     font-weight: 600;
     cursor: pointer;
   }
-
   @media screen and (max-width: 470px) {
     main {
       width: 430px;
     }
-    .google,
     button,
     .password-input,
     .email-input {
@@ -118,7 +99,6 @@ const SigninP = styled.section`
     main {
       width: 360px;
     }
-    .google,
     button,
     .password-input,
     .email-input {
@@ -130,7 +110,6 @@ const SigninP = styled.section`
       width: 320px;
       height: 100%;
     }
-    .google,
     button,
     .password-input,
     .email-input {
