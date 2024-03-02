@@ -53,6 +53,8 @@ import TenantReminders from './components/Tenant/TenantReminders'
 import TenantAddReminder from './components/Tenant/TenantAddReminder'
 import TenantEditProfilePage from './components/Tenant/TenantEditProfilePage'
 import TenantProfileSettings from './components/Tenant/TenantProfileSettings'
+import TenantPaymentPage from './components/Tenant/TenantPaymentPage'
+import TenantPaymentReview from './components/Tenant/TenantPaymentReview'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -141,6 +143,8 @@ function App() {
               path='profile-settings'
               element={<TenantProfileSettings />}
             />
+            <Route path='payment-page' element={<TenantPaymentPage />} />
+            <Route path='payment-review' element={<TenantPaymentReview />} />
           </Route>
 
           {/* Email Page */}
