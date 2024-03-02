@@ -5,19 +5,16 @@ import editIcon from '../../assets/pencil-edit-01.png'
 // import { Link } from 'react-router-dom'
 // import { FaRegPlusSquare } from 'react-icons/fa'
 
-const LandlordReminders = () => {
+const TenantReminders = () => {
   const [data] = useState(landlordReminder)
-
 
   // const handleDelete = (id) => {
   //   setData(data.filter((item) => item.id !== id))
   // }
 
-
-
   return (
     <>
-      <LandlordR>
+      <TenantR>
         <section>
           <main className='r-section'>
             <div className='landlord-reminder'>
@@ -56,11 +53,11 @@ const LandlordReminders = () => {
             </div>
           </main>
         </section>
-      </LandlordR>
+      </TenantR>
     </>
   )
 }
-const LandlordR = styled.section`
+const TenantR = styled.section`
   position: relative;
   .r-section {
     position: absolute;
@@ -169,4 +166,4 @@ const LandlordR = styled.section`
     }
   }
 `
-export default LandlordReminders
+export default TenantReminders

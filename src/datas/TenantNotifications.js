@@ -5,6 +5,6 @@ export const tenantNotififcations = [
     time: '10:15am',
     desc: 'This is to notify you that your Mr. Sina’s rent will be due on the 20th of Februa............ ',
     status: 'Opened',
-    style: { color: 'black', backgroundColor: 'white' },
+    style: { color: 'black'},
   },
 ]

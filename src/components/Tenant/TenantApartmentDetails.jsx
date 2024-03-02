@@ -61,6 +61,17 @@ const TenantApartmentDetails = () => {
                   </div>
                 </div>
               </div>
+              <div className='t-plan'>
+                <p className='plan-text'>
+                  What do you plan to do after your rent has ended?
+                </p>
+                <p className='plan-text'>Please pick an option below.</p>
+                <div className='btn-plan'>
+                  <button>Renew Terms</button>
+                  <button>Request Term Renegotiation</button>
+                  <button>End Terms</button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -108,9 +119,8 @@ const TenantAD = styled.section`
   .apartment-details {
     display: flex;
     flex-direction: column;
-    margin: 20px 0;
+    margin: 10px 0 0 0;
     padding: 20px;
-    box-shadow: 0px 2px 16px 0px #00000026;
     width: 100%;
   }
   .t-details {
@@ -134,6 +144,30 @@ const TenantAD = styled.section`
     font-size: 16px;
     font-family: inherit;
   }
+  .t-plan {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
+  .plan-text{
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .btn-plan {
+    display: flex;
+    gap: 20px;
+    margin: 10px 0;
+  }
+  button {
+    background: transparent;
+    border: 1px solid black;
+    padding: 10px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 4px;
+  }
   @media screen and (max-width: 1270px) {
     .a-section {
       width: 75%;
@@ -146,6 +180,7 @@ const TenantAD = styled.section`
     }
   }
   @media screen and (max-width: 900px) {
+    .btn-plan,
     .apart-det,
     .t-details {
       flex-direction: column;
@@ -154,6 +189,7 @@ const TenantAD = styled.section`
       width: 100%;
       justify-content: center;
     }
+    .plan-text,
     .rent-det,
     .h-name,
     .location {
@@ -162,9 +198,8 @@ const TenantAD = styled.section`
     .h-name {
       margin: 10px 0;
     }
+    .t-plan,
     .apartment-details {
-      background-color: none;
-      box-shadow: none;
       align-items: center;
       justify-content: center;
     }

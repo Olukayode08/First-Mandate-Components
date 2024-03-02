@@ -77,7 +77,7 @@ const TenantN = styled.section`
   .t-heading {
     text-align: left;
     height: 60px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background: #F6F6F8;
   }
   .t-notifications {
     height: 50px;

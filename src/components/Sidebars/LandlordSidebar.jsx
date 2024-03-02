@@ -13,7 +13,7 @@ import { BsThreeDots } from 'react-icons/bs'
 import { ThemeContext } from '../../context/Darkmode'
 
 const LandlordSidebar = () => {
-  const {active, setActive} = useContext(ThemeContext)
+  const { active, setActive } = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
 
   useEffect(() => {

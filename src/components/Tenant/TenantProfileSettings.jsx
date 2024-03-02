@@ -4,10 +4,10 @@ import profile from '../../assets/Frame 2007 (1).png'
 import edit from '../../assets/edit-01 (2).png'
 import logout from '../../assets/logout-03.png'
 
-const LandlordProfileSettings = () => {
+const TenantProfileSettings = () => {
   return (
     <>
-      <LandlordPS>
+      <TenantPS>
         <section>
           <main className='l-profile-s'>
             <div className='log-out'>
@@ -58,11 +58,11 @@ const LandlordProfileSettings = () => {
             </div>
           </main>
         </section>
-      </LandlordPS>
+      </TenantPS>
     </>
   )
 }
-const LandlordPS = styled.section`
+const TenantPS = styled.section`
   position: relative;
   .l-profile-s {
     position: absolute;
@@ -191,4 +191,4 @@ const LandlordPS = styled.section`
     }
   }
 `
-export default LandlordProfileSettings
+export default TenantProfileSettings

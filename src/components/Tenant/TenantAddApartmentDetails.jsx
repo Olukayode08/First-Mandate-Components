@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import AddApartmentDropdown from '../Dropdowns/AddApartmentDropdown'
 
 const TenantAddApartmentDetails = () => {
+  const [rentStatus, setRentStatus] = useState('option1')
+
+  const handleRentStatus = (e) => {
+    setRentStatus(e.target.value)
+  }
   return (
     <>
       <TenantAAD>
@@ -58,6 +63,32 @@ const TenantAddApartmentDetails = () => {
                 className='r-date-input'
               />
             </div>
+
+            <div className='renew-status'>
+              <label>Would you love to renew your rent </label>
+              <div className='radio-btns'>
+                <div className='radio-btn'>
+                  <input
+                    type='radio'
+                    value='option1'
+                    checked={rentStatus === 'option1'}
+                    onChange={handleRentStatus}
+                    className='btn-input'
+                  />
+                  <p className='ppt-details'>Yes</p>
+                </div>
+                <div className='radio-btn'>
+                  <input
+                    type='radio'
+                    value='option2'
+                    checked={rentStatus === 'option2'}
+                    onChange={handleRentStatus}
+                    className='btn-input'
+                  />
+                  <p className='ppt-details'>No</p>
+                </div>
+              </div>
+            </div>
             <button className='add-tenant'>Add Apartment</button>
           </div>
         </section>
@@ -105,7 +136,7 @@ const TenantAAD = styled.section`
   }
   label {
     margin: 10px 0;
-    font-size: 18px;
+    font-size: 16px;
   }
   .t-name-input {
     width: 500px;
@@ -143,12 +174,44 @@ const TenantAAD = styled.section`
     text-align: center;
     border-radius: 4px;
   }
+  /* Renew Status */
+  .renew-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+  }
+  label {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  .radio-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    width: 200px;
+  }
+  .radio-btn {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    flex-shrink: 0;
+  }
+  .btn-input {
+    width: 18px;
+    height: 18px;
+  }
+  .ppt-details {
+    margin-left: 10px;
+    flex-shrink: 0;
+  }
   .add-tenant {
     width: 180px;
     text-align: center;
     background-color: #fedf7e;
     height: 50px;
-    border-radius: 3px;
+    border-radius: 4px;
     border: transparent;
     margin: 10px 0;
     font-size: 16px;

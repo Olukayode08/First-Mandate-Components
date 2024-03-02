@@ -49,6 +49,10 @@ import LandlordEditProfilePage from './components/Landlord/LandlordEditProfilePa
 import LandlordProfileSettings from './components/Landlord/LandlordProfileSettings'
 import Checkbox from './components/Checkbox/Checkbox'
 import ManagerAddReminder from './components/Manager/ManagerAddReminder'
+import TenantReminders from './components/Tenant/TenantReminders'
+import TenantAddReminder from './components/Tenant/TenantAddReminder'
+import TenantEditProfilePage from './components/Tenant/TenantEditProfilePage'
+import TenantProfileSettings from './components/Tenant/TenantProfileSettings'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -130,6 +134,13 @@ function App() {
             <Route
               path='add-apartment-details'
               element={<TenantAddApartmentDetails />}
+            />
+            <Route path='reminders' element={<TenantReminders />} />
+            <Route path='add-reminder' element={<TenantAddReminder />} />
+            <Route path='edit-profile' element={<TenantEditProfilePage />} />
+            <Route
+              path='profile-settings'
+              element={<TenantProfileSettings />}
             />
           </Route>
 

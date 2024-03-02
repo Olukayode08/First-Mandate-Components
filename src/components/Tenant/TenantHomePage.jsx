@@ -56,7 +56,7 @@ const TenantHP = styled.section`
     align-items: flex-start;
     justify-content: space-between;
     padding: 20px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background: #f6f6f8;
     width: 100%;
     height: 100px;
   }
@@ -73,7 +73,7 @@ const TenantHP = styled.section`
     align-items: center;
     justify-content: center;
     padding: 20px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background: #f6f6f8;
     width: 310px;
     height: 300px;
     margin: 20px 0;
