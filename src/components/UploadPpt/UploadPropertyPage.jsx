@@ -1,28 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
-import UploadPptStepper from '../Steppers/UploadPptStepper'
-const UploadPpt = () => {
+import UploadPropertyStepper from '../Steppers/UploadPropertyStepper'
+const UploadPropertyPage = () => {
 
   return (
     <>
-      <UploadPMP>
+      <UploadPP>
         <section>
           <main className='upload-section'>
-            <UploadPptStepper />
+            <UploadPropertyStepper />
           </main>
         </section>
-      </UploadPMP>
+      </UploadPP>
     </>
   )
 }
 
-const UploadPMP = styled.section`
+const UploadPP = styled.section`
   position: relative;
   .upload-section {
     width: 78%;
     position: absolute;
     top: 0;
     right: 0;
+  }
+  @media screen and (max-width: 1310px) {
+    .upload-section {
+      width: 75%;
+    }
   }
   @media screen and (max-width: 1200px) {
     .upload-section {
@@ -31,4 +36,4 @@ const UploadPMP = styled.section`
     }
   }
 `
-export default UploadPpt
+export default UploadPropertyPage

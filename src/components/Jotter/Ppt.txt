@@ -247,3 +247,20 @@ const LandlordP = styled.section`
   }
 `
 export default LandlordProperties
+
+
+
+ <p>
+            {item.description.split(' ').map((word, index) => {
+              if (word.length > 30) {
+                return (
+                  <React.Fragment key={index}>
+                    {word.slice(0, 30)}<br />
+                    {word.slice(30)}
+                  </React.Fragment>
+                );
+              } else {
+                return <React.Fragment key={index}>{word} </React.Fragment>;
+              }
+            })}
+          </p>

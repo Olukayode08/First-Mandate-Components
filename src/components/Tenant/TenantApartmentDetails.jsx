@@ -122,6 +122,7 @@ const TenantAD = styled.section`
     margin: 10px 0 0 0;
     padding: 20px;
     width: 100%;
+    background: #f6f6f8;
   }
   .t-details {
     display: flex;
@@ -147,9 +148,9 @@ const TenantAD = styled.section`
   .t-plan {
     display: flex;
     flex-direction: column;
-    margin: 10px 0;
+    margin: 20px 0;
   }
-  .plan-text{
+  .plan-text {
     font-size: 16px;
     line-height: 24px;
   }
@@ -168,7 +169,7 @@ const TenantAD = styled.section`
     cursor: pointer;
     border-radius: 4px;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .a-section {
       width: 75%;
     }

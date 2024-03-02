@@ -2,15 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
 import editIcon from '../../assets/pencil-edit-01.png'
-// import { Link } from 'react-router-dom'
-// import { FaRegPlusSquare } from 'react-icons/fa'
 
 const TenantReminders = () => {
   const [data] = useState(landlordReminder)
-
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id))
-  // }
 
   return (
     <>
@@ -20,10 +14,6 @@ const TenantReminders = () => {
             <div className='landlord-reminder'>
               <div className='a-tenant'>
                 <h3>Reminders</h3>
-                {/* <Link to='/landlord/add-reminder' className='add-r'>
-                  <h4>Add Reminder</h4>
-                  <FaRegPlusSquare size={20} />
-                </Link> */}
               </div>
               {data.map((reminder) => {
                 return (
@@ -40,12 +30,6 @@ const TenantReminders = () => {
                         src={editIcon}
                         alt='Edit'
                       />
-                      {/* <p
-                        className='l-btn delete'
-                        onClick={() => handleDelete(reminder.id)}
-                      >
-                        Delete
-                      </p> */}
                     </div>
                   </div>
                 )

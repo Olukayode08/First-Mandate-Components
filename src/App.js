@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router-dom'
 import Sidebar from './components/Sidebars/Sidebar'
 import { ThemeContext } from './context/Darkmode'
 import UploadPptSidebar from './components/Sidebars/UploadPptSidebar'
-import UploadPpt from './components/UploadPpt/UploadPpt'
 import MyProperties from './components/Properties/MyProperties'
 import Reload from './hooks/Reload'
 import LandLord from './pages/Landlord/LandLord'
@@ -55,6 +54,8 @@ import TenantEditProfilePage from './components/Tenant/TenantEditProfilePage'
 import TenantProfileSettings from './components/Tenant/TenantProfileSettings'
 import TenantPaymentPage from './components/Tenant/TenantPaymentPage'
 import TenantPaymentReview from './components/Tenant/TenantPaymentReview'
+import LandlordSendReminder from './components/Landlord/LandlordSendReminder'
+import UploadPropertyPage from './components/UploadPpt/UploadPropertyPage'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -92,13 +93,14 @@ function App() {
             <Route path='' element={<LandlordHomePage />} />
             <Route path='notifications' element={<LandlordNotifications />} />
             <Route path='properties' element={<LandlordPropertyPage />} />
-            <Route path='upload-property' element={<UploadPpt />} />
+            <Route path='upload-property' element={<UploadPropertyPage />} />
             <Route path='tenants' element={<LandlordTenantList />} />
             <Route path='add-tenant' element={<LandlordAddNewTenant />} />
             <Route path='managers' element={<LandlordAddManager />} />
             <Route path='add-manager' element={<LandlordAddNewManager />} />
             <Route path='reminders' element={<LandlordReminders />} />
             <Route path='add-reminder' element={<LandlordAddReminder />} />
+            <Route path='send-reminder' element={<LandlordSendReminder />} />
             <Route path='edit-profile' element={<LandlordEditProfilePage />} />
             <Route
               path='profile-settings'

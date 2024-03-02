@@ -6,26 +6,25 @@ import editIcon from '../../assets/edit-btn.png'
 import { Link } from 'react-router-dom'
 
 const LandlordPropertyPage = () => {
-
   return (
     <>
       <LandlordPP>
         <section>
           <div className='m-section'>
-            <Link to='/landlord/upload-property' className='add-r' >
+            <Link to='/landlord/upload-property' className='add-r'>
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
-
             {landlordProperties.map((property) => (
               <div key={property.id} className='manager-p'>
                 <div className='apart-det'>
                   <img className='p-img' src={property.image} alt='House' />
                   <div className='apart-loc'>
-                    <h3 className='h-name'>{property.title}</h3>
-                    <h1 className='location'>
-                      {property.location}
-                    </h1>
+                    <div className='name-edit'>
+                      <h3 className='h-name'>{property.title}</h3>
+                      <img className='edit-img' src={editIcon} alt='Edit' />
+                    </div>
+                    <h1 className='location'>{property.location}</h1>
                     <div className='status-active'>
                       <p>
                         Status:
@@ -74,19 +73,6 @@ const LandlordPropertyPage = () => {
                             </tr>
                           )
                         })}
-                        <tr>
-                          <td colSpan='7'>
-                            <span style={{ float: 'right' }} className='delete'>
-                              Delete
-                            </span>
-                            <img
-                              className='edit-img'
-                              style={{ float: 'right' }}
-                              src={editIcon}
-                              alt='Edit'
-                            />
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -119,6 +105,7 @@ const LandlordP = styled.section`
   .t-heading {
     text-align: center;
     height: 60px;
+    background: #f6f6f8;
   }
   .t-list {
     height: 40px;
@@ -128,12 +115,6 @@ const LandlordP = styled.section`
     padding: 10px 20px;
     border-radius: 4px;
     margin: 0 20px;
-    cursor: pointer;
-  }
-  .edit-img {
-    padding: 8px 20px;
-    border-radius: 4px;
-    background: #fedf7e;
     cursor: pointer;
   }
 `
@@ -179,7 +160,7 @@ const LandlordPP = styled.section`
     margin: 20px 0;
     width: 100%;
   }
-  .p-img{
+  .p-img {
     width: 100px;
     height: 90px;
     border-radius: 4px;
@@ -189,8 +170,19 @@ const LandlordPP = styled.section`
     flex-direction: column;
     width: 100%;
   }
+  .name-edit {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
   .h-name {
     margin: 0 5px;
+  }
+  .edit-img {
+    padding: 10px 12px;
+    border-radius: 4px;
+    background: #fedf7e;
+    cursor: pointer;
   }
   .location {
     margin: 7px 5px;
@@ -204,11 +196,12 @@ const LandlordPP = styled.section`
   p {
     font-weight: 200;
     margin: 3px 5px;
+    text-align: center;
   }
   span {
     font-weight: 800;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .m-section {
       width: 75%;
     }

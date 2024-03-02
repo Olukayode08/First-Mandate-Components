@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import UnitTypeDropdown from '../Dropdowns/UnitTypeDropdown'
 
-const UploadPptTwo = () => {
+const UploadPropertyOne = () => {
   const [rentStatus, setRentStatus] = useState('option1')
 
   const handleRentStatus = (e) => {
@@ -10,23 +10,23 @@ const UploadPptTwo = () => {
   }
   return (
     <>
-      <UploadPT>
+      <UploadPO>
         <section>
           <div className='unit-h'>Unit 1</div>
           <div className='section'>
             <div className='input'>
               <label>Unit Name</label>
-                <input
-                  type='text'
-                  placeholder='Enter full name'
-                  className='u-name-input'
-                />
+              <input
+                type='text'
+                placeholder='Enter full name'
+                className='u-name-input'
+              />
             </div>
           </div>
           <div className='unit-type'>
             <UnitTypeDropdown />
           </div>
-          <div className='utilities'>
+          {/* <div className='utilities'>
             <div className='checkboxes'>
               <div className='checkbox'>
                 <input type='checkbox' className='checkbox-input' />
@@ -41,7 +41,7 @@ const UploadPptTwo = () => {
                 <p className='ppt-details'>Newly built</p>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className='rent-status'>
             <label>
               Rent Status (Are there occupants in the apartment already)
@@ -70,11 +70,11 @@ const UploadPptTwo = () => {
             </div>
           </div>
         </section>
-      </UploadPT>
+      </UploadPO>
     </>
   )
 }
-const UploadPT = styled.section`
+const UploadPO = styled.section`
   .unit-h {
     width: 80px;
     margin: 10px 0;
@@ -148,7 +148,7 @@ const UploadPT = styled.section`
     flex-shrink: 0;
   }
   /* Checkbox */
-  .utilities {
+  /* .utilities {
     margin: 15px 0;
   }
   .checkboxes {
@@ -168,25 +168,25 @@ const UploadPT = styled.section`
   .checkbox-input {
     width: 18px;
     height: 18px;
-  }
+  } */
 
   @media screen and (max-width: 550px) {
-    .checkboxes {
+    /* .checkboxes {
       width: 350px;
       grid-template-columns: repeat(2, 1fr);
-    }
+    } */
     .u-name-input {
       width: 350px;
     }
   }
   @media screen and (max-width: 350px) {
-    .checkboxes {
+    /* .checkboxes {
       width: 300px;
-    }
+    } */
     .u-name-input {
       width: 280px;
     }
   }
 `
 
-export default UploadPptTwo
+export default UploadPropertyOne

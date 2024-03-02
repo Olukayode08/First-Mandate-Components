@@ -20,10 +20,16 @@ const LandlordReminders = () => {
             <div className='landlord-reminder'>
               <div className='a-tenant'>
                 <h3>Reminders</h3>
-                <Link to='/landlord/add-reminder' className='add-r'>
-                  <h4>Add Reminder</h4>
-                  <FaRegPlusSquare size={20} />
-                </Link>
+                <div className='set-reminders'>
+                  <Link to='/landlord/add-reminder' className='set-r'>
+                    <h4>Send Reminder</h4>
+                    <FaRegPlusSquare size={20} />
+                  </Link>
+                  <Link to='/landlord/add-reminder' className='add-r'>
+                    <h4>Add Reminder</h4>
+                    <FaRegPlusSquare size={20} />
+                  </Link>
+                </div>
               </div>
               {data.map((reminder) => {
                 return (
@@ -80,17 +86,27 @@ const LandlordR = styled.section`
     width: 100%;
     margin: 20px 0;
   }
+  .set-reminders {
+    display: flex;
+    gap: 20px;
+  }
+
+  .set-r,
   .add-r {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     background-color: #ffe48e;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 4px;
     width: 200px;
     color: #000;
     cursor: pointer;
     text-decoration: none;
+  }
+  .set-r {
+    background-color: #ffffff;
+    border: 1px solid black;
   }
   .r-due-date {
     display: flex;
@@ -146,9 +162,9 @@ const LandlordR = styled.section`
     padding: 11px 17px;
     background-color: #ffdfe2;
   }
-  @media screen and (max-width: 1320px) {
+  @media screen and (max-width: 1310px) {
     .r-section {
-      width: 74%;
+      width: 75%;
     }
   }
   @media screen and (max-width: 1200px) {
@@ -158,10 +174,11 @@ const LandlordR = styled.section`
     }
   }
   @media screen and (max-width: 900px) {
+    .set-reminders,
     .a-tenant {
       flex-direction: column;
     }
-    .add-r {
+    .set-reminders {
       margin: 20px 0 10px 0;
     }
   }
