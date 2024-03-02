@@ -143,7 +143,7 @@ function App() {
               path='profile-settings'
               element={<TenantProfileSettings />}
             />
-            <Route path='payment-page' element={<TenantPaymentPage />} />
+            <Route path='payment' element={<TenantPaymentPage />} />
             <Route path='payment-review' element={<TenantPaymentReview />} />
           </Route>
 
