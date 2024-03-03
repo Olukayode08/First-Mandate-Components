@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const ManagerAddReminder = () => {
+const ManagerSendReminder = () => {
   const [notificationType, setNotificationType] = useState('option1')
   const handleNotificationType = (e) => {
     setNotificationType(e.target.value)
   }
   return (
     <>
-      <MAReminder>
+      <MSReminder>
         <section>
           <main className='n-section'>
-            <h3>Add New Reminder</h3>
+            <h3>Send Reminder</h3>
             <div className='n-status'>
               <label>Reminder Type</label>
               <div className='radio-btns'>
@@ -33,27 +33,7 @@ const ManagerAddReminder = () => {
                     onChange={handleNotificationType}
                     className='btn-input'
                   />
-                  <p className='n-details'>Electricity Payment</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option3'
-                    checked={notificationType === 'option3'}
-                    onChange={handleNotificationType}
-                    className='btn-input'
-                  />
-                  <p className='n-details'>Water bill</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='option4'
-                    checked={notificationType === 'option4'}
-                    onChange={handleNotificationType}
-                    className='btn-input'
-                  />
-                  <p className='n-details'>Security fee</p>
+                  <p className='n-details'>Rent Overdue</p>
                 </div>
               </div>
             </div>
@@ -63,9 +43,11 @@ const ManagerAddReminder = () => {
                 <input type='text' className='r-desc-input' />
               </div>
               <div className='input'>
-                <label className='p-date'>
-                  When do you want to be notified
-                </label>
+                <label className='p-date'>Select Tenant</label>
+                <input type='search' className='search-input' />
+              </div>
+              <div className='input'>
+                <label className='p-date'>Date </label>
                 <input
                   type='date'
                   placeholder='dd/mm/yyy'
@@ -84,14 +66,14 @@ const ManagerAddReminder = () => {
                 </select>
               </div>
             </div>
-            <p className='save-btn'>Save</p>
+            <p className='save-btn'>Send Reminder</p>
           </main>
         </section>
-      </MAReminder>
+      </MSReminder>
     </>
   )
 }
-const MAReminder = styled.section`
+const MSReminder = styled.section`
   position: relative;
   .n-section {
     position: absolute;
@@ -176,6 +158,10 @@ const MAReminder = styled.section`
     height: 80px;
     width: 500px;
   }
+  .search-input {
+    height: 40px;
+    width: 500px;
+  }
   .n-input {
     width: 250px;
     margin: 10px 0;
@@ -196,7 +182,7 @@ const MAReminder = styled.section`
     font-size: 15px;
   }
   .save-btn {
-    width: 80px;
+    width: 180px;
     background-color: #fedf7e;
     text-align: center;
     color: #000;
@@ -205,9 +191,9 @@ const MAReminder = styled.section`
     margin: 20px 0;
     cursor: pointer;
   }
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1310px) {
     .n-section {
-      width: 74%;
+      width: 75%;
     }
   }
   @media screen and (max-width: 1200px) {
@@ -223,9 +209,10 @@ const MAReminder = styled.section`
     }
   }
   @media screen and (max-width: 550px) {
+    .search-input,
     .r-desc-input {
       width: 90%;
     }
   }
 `
-export default ManagerAddReminder
+export default ManagerSendReminder

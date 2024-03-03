@@ -81,7 +81,7 @@ const TenantPP = styled.section`
   .option-h {
     margin: 25px 0;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .l-section {
       width: 75%;
     }

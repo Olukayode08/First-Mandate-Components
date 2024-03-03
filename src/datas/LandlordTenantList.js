@@ -23,6 +23,7 @@ export const landlordTenantList = [
     renewStatus: 'Teminated',
     reminder: 'Send Reminder',
     paymentStatus: 'Completed',
-    style: { color: 'white', backgroundColor: 'green', height: '20px' },
+    style: { color: 'white', backgroundColor: 'green'},
   },
 ]
+ 

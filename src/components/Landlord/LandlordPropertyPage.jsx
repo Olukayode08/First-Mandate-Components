@@ -51,9 +51,10 @@ const LandlordPropertyPage = () => {
                       <thead>
                         <tr className='t-heading'>
                           <th>Unit No.</th>
+                          <th>Unit Name</th>
+                          <th>Unit Type</th>
                           <th>Bedrooms</th>
                           <th>Tenant's Name</th>
-                          <th>Unit Type</th>
                           <th>Rent Term</th>
                           <th>Status</th>
                           <th>Rent amt. yearly</th>
@@ -64,9 +65,10 @@ const LandlordPropertyPage = () => {
                           return (
                             <tr key={table.id} className='t-list'>
                               <td>{table.no}</td>
+                              <td>{table.name}</td>
+                              <td>{table.unitType}</td>
                               <td>{table.bed}</td>
                               <td>{table.tenantName}</td>
-                              <td>{table.unitType}</td>
                               <td>{table.rentTerm}</td>
                               <td>{table.status}</td>
                               <td>{table.amt}</td>
@@ -109,13 +111,6 @@ const LandlordP = styled.section`
   }
   .t-list {
     height: 40px;
-  }
-  .delete {
-    background: #ffdfe2;
-    padding: 10px 20px;
-    border-radius: 4px;
-    margin: 0 20px;
-    cursor: pointer;
   }
 `
 const LandlordPP = styled.section`

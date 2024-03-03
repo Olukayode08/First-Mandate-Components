@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import houseIcon from '../../assets/Frame-2007.png'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import ManagerProperties from '../Properties/ManagerProperties'
 import { Link } from 'react-router-dom'
+import editIcon from '../../assets/edit-btn.png'
+import { managerProperties } from '../../datas/ManagerProperties'
 
 const ManagerPropertyPageTwo = () => {
   return (
@@ -13,49 +13,110 @@ const ManagerPropertyPageTwo = () => {
           <div className='m-section'>
             <div className='a-ppt'>
               <h3>Properties</h3>
-              <Link to='/manager/add-reminder' className='add-r'>
-                <h4>Add New Reminder</h4>
+              <Link className='add-r'>
+                <h4>Add New Property</h4>
                 <FaRegPlusSquare size={20} />
               </Link>
             </div>
-            <div className='manager-p'>
-              <div className='apart-det'>
-                <img className='a-img' src={houseIcon} alt='House' />
-                <div className='apart-loc'>
-                  <h3 className='h-name'>House of Elovia</h3>
-                  <h1 className='location'>
-                    17, Street 7, GRA, Osogbo, Osun State.
-                  </h1>
-                  <div className='status-active'>
-                    <p>
-                      Status:
-                      <span> Active</span>
-                    </p>
-                    <p>
-                      Property Type:
-                      <span> Residential</span>
-                    </p>
-                    <p>
-                      Unit:
-                      <span> 1 unit</span>
-                    </p>
-                    <p>
-                      Building Type:
-                      <span> Duplex</span>
-                    </p>
+            {managerProperties.map((property) => (
+              <div key={property.id} className='manager-p'>
+                <div className='apart-det'>
+                  <img className='p-img' src={property.image} alt='House' />
+                  <div className='apart-loc'>
+                    <div className='name-edit'>
+                      <h3 className='h-name'>{property.title}</h3>
+                      <img className='edit-img' src={editIcon} alt='Edit' />
+                    </div>
+                    <h1 className='location'>{property.location}</h1>
+                    <div className='status-active'>
+                      <p>
+                        Status:
+                        <span> Active</span>
+                      </p>
+                      <p>
+                        Property Type:
+                        <span> Residential</span>
+                      </p>
+                      <p>
+                        Unit:
+                        <span> 1 unit</span>
+                      </p>
+                      <p>
+                        Building Type:
+                        <span> Duplex</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
+                <ManagerP>
+                  <div className='table'>
+                    <table>
+                      <thead>
+                        <tr className='t-heading'>
+                          <th>Unit No.</th>
+                          <th>Unit Name</th>
+                          <th>Unit Type</th>
+                          <th>Bedrooms</th>
+                          <th>Tenant's Name</th>
+                          <th>Rent Term</th>
+                          <th>Status</th>
+                          <th>Rent amt. yearly</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {property.tableData.map((table) => {
+                          return (
+                            <tr key={table.id} className='t-list'>
+                              <td>{table.no}</td>
+                              <td>{table.name}</td>
+                              <td>{table.unitType}</td>
+                              <td>{table.bed}</td>
+                              <td>{table.tenantName}</td>
+                              <td>{table.rentTerm}</td>
+                              <td>{table.status}</td>
+                              <td>{table.amt}</td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </ManagerP>
               </div>
-              <div className='m-property'>
-                <ManagerProperties />
-              </div>
-            </div>
+            ))}
           </div>
         </section>
       </ManagerPPT>
     </>
   )
 }
+
+const ManagerP = styled.section`
+  .table {
+    overflow-x: scroll;
+    width: 100%;
+  }
+  table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    width: 100%;
+  }
+  th,
+  td {
+    white-space: nowrap;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .t-heading {
+    text-align: center;
+    height: 60px;
+    background: #f6f6f8;
+  }
+  .t-list {
+    height: 40px;
+  }
+`
+
 const ManagerPPT = styled.section`
   position: relative;
   .m-section {
@@ -102,7 +163,7 @@ const ManagerPPT = styled.section`
     margin: 20px 0;
     width: 100%;
   }
-  .a-img{
+  .a-img {
     width: 100px;
     height: 90px;
     border-radius: 4px;
@@ -112,8 +173,19 @@ const ManagerPPT = styled.section`
     flex-direction: column;
     width: 100%;
   }
+  .name-edit {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
   .h-name {
     margin: 0 5px;
+  }
+  .edit-img {
+    padding: 10px 12px;
+    border-radius: 4px;
+    background: #fedf7e;
+    cursor: pointer;
   }
   .location {
     margin: 7px 5px;
@@ -132,7 +204,7 @@ const ManagerPPT = styled.section`
   span {
     font-weight: 800;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .m-section {
       width: 75%;
     }

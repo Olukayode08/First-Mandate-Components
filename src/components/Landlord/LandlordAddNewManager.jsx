@@ -81,6 +81,9 @@ const LANManager = styled.section`
     justify-content: left;
     width: 100%;
   }
+  h3{
+    margin: 15px 0;
+  }
   .input {
     display: flex;
     flex-direction: column;
@@ -119,7 +122,7 @@ const LANManager = styled.section`
     color: #000;
   }
 
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .m-section {
       width: 75%;
     }

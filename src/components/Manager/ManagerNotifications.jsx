@@ -26,11 +26,10 @@ const ManagerNotifications = () => {
                         <td>{notifications.date}</td>
                         <td>{notifications.time}</td>
                         <td>{notifications.desc}</td>
-                        <td
-                          style={notifications.style}
-                          className='notification-status'
-                        >
-                          {notifications.status}
+                        <td>
+                          <div style={notifications.style} className='status-m'>
+                            {notifications.status}
+                          </div>
                         </td>
                       </tr>
                     )
@@ -77,15 +76,19 @@ const ManagerN = styled.section`
   .t-heading {
     text-align: left;
     height: 60px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background: #f6f6f8;
   }
   .t-notifications {
-    height: 50px;
+    height: 60px;
   }
-  .notification-status {
+  .status-m {
     border: 1px solid black;
     text-align: center;
+    margin: 15px 0;
+    padding: 7px 10px;
+    border-radius: 4px;
   }
+
   @media screen and (max-width: 1270px) {
     .l-notify {
       width: 75%;

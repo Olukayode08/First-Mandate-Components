@@ -9,6 +9,17 @@ const LandlordAddNewTenant = () => {
           <main className='l-section'>
             <h3>Add New Tenant</h3>
             <div className='section'>
+              <label>Select Unit</label>
+              <div className='select'>
+                <select>
+                  <option value='option1'>Unit 1</option>
+                  <option value='option2'>Unit 2</option>
+                  <option value='option3'>Unit 3</option>
+                </select>
+              </div>
+            </div>
+
+            <div className='section'>
               <div className='input'>
                 <label>Name</label>
                 <input
@@ -100,6 +111,26 @@ const LANTenant = styled.section`
     width: 78%;
     padding: 20px;
   }
+  h3 {
+    margin: 15px 0;
+  }
+  .select {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    padding: 0 10px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+  select {
+    border: none;
+    background: transparent;
+    color: #000;
+    outline: none;
+    height: 100%;
+    width: 100%;
+  }
   .section {
     display: flex;
     flex-direction: column;
@@ -119,9 +150,9 @@ const LANTenant = styled.section`
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
-    font-weight: 17px;
+    font-size: 16px;
     color: #000;
-    border-radius: 3px;
+    border-radius: 4px;
     background: transparent;
   }
   label {
@@ -169,12 +200,17 @@ const LANTenant = styled.section`
     text-align: center;
     background-color: #fedf7e;
     height: 50px;
-    border-radius: 3px;
+    border-radius: 4px;
     border: transparent;
     margin: 10px 0;
     font-size: 16px;
     cursor: pointer;
     color: #000;
+  }
+  @media screen and (max-width: 1310px) {
+    .l-section {
+      width: 75%;
+    }
   }
   @media screen and (max-width: 1200px) {
     .l-section {

@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import profile from '../../assets/Frame 2007 (1).png'
 
-const LandlordEditProfilePage = () => {
+const ManagerEditProfilePage = () => {
   return (
     <>
-      <LandlordEPP>
+      <ManagerEPP>
         <section>
           <div className='a-section'>
             <h3>My Profile</h3>
@@ -58,11 +58,11 @@ const LandlordEditProfilePage = () => {
             </div>
           </div>
         </section>
-      </LandlordEPP>
+      </ManagerEPP>
     </>
   )
 }
-const LandlordEPP = styled.section`
+const ManagerEPP = styled.section`
   position: relative;
   .a-section {
     position: absolute;
@@ -181,4 +181,4 @@ const LandlordEPP = styled.section`
     }
   }
 `
-export default LandlordEditProfilePage
+export default ManagerEditProfilePage

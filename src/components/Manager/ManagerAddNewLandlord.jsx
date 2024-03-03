@@ -119,7 +119,7 @@ const ManagerANL = styled.section`
     cursor: pointer;
     color: #000;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .m-section {
       width: 75%;
     }

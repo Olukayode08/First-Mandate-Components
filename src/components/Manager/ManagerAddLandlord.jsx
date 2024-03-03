@@ -101,7 +101,7 @@ const ManagerAL = styled.section`
   .m-list {
     height: 50px;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .a-t-section {
       width: 75%;
     }

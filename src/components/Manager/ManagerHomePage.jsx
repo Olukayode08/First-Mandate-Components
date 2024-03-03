@@ -61,7 +61,7 @@ const ManagerHP = styled.section`
     align-items: flex-start;
     justify-content: space-between;
     padding: 20px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background-color: #f6f6f8;
     width: 100%;
     height: 100px;
   }
@@ -78,7 +78,7 @@ const ManagerHP = styled.section`
     align-items: center;
     justify-content: center;
     padding: 20px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background-color: #f6f6f8;
     width: 310px;
     height: 300px;
     margin: 20px 0;
@@ -88,7 +88,7 @@ const ManagerHP = styled.section`
     color: #000;
   }
   .h-img {
-    background-color: #f6f6f8;
+    background-color: #ffffff;
     box-shadow: 0px 2px 8px 0px #0000001a;
     padding: 23px;
     border-radius: 4px;
@@ -105,15 +105,14 @@ const ManagerHP = styled.section`
     text-align: center;
     line-height: 27px;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .m-section {
       width: 75%;
     }
     .l-name {
       align-items: center;
       justify-content: center;
-      background-color: none;
-      box-shadow: none;
+      background: none;
     }
     .l-options {
       display: flex;

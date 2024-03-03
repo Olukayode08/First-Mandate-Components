@@ -56,6 +56,11 @@ import TenantPaymentPage from './components/Tenant/TenantPaymentPage'
 import TenantPaymentReview from './components/Tenant/TenantPaymentReview'
 import LandlordSendReminder from './components/Landlord/LandlordSendReminder'
 import UploadPropertyPage from './components/UploadPpt/UploadPropertyPage'
+import LandlordSelectProperty from './components/Landlord/LandlordSelectProperty'
+import ManagerSendReminder from './components/Manager/ManagerSendReminder'
+import ManagerEditProfilePage from './components/Manager/ManagerEditProfilePage'
+import ManagerProfileSettings from './components/Manager/ManagerProfileSettings'
+import ManagerDocuments from './components/Manager/ManagerDocuments'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -95,6 +100,10 @@ function App() {
             <Route path='properties' element={<LandlordPropertyPage />} />
             <Route path='upload-property' element={<UploadPropertyPage />} />
             <Route path='tenants' element={<LandlordTenantList />} />
+            <Route
+              path='select-property'
+              element={<LandlordSelectProperty />}
+            />
             <Route path='add-tenant' element={<LandlordAddNewTenant />} />
             <Route path='managers' element={<LandlordAddManager />} />
             <Route path='add-manager' element={<LandlordAddNewManager />} />
@@ -119,7 +128,14 @@ function App() {
             <Route path='landlords' element={<ManagerAddLandlord />} />
             <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
             <Route path='reminders' element={<ManagerReminders />} />
+            <Route path='send-reminder' element={<ManagerSendReminder />} />
             <Route path='add-reminder' element={<ManagerAddReminder />} />
+            <Route path='edit-profile' element={<ManagerEditProfilePage />} />
+            <Route
+              path='profile-settings'
+              element={<ManagerProfileSettings />}
+            />
+            <Route path='documents' element={<ManagerDocuments />} />
           </Route>
 
           {/* Tenant Page */}

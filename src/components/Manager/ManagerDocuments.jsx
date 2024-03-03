@@ -1,26 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-import { landlordOptions } from '../../datas/LandlordHomePage'
+import { managerDocuments } from '../../datas/ManagerDocuments'
 import { Link } from 'react-router-dom'
 
-const LandlordHomePage = () => {
+const ManagerDocuments = () => {
   return (
     <>
-      <LandlordHP>
+      <ManagerD>
         <section>
           <main className='l-section'>
             <div className='l-home-page'>
-              <div className='l-name'>
-                <h3>Hello, Peace</h3>
-                <p>What would you like to do today?</p>
-              </div>
+              <h3>Documents</h3>
               <div className='l-options'>
-                {landlordOptions.map((option) => {
+                {managerDocuments.map((option) => {
                   return (
-                    <Link to={option.navigate} className='options' key={option.id}>
+                    <Link className='options' key={option.id}>
                       <img className='h-img' src={option.icon} alt='Icon' />
                       <h1 className='option-h'>{option.heading}</h1>
-                      <p className='option-text'>{option.text}</p>
                     </Link>
                   )
                 })}
@@ -28,11 +24,11 @@ const LandlordHomePage = () => {
             </div>
           </main>
         </section>
-      </LandlordHP>
+      </ManagerD>
     </>
   )
 }
-const LandlordHP = styled.section`
+const ManagerD = styled.section`
   position: relative;
   .l-section {
     position: absolute;
@@ -51,16 +47,8 @@ const LandlordHP = styled.section`
     flex-direction: column;
     align-items: flex-start;
   }
-  .l-name {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 20px;
-    background: #f6f6f8;
-    width: 100%;
-    height: 100px;
-    border-radius: 4px;
+  h3 {
+    margin: 20px 0;
   }
   .l-options {
     display: grid;
@@ -76,8 +64,8 @@ const LandlordHP = styled.section`
     justify-content: center;
     padding: 20px;
     background: #f6f6f8;
-    width: 310px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
     margin: 20px 0;
     border-radius: 4px;
     cursor: pointer;
@@ -85,7 +73,7 @@ const LandlordHP = styled.section`
     color: #000;
   }
   .h-img {
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     box-shadow: 0px 2px 8px 0px #0000001a;
     padding: 23px;
     border-radius: 4px;
@@ -93,24 +81,13 @@ const LandlordHP = styled.section`
   .option-h {
     margin: 25px 0;
   }
-  .option-text {
-    text-align: center;
-    opacity: 0.8;
-    line-height: 22px;
-  }
-  p {
-    text-align: center;
-    line-height: 27px;
-  }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .l-section {
       width: 75%;
     }
-    .l-name {
-      align-items: center;
-      justify-content: center;
-      background-color: none;
-      box-shadow: none;
+    h3 {
+      text-align: center;
+      width: 100%;
     }
     .l-options {
       display: flex;
@@ -118,11 +95,6 @@ const LandlordHP = styled.section`
       align-items: center;
       justify-content: center;
       width: 100%;
-    }
-  }
-  @media screen and (max-width: 1310px) {
-    .l-section {
-      width: 75%;
     }
   }
   @media screen and (max-width: 1200px) {
@@ -137,4 +109,4 @@ const LandlordHP = styled.section`
     }
   }
 `
-export default LandlordHomePage
+export default ManagerDocuments

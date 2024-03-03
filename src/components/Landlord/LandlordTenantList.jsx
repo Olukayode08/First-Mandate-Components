@@ -62,15 +62,19 @@ const LandlordTenantList = () => {
                     return (
                       <tr key={list.id} className='t-list'>
                         <td>{list.no}</td>
-                        <td>{insertLineBreaks(list.location)}</td>
+                        <td className='l-location'>{insertLineBreaks(list.location)}</td>
                         <td>{list.name}</td>
                         <td>{list.property}</td>
                         <td>{list.unit}</td>
                         <td>{list.amount}</td>
                         <td>{list.renewStatus}</td>
-                        <td>{list.reminder}</td>
-                        <td style={list.style} className='list-status'>
-                          {list.paymentStatus}
+                        <td>
+                          <div className='margin-r'>{list.reminder}</div>
+                        </td>
+                        <td>
+                          <div style={list.style} className='margin-t'>
+                            {list.paymentStatus}
+                          </div>
                         </td>
                       </tr>
                     )
@@ -132,18 +136,29 @@ const LTenantL = styled.section`
     padding: 0 20px;
     font-size: 15px;
     line-height: 22px;
+    text-align: center;
   }
-
   .t-heading {
-    text-align: left;
     height: 60px;
   }
   .t-list {
-    height: 50px;
+    height: 60px;
+    background-color: #f6f6f8;
     box-shadow: -2px 4px 16px 0px #eeeeee;
   }
-  .list-status {
-    text-align: center;
+  .l-location{
+    text-align: left;
+  }
+  .margin-r {
+    margin: 5px 0;
+    padding: 7px 10px;
+    border-radius: 4px;
+    background-color: #ffffff;
+  }
+  .margin-t {
+    margin: 5px 0;
+    padding: 7px 10px;
+    border-radius: 4px;
   }
   @media screen and (max-width: 1320px) {
     .a-t-section {

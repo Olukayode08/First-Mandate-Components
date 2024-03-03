@@ -1,17 +1,42 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { managerTenantList } from '../../datas/ManagerTenantList'
+import { landlordTenantList } from '../../datas/LandlordTenantList'
 import { Link } from 'react-router-dom'
 
 const ManagerTenantList = () => {
+  const insertLineBreaks = (text) => {
+    const maxLength = 20
+    const words = text.split(' ')
+    let lines = []
+    let currentLine = ''
+
+    words.forEach((word) => {
+      if ((currentLine + word).length > maxLength) {
+        lines.push(currentLine)
+        currentLine = ''
+      }
+      currentLine += (currentLine ? ' ' : '') + word
+    })
+
+    if (currentLine) {
+      lines.push(currentLine)
+    }
+
+    return lines.map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        <br />
+      </React.Fragment>
+    ))
+  }
   return (
     <>
-      <ManagerTL>
+      <MTenantL>
         <section>
           <main className='a-t-section'>
             <div className='a-tenant'>
-              <h3>Tenants</h3>
+              <h3>My Tenants</h3>
               <Link to='/manager/add-tenant' className='add-r'>
                 <h4>Add New Tenant</h4>
                 <FaRegPlusSquare size={20} />
@@ -24,20 +49,34 @@ const ManagerTenantList = () => {
                     <th>SN</th>
                     <th>Rent Location</th>
                     <th>Tenant's Name</th>
+                    <th>Property</th>
+                    <th>Unit</th>
                     <th>Amount Paid</th>
-                    <th>Rent Payment Status</th>
+                    <th>Rewal Status</th>
+                    <th>Reminder</th>
+                    <th>Payment Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {managerTenantList.map((list) => {
+                  {landlordTenantList.map((list) => {
                     return (
                       <tr key={list.id} className='t-list'>
                         <td>{list.no}</td>
-                        <td>{list.location}</td>
+                        <td className='l-location'>
+                          {insertLineBreaks(list.location)}
+                        </td>
                         <td>{list.name}</td>
+                        <td>{list.property}</td>
+                        <td>{list.unit}</td>
                         <td>{list.amount}</td>
-                        <td style={list.style} className='list-status'>
-                          {list.status}
+                        <td>{list.renewStatus}</td>
+                        <td>
+                          <div className='margin-r'>{list.reminder}</div>
+                        </td>
+                        <td>
+                          <div style={list.style} className='margin-t'>
+                            {list.paymentStatus}
+                          </div>
                         </td>
                       </tr>
                     )
@@ -47,11 +86,11 @@ const ManagerTenantList = () => {
             </div>
           </main>
         </section>
-      </ManagerTL>
+      </MTenantL>
     </>
   )
 }
-const ManagerTL = styled.section`
+const MTenantL = styled.section`
   position: relative;
   .a-t-section {
     position: absolute;
@@ -77,9 +116,8 @@ const ManagerTL = styled.section`
     justify-content: space-between;
     background-color: #ffe48e;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 4px;
     width: 250px;
-    text-decoration: none;
     color: #000;
     cursor: pointer;
     text-decoration: none;
@@ -93,23 +131,38 @@ const ManagerTL = styled.section`
     border-spacing: 0 20px;
     width: 100%;
   }
+
   th,
   td {
     white-space: nowrap;
     padding: 0 20px;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center;
   }
   .t-heading {
-    text-align: left;
     height: 60px;
   }
   .t-list {
-    height: 50px;
+    height: 60px;
+    background-color: #f6f6f8;
     box-shadow: -2px 4px 16px 0px #eeeeee;
   }
-  .list-status {
-    text-align: center;
+  .l-location {
+    text-align: left;
   }
-  @media screen and (max-width: 1270px) {
+  .margin-r {
+    margin: 5px 0;
+    padding: 7px 10px;
+    border-radius: 4px;
+    background-color: #ffffff;
+  }
+  .margin-t {
+    margin: 5px 0;
+    padding: 7px 10px;
+    border-radius: 4px;
+  }
+  @media screen and (max-width: 1320px) {
     .a-t-section {
       width: 75%;
     }

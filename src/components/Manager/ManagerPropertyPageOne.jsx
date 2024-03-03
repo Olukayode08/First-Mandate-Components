@@ -13,7 +13,7 @@ const ManagerPropertyPageOne = () => {
             <div className='l-home-page'>
               <div className='a-ppt'>
                 <h3>Properties</h3>
-               <Link to='/manager/property' className='add-r'>
+               <Link className='add-r'>
                   <h4>Add New Property</h4>
                   <FaRegPlusSquare size={20} />
                 </Link>
@@ -89,9 +89,9 @@ const ManagerPPO = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 15px;
     box-shadow: -2px 4px 16px 0px #eeeeee;
-    width: 340px;
+    width: 330px;
     height: 370px;
     margin: 20px 0;
     border-radius: 4px;
@@ -110,7 +110,7 @@ const ManagerPPO = styled.section`
     line-height: 22px;
     margin: 5px 0;
   }
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1310px) {
     .l-section {
       width: 75%;
     }

@@ -1,14 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import { landlordNotififcations } from '../../datas/LandlordNotifications'
-
+import { FaRegPlusSquare } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 const LandlordNotifications = () => {
   return (
     <>
       <LNotify>
         <section>
           <main className='l-notify'>
-            <h1>Notifications</h1>
+            <div className='a-tenant'>
+              <h3>Notifications</h3>
+              <Link className='add-r'>
+                <h4>Send Notifications</h4>
+                <FaRegPlusSquare size={20} />
+              </Link>
+            </div>{' '}
             <div className='table'>
               <table>
                 <thead>
@@ -26,11 +33,10 @@ const LandlordNotifications = () => {
                         <td>{notifications.date}</td>
                         <td>{notifications.time}</td>
                         <td>{notifications.desc}</td>
-                        <td
-                          style={notifications.style}
-                          className='notification-status'
-                        >
-                          {notifications.status}
+                        <td>
+                          <div className='n-margin' style={notifications.style}>
+                            {notifications.status}
+                          </div>
                         </td>
                       </tr>
                     )
@@ -56,9 +62,24 @@ const LNotify = styled.section`
     margin: 0 auto;
     padding: 20px;
   }
-  h1 {
-    padding: 0 20px;
+  .a-tenant {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     margin: 20px 0;
+  }
+  .add-r {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #ffe48e;
+    padding: 15px;
+    border-radius: 4px;
+    width: 250px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
   }
   .table {
     overflow-x: scroll;
@@ -77,16 +98,19 @@ const LNotify = styled.section`
   .t-heading {
     text-align: left;
     height: 60px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background: #f6f6f8;
   }
   .t-notifications {
-    height: 50px;
+    height: 60px;
   }
-  .notification-status {
+  .n-margin {
     border: 1px solid black;
     text-align: center;
+    margin: 15px 0;
+    padding: 7px 10px;
+    border-radius: 4px;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .l-notify {
       width: 75%;
     }
@@ -95,6 +119,14 @@ const LNotify = styled.section`
     .l-notify {
       width: 100%;
       left: 0;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .a-tenant {
+      flex-direction: column;
+    }
+    .add-r {
+      margin: 20px 0 10px 0;
     }
   }
 `

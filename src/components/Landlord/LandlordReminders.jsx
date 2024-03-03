@@ -21,7 +21,7 @@ const LandlordReminders = () => {
               <div className='a-tenant'>
                 <h3>Reminders</h3>
                 <div className='set-reminders'>
-                  <Link to='/landlord/add-reminder' className='set-r'>
+                  <Link to='/landlord/send-reminder' className='set-r'>
                     <h4>Send Reminder</h4>
                     <FaRegPlusSquare size={20} />
                   </Link>

@@ -23,6 +23,8 @@ const LandlordAddManager = () => {
                   <tr className='l-m-heading'>
                     <th>SN</th>
                     <th>Property Name / Location</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
                     <th>Managers's Name</th>
                   </tr>
                 </thead>
@@ -32,6 +34,8 @@ const LandlordAddManager = () => {
                       <tr key={list.id} className='m-list'>
                         <td>{list.no}</td>
                         <td>{list.location}</td>
+                        <td>{list.email}</td>
+                        <td>{list.phoneNo}</td>
                         <td>{list.name}</td>
                       </tr>
                     )
@@ -95,12 +99,12 @@ const LAManager = styled.section`
   .l-m-heading {
     text-align: center;
     height: 60px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background: #f6f6f8;
   }
   .m-list {
     height: 50px;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .a-t-section {
       width: 75%;
     }
