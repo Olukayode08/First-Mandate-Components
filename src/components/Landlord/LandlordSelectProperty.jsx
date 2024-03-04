@@ -27,11 +27,11 @@ const LandlordSelectProperty = () => {
                   <div className='unit'>
                     <p>{property.houseTitle}</p>
                     <div className='house'>
-                      <div className='unit-a'>
+                      <div style={property.unitOneStyle} className='unit-a'>
                         <IoMdCheckmark />
                         <p>{property.unitOne}</p>
                       </div>
-                      <div className='unit-a'>
+                      <div style={property.unitTwoStyle} className='unit-a'>
                         <IoMdCheckmark />
                         <p>{property.unitTwo}</p>
                       </div>

@@ -114,7 +114,7 @@ const LANManager = styled.section`
     text-align: center;
     background-color: #fedf7e;
     height: 50px;
-    border-radius: 3px;
+    border-radius: 4px;
     border: transparent;
     margin: 10px 0;
     font-size: 16px;

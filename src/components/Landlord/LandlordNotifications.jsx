@@ -15,7 +15,7 @@ const LandlordNotifications = () => {
                 <h4>Send Notifications</h4>
                 <FaRegPlusSquare size={20} />
               </Link>
-            </div>{' '}
+            </div>
             <div className='table'>
               <table>
                 <thead>

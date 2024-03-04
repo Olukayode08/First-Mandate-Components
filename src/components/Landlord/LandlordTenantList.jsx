@@ -160,7 +160,7 @@ const LTenantL = styled.section`
     padding: 7px 10px;
     border-radius: 4px;
   }
-  @media screen and (max-width: 1320px) {
+  @media screen and (max-width: 1310px) {
     .a-t-section {
       width: 75%;
     }
