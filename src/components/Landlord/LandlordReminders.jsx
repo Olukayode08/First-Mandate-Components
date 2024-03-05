@@ -13,7 +13,7 @@ const LandlordReminders = () => {
   }
 
   const insertLineBreaks = (text) => {
-    const maxLength = 40
+    const maxLength = 70
     const words = text.split(' ')
     let lines = []
     let currentLine = ''
@@ -58,8 +58,8 @@ const LandlordReminders = () => {
               </div>
               {data.map((reminder) => {
                 return (
-                  <div className='reminders'>
-                    <div key={reminder.id} className='r-due-date'>
+                  <div key={reminder.id} className='reminders'>
+                    <div className='r-due-date'>
                       <div className='img-amt'>
                         <img className='r-img' src={reminder.image} alt='' />
                         <div className='name-amt'>
@@ -126,8 +126,10 @@ const LandlordR = styled.section`
   .add-r {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #ffe48e;
     padding: 15px;
+    height: 48px;
     border-radius: 4px;
     width: 200px;
     color: #000;
@@ -137,6 +139,7 @@ const LandlordR = styled.section`
   .set-r {
     background-color: #ffffff;
     border: 1px solid black;
+    height: 46px;
   }
   .reminders {
     width: 100%;
@@ -146,6 +149,7 @@ const LandlordR = styled.section`
     margin: 10px 0;
     padding: 10px;
     border-radius: 4px;
+    position: relative;
   }
   .img-amt,
   .r-due-date {
@@ -172,9 +176,9 @@ const LandlordR = styled.section`
     font-size: 16px;
   }
   .r-desc {
-    flex-shrink: 0;
     margin-left: 45px;
     line-height: 22px;
+    flex-shrink: 0;
   }
   .l-btns {
     display: flex;
@@ -198,6 +202,7 @@ const LandlordR = styled.section`
     display: none;
     text-align: center;
     margin: 10px 0;
+    flex-shrink: 0;
   }
   @media screen and (max-width: 1310px) {
     .r-section {
@@ -218,8 +223,7 @@ const LandlordR = styled.section`
     }
     .set-r,
     .add-r {
-      padding: 15px 10px;
-      width: 170px;
+      width: 180px;
       flex-shrink: 0;
     }
     .set-reminders {

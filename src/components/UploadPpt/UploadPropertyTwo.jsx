@@ -25,12 +25,10 @@ const UploadPropertyTwo = () => {
                 className='name-input-field'
               />
             </div>
-          </div>
-          <div className='location'>
-            <label>Location</label>
-            <CountryDropdown />
-          </div>
-          <div className='section'>
+            <div className='location'>
+              <label>Location</label>
+              <CountryDropdown />
+            </div>
             <div className='input'>
               <label>Manager's Name</label>
               <input
@@ -40,8 +38,6 @@ const UploadPropertyTwo = () => {
                 className='name-input-field'
               />
             </div>
-          </div>
-          <div className='section'>
             <div className='input'>
               <label>Manager's Email</label>
               <input
@@ -51,8 +47,6 @@ const UploadPropertyTwo = () => {
                 className='name-input-field'
               />
             </div>
-          </div>
-          <div className='section'>
             <div className='input'>
               <label>Manager's Phone</label>
               <input
@@ -72,15 +66,11 @@ const UploadPT = styled.section`
   .section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 100%;
   }
   .input {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 500px;
     margin: 10px 0;
   }
@@ -100,22 +90,12 @@ const UploadPT = styled.section`
   }
   .name-input-field {
     width: 100%;
-    height: 40px;
+    height: 48px;
   }
   .location {
     margin: 10px 0;
   }
-  select {
-    width: 100%;
-    margin: 0 auto;
-    height: 100%;
-    background: transparent;
-    border: transparent;
-    outline: none;
-    color: #000;
-    font-family: inherit;
-  }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 550px) {
     .input {
       width: 95%;
     }

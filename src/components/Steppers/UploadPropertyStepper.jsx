@@ -58,7 +58,7 @@ const UploadPropertyStepper = () => {
             <div className='step-buttons'>
               {step <= 3 && (
                 <div className='prev-button back'>
-                  <IoMdArrowBack className='icon' />
+                  <IoMdArrowBack />
                   <button onClick={prevStep}>Go back</button>
                 </div>
               )}
@@ -124,10 +124,11 @@ const UploadPS = styled.section`
     flex-direction: column;
     justify-content: left;
     align-items: flex-start;
-    width: 80%;
-    padding: 10px 20px;
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    background-color: #ffffff;
   }
-
   .step-indicator {
     display: flex;
     justify-content: left;
@@ -154,7 +155,6 @@ const UploadPS = styled.section`
     margin-top: 20px;
     width: 100%;
   }
-
   .step-buttons {
     margin-top: 20px;
     display: flex;
@@ -179,13 +179,13 @@ const UploadPS = styled.section`
     flex-shrink: 0;
     cursor: pointer;
     font-size: 16px;
+    height: 50px;
   }
   .next-button,
   .prev-button,
   .next-button {
-    padding: 0 18px;
-    height: 50px;
     border-radius: 4px;
+    padding: 0 18px;
   }
   .prev-button {
     background-color: #ffdfe2;
@@ -193,22 +193,15 @@ const UploadPS = styled.section`
   .add-unit {
     background-color: #ffffff;
     border: 1px solid black;
+    height: 48px;
   }
   .next-button {
     background-color: #fedf7e;
   }
-  @media screen and (max-width: 700px) {
-    .multi-step-form {
-      width: 90%;
-      padding: 10px;
-    }
-  }
+
   @media screen and (max-width: 420px) {
     .step-indicator {
       width: 350px;
-    }
-    .multi-step-form {
-      width: 97%;
     }
   }
   @media screen and (max-width: 370px) {

@@ -90,7 +90,6 @@ function App() {
             path='/reset-email-password'
             element={<ResetEmailPassword />}
           />
-
           {/* <Route path='/' element={<Signup />} />
           <Route path='/login' element={<Login />} /> */}
           <Route path='/sidebar' element={<Sidebar />} />

@@ -122,7 +122,7 @@ const TenantS = styled.section`
   }
   .sidebar-btn {
     position: absolute;
-    top: 100px;
+    top: 60px;
     left: 0;
     color: #000;
     z-index: 100;

@@ -61,26 +61,22 @@ const RentTermsDropdown = () => {
 const RentTermsDD = styled.section`
   .rent-terms {
     display: flex;
-    justify-content: space-between;
-    width: 95%;
+    gap: 30px;
   }
   .input {
     display: flex;
     flex-direction: column;
   }
-
   .select {
     border: 1px solid black;
-    border-radius: 3px;
+    border-radius: 4px;
     padding: 0 20px;
     width: 200px;
-    height: 40px;
+    height: 48px;
   }
   select {
     width: 100%;
-    margin: 0 auto;
     height: 100%;
-    border: 1px solid red;
   }
   input,
   select {
@@ -92,17 +88,17 @@ const RentTermsDD = styled.section`
   }
   input {
     border: 1px solid black;
-    border-radius: 3px;
+    border-radius: 4px;
     padding: 0 20px;
   }
-
   .rent-t-input {
     width: 200px;
-    height: 40px;
+    height: 48px;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 750px) {
     .rent-terms {
       flex-direction: column;
+      gap: 0px;
     }
   }
 `

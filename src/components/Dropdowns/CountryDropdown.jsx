@@ -105,14 +105,13 @@ const CountryDropdown = () => {
 const CountryDD = styled.section`
   .select-section {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 90%;
+    gap: 20px;
     margin: 10px 0;
+    width: 95%;
   }
   .select {
     width: 200px;
-    height: 40px;
+    height: 48px;
     border: 1px solid black;
     padding: 0 15px;
     border-radius: 5px;
@@ -128,14 +127,11 @@ const CountryDD = styled.section`
     font-family: inherit;
   }
 
-  @media screen and (max-width: 1250px) {
-    .select-section {
-      flex-direction: column;
+  @media screen and (max-width: 700px) {
+    .select{
       width: 100%;
     }
-    .select {
-      margin: 10px 0;
-    }
+
   }
 `
 export default CountryDropdown

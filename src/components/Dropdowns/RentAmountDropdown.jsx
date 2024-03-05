@@ -30,7 +30,6 @@ const RentAmountDropdown = () => {
               </select>
             </div>
           </div>
-
           <div className='input'>
             <input
               type='text'
@@ -49,21 +48,19 @@ const RentAmountDropdown = () => {
 const RentAmtDD = styled.section`
   .rent-amt {
     display: flex;
-    justify-content: space-between;
-    width: 50%;
+    gap: 15px;
     align-items: flex-end;
   }
   .input {
     display: flex;
     flex-direction: column;
   }
-
   .select {
     border: 1px solid black;
     border-radius: 3px;
     padding: 0 20px;
-    width: 170px;
-    height: 40px;
+    width: 200px;
+    height: 48px;
   }
   select {
     width: 100%;
@@ -84,14 +81,16 @@ const RentAmtDD = styled.section`
     border-radius: 3px;
     padding: 0 20px;
   }
-
   .rent-t-input {
-    width: 170px;
-    height: 40px;
+    width: 150px;
+    height: 48px;
   }
-  @media screen and (max-width: 1200px) {
-    .rent-amt {
-      flex-direction: column;
+  @media screen and (max-width: 450px) {
+    .select {
+      width: 150px;
+    }
+    .rent-t-input {
+      width: 120px;
     }
   }
 `

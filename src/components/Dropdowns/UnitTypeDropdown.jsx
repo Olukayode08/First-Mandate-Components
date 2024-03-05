@@ -57,9 +57,8 @@ const UnitTypeDropdown = () => {
 const UnitTypeD = styled.section`
   .unit-type {
     display: flex;
-    justify-content: space-between;
     align-items: last baseline;
-    width: 500px;
+    gap: 30px;
     margin: 10px 0;
   }
   .unit {
@@ -68,14 +67,13 @@ const UnitTypeD = styled.section`
   }
   .select {
     width: 200px;
-    height: 40px;
+    height: 48px;
     border: 1px solid black;
     padding: 0 15px;
-    border-radius: 5px;
+    border-radius: 4%;
   }
   select {
     width: 100%;
-    margin: 0 auto;
     height: 100%;
     border: transparent;
     background: transparent;
@@ -87,14 +85,16 @@ const UnitTypeD = styled.section`
     flex-shrink: 0;
   }
 
-  @media screen and (max-width: 700px) {
-    .unit-type {
-      flex-direction: column;
-      align-items: flex-start;
-      width: 90%;
+  @media screen and (max-width: 550px) {
+    .unit-type{
+      gap: 15px;
     }
-    .unit {
-      margin: 10px 0;
+    .unit,
+    .unit-type{
+      width: 100%;
+    }
+    .select {
+      width: 95%;
     }
   }
 `

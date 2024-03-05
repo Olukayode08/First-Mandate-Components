@@ -52,16 +52,11 @@ const UploadPThree = styled.section`
   .section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 100%;
   }
   .input {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
     margin: 10px 0;
   }
   label {
@@ -71,12 +66,14 @@ const UploadPThree = styled.section`
   .p-status {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
   }
   .payment {
-    padding: 10px 0;
+    height: 48px;
     width: 200px;
-    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
     color: #ffff;
     text-align: center;
   }
@@ -96,7 +93,7 @@ const UploadPThree = styled.section`
     font-family: inherit;
     font-size: 15px;
     color: #000;
-    border-radius: 3px;
+    border-radius: 4px;
     background: transparent;
   }
   /* Checkbox */
@@ -104,9 +101,10 @@ const UploadPThree = styled.section`
     margin: 10px 0;
   }
   .checkboxes {
-    width: 500px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 450px;
     justify-content: space-between;
     align-items: center;
   }
@@ -114,26 +112,26 @@ const UploadPThree = styled.section`
     display: flex;
     align-items: center;
     margin: 20px 0;
-    width: 130px;
+    gap: 10px;
     flex-shrink: 0;
   }
   .ppt-details {
-    margin-left: 10px;
     flex-shrink: 0;
   }
   .checkbox-input {
     width: 18px;
     height: 18px;
   }
-  @media screen and (max-width: 520px) {
-    .checkboxes {
-      width: 350px;
-      grid-template-columns: repeat(2, 1fr);
+  @media screen and (max-width: 750px) {
+    .p-status {
+      flex-direction: column;
+      gap: 15px;
     }
   }
-  @media screen and (max-width: 350px) {
+  @media screen and (max-width: 520px) {
     .checkboxes {
-      width: 300px;
+      justify-content: space-between;
+      width: 95%;
     }
   }
 `
