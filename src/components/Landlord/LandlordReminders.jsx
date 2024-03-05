@@ -139,7 +139,7 @@ const LandlordR = styled.section`
   .set-r {
     background-color: #ffffff;
     border: 1px solid black;
-    height: 46px;
+    height: 48px;
   }
   .reminders {
     width: 100%;
@@ -223,7 +223,7 @@ const LandlordR = styled.section`
     }
     .set-r,
     .add-r {
-      width: 180px;
+      width: 190px;
       flex-shrink: 0;
     }
     .set-reminders {
