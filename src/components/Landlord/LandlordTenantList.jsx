@@ -5,31 +5,31 @@ import { landlordTenantList } from '../../datas/LandlordTenantList'
 import { Link } from 'react-router-dom'
 
 const LandlordTenantList = () => {
-  const insertLineBreaks = (text) => {
-    const maxLength = 20
-    const words = text.split(' ')
-    let lines = []
-    let currentLine = ''
+  // const insertLineBreaks = (text) => {
+  //   const maxLength = 20
+  //   const words = text.split(' ')
+  //   let lines = []
+  //   let currentLine = ''
 
-    words.forEach((word) => {
-      if ((currentLine + word).length > maxLength) {
-        lines.push(currentLine)
-        currentLine = ''
-      }
-      currentLine += (currentLine ? ' ' : '') + word
-    })
+  //   words.forEach((word) => {
+  //     if ((currentLine + word).length > maxLength) {
+  //       lines.push(currentLine)
+  //       currentLine = ''
+  //     }
+  //     currentLine += (currentLine ? ' ' : '') + word
+  //   })
 
-    if (currentLine) {
-      lines.push(currentLine)
-    }
+  //   if (currentLine) {
+  //     lines.push(currentLine)
+  //   }
 
-    return lines.map((line, index) => (
-      <React.Fragment key={index}>
-        {line}
-        <br />
-      </React.Fragment>
-    ))
-  }
+  //   return lines.map((line, index) => (
+  //     <React.Fragment key={index}>
+  //       {line}
+  //       <br />
+  //     </React.Fragment>
+  //   ))
+  // }
   return (
     <>
       <LTenantL>
@@ -47,14 +47,17 @@ const LandlordTenantList = () => {
                 <thead>
                   <tr className='t-heading'>
                     <th>SN</th>
-                    <th>Rent Location</th>
                     <th>Tenant's Name</th>
-                    <th>Property</th>
+                    <th>Property Name</th>
                     <th>Unit</th>
-                    <th>Amount Paid</th>
-                    <th>Rewal Status</th>
-                    <th>Reminder</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>WhatsApp Number</th>
+                    <th>Lease Start Date</th>
+                    <th>Lease End Date</th>
+                    <th>Payment Type</th>
                     <th>Payment Status</th>
+                    <th>Rent Due Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -62,20 +65,18 @@ const LandlordTenantList = () => {
                     return (
                       <tr key={list.id} className='t-list'>
                         <td>{list.no}</td>
-                        <td className='l-location'>{insertLineBreaks(list.location)}</td>
-                        <td>{list.name}</td>
-                        <td>{list.property}</td>
+                        {/* <td className='l-location'>{insertLineBreaks(list.location)}</td> */}
+                        <td>Nike Alade</td>
+                        <td>Nike House</td>
                         <td>{list.unit}</td>
-                        <td>{list.amount}</td>
-                        <td>{list.renewStatus}</td>
-                        <td>
-                          <div className='margin-r'>{list.reminder}</div>
-                        </td>
-                        <td>
-                          <div style={list.style} className='margin-t'>
-                            {list.paymentStatus}
-                          </div>
-                        </td>
+                        <td>nikealade@gmail.com</td>
+                        <td>+234 8168345494</td>
+                        <td>+234 8168345494</td>
+                        <td>05/03/2024</td>
+                        <td>05/03/2024</td>
+                        <td>Full Payment</td>
+                        <td>Paid</td>
+                        <td>05/03/2024</td>
                       </tr>
                     )
                   })}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaBell } from 'react-icons/fa'
 import { FaRegUser } from 'react-icons/fa'
-
+import { BsThreeDots } from 'react-icons/bs'
 import styled from 'styled-components'
 
 const TenantHeader = () => {
@@ -10,6 +10,9 @@ const TenantHeader = () => {
       <THeader>
         <section>
           <div className='header'>
+            <div className='logo'>
+              <BsThreeDots size={80} />
+            </div>
             <div className='select-user'>
               <select name='user' id='user'>
                 <option value='Tenant'>Tenant</option>
@@ -31,11 +34,13 @@ const TenantHeader = () => {
 const THeader = styled.section`
   .header {
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     z-index: 30;
+    height: 100px;
+    background-color: #fff;
   }
   .select-user {
     display: flex;

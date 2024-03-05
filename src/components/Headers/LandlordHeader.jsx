@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaBell } from 'react-icons/fa'
 import { FaRegUser } from 'react-icons/fa'
+import { BsThreeDots } from 'react-icons/bs'
 
 import styled from 'styled-components'
 
@@ -10,6 +11,9 @@ const LandlordHeader = () => {
       <LandlordH>
         <section>
           <div className='header'>
+            <div className='logo'>
+              <BsThreeDots size={80} />
+            </div>
             <div className='select-user'>
               <select name='user' id='user'>
                 <option value='Landlord'>Landlord</option>
@@ -31,11 +35,13 @@ const LandlordHeader = () => {
 const LandlordH = styled.section`
   .header {
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 30;
+    height: 100px;
+    background-color: #fff;
   }
   .select-user {
     display: flex;

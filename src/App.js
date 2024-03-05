@@ -70,6 +70,11 @@ function App() {
     } else {
       document.body.classList.remove('dark-mode')
     }
+    if (theme === 'light') {
+      document.body.classList.add('light-mode')
+    } else {
+      document.body.classList.remove('light-mode')
+    }
   }, [theme])
 
   return (

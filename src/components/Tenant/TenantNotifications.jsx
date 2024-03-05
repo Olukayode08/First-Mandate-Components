@@ -15,7 +15,7 @@ const TenantNotifications = () => {
                   <tr className='t-heading'>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Description</th>
+                    <th>Message</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -26,11 +26,10 @@ const TenantNotifications = () => {
                         <td>{notifications.date}</td>
                         <td>{notifications.time}</td>
                         <td>{notifications.desc}</td>
-                        <td
-                          style={notifications.style}
-                          className='notification-status'
-                        >
-                          {notifications.status}
+                        <td>
+                          <div style={notifications.style} className='n-margin'>
+                            {notifications.status}
+                          </div>
                         </td>
                       </tr>
                     )
@@ -77,14 +76,17 @@ const TenantN = styled.section`
   .t-heading {
     text-align: left;
     height: 60px;
-    background: #F6F6F8;
+    background: #f6f6f8;
   }
   .t-notifications {
     height: 50px;
   }
-  .notification-status {
+  .n-margin {
     border: 1px solid black;
     text-align: center;
+    margin: 15px 0;
+    padding: 7px 10px;
+    border-radius: 4px;
   }
   @media screen and (max-width: 1270px) {
     .l-notify {

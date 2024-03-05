@@ -22,10 +22,12 @@ const LandlordAddManager = () => {
                 <thead>
                   <tr className='l-m-heading'>
                     <th>SN</th>
-                    <th>Property Name / Location</th>
+                    <th>Managers's Name</th>
+                    <th>Property Name</th>
+                    <th>Property Location</th>
                     <th>Email</th>
                     <th>Phone Number</th>
-                    <th>Managers's Name</th>
+                    <th>WhatsApp Number</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -33,10 +35,12 @@ const LandlordAddManager = () => {
                     return (
                       <tr key={list.id} className='m-list'>
                         <td>{list.no}</td>
+                        <td>{list.name}</td>
+                        <td>Nike House</td>
                         <td>{list.location}</td>
                         <td>{list.email}</td>
                         <td>{list.phoneNo}</td>
-                        <td>{list.name}</td>
+                        <td>{list.phoneNo}</td>
                       </tr>
                     )
                   })}

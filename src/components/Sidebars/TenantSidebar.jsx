@@ -8,7 +8,6 @@ import { LuWalletCards } from 'react-icons/lu'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
-import { BsThreeDots } from 'react-icons/bs'
 import { ThemeContext } from '../../context/Darkmode'
 
 const TenantSidebar = () => {
@@ -55,9 +54,6 @@ const TenantSidebar = () => {
           <main className={active ? 'sidebar' : null}>
             {active && (
               <div className='left-sidebar'>
-                <div className='logo'>
-                  <BsThreeDots size={80} />
-                </div>
                 <Link
                   onClick={closeSidebar}
                   className={
@@ -126,16 +122,17 @@ const TenantS = styled.section`
   }
   .sidebar-btn {
     position: absolute;
-    top: 20px;
+    top: 100px;
     left: 0;
     color: #000;
     z-index: 100;
+    display: none;
   }
   .sidebar {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 0;
+    top: 102px;
     left: 0;
     width: 280px;
     flex: 0 0 auto;
@@ -193,6 +190,11 @@ const TenantS = styled.section`
   .theme {
     padding: 0 20px;
     margin-top: 60px;
+  }
+  @media screen and (max-width: 1200px) {
+    .sidebar-btn {
+      display: block;
+    }
   }
 `
 export default TenantSidebar

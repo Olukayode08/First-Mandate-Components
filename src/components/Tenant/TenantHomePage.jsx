@@ -41,7 +41,9 @@ const TenantHP = styled.section`
     align-items: flex-start;
     justify-content: center;
     width: 78%;
-    margin: 0 auto;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 10px;
     padding: 20px;
   }
   .l-home-page {
@@ -59,6 +61,7 @@ const TenantHP = styled.section`
     background: #f6f6f8;
     width: 100%;
     height: 100px;
+    border-radius: 4px;
   }
   .l-options {
     display: grid;

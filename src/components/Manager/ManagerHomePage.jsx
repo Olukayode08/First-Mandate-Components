@@ -46,7 +46,9 @@ const ManagerHP = styled.section`
     align-items: flex-start;
     justify-content: center;
     width: 78%;
-    margin: 0 auto;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 10px;
     padding: 20px;
   }
   .l-home-page {

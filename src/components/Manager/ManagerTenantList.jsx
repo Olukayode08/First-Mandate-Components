@@ -131,7 +131,6 @@ const MTenantL = styled.section`
     border-spacing: 0 20px;
     width: 100%;
   }
-
   th,
   td {
     white-space: nowrap;
