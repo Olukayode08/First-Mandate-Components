@@ -9,7 +9,6 @@ const LandlordHomePage = () => {
       <LandlordHP>
         <section>
           <main className='l-section'>
-            <div className='l-home-page'>
               <div className='l-name'>
                 <h3>Hello, Peace</h3>
                 <p>What would you like to do today?</p>
@@ -25,7 +24,6 @@ const LandlordHomePage = () => {
                   )
                 })}
               </div>
-            </div>
           </main>
         </section>
       </LandlordHP>
@@ -39,19 +37,11 @@ const LandlordHP = styled.section`
     right: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
     width: 78%;
-    margin: 10px auto;
+    margin: 10px 0;
     background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-  }
-  .l-home-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    border-radius: 4px;
+    padding: 20px 10px;
   }
   .l-name {
     display: flex;
@@ -65,11 +55,10 @@ const LandlordHP = styled.section`
     border-radius: 4px;
   }
   .l-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    gap: 10px;
+    gap: 20px;
   }
   .options {
     display: flex;
@@ -78,7 +67,7 @@ const LandlordHP = styled.section`
     justify-content: center;
     padding: 20px;
     background: #f6f6f8;
-    width: 310px;
+    width: 350px;
     height: 300px;
     margin: 20px 0;
     border-radius: 4px;
@@ -101,26 +90,8 @@ const LandlordHP = styled.section`
     line-height: 22px;
   }
   p {
-    text-align: center;
     line-height: 27px;
-  }
-  @media screen and (max-width: 1270px) {
-    .l-section {
-      width: 75%;
-    }
-    .l-name {
-      align-items: center;
-      justify-content: center;
-      background-color: none;
-      box-shadow: none;
-    }
-    .l-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
+    text-align: center;
   }
   @media screen and (max-width: 1310px) {
     .l-section {
@@ -133,7 +104,15 @@ const LandlordHP = styled.section`
       left: 0;
     }
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 550px) {
+    .l-name,
+    .l-options {
+      align-items: center;
+      justify-content: center;
+    }
+    .l-name{
+      background: none;
+    }
     .options {
       width: 280px;
     }

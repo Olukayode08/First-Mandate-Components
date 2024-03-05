@@ -8,7 +8,6 @@ const LandlordAddNewTenant = () => {
         <section>
           <main className='l-section'>
             <h3>Add New Tenant</h3>
-            <div className='section'>
               <label>Select Unit</label>
               <div className='select'>
                 <select>
@@ -17,9 +16,7 @@ const LandlordAddNewTenant = () => {
                   <option value='option3'>Unit 3</option>
                 </select>
               </div>
-            </div>
 
-            <div className='section'>
               <div className='input'>
                 <label>Name</label>
                 <input
@@ -28,8 +25,6 @@ const LandlordAddNewTenant = () => {
                   className='t-name-input'
                 />
               </div>
-            </div>
-            <div className='section'>
               <div className='input'>
                 <label>Email</label>
                 <input
@@ -37,9 +32,7 @@ const LandlordAddNewTenant = () => {
                   placeholder='Enter email address'
                   className='t-name-input'
                 />
-              </div>
             </div>
-            <div className='section'>
               <div className='input'>
                 <label>Phone</label>
                 <input
@@ -48,8 +41,6 @@ const LandlordAddNewTenant = () => {
                   className='t-name-input'
                 />
               </div>
-            </div>
-            <div className='section'>
               <div className='input'>
                 <label>Phone</label>
                 <input
@@ -58,7 +49,6 @@ const LandlordAddNewTenant = () => {
                   className='t-name-input'
                 />
               </div>
-            </div>
             <div className='rent-date'>
               <div className='start-date'>
                 <label>Rent Start Date</label>
@@ -88,7 +78,7 @@ const LandlordAddNewTenant = () => {
               <input
                 type='date'
                 placeholder='dd/mm/yyyy'
-                className='r-date-input'
+                className='due-date-input'
               />
             </div>
             <button className='add-tenant'>Add Tenant</button>
@@ -109,7 +99,7 @@ const LANTenant = styled.section`
     align-items: flex-start;
     justify-content: left;
     width: 78%;
-    padding: 20px;
+    padding: 20px 10px;
   }
   h3 {
     margin: 15px 0;
@@ -131,19 +121,13 @@ const LANTenant = styled.section`
     height: 100%;
     width: 100%;
   }
-  .section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
-  }
   .input {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
     margin: 10px 0;
+    width: 100%;
   }
   input {
     outline: none;
@@ -165,13 +149,13 @@ const LANTenant = styled.section`
   }
   .rent-date {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 500px;
+    gap: 20px;
+    width: 100%;
     margin: 10px 0;
   }
+  .due-date-input,
   .r-date-input {
-    height: 40px;
+    height: 48px;
     width: 220px;
   }
   .due-date,
@@ -180,8 +164,6 @@ const LANTenant = styled.section`
   .rent-status {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
   }
   .due-date,
   .rent-status {
@@ -191,12 +173,12 @@ const LANTenant = styled.section`
     background-color: #ff0000;
     color: #ffffff;
     padding: 12px 0;
-    width: 100px;
+    width: 120px;
     text-align: center;
     border-radius: 4px;
   }
   .add-tenant {
-    width: 180px;
+    width: 220px;
     text-align: center;
     background-color: #fedf7e;
     height: 50px;
@@ -219,19 +201,20 @@ const LANTenant = styled.section`
     }
   }
   @media screen and (max-width: 600px) {
-    .t-name-input {
-      width: 320px;
+    .rent-date{
+      gap: 10px;
     }
-    .rent-date {
-      flex-direction: column;
+    .start-date,
+    .end-date{
+      width: 100%;
+    }
+    .t-name-input {
+      width: 95%;
+    }
+    .r-date-input{
       width: 90%;
     }
-    .end-date {
-      margin-top: 10px;
-    }
-  }
-  @media screen and (max-width: 350px) {
-    .t-name-input {
+    .due-date-input{
       width: 280px;
     }
   }

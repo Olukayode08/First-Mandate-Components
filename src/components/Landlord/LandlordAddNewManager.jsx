@@ -8,51 +8,33 @@ const LandlordAddNewManager = () => {
         <section className='m-section'>
           <main>
             <h3>Add New Manager</h3>
-            <div className='section'>
-              <div className='input'>
-                <label>Name</label>
-                <input
-                  type='text'
-                  placeholder="Enter manager's name"
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Name</label>
+              <input
+                type='text'
+                placeholder="Enter manager's name"
+                className='t-name-input'
+              />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Email</label>
-                <input
-                  type='email'
-                  placeholder='Enter email address'
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Email</label>
+              <input
+                type='email'
+                placeholder='Enter email address'
+                className='t-name-input'
+              />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Phone</label>
+              <input type='text' placeholder='+234' className='t-name-input' />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Phone</label>
+              <input type='text' placeholder='+234' className='t-name-input' />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Property Name</label>
-                <input type='text' className='t-name-input' />
-              </div>
+            <div className='input'>
+              <label>Property Name</label>
+              <input type='text' className='t-name-input' />
             </div>
             <button className='add-manager'>Add Manager</button>
           </main>
@@ -69,26 +51,15 @@ const LANManager = styled.section`
     right: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 78%;
-    padding: 20px;
+    padding: 20px 10px;
   }
-  .section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
-  }
-  h3{
+  h3 {
     margin: 15px 0;
   }
   .input {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     margin: 10px 0;
   }
   input {
@@ -103,17 +74,17 @@ const LANManager = styled.section`
   }
   label {
     margin: 10px 0;
-    font-size: 18px;
+    font-size: 16px;
   }
   .t-name-input {
     width: 500px;
-    height: 50px;
+    height: 48px;
   }
   .add-manager {
     width: 180px;
     text-align: center;
     background-color: #fedf7e;
-    height: 50px;
+    height: 48px;
     border-radius: 4px;
     border: transparent;
     margin: 10px 0;
@@ -135,13 +106,7 @@ const LANManager = styled.section`
   }
   @media screen and (max-width: 550px) {
     .t-name-input {
-      width: 320px;
-      height: 40px;
-    }
-  }
-  @media screen and (max-width: 350px) {
-    .t-name-input {
-      width: 280px;
+      width: 96%;
     }
   }
 `

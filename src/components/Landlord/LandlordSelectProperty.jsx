@@ -62,11 +62,10 @@ const LandlordSP = styled.section`
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     right: 0;
     width: 78%;
     margin: 20px 0;
-    padding: 20px;
+    padding: 20px 10px;
   }
   h3 {
     width: 100%;
@@ -140,17 +139,13 @@ const LandlordSP = styled.section`
   @media screen and (max-width: 900px) {
     .search-p {
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .search-text,
-    h3 {
-      text-align: center;
+      align-items: flex-start;
+      justify-content: left;
     }
   }
-  @media screen and (max-width: 330px) {
+  @media screen and (max-width: 550px) {
     .input {
-      width: 270px;
+      width: 100%;
     }
   }
 `
