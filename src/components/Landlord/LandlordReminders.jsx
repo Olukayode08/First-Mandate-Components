@@ -170,6 +170,7 @@ const LandlordR = styled.section`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex-shrink: 0;
   }
   .r-amt {
     flex-shrink: 0;
@@ -241,6 +242,7 @@ const LandlordR = styled.section`
     }
     .r-desc {
       display: none;
+      margin-left: 0;
     }
     .r-mobile {
       display: block;
