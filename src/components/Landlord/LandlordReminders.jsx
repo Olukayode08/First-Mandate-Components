@@ -178,7 +178,7 @@ const LandlordR = styled.section`
   }
   .r-desc {
     margin-left: 45px;
-    line-height: 22px;
+    line-height: 21px;
     flex-shrink: 0;
   }
   .l-btns {
