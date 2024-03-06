@@ -45,7 +45,6 @@ const ResetEP = styled.section`
     margin: 15px 0;
     font-size: 16px;
     line-height: 28px;
-    letter-spacing: 0em;
   }
   h3{
     font-size: 22px;

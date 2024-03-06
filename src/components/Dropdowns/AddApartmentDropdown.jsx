@@ -52,14 +52,14 @@ const AddApartmentDropdown = () => {
 const AADropdown = styled.section`
   .add-ap {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
     align-items: last baseline;
     width: 500px;
-    margin: 10px 0;
+    margin: 20px 0 10px 0;
   }
   .ap-select {
-    width: 200px;
-    height: 40px;
+    width: 240px;
+    height: 48px;
     border: 1px solid black;
     padding: 0 15px;
     border-radius: 5px;
@@ -77,14 +77,12 @@ const AADropdown = styled.section`
   option {
     flex-shrink: 0;
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 550px) {
     .add-ap {
-      flex-direction: column;
-      align-items: flex-start;
-      width: 90%;
+      width: 95%;
     }
-    .ap-select {
-      margin: 10px 0;
+    .ap-select{
+      width: 90%;
     }
   }
 `

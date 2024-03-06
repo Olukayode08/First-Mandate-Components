@@ -20,7 +20,6 @@ const TenantAddApartmentDetails = () => {
                 <input type='text' className='t-name-input' />
               </div>
             </div>
-            <div className='section'>
               <div className='input'>
                 <label>Location</label>
                 <input
@@ -29,7 +28,6 @@ const TenantAddApartmentDetails = () => {
                   className='t-name-input'
                 />
               </div>
-            </div>
             <div className='add-ap'>
               <AddApartmentDropdown />
             </div>
@@ -51,16 +49,16 @@ const TenantAddApartmentDetails = () => {
                 />
               </div>
             </div>
-            <div className='rent-status'>
+            <div className='input'>
               <label>Rent Payment Status</label>
               <p className='not-p'>Not Paid</p>
             </div>
-            <div className='due-date'>
+            <div className='input'>
               <label>Rent Payment Due Date</label>
               <input
                 type='date'
                 placeholder='dd/mm/yyyy'
-                className='r-date-input'
+                className='d-date-input'
               />
             </div>
 
@@ -104,24 +102,13 @@ const TenantAAD = styled.section`
     right: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 78%;
     margin: 0 auto;
     padding: 20px;
   }
-  .section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
-  }
   .input {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     margin: 10px 0;
   }
   input {
@@ -140,31 +127,22 @@ const TenantAAD = styled.section`
   }
   .t-name-input {
     width: 500px;
-    height: 45px;
+    height: 48px;
   }
   .rent-date {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    gap: 20px;
     width: 500px;
     margin: 10px 0;
   }
   .r-date-input {
-    height: 40px;
-    width: 220px;
+    height: 48px;
+    width: 240px;
   }
-  .due-date,
   .start-date,
-  .end-date,
-  .rent-status {
+  .end-date {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-  }
-  .due-date,
-  .rent-status {
-    margin: 10px 0;
   }
   .not-p {
     background-color: #ff0000;
@@ -174,21 +152,19 @@ const TenantAAD = styled.section`
     text-align: center;
     border-radius: 4px;
   }
+  .d-date-input {
+    width: 280px;
+    height: 48px;
+  }
   /* Renew Status */
   .renew-status {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-  }
-  label {
-    margin: 10px 0;
-    font-size: 18px;
   }
   .radio-btns {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 20px;
     margin: 10px 0;
     width: 200px;
   }
@@ -216,29 +192,33 @@ const TenantAAD = styled.section`
     margin: 10px 0;
     font-size: 16px;
     cursor: pointer;
+    font-family: inherit;
     color: #000;
+  }
+  @media screen and (max-width: 1310px) {
+    .ap-section {
+      width: 75%;
+    }
   }
   @media screen and (max-width: 1200px) {
     .ap-section {
-      width: 98%;
+      width: 100%;
       left: 0;
     }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 550px) {
     .t-name-input {
-      width: 320px;
+      width: 95%;
     }
     .rent-date {
-      flex-direction: column;
-      width: 90%;
+      width: 95%;
     }
-    .end-date {
-      margin-top: 10px;
+    .start-date,
+    .end-date{
+      width: 50%;
     }
-  }
-  @media screen and (max-width: 350px) {
-    .t-name-input {
-      width: 280px;
+    .r-date-input {
+      width: 86%;
     }
   }
 `

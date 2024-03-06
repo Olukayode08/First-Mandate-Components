@@ -8,7 +8,6 @@ const TenantHomePage = () => {
       <TenantHP>
         <section>
           <main className='t-section'>
-            <div className='l-home-page'>
               <div className='l-name'>
                 <h3>Hello, Peace</h3>
                 <p>What would you like to do today?</p>
@@ -24,7 +23,6 @@ const TenantHomePage = () => {
                   )
                 })}
               </div>
-            </div>
           </main>
         </section>
       </TenantHP>
@@ -38,19 +36,11 @@ const TenantHP = styled.section`
     right: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
     width: 78%;
     margin: 10px auto;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 20px;
-  }
-  .l-home-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
   }
   .l-name {
     display: flex;
@@ -64,10 +54,9 @@ const TenantHP = styled.section`
     border-radius: 4px;
   }
   .l-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: flex-start;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
     width: 100%;
   }
   .options {
@@ -77,10 +66,11 @@ const TenantHP = styled.section`
     justify-content: center;
     padding: 20px;
     background: #f6f6f8;
-    width: 310px;
+    width: 350px;
     height: 300px;
     margin: 20px 0;
     border-radius: 4px;
+    text-decoration: none;
     cursor: pointer;
   }
   .h-img {
@@ -101,22 +91,9 @@ const TenantHP = styled.section`
     text-align: center;
     line-height: 27px;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1310px) {
     .t-section {
       width: 75%;
-    }
-    .l-name {
-      align-items: center;
-      justify-content: center;
-      background-color: none;
-      box-shadow: none;
-    }
-    .l-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
     }
   }
   @media screen and (max-width: 1200px) {
@@ -125,7 +102,15 @@ const TenantHP = styled.section`
       left: 0;
     }
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 550px) {
+    .l-name,
+    .l-options {
+      align-items: center;
+      justify-content: center;
+    }
+    .l-name {
+      background: none;
+    }
     .options {
       width: 280px;
     }

@@ -38,10 +38,10 @@ const LandlordHP = styled.section`
     display: flex;
     flex-direction: column;
     width: 78%;
-    margin: 10px 0;
+    margin: 10px auto;
     background-color: #fff;
     border-radius: 4px;
-    padding: 20px 10px;
+    padding: 20px;
   }
   .l-name {
     display: flex;
@@ -58,7 +58,7 @@ const LandlordHP = styled.section`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 20px;
+    gap: 15px;
   }
   .options {
     display: flex;

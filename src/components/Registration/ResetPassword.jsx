@@ -71,7 +71,7 @@ const ResetP = styled.section`
   }
   label {
     text-align: left;
-    margin: 10px 0 0 0;
+    margin: 20px 0 0 0;
     font-size: 16px;
     width: 400px;
   }

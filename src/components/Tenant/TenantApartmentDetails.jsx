@@ -21,7 +21,7 @@ const TenantApartmentDetails = () => {
                 </div>
               </div>
               <div className='apartment-details'>
-                <h3>Apartment Details</h3>
+                <h3 className='rent-det'>Apartment Details</h3>
                 <div className='t-details'>
                   <div className='input'>
                     <h1>Lanlord's Name</h1>
@@ -66,10 +66,16 @@ const TenantApartmentDetails = () => {
                   What do you plan to do after your rent has ended?
                 </p>
                 <p className='plan-text'>Please pick an option below.</p>
-                <div className='btn-plan'>
-                  <button>Renew Terms</button>
-                  <button>Request Term Renegotiation</button>
-                  <button>End Terms</button>
+                <div className='btns'>
+                  <div className='btn-plan'>
+                    <button>Renew Terms</button>
+                    <button>End Terms</button>
+                  </div>
+                  <div className='btn-plan'>
+                    <button className='request-r'>
+                      Request Term Renegotiation
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -86,23 +92,23 @@ const TenantAD = styled.section`
     right: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
     width: 78%;
-    margin: 0 auto;
-    padding: 20px;
+    padding: 20px 10px;
   }
   .rent-sec {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
+  .rent-det{
+    font-size: 18px;
+  }
   .apart-det {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    gap: 30px;
     margin: 20px 0;
-    padding: 20px;
     width: 600px;
   }
   .input,
@@ -110,8 +116,8 @@ const TenantAD = styled.section`
     display: flex;
     flex-direction: column;
   }
-  .location {
-    margin: 10px 0;
+  .apart-loc {
+    gap: 10px;
   }
   span {
     opacity: 0.7;
@@ -126,12 +132,13 @@ const TenantAD = styled.section`
   }
   .t-details {
     display: flex;
-    justify-content: space-between;
+    gap: 30px;
     margin: 10px 0;
+    width: 100%;
   }
   .input {
     padding: 10px 0;
-    width: 47%;
+    width: 90%;
     margin: 10px 0;
   }
   input {
@@ -145,14 +152,21 @@ const TenantAD = styled.section`
     font-size: 16px;
     font-family: inherit;
   }
+  /* Tenant Plan */
   .t-plan {
     display: flex;
     flex-direction: column;
     margin: 20px 0;
+    width: 100%;
   }
   .plan-text {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 28px;
+  }
+  .btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
   }
   .btn-plan {
     display: flex;
@@ -181,41 +195,57 @@ const TenantAD = styled.section`
     }
   }
   @media screen and (max-width: 900px) {
-    .btn-plan,
-    .apart-det,
-    .t-details {
-      flex-direction: column;
-    }
     .apart-det {
-      width: 100%;
-      justify-content: center;
+      width: 95%;
+      justify-content: left;
+      align-items: center;
+    }
+    h1,
+    h3 {
+      font-size: 16px;
     }
     .plan-text,
     .rent-det,
     .h-name,
     .location {
-      text-align: center;
+      text-align: left;
     }
-    .h-name {
-      margin: 10px 0;
-    }
-    .t-plan,
-    .apartment-details {
-      align-items: center;
-      justify-content: center;
+  }
+  @media screen and (max-width: 700px) {
+    .t-details {
+      flex-direction: column;
+      gap: 0;
+      margin: 0;
     }
     .input {
       width: 300px;
+    }
+    .btns {
+      flex-direction: column;
+      gap: 0;
+      flex-wrap: nowrap;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .apart-det {
+      gap: 15px;
+    }
+    .input {
+      width: 95%;
+    }
+    .btns,
+    .btn-plan {
+      width: 100%;
+      display: flex;
+      margin: 10px auto;
       align-items: center;
       justify-content: center;
     }
-    input {
-      text-align: center;
+    button {
+      width: 70%;
     }
-  }
-  @media screen and (max-width: 320px) {
-    .input {
-      width: 200px;
+    .request-r {
+      width: 100%;
     }
   }
 `
