@@ -182,6 +182,7 @@ const TenantAD = styled.section`
     font-weight: 400;
     cursor: pointer;
     border-radius: 4px;
+    font-family: inherit;
   }
   @media screen and (max-width: 1310px) {
     .a-section {

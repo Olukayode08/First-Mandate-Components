@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
-import editIcon from '../../assets/edit-btn.png'
+import editIcon from '../../assets/pencil-edit-01.png'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 
 const ManagerReminders = () => {
+  const [data, setData] = useState(landlordReminder)
+
+  const handleDelete = (id) => {
+    setData(data.filter((item) => item.id !== id))
+  }
+
+  const insertLineBreaks = (text) => {
+    const maxLength = 70
+    const words = text.split(' ')
+    let lines = []
+    let currentLine = ''
+
+    words.forEach((word) => {
+      if ((currentLine + word).length > maxLength) {
+        lines.push(currentLine)
+        currentLine = ''
+      }
+      currentLine += (currentLine ? ' ' : '') + word
+    })
+
+    if (currentLine) {
+      lines.push(currentLine)
+    }
+
+    return lines.map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        <br />
+      </React.Fragment>
+    ))
+  }
   return (
     <>
       <ManagerR>
@@ -15,33 +46,46 @@ const ManagerReminders = () => {
               <div className='a-tenant'>
                 <h3>Reminders</h3>
                 <div className='set-reminders'>
-                  <Link to='/manager/send-reminder' className='set-r'>
+                  <Link to='/landlord/send-reminder' className='set-r'>
                     <h4>Send Reminder</h4>
                     <FaRegPlusSquare size={20} />
                   </Link>
-                  <Link to='/manager/add-reminder' className='add-r'>
+                  <Link to='/landlord/add-reminder' className='add-r'>
                     <h4>Add Reminder</h4>
                     <FaRegPlusSquare size={20} />
                   </Link>
                 </div>
               </div>
-              {landlordReminder.map((reminder) => {
+              {data.map((reminder) => {
                 return (
-                  <div key={reminder.id} className='r-due-date'>
-                    <img className='r-img' src={reminder.image} alt='' />
-                    <div className='name-amt'>
-                      <h3 className='r-amt'>Mr Kelly</h3>
-                      <h3 className='r-amt'>{reminder.amount}</h3>
+                  <div key={reminder.id} className='reminders'>
+                    <div className='r-due-date'>
+                      <div className='img-amt'>
+                        <img className='r-img' src={reminder.image} alt='' />
+                        <div className='name-amt'>
+                          <h3 className='r-amt'>Mr Kelly</h3>
+                          <h3 className='r-amt'>{reminder.amount}</h3>
+                        </div>
+                      </div>
+
+                      <p className='r-desc'>
+                        {insertLineBreaks(reminder.description)}
+                      </p>
+                      <div className='l-btns'>
+                        <img
+                          className='l-btn edit-icon'
+                          src={editIcon}
+                          alt='Edit'
+                        />
+                        <p
+                          className='l-btn delete'
+                          onClick={() => handleDelete(reminder.id)}
+                        >
+                          Delete
+                        </p>
+                      </div>
                     </div>
-                    <p className='r-desc'>{reminder.description}</p>
-                    <div className='l-btns'>
-                      <img
-                        className='l-btn edit-icon'
-                        src={editIcon}
-                        alt='Edit'
-                      />
-                      <p className='l-btn delete'>Delete</p>
-                    </div>
+                    <p className='r-mobile'>{reminder.description}</p>
                   </div>
                 )
               })}
@@ -58,14 +102,11 @@ const ManagerR = styled.section`
     position: absolute;
     right: 10px;
     width: 78%;
-    margin: 0 auto;
-    padding: 20px;
+    padding: 20px 10px;
   }
   .landlord-reminder {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 100%;
   }
   .a-tenant {
@@ -77,15 +118,18 @@ const ManagerR = styled.section`
   }
   .set-reminders {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
   }
   .set-r,
   .add-r {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
+    align-items: center;
     background-color: #ffe48e;
     padding: 15px;
+    height: 48px;
     border-radius: 4px;
     width: 200px;
     color: #000;
@@ -95,17 +139,27 @@ const ManagerR = styled.section`
   .set-r {
     background-color: #ffffff;
     border: 1px solid black;
+    height: 48px;
   }
+  .reminders {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #f6f6f8;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    position: relative;
+  }
+  .img-amt,
   .r-due-date {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 5px;
+    gap: 10px;
+  }
+  .r-due-date {
     width: 100%;
-    background: #f6f6f8;
-    flex-shrink: 0;
-    overflow-x: auto;
   }
   .r-img {
     width: 70px;
@@ -115,31 +169,22 @@ const ManagerR = styled.section`
   .name-amt {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
+    gap: 10px;
+    flex-shrink: 0;
   }
   .r-amt {
-    margin: 5px 0;
-  }
-  .r-amt,
-  .r-img {
-    margin-right: 20px;
     flex-shrink: 0;
-  }
-  .desc {
-    display: flex;
-    align-items: center;
-    margin: 15px 0;
+    font-size: 16px;
   }
   .r-desc {
+    margin-left: 45px;
+    line-height: 21px;
     flex-shrink: 0;
-    margin: 0 15px;
   }
   .l-btns {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     justify-content: right;
-    align-items: flex-end;
     width: 100%;
   }
   .l-btn {
@@ -154,9 +199,15 @@ const ManagerR = styled.section`
     padding: 11px 17px;
     background-color: #ffdfe2;
   }
-  @media screen and (max-width: 1320px) {
+  .r-mobile {
+    display: none;
+    text-align: center;
+    margin: 10px 0;
+    flex-shrink: 0;
+  }
+  @media screen and (max-width: 1310px) {
     .r-section {
-      width: 74%;
+      width: 75%;
     }
   }
   @media screen and (max-width: 1200px) {
@@ -168,9 +219,42 @@ const ManagerR = styled.section`
   @media screen and (max-width: 900px) {
     .a-tenant {
       flex-direction: column;
+      align-items: flex-start;
+      justify-content: left;
     }
+    .set-r,
     .add-r {
+      width: 190px;
+      flex-shrink: 0;
+    }
+    .set-reminders {
       margin: 20px 0 10px 0;
+    }
+    .r-desc {
+      margin-left: 25px;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .r-due-date,
+    .reminders {
+      align-items: center;
+      justify-content: space-between;
+    }
+    .r-desc {
+      display: none;
+      margin-left: 0;
+    }
+    .r-mobile {
+      display: block;
+    }
+    .r-img {
+      width: 60px;
+      height: 50px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .r-section {
+      padding: 5px;
     }
   }
 `

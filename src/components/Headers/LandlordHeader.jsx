@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaBell } from 'react-icons/fa'
+import { FaRegBell } from 'react-icons/fa6'
 import { FaRegUser } from 'react-icons/fa'
 import { BsThreeDots } from 'react-icons/bs'
 
@@ -21,7 +21,7 @@ const LandlordHeader = () => {
                 <option value='Tenant'>Tenant</option>
               </select>
               <div className='icons'>
-                <FaBell className='icon' />
+                <FaRegBell className='icon' />
                 <FaRegUser className='icon' />
               </div>
             </div>
@@ -63,16 +63,14 @@ const LandlordH = styled.section`
     cursor: pointer;
   }
   .icons {
+    display: flex;
+    gap: 10px;
     border-left: 1px solid #000;
-    margin-left: 7px;
+    margin-left: 10px;
   }
   .icon {
     margin: 0 10px;
-    color: #fff;
-    background-color: #000;
-    padding: 10px;
-    border-radius: 20px;
-    font-size: 35px;
+    font-size: 18px;
     cursor: pointer;
   }
 `

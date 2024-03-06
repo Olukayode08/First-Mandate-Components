@@ -11,7 +11,7 @@ const TenantAddReminder = () => {
       <TAReminder>
         <section>
           <main className='n-section'>
-            <h3>Add Reminder</h3>
+            <h3>Add New Reminder</h3>
             <div className='n-status'>
               <label>Reminder Type</label>
               <div className='radio-btns'>
@@ -57,6 +57,7 @@ const TenantAddReminder = () => {
                 </div>
               </div>
             </div>
+            {/* Text Boxes */}
             <div className='section'>
               <div className='input'>
                 <label className='p-date'>Short description</label>
@@ -101,8 +102,6 @@ const TAReminder = styled.section`
     padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
   }
   h3 {
     margin: 10px 0 25px 0;
@@ -111,9 +110,6 @@ const TAReminder = styled.section`
   .n-status {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
   }
   label {
     margin: 10px 0;
@@ -140,20 +136,15 @@ const TAReminder = styled.section`
   .n-details {
     font-size: 16px;
   }
+  /* Text Boxes */
   .section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
   }
   .input {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     margin: 10px 0;
-    width: 100%;
   }
   .p-date {
     margin: 10px 0;
@@ -163,9 +154,9 @@ const TAReminder = styled.section`
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
-    font-weight: 17px;
+    font-size: 16px;
     color: #000;
-    border-radius: 3px;
+    border-radius: 4px;
     background: transparent;
   }
   .r-date-input {
@@ -205,9 +196,9 @@ const TAReminder = styled.section`
     margin: 20px 0;
     cursor: pointer;
   }
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1310px) {
     .n-section {
-      width: 74%;
+      width: 75%;
     }
   }
   @media screen and (max-width: 1200px) {
@@ -223,8 +214,9 @@ const TAReminder = styled.section`
     }
   }
   @media screen and (max-width: 550px) {
+    .save-btn,
     .r-desc-input {
-      width: 90%;
+      width: 95%;
     }
   }
 `

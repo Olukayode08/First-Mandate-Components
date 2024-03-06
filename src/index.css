@@ -35,6 +35,9 @@ body {
   background: #fedf7e;
   color: #13131a;
 }
+button{
+  font-family: inherit;
+}
 @media screen and (min-width: 2000px) {
   .app {
     max-width: 1900px;

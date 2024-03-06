@@ -68,8 +68,6 @@ const TenantEPP = styled.section`
     right: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
     width: 78%;
     margin: 0 auto;
     padding: 20px;
@@ -110,6 +108,7 @@ const TenantEPP = styled.section`
     justify-content: space-between;
     margin: 10px 0;
     position: relative;
+    width: 100%;
   }
   .input {
     display: flex;
@@ -156,6 +155,8 @@ const TenantEPP = styled.section`
       flex-direction: column;
       position: static;
     }
+    .input,
+    .t-details,
     .apartment-details {
       align-items: center;
       justify-content: center;
@@ -167,17 +168,29 @@ const TenantEPP = styled.section`
     }
     .input {
       width: 300px;
-      align-items: center;
-      justify-content: center;
     }
     input {
       text-align: center;
     }
   }
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 550px) {
+    input,
+    h1 {
+      text-align: left;
+    }
+    .input,
+    .apartment-details {
+      align-items: flex-start;
+      justify-content: left;
+    }
+    .save-edits,
     .input {
-      width: 200px;
+      width: 95%;
+    }
+    input {
+      width: 100%;
     }
   }
+
 `
 export default TenantEditProfilePage

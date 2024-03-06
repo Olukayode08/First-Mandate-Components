@@ -9,26 +9,24 @@ const ManagerHomePage = () => {
       <ManagerHP>
         <section>
           <main className='m-section'>
-            <div className='l-home-page'>
-              <div className='l-name'>
-                <h3>Hello, Peace</h3>
-                <p>What would you like to do today?</p>
-              </div>
-              <div className='l-options'>
-                {managerOptions.map((option) => {
-                  return (
-                    <Link
-                      to={option.navigate}
-                      className='options'
-                      key={option.id}
-                    >
-                      <img className='h-img' src={option.icon} alt='Icon' />
-                      <h1 className='option-h'>{option.heading}</h1>
-                      <p className='option-text'>{option.text}</p>
-                    </Link>
-                  )
-                })}
-              </div>
+            <div className='l-name'>
+              <h3>Hello, Peace</h3>
+              <p>What would you like to do today?</p>
+            </div>
+            <div className='l-options'>
+              {managerOptions.map((option) => {
+                return (
+                  <Link
+                    to={option.navigate}
+                    className='options'
+                    key={option.id}
+                  >
+                    <img className='h-img' src={option.icon} alt='Icon' />
+                    <h1 className='option-h'>{option.heading}</h1>
+                    <p className='option-text'>{option.text}</p>
+                  </Link>
+                )
+              })}
             </div>
           </main>
         </section>
@@ -43,19 +41,11 @@ const ManagerHP = styled.section`
     right: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
     width: 78%;
     margin: 10px auto;
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
-  }
-  .l-home-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
   }
   .l-name {
     display: flex;
@@ -66,13 +56,13 @@ const ManagerHP = styled.section`
     background-color: #f6f6f8;
     width: 100%;
     height: 100px;
+    border-radius: 4px;
   }
   .l-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    gap: 10px;
+    gap: 15px;
   }
   .options {
     display: flex;
@@ -81,7 +71,7 @@ const ManagerHP = styled.section`
     justify-content: center;
     padding: 20px;
     background-color: #f6f6f8;
-    width: 310px;
+    width: 350px;
     height: 300px;
     margin: 20px 0;
     border-radius: 4px;
@@ -111,18 +101,6 @@ const ManagerHP = styled.section`
     .m-section {
       width: 75%;
     }
-    .l-name {
-      align-items: center;
-      justify-content: center;
-      background: none;
-    }
-    .l-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
   }
 
   @media screen and (max-width: 1200px) {
@@ -131,7 +109,15 @@ const ManagerHP = styled.section`
       left: 0;
     }
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 550px) {
+    .l-name,
+    .l-options {
+      align-items: center;
+      justify-content: center;
+    }
+    .l-name {
+      background: none;
+    }
     .options {
       width: 280px;
     }

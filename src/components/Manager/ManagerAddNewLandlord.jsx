@@ -4,89 +4,62 @@ import styled from 'styled-components'
 const ManagerAddNewLandlord = () => {
   return (
     <>
-      <ManagerANL>
-        <section>
-          <main className='m-section'>
+      <MANLandlord>
+        <section className='m-section'>
+          <main>
             <h3>Add Landlord Details</h3>
-            <div className='section'>
-              <div className='input'>
-                <label>Name</label>
-                <input
-                  type='text'
-                  placeholder="Enter manager's name"
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Name</label>
+              <input
+                type='text'
+                placeholder="Enter manager's name"
+                className='t-name-input'
+              />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Email</label>
-                <input
-                  type='email'
-                  placeholder='Enter email address'
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Email</label>
+              <input
+                type='email'
+                placeholder='Enter email address'
+                className='t-name-input'
+              />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Phone</label>
+              <input type='text' placeholder='+234' className='t-name-input' />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Phone</label>
+              <input type='text' placeholder='+234' className='t-name-input' />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Property Name</label>
-                <input type='text' className='t-name-input' />
-              </div>
+            <div className='input'>
+              <label>Property Name</label>
+              <input type='text' className='t-name-input' />
             </div>
             <button className='add-manager'>Add Landlord</button>
           </main>
         </section>
-      </ManagerANL>
+      </MANLandlord>
     </>
   )
 }
-const ManagerANL = styled.section`
+const MANLandlord = styled.section`
   position: relative;
   .m-section {
     position: absolute;
     top: 0;
-    right: 10px;
+    right: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 78%;
-    margin: 0 auto;
-    padding: 20px;
+    padding: 20px 10px;
   }
-  .section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
+  h3 {
+    margin: 15px 0;
   }
   .input {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     margin: 10px 0;
   }
   input {
@@ -94,31 +67,32 @@ const ManagerANL = styled.section`
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
-    background: transparent;
-    font-weight: 17px;
+    font-size: 17px;
     color: #000;
     border-radius: 3px;
+    background: transparent;
   }
   label {
     margin: 10px 0;
-    font-size: 18px;
+    font-size: 16px;
   }
   .t-name-input {
     width: 500px;
-    height: 50px;
+    height: 48px;
   }
   .add-manager {
     width: 180px;
     text-align: center;
     background-color: #fedf7e;
-    height: 50px;
-    border-radius: 3px;
+    height: 48px;
+    border-radius: 4px;
     border: transparent;
     margin: 10px 0;
     font-size: 16px;
     cursor: pointer;
     color: #000;
   }
+
   @media screen and (max-width: 1310px) {
     .m-section {
       width: 75%;
@@ -130,15 +104,9 @@ const ManagerANL = styled.section`
       left: 0;
     }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 550px) {
     .t-name-input {
-      width: 320px;
-      height: 40px;
-    }
-  }
-  @media screen and (max-width: 350px) {
-    .t-name-input {
-      width: 280px;
+      width: 96%;
     }
   }
 `

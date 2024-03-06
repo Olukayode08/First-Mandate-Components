@@ -4,49 +4,42 @@ import styled from 'styled-components'
 const ManagerAddNewTenant = () => {
   return (
     <>
-      <ManagerANT>
+      <MANTenant>
         <section>
-          <main className='m-section'>
+          <main className='l-section'>
             <h3>Add New Tenant</h3>
-            <div className='section'>
-              <div className='input'>
-                <label>Name</label>
-                <input
-                  type='text'
-                  placeholder="Enter tenant's name"
-                  className='t-name-input'
-                />
-              </div>
+            <label>Select Unit</label>
+            <div className='select'>
+              <select>
+                <option value='option1'>Unit 1</option>
+                <option value='option2'>Unit 2</option>
+                <option value='option3'>Unit 3</option>
+              </select>
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Email</label>
-                <input
-                  type='email'
-                  placeholder='Enter email address'
-                  className='t-name-input'
-                />
-              </div>
+
+            <div className='input'>
+              <label>Name</label>
+              <input
+                type='text'
+                placeholder="Enter tenant's name"
+                className='t-name-input'
+              />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Email</label>
+              <input
+                type='email'
+                placeholder='Enter email address'
+                className='t-name-input'
+              />
             </div>
-            <div className='section'>
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Phone</label>
+              <input type='text' placeholder='+234' className='t-name-input' />
+            </div>
+            <div className='input'>
+              <label>Phone</label>
+              <input type='text' placeholder='+234' className='t-name-input' />
             </div>
             <div className='rent-date'>
               <div className='start-date'>
@@ -76,36 +69,48 @@ const ManagerAddNewTenant = () => {
               <label>Rent Payment Due Date</label>
               <input
                 type='date'
-                placeholder='mm/dd/yyy'
-                className='r-date-input'
+                placeholder='dd/mm/yyyy'
+                className='due-date-input'
               />
             </div>
             <button className='add-tenant'>Add Tenant</button>
           </main>
         </section>
-      </ManagerANT>
+      </MANTenant>
     </>
   )
 }
-const ManagerANT = styled.section`
+const MANTenant = styled.section`
   position: relative;
-  .m-section {
+  .l-section {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
     width: 78%;
-    margin: 0 auto;
-    padding: 20px;
+    padding: 20px 10px;
   }
-  .section {
+  h3 {
+    margin: 15px 0;
+  }
+  .select {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
+    width: 160px;
+    padding: 0 10px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+  select {
+    border: none;
+    background: transparent;
+    color: #000;
+    outline: none;
+    height: 100%;
     width: 100%;
   }
   .input {
@@ -114,15 +119,16 @@ const ManagerANT = styled.section`
     align-items: flex-start;
     justify-content: left;
     margin: 10px 0;
+    width: 100%;
   }
   input {
     outline: none;
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
-    font-weight: 17px;
+    font-size: 16px;
     color: #000;
-    border-radius: 3px;
+    border-radius: 4px;
     background: transparent;
   }
   label {
@@ -131,17 +137,17 @@ const ManagerANT = styled.section`
   }
   .t-name-input {
     width: 500px;
-    height: 40px;
+    height: 48px;
   }
   .rent-date {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 500px;
+    gap: 20px;
+    width: 100%;
     margin: 10px 0;
   }
+  .due-date-input,
   .r-date-input {
-    height: 40px;
+    height: 48px;
     width: 220px;
   }
   .due-date,
@@ -150,8 +156,6 @@ const ManagerANT = styled.section`
   .rent-status {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
   }
   .due-date,
   .rent-status {
@@ -161,47 +165,48 @@ const ManagerANT = styled.section`
     background-color: #ff0000;
     color: #ffffff;
     padding: 12px 0;
-    width: 100px;
+    width: 120px;
     text-align: center;
     border-radius: 4px;
   }
   .add-tenant {
-    width: 180px;
+    width: 220px;
     text-align: center;
     background-color: #fedf7e;
     height: 50px;
-    border-radius: 3px;
+    border-radius: 4px;
     border: transparent;
     margin: 10px 0;
     font-size: 16px;
     cursor: pointer;
     color: #000;
   }
-  @media screen and (max-width: 1270px) {
-    .m-section {
-      width: 78%;
+  @media screen and (max-width: 1310px) {
+    .l-section {
+      width: 75%;
     }
   }
   @media screen and (max-width: 1200px) {
-    .m-section {
+    .l-section {
       width: 98%;
       left: 0;
     }
   }
   @media screen and (max-width: 600px) {
-    .t-name-input {
-      width: 320px;
-    }
     .rent-date {
-      flex-direction: column;
+      gap: 10px;
+    }
+    .start-date,
+    .end-date {
+      width: 100%;
+    }
+    .t-name-input {
+      width: 95%;
+    }
+    .r-date-input {
       width: 90%;
     }
-    .end-date {
-      margin-top: 10px;
-    }
-  }
-  @media screen and (max-width: 350px) {
-    .t-name-input {
+    .due-date-input {
       width: 280px;
     }
   }

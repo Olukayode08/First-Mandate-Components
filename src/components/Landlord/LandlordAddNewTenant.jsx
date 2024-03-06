@@ -145,7 +145,7 @@ const LANTenant = styled.section`
   }
   .t-name-input {
     width: 500px;
-    height: 40px;
+    height: 48px;
   }
   .rent-date {
     display: flex;

@@ -77,14 +77,12 @@ const MSReminder = styled.section`
   position: relative;
   .n-section {
     position: absolute;
-    right: 10px;
+    right: 0;
     width: 78%;
     margin: 10px 0;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
   }
   h3 {
     margin: 10px 0 25px 0;
@@ -93,8 +91,6 @@ const MSReminder = styled.section`
   .n-status {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 100%;
   }
   label {
@@ -122,20 +118,15 @@ const MSReminder = styled.section`
   .n-details {
     font-size: 16px;
   }
+  /* Text boxes */
   .section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 100%;
   }
   .input {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     margin: 10px 0;
-    width: 100%;
   }
   .p-date {
     margin: 10px 0;
@@ -145,9 +136,9 @@ const MSReminder = styled.section`
     border: 1px solid black;
     padding: 0 20px;
     font-family: inherit;
-    font-weight: 17px;
+    font-size: 16px;
     color: #000;
-    border-radius: 3px;
+    border-radius: 4px;
     background: transparent;
   }
   .r-date-input {
@@ -159,7 +150,7 @@ const MSReminder = styled.section`
     width: 500px;
   }
   .search-input {
-    height: 40px;
+    height: 50px;
     width: 500px;
   }
   .n-input {
@@ -209,9 +200,10 @@ const MSReminder = styled.section`
     }
   }
   @media screen and (max-width: 550px) {
+    .save-btn,
     .search-input,
     .r-desc-input {
-      width: 90%;
+      width: 95%;
     }
   }
 `
