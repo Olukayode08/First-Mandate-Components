@@ -61,6 +61,10 @@ import ManagerSendReminder from './components/Manager/ManagerSendReminder'
 import ManagerEditProfilePage from './components/Manager/ManagerEditProfilePage'
 import ManagerProfileSettings from './components/Manager/ManagerProfileSettings'
 import ManagerDocuments from './components/Manager/ManagerDocuments'
+import LandlordEmptyProperty from './components/Landlord/LandlordEmptyProperty'
+import LandlordEmptyTenant from './components/Landlord/LandlordEmptyTenant'
+import LandlordEmptyManager from './components/Landlord/LandlordEmptyManager'
+import LandlordEmptyReminder from './components/Landlord/LandlordEmptyReminder'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -119,6 +123,10 @@ function App() {
               path='profile-settings'
               element={<LandlordProfileSettings />}
             />
+            <Route path='empty-property' element={<LandlordEmptyProperty />} />
+            <Route path='empty-tenant' element={<LandlordEmptyTenant />} />
+            <Route path='empty-manager' element={<LandlordEmptyManager />} />
+            <Route path='empty-reminder' element={<LandlordEmptyReminder />} />
           </Route>
 
           {/* Manager's Page */}
