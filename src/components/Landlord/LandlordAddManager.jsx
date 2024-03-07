@@ -118,6 +118,7 @@ const LAManager = styled.section`
     .a-t-section {
       width: 98%;
       left: 0;
+      top: 0;
       padding: 10px;
     }
   }

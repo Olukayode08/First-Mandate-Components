@@ -76,11 +76,11 @@ const TenantPS = styled.section`
     padding: 20px;
   }
   .log-out {
-    margin: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-bottom: 10px;
   }
   .logout-btn {
     background: #ffdfe2;
@@ -177,6 +177,7 @@ const TenantPS = styled.section`
     .l-profile-s {
       width: 100%;
       left: 0;
+      top: 0;
       padding: 10px;
     }
   }

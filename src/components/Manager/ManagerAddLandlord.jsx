@@ -57,13 +57,13 @@ const ManagerAL = styled.section`
   position: relative;
   .a-t-section {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
     padding: 20px;
   }
   .a-tenant {
@@ -109,15 +109,17 @@ const ManagerAL = styled.section`
   .m-list {
     height: 50px;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .a-t-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .a-t-section {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

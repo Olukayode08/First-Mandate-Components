@@ -84,14 +84,14 @@ const MANTenant = styled.section`
   position: relative;
   .l-section {
     position: absolute;
-    top: 0;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 78%;
-    padding: 20px 10px;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
   }
   h3 {
     margin: 15px 0;
@@ -181,15 +181,17 @@ const MANTenant = styled.section`
     cursor: pointer;
     color: #000;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .l-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-section {
-      width: 98%;
+      width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 600px) {

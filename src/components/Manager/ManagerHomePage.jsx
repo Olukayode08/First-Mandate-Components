@@ -44,7 +44,6 @@ const ManagerHP = styled.section`
     display: flex;
     flex-direction: column;
     width: 81%;
-    margin: 10px auto;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -109,6 +108,7 @@ const ManagerHP = styled.section`
     .m-section {
       width: 100%;
       left: 0;
+      top: 0;
     }
   }
   @media screen and (max-width: 550px) {

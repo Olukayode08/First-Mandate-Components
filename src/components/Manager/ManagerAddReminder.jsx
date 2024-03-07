@@ -96,10 +96,12 @@ const MAReminder = styled.section`
   position: relative;
   .n-section {
     position: absolute;
-    right: 10px;
-    width: 78%;
-    margin: 10px 0;
-    padding: 10px;
+    top: 20px;
+    right: 20px;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
   }
@@ -196,15 +198,17 @@ const MAReminder = styled.section`
     margin: 20px 0;
     cursor: pointer;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .n-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .n-section {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
 

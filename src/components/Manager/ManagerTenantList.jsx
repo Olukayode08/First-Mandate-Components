@@ -94,13 +94,12 @@ const MTenantL = styled.section`
   position: relative;
   .a-t-section {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
+    background-color: #fff;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
     padding: 20px;
   }
   .a-tenant {
@@ -161,15 +160,17 @@ const MTenantL = styled.section`
     padding: 7px 10px;
     border-radius: 4px;
   }
-  @media screen and (max-width: 1320px) {
+  @media screen and (max-width: 1350px) {
     .a-t-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .a-t-section {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

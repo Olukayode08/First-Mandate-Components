@@ -43,12 +43,12 @@ const ManagerPPO = styled.section`
   position: relative;
   .l-section {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 78%;
+    width: 81%;
+    background-color: #fff;
     margin: 0 auto;
     padding: 20px;
   }
@@ -110,9 +110,9 @@ const ManagerPPO = styled.section`
     line-height: 22px;
     margin: 5px 0;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .l-section {
-      width: 75%;
+      width: 79%;
     }
     .a-ppt {
       width: 75%;
@@ -126,10 +126,12 @@ const ManagerPPO = styled.section`
       width: 100%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-section {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
     .l-name {
       align-items: center;

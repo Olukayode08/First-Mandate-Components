@@ -121,13 +121,11 @@ const ManagerPPT = styled.section`
   position: relative;
   .m-section {
     position: absolute;
-    right: 0;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
     padding: 20px;
   }
   .a-ppt {
@@ -135,7 +133,7 @@ const ManagerPPT = styled.section`
     align-items: center;
     justify-content: space-between;
     width: 98%;
-    margin: 20px 0;
+    margin: 0 0 20px 0;
   }
   .add-r {
     display: flex;
@@ -204,19 +202,21 @@ const ManagerPPT = styled.section`
   span {
     font-weight: 800;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .m-section {
-      width: 75%;
+      width: 79%;
     }
     .a-ppt {
       width: 80%;
       margin: 10px auto;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .m-section {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

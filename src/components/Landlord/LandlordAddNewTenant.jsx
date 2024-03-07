@@ -198,6 +198,7 @@ const LANTenant = styled.section`
     .l-section {
       width: 98%;
       left: 0;
+      top: 0;
       padding: 10px;
     }
   }

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import profile from '../../assets/Frame 2007 (1).png'
-
 const ManagerEditProfilePage = () => {
   return (
     <>
@@ -66,17 +65,15 @@ const ManagerEPP = styled.section`
   position: relative;
   .a-section {
     position: absolute;
-    right: 0;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
     padding: 20px;
   }
   h3 {
-    margin: 20px 0;
+    margin: 10px 0 20px 0;
   }
   .rent-sec {
     width: 100%;
@@ -111,6 +108,7 @@ const ManagerEPP = styled.section`
     justify-content: space-between;
     margin: 10px 0;
     position: relative;
+    width: 100%;
   }
   .input {
     display: flex;
@@ -141,15 +139,17 @@ const ManagerEPP = styled.section`
     cursor: pointer;
   }
 
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1350px) {
     .a-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .a-section {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {
@@ -157,6 +157,8 @@ const ManagerEPP = styled.section`
       flex-direction: column;
       position: static;
     }
+    .input,
+    .t-details,
     .apartment-details {
       align-items: center;
       justify-content: center;
@@ -168,16 +170,27 @@ const ManagerEPP = styled.section`
     }
     .input {
       width: 300px;
-      align-items: center;
-      justify-content: center;
     }
     input {
       text-align: center;
     }
   }
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 550px) {
+    input,
+    h1 {
+      text-align: left;
+    }
+    .input,
+    .apartment-details {
+      align-items: flex-start;
+      justify-content: left;
+    }
+    .save-edits,
     .input {
-      width: 200px;
+      width: 95%;
+    }
+    input {
+      width: 100%;
     }
   }
 `

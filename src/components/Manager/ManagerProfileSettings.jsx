@@ -66,21 +66,21 @@ const ManagerPS = styled.section`
   position: relative;
   .l-profile-s {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
     padding: 20px;
   }
   .log-out {
-    margin: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-bottom: 10px;
   }
   .logout-btn {
     background: #ffdfe2;
@@ -98,8 +98,6 @@ const ManagerPS = styled.section`
   .profile-picture {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 100%;
     padding: 20px;
     margin: 10px 0;
@@ -132,8 +130,6 @@ const ManagerPS = styled.section`
     padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
     width: 100%;
     margin: 10px 0;
     padding: 20px;
@@ -145,7 +141,7 @@ const ManagerPS = styled.section`
     width: 100%;
     gap: 40px;
     padding-bottom: 20px;
-    margin: 10px 0;
+    margin: 20px 0;
     border-bottom: 1px solid black;
   }
   .r-btn {
@@ -172,22 +168,29 @@ const ManagerPS = styled.section`
     gap: 15px;
     justify-content: center;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1350px) {
     .l-profile-s {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-profile-s {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 700px) {
-    .log-out {
+    .profile-picture {
       align-items: center;
       justify-content: center;
-      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .n-s-btns,
+    .r-s-btns {
+      gap: 10px 20px;
     }
   }
 `

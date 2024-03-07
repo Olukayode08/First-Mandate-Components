@@ -73,7 +73,7 @@ const TenantEPP = styled.section`
     padding: 20px;
   }
   h3 {
-    margin: 20px 0;
+    margin: 10px 0 20px 0;
   }
   .rent-sec {
     width: 100%;
@@ -148,6 +148,7 @@ const TenantEPP = styled.section`
     .a-section {
       width: 100%;
       left: 0;
+      top: 0;
       padding: 10px;
     }
   }

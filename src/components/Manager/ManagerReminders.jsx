@@ -46,11 +46,11 @@ const ManagerReminders = () => {
               <div className='a-tenant'>
                 <h3>Reminders</h3>
                 <div className='set-reminders'>
-                  <Link to='/landlord/send-reminder' className='set-r'>
+                  <Link to='/manager/send-reminder' className='set-r'>
                     <h4>Send Reminder</h4>
                     <FaRegPlusSquare size={20} />
                   </Link>
-                  <Link to='/landlord/add-reminder' className='add-r'>
+                  <Link to='/manager/add-reminder' className='add-r'>
                     <h4>Add Reminder</h4>
                     <FaRegPlusSquare size={20} />
                   </Link>
@@ -100,9 +100,12 @@ const ManagerR = styled.section`
   position: relative;
   .r-section {
     position: absolute;
-    right: 10px;
-    width: 78%;
-    padding: 20px 10px;
+    top: 20px;
+    right: 20px;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
   }
   .landlord-reminder {
     display: flex;
@@ -205,15 +208,17 @@ const ManagerR = styled.section`
     margin: 10px 0;
     flex-shrink: 0;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .r-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .r-section {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

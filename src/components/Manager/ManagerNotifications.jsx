@@ -47,12 +47,13 @@ const ManagerN = styled.section`
   position: relative;
   .l-notify {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
     align-items: flex-start;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
     padding: 20px;
   }
   h1 {
@@ -89,17 +90,17 @@ const ManagerN = styled.section`
     border-radius: 4px;
   }
 
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1350px) {
     .l-notify {
-      width: 75%;
-    }
-    h3 {
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-notify {
       width: 100%;
       left: 0;
+      top: 0;
+      padding: 10px;
     }
   }
 `
