@@ -38,13 +38,15 @@ const ManagerHP = styled.section`
   position: relative;
   .m-section {
     position: absolute;
-    right: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 78%;
+    width: 81%;
     margin: 10px auto;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 20px;
   }
   .l-name {
@@ -97,13 +99,13 @@ const ManagerHP = styled.section`
     text-align: center;
     line-height: 27px;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .m-section {
-      width: 75%;
+      width: 78%;
     }
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .m-section {
       width: 100%;
       left: 0;

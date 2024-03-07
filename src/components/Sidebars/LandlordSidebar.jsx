@@ -23,7 +23,7 @@ const LandlordSidebar = () => {
   }, [])
 
   useEffect(() => {
-    if (screenSize <= 1200) {
+    if (screenSize <= 1250) {
       setActive(false)
     } else {
       setActive(true)
@@ -31,7 +31,7 @@ const LandlordSidebar = () => {
   }, [screenSize, setActive])
 
   const closeSidebar = () => {
-    if (window.innerWidth <= 1200) {
+    if (window.innerWidth <= 1250) {
       setActive(false)
     }
   }
@@ -153,7 +153,7 @@ const LandlordS = styled.section`
   }
   .sidebar-btn {
     position: absolute;
-    top: 60px;
+    top: 45px;
     left: 0;
     color: #000;
     z-index: 100;
@@ -163,9 +163,9 @@ const LandlordS = styled.section`
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 102px;
+    top: 88px;
     left: 0;
-    width: 280px;
+    width: 230px;
     flex: 0 0 auto;
     background-color: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
@@ -175,24 +175,27 @@ const LandlordS = styled.section`
   .left-sidebar {
     display: flex;
     flex-direction: column;
-    margin: 20px 0 20px 0;
-    padding: 10px 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 10px 0;
   }
   .links {
     display: flex;
     align-items: center;
     justify-content: baseline;
     margin: 15px 0;
+    width: 165px;
     text-decoration: none;
     color: #000000;
-    padding: 15px;
+    padding: 12px 0 12px 12px;
   }
   .icon {
-    margin-right: 30px;
+    margin-right: 10px;
   }
   p {
     flex-shrink: 0;
-    font-size: 17px;
+    font-size: 14px;
   }
   .active {
     background-color: #f6f6f8;
@@ -203,7 +206,7 @@ const LandlordS = styled.section`
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
-    padding: 0 20px;
+    width: 165px;
     margin: 20px 0;
   }
   img {
@@ -213,15 +216,15 @@ const LandlordS = styled.section`
     margin: 10px 0;
   }
   .banner-content {
-    font-size: 15px;
+    font-size: 16px;
     margin: 7px 0;
   }
   .theme {
-    padding: 0 20px;
     margin-top: 60px;
+    width: 165px;
   }
-  @media screen and (max-width: 1200px) {
-    .sidebar-btn{
+  @media screen and (max-width: 1250px) {
+    .sidebar-btn {
       display: block;
     }
   }

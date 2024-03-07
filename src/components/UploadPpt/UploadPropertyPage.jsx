@@ -19,20 +19,23 @@ const UploadPropertyPage = () => {
 const UploadPP = styled.section`
   position: relative;
   .upload-section {
-    width: 78%;
+    width: 81%;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
+    padding: 20px;
+    background-color: #ffffff;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .upload-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .upload-section {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
 `

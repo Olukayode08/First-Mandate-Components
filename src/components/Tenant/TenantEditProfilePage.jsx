@@ -65,11 +65,11 @@ const TenantEPP = styled.section`
   position: relative;
   .a-section {
     position: absolute;
-    right: 0;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
     padding: 20px;
   }
   h3 {
@@ -139,15 +139,16 @@ const TenantEPP = styled.section`
     cursor: pointer;
   }
 
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1350px) {
     .a-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .a-section {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {
@@ -191,6 +192,5 @@ const TenantEPP = styled.section`
       width: 100%;
     }
   }
-
 `
 export default TenantEditProfilePage

@@ -23,5 +23,7 @@ const LandLord = () => {
     </>
   )
 }
-const LandlordMP = styled.section``
+const LandlordMP = styled.section`
+  
+`
 export default LandLord

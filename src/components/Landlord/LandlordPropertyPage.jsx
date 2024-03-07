@@ -187,11 +187,12 @@ const LandlordPP = styled.section`
   position: relative;
   .m-section {
     position: absolute;
-    right: 0;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 78%;
-    padding: 20px 10px;
+    width: 81%;
+    padding: 20px;
   }
   .add-r {
     display: flex;
@@ -203,7 +204,6 @@ const LandlordPP = styled.section`
     text-decoration: none;
     color: #000;
     cursor: pointer;
-    margin: 20px 0;
     text-decoration: none;
   }
   .manager-p {
@@ -249,15 +249,16 @@ const LandlordPP = styled.section`
     background: #fedf7e;
     cursor: pointer;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .m-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .m-section {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

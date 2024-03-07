@@ -93,13 +93,16 @@ const LTenantL = styled.section`
   position: relative;
   .a-t-section {
     position: absolute;
-    right: 10px;
+    right: 20px;
+    top: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 78%;
+    width: 81%;
     margin: 0 auto;
+    background-color: #fff;
+    border-radius: 4px;
     padding: 20px;
   }
   .a-tenant {
@@ -147,7 +150,7 @@ const LTenantL = styled.section`
     background-color: #f6f6f8;
     box-shadow: -2px 4px 16px 0px #eeeeee;
   }
-  .l-location{
+  .l-location {
     text-align: left;
   }
   .margin-r {
@@ -161,15 +164,16 @@ const LTenantL = styled.section`
     padding: 7px 10px;
     border-radius: 4px;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .a-t-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .a-t-section {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

@@ -54,13 +54,14 @@ const LNotify = styled.section`
   position: relative;
   .l-notify {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
   }
   .a-tenant {
     display: flex;
@@ -110,15 +111,16 @@ const LNotify = styled.section`
     padding: 7px 10px;
     border-radius: 4px;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .l-notify {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-notify {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

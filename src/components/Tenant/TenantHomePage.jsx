@@ -33,10 +33,11 @@ const TenantHP = styled.section`
   position: relative;
   .t-section {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 78%;
+    width: 81%;
     margin: 10px auto;
     background-color: #fff;
     border-radius: 4px;
@@ -91,12 +92,12 @@ const TenantHP = styled.section`
     text-align: center;
     line-height: 27px;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .t-section {
-      width: 75%;
+      width: 78%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .t-section {
       width: 100%;
       left: 0;

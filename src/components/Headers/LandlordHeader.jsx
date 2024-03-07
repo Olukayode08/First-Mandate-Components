@@ -40,7 +40,7 @@ const LandlordH = styled.section`
     padding: 20px;
     box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 30;
-    height: 100px;
+    height: 86px;
     background-color: #fff;
   }
   .select-user {
@@ -70,7 +70,7 @@ const LandlordH = styled.section`
   }
   .icon {
     margin: 0 10px;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
   }
 `

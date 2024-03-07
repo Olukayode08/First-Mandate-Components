@@ -15,10 +15,10 @@ body {
  background-color: #fedf7e;
   color: #000;
 }
-/* .light-mode{
+.light-mode{
   background-color: #F6F6F8;
   color: #000;
-} */
+}
 /* Theme */
 #light {
   width: 100vw;
@@ -38,6 +38,11 @@ body {
 button{
   font-family: inherit;
 }
+
+/* Temporary */
+  td{
+    font-size: 13px;
+  }
 @media screen and (min-width: 2000px) {
   .app {
     max-width: 1900px;

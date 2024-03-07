@@ -125,9 +125,6 @@ const UploadPS = styled.section`
     justify-content: left;
     align-items: flex-start;
     width: 100%;
-    padding: 10px;
-    margin: 20px 0;
-    background-color: #ffffff;
   }
   .step-indicator {
     display: flex;

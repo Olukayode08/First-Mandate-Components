@@ -34,11 +34,11 @@ const LandlordHP = styled.section`
   position: relative;
   .l-section {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 78%;
-    margin: 10px auto;
+    width: 81%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -93,15 +93,16 @@ const LandlordHP = styled.section`
     line-height: 27px;
     text-align: center;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .l-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-section {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 550px) {
@@ -110,7 +111,7 @@ const LandlordHP = styled.section`
       align-items: center;
       justify-content: center;
     }
-    .l-name{
+    .l-name {
       background: none;
     }
     .options {

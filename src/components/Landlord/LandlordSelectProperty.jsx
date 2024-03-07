@@ -62,10 +62,12 @@ const LandlordSP = styled.section`
     position: absolute;
     display: flex;
     flex-direction: column;
-    right: 0;
-    width: 78%;
-    margin: 20px 0;
-    padding: 20px 10px;
+    top: 20px;
+    right: 20px;
+    border-radius: 4px;
+    width: 81%;
+    padding: 20px;
+    background-color: #fff;
   }
   h3 {
     width: 100%;
@@ -125,15 +127,16 @@ const LandlordSP = styled.section`
     flex-shrink: 0;
     border-radius: 4px;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .s-property {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .s-property {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

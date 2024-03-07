@@ -66,13 +66,13 @@ const TenantPS = styled.section`
   position: relative;
   .l-profile-s {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
     padding: 20px;
   }
   .log-out {
@@ -168,15 +168,16 @@ const TenantPS = styled.section`
     gap: 15px;
     justify-content: center;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .l-profile-s {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-profile-s {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 700px) {
@@ -187,7 +188,7 @@ const TenantPS = styled.section`
   }
   @media screen and (max-width: 320px) {
     .n-s-btns,
-    .r-s-btns{
+    .r-s-btns {
       gap: 10px 20px;
     }
   }

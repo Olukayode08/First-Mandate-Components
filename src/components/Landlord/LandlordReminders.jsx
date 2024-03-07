@@ -100,9 +100,12 @@ const LandlordR = styled.section`
   position: relative;
   .r-section {
     position: absolute;
-    right: 10px;
-    width: 78%;
-    padding: 20px 10px;
+    top: 20px;
+    right: 20px;
+    width: 81%;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #fff;
   }
   .landlord-reminder {
     display: flex;
@@ -205,15 +208,16 @@ const LandlordR = styled.section`
     margin: 10px 0;
     flex-shrink: 0;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .r-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .r-section {
       width: 100%;
       left: 0;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {
