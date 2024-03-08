@@ -57,7 +57,7 @@ const ResetPE = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 40px 0;
+    margin: 20px 0 20px 0;
     width: 550px;
   }
 
@@ -108,7 +108,7 @@ const ResetPE = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 30px 0 0 0;
+    margin: 20px 0 0 0;
   }
   h5 {
     text-align: center;
@@ -138,11 +138,11 @@ const ResetPE = styled.section`
   @media screen and (max-width: 380px) {
     .logo-info,
     main {
-      width: 320px;
+      width: 300px;
     }
   }
   @media screen and (max-width: 320px) {
-    main {
+    section {
       height: 100%;
     }
     button {

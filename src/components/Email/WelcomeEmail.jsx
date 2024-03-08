@@ -113,7 +113,7 @@ const WelcomeE = styled.section`
     }
   }
   @media screen and (max-width: 320px) {
-    main {
+    section {
       height: 100%;
     }
   }
