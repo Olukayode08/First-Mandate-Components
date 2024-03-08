@@ -69,6 +69,7 @@ const LandlordPS = styled.section`
     top: 20px;
     right: 20px;
     display: flex;
+    background-color: #fff;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -175,9 +176,11 @@ const LandlordPS = styled.section`
   }
   @media screen and (max-width: 1250px) {
     .l-profile-s {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
-      /* top: 0; */
+      right: 0;
+      margin: 20px auto;
       padding: 10px;
     }
   }

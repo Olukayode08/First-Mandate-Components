@@ -205,9 +205,11 @@ const LAReminder = styled.section`
   }
   @media screen and (max-width: 1250px) {
     .n-section {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
-      /* top: 0; */
+      right: 0;
+      margin: 20px auto;
       padding: 10px;
     }
   }

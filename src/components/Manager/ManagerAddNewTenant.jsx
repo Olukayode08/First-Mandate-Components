@@ -188,9 +188,11 @@ const MANTenant = styled.section`
   }
   @media screen and (max-width: 1250px) {
     .l-section {
-      width: 100%;
-      left: 0;
+      width: 90%;
       top: 0;
+      left: 0;
+      right: 0;
+      margin: 20px auto;
       padding: 10px;
     }
   }

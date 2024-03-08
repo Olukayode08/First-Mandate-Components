@@ -38,7 +38,6 @@ const TenantHP = styled.section`
     display: flex;
     flex-direction: column;
     width: 81%;
-    margin: 10px auto;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -94,13 +93,17 @@ const TenantHP = styled.section`
   }
   @media screen and (max-width: 1350px) {
     .t-section {
-      width: 78%;
+      width: 79%;
     }
   }
   @media screen and (max-width: 1250px) {
     .t-section {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
+      right: 0;
+      margin: 20px auto;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 550px) {

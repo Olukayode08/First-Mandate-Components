@@ -32,13 +32,13 @@ const TenantPP = styled.section`
   position: relative;
   .l-section {
     position: absolute;
-    right: 0;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
     padding: 20px;
   }
   .l-home-page {
@@ -81,9 +81,9 @@ const TenantPP = styled.section`
   .option-h {
     margin: 25px 0;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .l-section {
-      width: 75%;
+      width: 79%;
     }
     h3 {
       text-align: center;
@@ -97,10 +97,14 @@ const TenantPP = styled.section`
       width: 100%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-section {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
+      right: 0;
+      margin: 20px auto;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 500px) {

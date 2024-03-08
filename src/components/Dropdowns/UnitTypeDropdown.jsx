@@ -21,33 +21,28 @@ const UnitTypeDropdown = () => {
     <>
       <UnitTypeD>
         <div className='unit-type'>
-          <div className='unit'>
-            <label>Unit Type*</label>
-            <div className='select'>
-              <select
-                value={firstDropdownValue}
-                onChange={handleFirstDropdownChange}
-              >
-                <option value=''>Select Option</option>
-                <option value='option1'>Option 1</option>
-                <option value='option2'>Option 2</option>
-                <option value='option3'>Option 3</option>
-              </select>
-            </div>
+          <div className='select'>
+            <select
+              value={firstDropdownValue}
+              onChange={handleFirstDropdownChange}
+            >
+              <option value=''>Select Option</option>
+              <option value='option1'>Option 1</option>
+              <option value='option2'>Option 2</option>
+              <option value='option3'>Option 3</option>
+            </select>
           </div>
-          <div className='unit'>
-            <div className='select'>
-              <select
-                value={secondDropdownValue}
-                onChange={handleSecondDropdownChange}
-                disabled={secondDropdownDisabled}
-              >
-                <option value=''>Select Option</option>
-                <option value='suboption1'>Suboption 1</option>
-                <option value='suboption2'>Suboption 2</option>
-                <option value='suboption3'>Suboption 3</option>
-              </select>
-            </div>
+          <div className='select'>
+            <select
+              value={secondDropdownValue}
+              onChange={handleSecondDropdownChange}
+              disabled={secondDropdownDisabled}
+            >
+              <option value=''>Select Option</option>
+              <option value='suboption1'>Suboption 1</option>
+              <option value='suboption2'>Suboption 2</option>
+              <option value='suboption3'>Suboption 3</option>
+            </select>
           </div>
         </div>
       </UnitTypeD>
@@ -57,13 +52,8 @@ const UnitTypeDropdown = () => {
 const UnitTypeD = styled.section`
   .unit-type {
     display: flex;
-    align-items: last baseline;
     gap: 30px;
     margin: 10px 0;
-  }
-  .unit {
-    display: flex;
-    flex-direction: column;
   }
   .select {
     width: 200px;
@@ -86,11 +76,10 @@ const UnitTypeD = styled.section`
   }
 
   @media screen and (max-width: 550px) {
-    .unit-type{
+    .unit-type {
       gap: 15px;
     }
-    .unit,
-    .unit-type{
+    .unit-type {
       width: 100%;
     }
     .select {

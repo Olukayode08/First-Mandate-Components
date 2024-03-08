@@ -51,20 +51,19 @@ const TenantADT = styled.section`
   position: relative;
   .a-section {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
     padding: 20px;
   }
   h2 {
     margin: 15px 10px;
     font-size: 18px;
-    text-align: center;
+    text-align: left;
   }
   .my-apart {
     display: flex;
@@ -119,10 +118,19 @@ const TenantADT = styled.section`
     font-size: 16px;
     cursor: pointer;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1350px) {
     .a-section {
-      width: 100%;
+      width: 79%;
+    }
+  }
+  @media screen and (max-width: 1250px) {
+    .a-section {
+      width: 90%;
+      top: 0;
       left: 0;
+      right: 0;
+      margin: 20px auto;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 400px) {

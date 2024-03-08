@@ -47,12 +47,13 @@ const TenantN = styled.section`
   position: relative;
   .l-notify {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
     padding: 20px;
   }
   h1 {
@@ -88,17 +89,21 @@ const TenantN = styled.section`
     padding: 7px 10px;
     border-radius: 4px;
   }
-  @media screen and (max-width: 1270px) {
+  @media screen and (max-width: 1350px) {
     .l-notify {
-      width: 75%;
+      width: 79%;
     }
     h3 {
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-notify {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
+      right: 0;
+      margin: 20px auto;
+      padding: 10px;
     }
   }
 `

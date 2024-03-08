@@ -1,8 +1,7 @@
 import React from 'react'
 import { FaRegBell } from 'react-icons/fa6'
 import { FaRegUser } from 'react-icons/fa'
-import { BsThreeDots } from 'react-icons/bs'
-
+import logo from '../../assets/1st mandate logo 1.png'
 import styled from 'styled-components'
 
 const LandlordHeader = () => {
@@ -12,7 +11,7 @@ const LandlordHeader = () => {
         <section>
           <div className='header'>
             <div className='logo'>
-              <BsThreeDots size={80} />
+              <img src={logo} alt="1st Mandate" />
             </div>
             <div className='select-user'>
               <select name='user' id='user'>
@@ -37,13 +36,19 @@ const LandlordH = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    box-shadow: 0px 2px 16px 0px #00000026;
+    padding: 0 20px;
     z-index: 30;
     height: 86px;
     background-color: #fff;
+    position: relative;
+  }
+  .logo{
+    position: absolute;
+    left: 50px;
   }
   .select-user {
+    position: absolute;
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,6 +77,16 @@ const LandlordH = styled.section`
     margin: 0 10px;
     font-size: 20px;
     cursor: pointer;
+  }
+  @media screen and (max-width: 550px) {
+    .header {
+      padding: 0 10px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    select {
+      width: 90px;
+    }
   }
 `
 export default LandlordHeader

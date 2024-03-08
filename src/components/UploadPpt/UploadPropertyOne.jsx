@@ -24,6 +24,7 @@ const UploadPropertyOne = () => {
             </div>
           </div>
           <div className='unit-type'>
+            <label>Unit Type*</label>
             <UnitTypeDropdown />
           </div>
           <div className='rent-status'>
@@ -64,6 +65,7 @@ const UploadPO = styled.section`
     margin: 10px 0;
     text-align: center;
     border-radius: 4px;
+    background-color: #f6f6f8;
     padding: 13px 0;
   }
   .section {
@@ -128,7 +130,7 @@ const UploadPO = styled.section`
     .u-name-input {
       width: 98%;
     }
-    label{
+    label {
       font-size: 16px;
       line-height: 22px;
     }

@@ -36,7 +36,7 @@ const LandlordET = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 80vh;
     width: 81%;
     background-color: #ffffff;
     padding: 20px;
@@ -68,9 +68,11 @@ const LandlordET = styled.section`
   }
   @media screen and (max-width: 1250px) {
     .e-section {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
-      /* top: 0; */
+      right: 0;
+      margin: 20px auto;
       padding: 10px;
     }
   }

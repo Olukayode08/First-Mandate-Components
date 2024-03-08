@@ -38,7 +38,6 @@ const ManagerHP = styled.section`
   position: relative;
   .m-section {
     position: absolute;
-    position: absolute;
     top: 20px;
     right: 20px;
     display: flex;
@@ -100,15 +99,18 @@ const ManagerHP = styled.section`
   }
   @media screen and (max-width: 1350px) {
     .m-section {
-      width: 78%;
+      width: 79%;
     }
   }
 
   @media screen and (max-width: 1250px) {
     .m-section {
-      width: 100%;
-      left: 0;
+      width: 90%;
       top: 0;
+      left: 0;
+      right: 0;
+      margin: 20px auto;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 550px) {

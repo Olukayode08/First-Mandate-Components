@@ -63,12 +63,13 @@ const TenantPR = styled.section`
   position: relative;
   .l-notify {
     position: absolute;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
     padding: 20px;
   }
   h1 {
@@ -135,7 +136,7 @@ const TenantPR = styled.section`
     margin-bottom: 15px;
     font-size: 18px;
   }
-  button{
+  button {
     background-color: #000;
     color: #fff;
     width: 260px;
@@ -146,15 +147,19 @@ const TenantPR = styled.section`
     cursor: pointer;
     margin: 10px 0;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .l-notify {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .l-notify {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
+      right: 0;
+      margin: 20px auto;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 550px) {

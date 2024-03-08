@@ -73,6 +73,7 @@ const TenantPS = styled.section`
     align-items: flex-start;
     justify-content: center;
     width: 81%;
+    background-color: #ffffff;
     padding: 20px;
   }
   .log-out {
@@ -175,9 +176,11 @@ const TenantPS = styled.section`
   }
   @media screen and (max-width: 1250px) {
     .l-profile-s {
-      width: 100%;
-      left: 0;
+      width: 90%;
       top: 0;
+      left: 0;
+      right: 0;
+      margin: 20px auto;
       padding: 10px;
     }
   }

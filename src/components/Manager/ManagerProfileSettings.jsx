@@ -72,6 +72,8 @@ const ManagerPS = styled.section`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    background-color: #fff;
+
     width: 81%;
     padding: 20px;
   }
@@ -175,9 +177,11 @@ const ManagerPS = styled.section`
   }
   @media screen and (max-width: 1250px) {
     .l-profile-s {
-      width: 100%;
-      left: 0;
+      width: 90%;
       top: 0;
+      left: 0;
+      right: 0;
+      margin: 20px auto;
       padding: 10px;
     }
   }

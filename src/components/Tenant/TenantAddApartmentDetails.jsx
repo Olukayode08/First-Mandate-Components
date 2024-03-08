@@ -98,12 +98,13 @@ const TenantAAD = styled.section`
   position: relative;
   .ap-section {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 78%;
-    margin: 0 auto;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
     padding: 20px;
   }
   .input {
@@ -195,15 +196,19 @@ const TenantAAD = styled.section`
     font-family: inherit;
     color: #000;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .ap-section {
-      width: 75%;
+      width: 79%;
     }
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     .ap-section {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
+      right: 0;
+      margin: 20px auto;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 550px) {
@@ -214,7 +219,7 @@ const TenantAAD = styled.section`
       width: 95%;
     }
     .start-date,
-    .end-date{
+    .end-date {
       width: 50%;
     }
     .r-date-input {

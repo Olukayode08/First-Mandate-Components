@@ -153,7 +153,7 @@ const LandlordS = styled.section`
   }
   .sidebar-btn {
     position: absolute;
-    top: 45px;
+    top: 17px;
     left: 0;
     color: #000;
     z-index: 100;
@@ -168,10 +168,8 @@ const LandlordS = styled.section`
     width: 230px;
     flex: 0 0 auto;
     background-color: #ffffff;
-    box-shadow: 0px 2px 16px 0px #00000026;
     z-index: 50;
   }
-
   .left-sidebar {
     display: flex;
     flex-direction: column;

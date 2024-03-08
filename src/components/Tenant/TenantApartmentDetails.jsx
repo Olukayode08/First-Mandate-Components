@@ -89,18 +89,21 @@ const TenantAD = styled.section`
   position: relative;
   .a-section {
     position: absolute;
-    right: 0;
+    top: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 78%;
-    padding: 20px 10px;
+    width: 81%;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
   }
   .rent-sec {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
-  .rent-det{
+  .rent-det {
     font-size: 18px;
   }
   .apart-det {
@@ -184,15 +187,19 @@ const TenantAD = styled.section`
     border-radius: 4px;
     font-family: inherit;
   }
-  @media screen and (max-width: 1310px) {
+  @media screen and (max-width: 1350px) {
     .a-section {
-      width: 75%;
+      width: 79%;
     }
   }
   @media screen and (max-width: 1200px) {
     .a-section {
-      width: 100%;
+      width: 90%;
+      top: 0;
       left: 0;
+      right: 0;
+      margin: 20px auto;
+      padding: 10px;
     }
   }
   @media screen and (max-width: 900px) {

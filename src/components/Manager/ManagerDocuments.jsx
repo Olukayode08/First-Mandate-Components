@@ -73,7 +73,6 @@ const ManagerD = styled.section`
     color: #000;
   }
   .h-img {
-    /* background-color: #ffffff; */
     box-shadow: 0px 2px 8px 0px #0000001a;
     padding: 23px;
     border-radius: 4px;
@@ -99,9 +98,11 @@ const ManagerD = styled.section`
   }
   @media screen and (max-width: 1250px) {
     .l-section {
-      width: 100%;
-      left: 0;
+      width: 90%;
       top: 0;
+      left: 0;
+      right: 0;
+      margin: 20px auto;
       padding: 10px;
     }
   }

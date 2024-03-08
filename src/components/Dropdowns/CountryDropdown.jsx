@@ -107,7 +107,6 @@ const CountryDD = styled.section`
     display: flex;
     gap: 20px;
     margin: 10px 0;
-    width: 95%;
   }
   .select {
     width: 200px;
@@ -126,12 +125,14 @@ const CountryDD = styled.section`
     color: #000;
     font-family: inherit;
   }
+  option {
+    flex-shrink: 0;
+  }
 
   @media screen and (max-width: 700px) {
-    .select{
+    .select {
       width: 100%;
     }
-
   }
 `
 export default CountryDropdown

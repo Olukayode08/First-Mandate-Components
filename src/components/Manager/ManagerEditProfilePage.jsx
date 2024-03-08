@@ -69,6 +69,7 @@ const ManagerEPP = styled.section`
     right: 20px;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
     width: 81%;
     padding: 20px;
   }
@@ -146,9 +147,11 @@ const ManagerEPP = styled.section`
   }
   @media screen and (max-width: 1250px) {
     .a-section {
-      width: 100%;
-      left: 0;
+      width: 90%;
       top: 0;
+      left: 0;
+      right: 0;
+      margin: 20px auto;
       padding: 10px;
     }
   }
