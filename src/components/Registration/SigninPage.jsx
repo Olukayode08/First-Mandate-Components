@@ -1,11 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import logo from '../../assets/1st mandate logo 1.png'
 
 const SigninPage = () => {
   return (
     <>
       <SigninP>
         <section>
+          <div className='logo'>
+            <img src={logo} alt='1st Mandate' />
+          </div>
           <main>
             <h3>Sign In to 1st Mandate</h3>
             <input
@@ -32,6 +36,14 @@ const SigninPage = () => {
   )
 }
 const SigninP = styled.section`
+  section {
+    position: relative;
+  }
+  .logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
   main {
     display: flex;
     flex-direction: column;
@@ -86,6 +98,10 @@ const SigninP = styled.section`
     cursor: pointer;
   }
   @media screen and (max-width: 470px) {
+    .logo {
+      top: 20px;
+      left: 20px;
+    }
     main {
       width: 430px;
     }

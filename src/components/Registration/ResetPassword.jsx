@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
 import ResetPasswordCongrats from '../modal/ResetPasswordCongrats'
+import logo from '../../assets/1st mandate logo 1.png'
 
 const ResetPassword = () => {
   const { toggleResetPasswordModal, resetPasswordCongrats } =
@@ -11,6 +12,9 @@ const ResetPassword = () => {
     <>
       <ResetP>
         <section>
+          <div className='logo'>
+            <img src={logo} alt='1st Mandate' />
+          </div>
           <main>
             <h3>Enter New Password</h3>
             <input
@@ -36,6 +40,14 @@ const ResetPassword = () => {
   )
 }
 const ResetP = styled.section`
+  section {
+    position: relative;
+  }
+  .logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
   main {
     display: flex;
     flex-direction: column;
@@ -90,6 +102,10 @@ const ResetP = styled.section`
   }
 
   @media screen and (max-width: 470px) {
+    .logo {
+      top: 20px;
+      left: 20px;
+    }
     main {
       width: 430px;
     }

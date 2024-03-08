@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
+import logo from '../../assets/1st mandate logo 1.png'
 
 const VerificationCode = () => {
   const [codes, setCodes] = useState(Array(6).fill(''))
@@ -29,6 +30,9 @@ const VerificationCode = () => {
     <>
       <VerificationC>
         <section>
+          <div className='logo'>
+            <img src={logo} alt='1st Mandate' />
+          </div>
           <main>
             <h3 className='v-code'>Input Verification Code</h3>
             <p>
@@ -60,6 +64,14 @@ const VerificationCode = () => {
   )
 }
 const VerificationC = styled.section`
+  section {
+    position: relative;
+  }
+  .logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
   main {
     display: flex;
     flex-direction: column;
@@ -109,6 +121,10 @@ const VerificationC = styled.section`
     margin: 0;
   }
   @media screen and (max-width: 470px) {
+    .logo {
+      top: 20px;
+      left: 20px;
+    }
     main {
       width: 360px;
     }

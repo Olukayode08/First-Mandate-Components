@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useContext } from 'react'
 import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
+import logo from '../../assets/1st mandate logo 1.png'
 
 const SignupPage = () => {
   const { toggleSignupModal, signupCongrats } = useContext(FirstMandate)
@@ -10,6 +11,9 @@ const SignupPage = () => {
     <>
       <SignupP>
         <section>
+          <div className='logo'>
+            <img src={logo} alt='1st Mandate' />
+          </div>
           <main>
             <h3>Sign Up for 1st Mandate</h3>
             <p className='error'>Please enter a valid email address</p>
@@ -42,6 +46,14 @@ const SignupPage = () => {
   )
 }
 const SignupP = styled.section`
+  section {
+    position: relative;
+  }
+  .logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
   main {
     display: flex;
     flex-direction: column;
@@ -103,6 +115,10 @@ const SignupP = styled.section`
     cursor: pointer;
   }
   @media screen and (max-width: 470px) {
+    .logo {
+      top: 20px;
+      left: 20px;
+    }
     main {
       width: 430px;
     }

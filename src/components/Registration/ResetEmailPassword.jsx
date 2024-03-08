@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
 import EmailCongratsModal from '../modal/EmailCongratsModal'
+import logo from '../../assets/1st mandate logo 1.png'
 
 const ResetEmailPassword = () => {
   const { toggleEmailModal, emailResetCongrats } = useContext(FirstMandate)
@@ -10,6 +11,9 @@ const ResetEmailPassword = () => {
     <>
       <ResetEP>
         <section>
+          <div className='logo'>
+            <img src={logo} alt='1st Mandate' />
+          </div>
           <main>
             <h3>Enter your email address to reset password</h3>
             <p className='error'>Please enter a valid email address</p>
@@ -29,6 +33,14 @@ const ResetEmailPassword = () => {
   )
 }
 const ResetEP = styled.section`
+  section {
+    position: relative;
+  }
+  .logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
   main {
     display: flex;
     flex-direction: column;
@@ -46,7 +58,7 @@ const ResetEP = styled.section`
     font-size: 16px;
     line-height: 28px;
   }
-  h3{
+  h3 {
     font-size: 22px;
   }
   p {
@@ -84,6 +96,10 @@ const ResetEP = styled.section`
   }
 
   @media screen and (max-width: 470px) {
+    .logo {
+      top: 20px;
+      left: 20px;
+    }
     main {
       width: 430px;
     }

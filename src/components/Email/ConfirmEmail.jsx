@@ -3,17 +3,20 @@ import styled from 'styled-components'
 import { BsInstagram } from 'react-icons/bs'
 import { FaXTwitter } from 'react-icons/fa6'
 import { FiFacebook } from 'react-icons/fi'
+import logo from '../../assets/1st mandate logo 1.png'
 
 const ConfirmEmail = () => {
   return (
     <>
       <ConfirmE>
         <section>
-          <main>
-            <div className='logo-info'>
-              <h1>1st Mandate Logo</h1>
-              <p className='acc-info'>ACCOUNT INFORMATION</p>
+          <div className='logo-info'>
+            <div className='logo'>
+              <img src={logo} alt='1st Mandate' />
             </div>
+            <p className='acc-info'>ACCOUNT INFORMATION</p>
+          </div>
+          <main>
             <div className='content'>
               <h3>Your free trial has expired,</h3>
               <p>
@@ -34,53 +37,57 @@ const ConfirmEmail = () => {
                 support, hosting, analytics, and more.
               </p>
               <button>Upgrade Now</button>
+              <p>Let us know how we can help</p>
             </div>
-            <footer>
-              <h5>1st Mandate, Inc.</h5>
-              <h5>7a, Surulere Street, Lagos, Nigeria.</h5>
-              <div className='socials'>
-                <BsInstagram />
-                <FaXTwitter />
-                <FiFacebook />
-              </div>
-            </footer>
           </main>
+          <footer>
+            <h5>1st Mandate, Inc.</h5>
+            <h5>7a, Surulere Street, Lagos, Nigeria.</h5>
+            <div className='socials'>
+              <BsInstagram />
+              <FaXTwitter />
+              <FiFacebook />
+            </div>
+          </footer>
         </section>
       </ConfirmE>
     </>
   )
 }
 const ConfirmE = styled.section`
-  main {
+  section {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100%;
-    width: 500px;
     margin: 0 auto;
   }
   .logo-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    margin: 15px 0;
+    margin: 20px 0;
+    width: 550px;
   }
-  h1 {
-    font-size: 20px;
+  main {
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    background-color: #ffffff;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 90%;
+    padding: 10px;
   }
   .acc-info {
     font-size: 12px;
     line-height: 19px;
     letter-spacing: 0.5px;
     flex-shrink: 0;
-  }
-  .content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px;
-    margin: 0 auto;
   }
   h3,
   p {
@@ -89,10 +96,7 @@ const ConfirmE = styled.section`
     font-size: 16px;
     line-height: 28px;
   }
-  h3 {
-    font-weight: 500;
-  }
-  span{
+  span {
     font-weight: 500;
   }
   button {
@@ -112,12 +116,15 @@ const ConfirmE = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 7px 0;
+    margin: 20px 0;
   }
   h5 {
     text-align: center;
     line-height: 22px;
     font-size: 14px;
+    font-weight: 100;
+    font-size: 14px;
+    margin: 3px 0;
   }
   .socials {
     display: flex;
@@ -125,24 +132,22 @@ const ConfirmE = styled.section`
     margin: 5px;
     cursor: pointer;
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 580px) {
+    .logo-info,
     main {
-      width: 400px;
+      width: 450px;
     }
   }
-  @media screen and (max-width: 410px) {
+  @media screen and (max-width: 450px) {
+    .logo-info,
     main {
-      width: 350px;
+      width: 380px;
     }
   }
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 380px) {
+    .logo-info,
     main {
-      width: 280px;
-    }
-  }
-  @media screen and (max-width: 320px) {
-    main {
-      height: 100%;
+      width: 300px;
     }
   }
 `

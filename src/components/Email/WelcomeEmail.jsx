@@ -4,13 +4,15 @@ import welcomeIcon from '../../assets/undraw_welcome_cats_thqn 1.png'
 import { BsInstagram } from 'react-icons/bs'
 import { FaXTwitter } from 'react-icons/fa6'
 import { FiFacebook } from 'react-icons/fi'
+import logo from '../../assets/1st mandate logo 1.png'
+
 const WelcomeEmail = () => {
   return (
     <>
       <WelcomeE>
         <section>
           <main>
-            <h3>1st Mandate Logo</h3>
+            <img src={logo} alt='1st Mandate' />
             <img src={welcomeIcon} alt='Welcome' />
             <p>Welcome to 1st Mandate</p>
             <p>
@@ -18,31 +20,39 @@ const WelcomeEmail = () => {
               confirm your email.
             </p>
             <button>Yep, confirmed!</button>
-            <footer>
-              <h5>1st Mandate, Inc.</h5>
-              <h5>7a, Surulere Street, Lagos, Nigeria.</h5>
-              <div className='socials'>
-                <BsInstagram />
-                <FaXTwitter />
-                <FiFacebook />
-              </div>
-            </footer>
           </main>
+          <footer>
+            <h5>1st Mandate, Inc.</h5>
+            <h5>7a, Surulere Street, Lagos, Nigeria.</h5>
+            <div className='socials'>
+              <BsInstagram />
+              <FaXTwitter />
+              <FiFacebook />
+            </div>
+          </footer>
         </section>
       </WelcomeE>
     </>
   )
 }
 const WelcomeE = styled.section`
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0 auto;
+  }
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     width: 500px;
     margin: 0 auto;
     padding: 10px;
+    background-color: #ffffff;
   }
   button,
   h3,
@@ -71,12 +81,15 @@ const WelcomeE = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 7px 0;
+    margin: 20px 0;
   }
   h5 {
     text-align: center;
     line-height: 22px;
     font-size: 14px;
+    font-weight: 100;
+    font-size: 14px;
+    margin: 3px 0;
   }
   .socials {
     display: flex;
