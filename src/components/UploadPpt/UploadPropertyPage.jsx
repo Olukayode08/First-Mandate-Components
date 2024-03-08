@@ -35,7 +35,7 @@ const UploadPP = styled.section`
     .upload-section {
       width: 100%;
       left: 0;
-      top: 0;
+      /* top: 0; */
       padding: 10px;
     }
   }

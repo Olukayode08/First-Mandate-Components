@@ -102,7 +102,7 @@ const LandlordHP = styled.section`
     .l-section {
       width: 100%;
       left: 0;
-      top: 0;
+      /* top: 0; */
       padding: 10px;
     }
   }

@@ -177,7 +177,7 @@ const LandlordPS = styled.section`
     .l-profile-s {
       width: 100%;
       left: 0;
-      top: 0;
+      /* top: 0; */
       padding: 10px;
     }
   }
