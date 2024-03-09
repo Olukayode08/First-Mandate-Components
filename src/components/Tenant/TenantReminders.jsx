@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
-import editIcon from '../../assets/pencil-edit-01.png'
 
 const TenantReminders = () => {
 
@@ -52,11 +51,7 @@ const TenantReminders = () => {
                         {insertLineBreaks(reminder.description)}
                       </p>
                       <div className='l-btns'>
-                        <img
-                          className='l-btn edit-icon'
-                          src={editIcon}
-                          alt='Edit'
-                        />
+                        <p className='l-btn edit-icon'>Edit</p>
                       </div>
                     </div>
                     <p className='r-mobile'>{reminder.description}</p>
@@ -138,11 +133,12 @@ const TenantR = styled.section`
     width: 100%;
   }
   .l-btn {
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    text-align: center;
   }
   .edit-icon {
-    padding: 8px 13px;
+    padding: 11px 17px;
     background-color: #fedf7e;
   }
   .r-mobile {

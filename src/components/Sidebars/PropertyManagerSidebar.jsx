@@ -6,6 +6,7 @@ import { FaFileImport } from 'react-icons/fa'
 import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
 import { LuWalletCards } from 'react-icons/lu'
 import { TbReportSearch } from 'react-icons/tb'
+import { IoNotifications } from 'react-icons/io5'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
@@ -56,10 +57,7 @@ const PropertyManagerSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/manager' ||
-                    location.pathname === '/manager/notifications'
-                      ? 'active links'
-                      : 'links'
+                    location.pathname === '/manager' ? 'active links' : 'links'
                   }
                   to='/manager'
                 >
@@ -117,6 +115,19 @@ const PropertyManagerSidebar = () => {
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
                 </Link>
+                <Link
+                  onClick={closeSidebar}
+                  className={
+                    location.pathname === '/manager/notifications'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/manager/notifications'
+                >
+                  <IoNotifications size={23} className='icon' />
+                  <p className='desc'>Notifications</p>
+                </Link>
+
                 <Link
                   onClick={closeSidebar}
                   className='links buttom-img'

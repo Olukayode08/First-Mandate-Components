@@ -2,11 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { landlordProperties } from '../../datas/LandlordProperties'
-import editIcon from '../../assets/edit-btn.png'
+import editIcon from '../../assets/pencil-edit-01.png'
 import { Link } from 'react-router-dom'
-import { FaWhatsapp } from 'react-icons/fa6'
-import { FaPhone } from 'react-icons/fa'
-import { MdOutlineMailOutline } from 'react-icons/md'
+
 
 const LandlordPropertyPage = () => {
   return (
@@ -18,37 +16,38 @@ const LandlordPropertyPage = () => {
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
-            {landlordProperties.map((property) => (
-              <div key={property.id} className='manager-p'>
-                <div className='apart-det'>
-                  <img className='p-img' src={property.image} alt='House' />
-                  <div className='apart-loc'>
-                    <h3 className='h-name'>{property.title}</h3>
-                    <h1 className='location'>{property.location}</h1>
-                    <div className='status-active'>
-                      <p>
-                        Status:
-                        <span> Active</span>
-                      </p>
-                      <p>
-                        Property Type:
-                        <span> Residential</span>
-                      </p>
-                      <p>
-                        Unit:
-                        <span> 1 unit</span>
-                      </p>
-                      <p>
-                        Building Type:
-                        <span> Duplex</span>
-                      </p>
-                    </div>
-                  </div>
-                  <img className='edit-img' src={editIcon} alt='Edit' />
-                </div>
+            <div className='ppt-table'>
+              {landlordProperties.map((property) => (
+                <div key={property.id} className='manager-p'>
+                  <div className='apart-det'>
+                    {/* <img className='p-img' src={property.image} alt='House' /> */}
+                    <div className='apartment'>
+                      <p className='p-icon'>{property.icon}</p>
+                      <div className='apart-loc'>
+                        <h3 className='h-name'>{property.title}</h3>
+                        <h1 className='location'>{property.location}</h1>
+                        <div className='status-active'>
+                          <p>
+                            Status:
+                            <span> Active</span>
+                          </p>
 
-                <LandlordP>
-                  {/* <main className='table'>
+                          <p>
+                            Unit:
+                            <span> 4 Units</span>
+                          </p>
+                          <p>
+                            Building Type:
+                            <span> Flat</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <img className='edit-img' src={editIcon} alt='Edit' />
+                  </div>
+
+                  <LandlordP>
+                    {/* <main className='table'>
                     <div className='table-heading'>
                       <p className='t-header unit-w'>Unit No.</p>
                       <p className='t-header name-w'>Unit Name</p>
@@ -74,51 +73,42 @@ const LandlordPropertyPage = () => {
                       )
                     })}
                   </main> */}
-                  <div className='table'>
-                    <table>
-                      <thead>
-                        <tr className='t-heading'>
-                          <th>Manager Name</th>
-                          <th>WhatsApp Icon</th>
-                          <th>WhatsApp Number</th>
-                          <th>Phone Icon</th>
-                          <th>Phone Number</th>
-                          <th>Email Icon</th>
-                          <th>Email Address</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {property.tableData.map((table) => {
-                          return (
-                            <tr key={table.id} className='t-list'>
-                              <td>Nike Alade</td>
-                              <td>
-                                <FaWhatsapp />
-                              </td>
-                              <td>08168325494</td>
-                              <td>
-                                <FaPhone />
-                              </td>
-                              <td>08168325494</td>
-                              <td><MdOutlineMailOutline /></td>
-                              <td>nikealade@gmail.com</td>
-                              {/* <td>{table.no}</td>
-                              <td>{table.name}</td>
-                              <td>{table.unitType}</td>
-                              <td>{table.bed}</td>
-                              <td>{table.tenantName}</td>
-                              <td>{table.rentTerm}</td>
-                              <td>{table.status}</td>
-                              <td>{table.amt}</td> */}
-                            </tr>
-                          )
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </LandlordP>
-              </div>
-            ))}
+                    <div className='table'>
+                      <table>
+                        <thead>
+                          <tr className='t-heading'>
+                            <th>Unit No.</th>
+                            <th>Unit Name</th>
+                            <th>Unit Type</th>
+                            <th>Bedrooms</th>
+                            <th>Tenant's name</th>
+                            <th>Rent Term</th>
+                            <th>Status</th>
+                            <th>Rent amt.</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {property.tableData.map((table) => {
+                            return (
+                              <tr key={table.id} className='t-list'>
+                                <td>{table.no}</td>
+                                <td>{table.name}</td>
+                                <td>{table.unitType}</td>
+                                <td>{table.bed}</td>
+                                <td>{table.tenantName}</td>
+                                <td>{table.rentTerm}</td>
+                                <td>{table.status}</td>
+                                <td>{table.amt}</td>
+                              </tr>
+                            )
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </LandlordP>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </LandlordPP>
@@ -209,17 +199,26 @@ const LandlordPP = styled.section`
   .manager-p {
     display: flex;
     flex-direction: column;
-    padding: 20px 10px;
+    padding: 20px;
     width: 100%;
+    background-color: #ffffff;
     margin: 20px 0;
     box-shadow: 0px 2px 16px 0px #00000026;
   }
   .apart-det {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin: 20px 0;
     width: 100%;
+  }
+  .apartment {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .p-icon {
+    font-size: 40px;
   }
   .p-img {
     width: 100px;
@@ -229,8 +228,9 @@ const LandlordPP = styled.section`
   .apart-loc {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 17px;
   }
+
   .status-active {
     display: flex;
     flex-wrap: wrap;
@@ -281,6 +281,9 @@ const LandlordPP = styled.section`
     .status-active,
     .h-name {
       margin: 10px 0;
+    }
+    .p-icon {
+      display: none;
     }
   }
 `

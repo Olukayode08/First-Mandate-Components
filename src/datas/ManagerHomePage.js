@@ -45,6 +45,6 @@ export const managerOptions = [
     icon: vectorIcon,
     heading: 'View Due Dates',
     text: 'Track Deadlines: Stay On Top of Important Dates and Tasks',
-    navigate: '/manager/reminders',
+    navigate: '#',
   },
 ]

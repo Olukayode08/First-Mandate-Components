@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
-import editIcon from '../../assets/pencil-edit-01.png'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 
@@ -46,10 +45,10 @@ const LandlordReminders = () => {
               <div className='a-tenant'>
                 <h3>Reminders</h3>
                 <div className='set-reminders'>
-                  <Link to='/landlord/send-reminder' className='set-r'>
+                  {/* <Link to='/landlord/send-reminder' className='set-r'>
                     <h4>Send Reminder</h4>
                     <FaRegPlusSquare size={20} />
-                  </Link>
+                  </Link> */}
                   <Link to='/landlord/add-reminder' className='add-r'>
                     <h4>Add Reminder</h4>
                     <FaRegPlusSquare size={20} />
@@ -72,11 +71,7 @@ const LandlordReminders = () => {
                         {insertLineBreaks(reminder.description)}
                       </p>
                       <div className='l-btns'>
-                        <img
-                          className='l-btn edit-icon'
-                          src={editIcon}
-                          alt='Edit'
-                        />
+                        <p className='l-btn edit-icon'>Edit</p>
                         <p
                           className='l-btn delete'
                           onClick={() => handleDelete(reminder.id)}
@@ -139,11 +134,11 @@ const LandlordR = styled.section`
     cursor: pointer;
     text-decoration: none;
   }
-  .set-r {
+  /* .set-r {
     background-color: #ffffff;
     border: 1px solid black;
     height: 48px;
-  }
+  } */
   .reminders {
     width: 100%;
     display: flex;
@@ -191,11 +186,12 @@ const LandlordR = styled.section`
     width: 100%;
   }
   .l-btn {
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    text-align: center;
   }
   .edit-icon {
-    padding: 8px 13px;
+    padding: 11px 17px;
     background-color: #fedf7e;
   }
   .delete {

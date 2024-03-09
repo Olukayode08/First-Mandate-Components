@@ -44,7 +44,7 @@ const TenantProfileSettings = () => {
                   <input className='r-btn-input' type='radio' />
                 </div>
               </div>
-              <h4>Notification Type</h4>
+              {/* <h4>Notification Type</h4>
               <div className='n-s-btns'>
                 <div className='n-btn'>
                   <input className='r-btn-input' type='checkbox' />
@@ -54,7 +54,7 @@ const TenantProfileSettings = () => {
                   <input className='r-btn-input' type='checkbox' />
                   <p>Sms</p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </main>
         </section>

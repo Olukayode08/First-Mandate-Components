@@ -6,6 +6,7 @@ import { FaFileImport } from 'react-icons/fa'
 import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
 import { LuWalletCards } from 'react-icons/lu'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
+import { IoNotifications } from 'react-icons/io5'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { ThemeContext } from '../../context/Darkmode'
@@ -57,10 +58,7 @@ const TenantSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/tenant' ||
-                    location.pathname === '/tenant/notifications'
-                      ? 'active links'
-                      : 'links'
+                    location.pathname === '/tenant' ? 'active links' : 'links'
                   }
                   to='/tenant'
                 >
@@ -89,11 +87,41 @@ const TenantSidebar = () => {
                   <MdOutlineOnDeviceTraining size={23} className='icon' />
                   <p className='desc'>Manager</p>
                 </Link>
-                <Link onClick={closeSidebar} className='links' to='#'>
+                <Link
+                  onClick={closeSidebar}
+                  className={
+                    location.pathname === '/tenant/reminders' ||
+                    location.pathname === '/tenant/add-reminder'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/tenant/reminders'
+                >
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
                 </Link>
-                <Link onClick={closeSidebar} className='links' to='#'>
+                <Link
+                  onClick={closeSidebar}
+                  className={
+                    location.pathname === '/tenant/notifications'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/tenant/notifications'
+                >
+                  <IoNotifications size={23} className='icon' />
+                  <p className='desc'>Notifications</p>
+                </Link>
+                <Link
+                  onClick={closeSidebar}
+                  className={
+                    location.pathname === '/tenant/payment' ||
+                    location.pathname === '/tenant/payment-review'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/tenant/payment'
+                >
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Payment</p>
                 </Link>

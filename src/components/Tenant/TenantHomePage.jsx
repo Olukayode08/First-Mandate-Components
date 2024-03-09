@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { tenantOptions } from '../../datas/TenantHomePage'
+import { Link } from 'react-router-dom'
 
 const TenantHomePage = () => {
   return (
@@ -15,11 +16,15 @@ const TenantHomePage = () => {
               <div className='l-options'>
                 {tenantOptions.map((option) => {
                   return (
-                    <div className='options' key={option.id}>
+                    <Link
+                      to={option.navigate}
+                      className='options'
+                      key={option.id}
+                    >
                       <img className='h-img' src={option.icon} alt='Icon' />
                       <h1 className='option-h'>{option.heading}</h1>
                       <p className='option-text'>{option.text}</p>
-                    </div>
+                    </Link>
                   )
                 })}
               </div>
@@ -75,6 +80,7 @@ const TenantHP = styled.section`
     border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
+    color: #000;
   }
   .h-img {
     background-color: #f6f6f8;

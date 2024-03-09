@@ -7,6 +7,7 @@ import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
 import { LuWalletCards } from 'react-icons/lu'
 import { TbReportSearch } from 'react-icons/tb'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
+import { IoNotifications } from 'react-icons/io5'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { ThemeContext } from '../../context/Darkmode'
@@ -58,10 +59,7 @@ const LandlordSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/landlord' ||
-                    location.pathname === '/landlord/notifications'
-                      ? 'active links'
-                      : 'links'
+                    location.pathname === '/landlord' ? 'active links' : 'links'
                   }
                   to='/landlord'
                 >
@@ -119,6 +117,18 @@ const LandlordSidebar = () => {
                 >
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
+                </Link>
+                <Link
+                  onClick={closeSidebar}
+                  className={
+                    location.pathname === '/landlord/notifications'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/landlord/notifications'
+                >
+                  <IoNotifications size={23} className='icon' />
+                  <p className='desc'>Notifications</p>
                 </Link>
                 <Link
                   onClick={closeSidebar}
