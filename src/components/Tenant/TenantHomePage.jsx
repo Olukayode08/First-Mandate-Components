@@ -35,9 +35,9 @@ const TenantHP = styled.section`
     position: absolute;
     top: 20px;
     right: 20px;
+    width: 81%;
     display: flex;
     flex-direction: column;
-    width: 81%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -52,6 +52,9 @@ const TenantHP = styled.section`
     width: 100%;
     height: 100px;
     border-radius: 4px;
+  }
+  h3 {
+    font-size: 18px;
   }
   .l-options {
     display: flex;
@@ -78,6 +81,9 @@ const TenantHP = styled.section`
     box-shadow: 0px 2px 8px 0px #0000001a;
     padding: 23px;
     border-radius: 4px;
+  }
+  h1 {
+    font-size: 16px;
   }
   .option-h {
     margin: 25px 0;

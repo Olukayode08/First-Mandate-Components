@@ -150,7 +150,7 @@ const PMSidebar = styled.section`
   }
   .sidebar-btn {
     position: absolute;
-    top: 17px;
+    top: 20px;
     left: 0;
     color: #000;
     z-index: 100;

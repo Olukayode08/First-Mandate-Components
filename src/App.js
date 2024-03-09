@@ -65,6 +65,7 @@ import LandlordEmptyProperty from './components/Landlord/LandlordEmptyProperty'
 import LandlordEmptyTenant from './components/Landlord/LandlordEmptyTenant'
 import LandlordEmptyManager from './components/Landlord/LandlordEmptyManager'
 import LandlordEmptyReminder from './components/Landlord/LandlordEmptyReminder'
+import PageLayout from './pages/PageLayout'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -86,6 +87,8 @@ function App() {
       <Reload />
       <div className='app' id={theme}>
         <Routes>
+          <Route path='/page-layout' element={<PageLayout />} />
+
           <Route path='/' element={<SignupPage />} />
           <Route path='/sign-in' element={<SigninPage />} />
           <Route path='/verify-code' element={<VerificationCode />} />

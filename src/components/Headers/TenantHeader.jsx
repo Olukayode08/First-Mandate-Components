@@ -8,7 +8,6 @@ const TenantHeader = () => {
   return (
     <>
       <THeader>
-        <section>
           <div className='header'>
             <div className='logo'>
               <img src={logo} alt='1st Mandate' />
@@ -25,7 +24,6 @@ const TenantHeader = () => {
               </div>
             </div>
           </div>
-        </section>
       </THeader>
     </>
   )
