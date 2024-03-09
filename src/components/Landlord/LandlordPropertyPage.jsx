@@ -16,7 +16,6 @@ const LandlordPropertyPage = () => {
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
-            <div className='ppt-table'>
               {landlordProperties.map((property) => (
                 <div key={property.id} className='manager-p'>
                   <div className='apart-det'>
@@ -24,8 +23,8 @@ const LandlordPropertyPage = () => {
                     <div className='apartment'>
                       <p className='p-icon'>{property.icon}</p>
                       <div className='apart-loc'>
-                        <h3 className='h-name'>{property.title}</h3>
-                        <h1 className='location'>{property.location}</h1>
+                        <h3>{property.title}</h3>
+                        <h1>{property.location}</h1>
                         <div className='status-active'>
                           <p>
                             Status:
@@ -108,7 +107,6 @@ const LandlordPropertyPage = () => {
                   </LandlordP>
                 </div>
               ))}
-            </div>
           </div>
         </section>
       </LandlordPP>
@@ -230,7 +228,6 @@ const LandlordPP = styled.section`
     flex-direction: column;
     gap: 17px;
   }
-
   .status-active {
     display: flex;
     flex-wrap: wrap;
@@ -274,12 +271,7 @@ const LandlordPP = styled.section`
       align-items: flex-start;
       justify-content: left;
     }
-    .h-name,
-    .location {
-      text-align: center;
-    }
-    .status-active,
-    .h-name {
+    .status-active {
       margin: 10px 0;
     }
     .p-icon {

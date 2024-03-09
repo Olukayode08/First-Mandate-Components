@@ -1,11 +1,11 @@
-import houseIcon from '../assets/Frame-2007.png'
+// import houseIcon from '../assets/Frame-2007.png'
 import { RiRadioButtonLine } from 'react-icons/ri'
 import { AiOutlineStop } from 'react-icons/ai'
 
 export const landlordProperties = [
   {
     id: 2021,
-    image: houseIcon,
+    // image: houseIcon,
     icon: <AiOutlineStop/>,
     title: 'House of Elovia',
     location: 'Ikeja Road, Lagos State',
@@ -58,7 +58,7 @@ export const landlordProperties = [
   },
   {
     id: 2022,
-    image: houseIcon,
+    // image: houseIcon,
     icon: <RiRadioButtonLine/>,
     title: 'House of Elovia',
     location: 'Ikeja Road, Lagos State',

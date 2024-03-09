@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import editIcon from '../../assets/edit-btn.png'
+import editIcon from '../../assets/pencil-edit-01.png'
 import { managerProperties } from '../../datas/ManagerProperties'
 
 const ManagerPropertyPageTwo = () => {
@@ -18,72 +18,71 @@ const ManagerPropertyPageTwo = () => {
                 <FaRegPlusSquare size={20} />
               </Link>
             </div>
-            {managerProperties.map((property) => (
-              <div key={property.id} className='manager-p'>
-                <div className='apart-det'>
-                  <img className='p-img' src={property.image} alt='House' />
-                  <div className='apart-loc'>
-                    <div className='name-edit'>
-                      <h3 className='h-name'>{property.title}</h3>
-                      <img className='edit-img' src={editIcon} alt='Edit' />
+              {managerProperties.map((property) => (
+                <div key={property.id} className='manager-p'>
+                  <div className='apart-det'>
+                    {/* <img className='p-img' src={property.image} alt='House' /> */}
+                    <div className='apartment'>
+                      <p className='p-icon'>{property.icon}</p>
+                      <div className='apart-loc'>
+                        <h3 className='h-name'>{property.title}</h3>
+                        <h1 className='location'>{property.location}</h1>
+                        <div className='status-active'>
+                          <p>
+                            Status:
+                            <span> Active</span>
+                          </p>
+
+                          <p>
+                            Unit:
+                            <span> 4 Units</span>
+                          </p>
+                          <p>
+                            Building Type:
+                            <span> Flat</span>
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <h1 className='location'>{property.location}</h1>
-                    <div className='status-active'>
-                      <p>
-                        Status:
-                        <span> Active</span>
-                      </p>
-                      <p>
-                        Property Type:
-                        <span> Residential</span>
-                      </p>
-                      <p>
-                        Unit:
-                        <span> 1 unit</span>
-                      </p>
-                      <p>
-                        Building Type:
-                        <span> Duplex</span>
-                      </p>
-                    </div>
+                    <img className='edit-img' src={editIcon} alt='Edit' />
                   </div>
+
+                  <ManagerP>
+                    <div className='table'>
+                      <table>
+                        <thead>
+                          <tr className='t-heading'>
+                            <th>Unit No.</th>
+                            <th>Unit Name</th>
+                            <th>Unit Type</th>
+                            <th>Bedrooms</th>
+                            <th>Tenant's name</th>
+                            <th>Rent Term</th>
+                            <th>Status</th>
+                            <th>Rent amt.</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {property.tableData.map((table) => {
+                            return (
+                              <tr key={table.id} className='t-list'>
+                                <td>{table.no}</td>
+                                <td>{table.name}</td>
+                                <td>{table.unitType}</td>
+                                <td>{table.bed}</td>
+                                <td>{table.tenantName}</td>
+                                <td>{table.rentTerm}</td>
+                                <td>{table.status}</td>
+                                <td>{table.amt}</td>
+                              </tr>
+                            )
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </ManagerP>
                 </div>
-                <ManagerP>
-                  <div className='table'>
-                    <table>
-                      <thead>
-                        <tr className='t-heading'>
-                          <th>Unit No.</th>
-                          <th>Unit Name</th>
-                          <th>Unit Type</th>
-                          <th>Bedrooms</th>
-                          <th>Tenant's Name</th>
-                          <th>Rent Term</th>
-                          <th>Status</th>
-                          <th>Rent amt. yearly</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {property.tableData.map((table) => {
-                          return (
-                            <tr key={table.id} className='t-list'>
-                              <td>{table.no}</td>
-                              <td>{table.name}</td>
-                              <td>{table.unitType}</td>
-                              <td>{table.bed}</td>
-                              <td>{table.tenantName}</td>
-                              <td>{table.rentTerm}</td>
-                              <td>{table.status}</td>
-                              <td>{table.amt}</td>
-                            </tr>
-                          )
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </ManagerP>
-              </div>
-            ))}
+              ))}
           </div>
         </section>
       </ManagerPPT>
@@ -151,15 +150,25 @@ const ManagerPPT = styled.section`
     display: flex;
     flex-direction: column;
     padding: 20px;
+    background-color: #ffffff;
+    margin: 20px 0;
     width: 100%;
     box-shadow: 0px 2px 16px 0px #00000026;
   }
   .apart-det {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
     margin: 20px 0;
     width: 100%;
+  }
+  .apartment {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .p-icon {
+    font-size: 40px;
   }
   .a-img {
     width: 100px;
@@ -169,38 +178,25 @@ const ManagerPPT = styled.section`
   .apart-loc {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    gap: 17px;
   }
-  .name-edit {
+  .status-active {
     display: flex;
-    gap: 20px;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
   }
-  .h-name {
-    margin: 0 5px;
+  p {
+    font-weight: 200;
+    text-align: left;
+  }
+  span {
+    font-weight: 800;
   }
   .edit-img {
     padding: 10px 12px;
     border-radius: 4px;
     background: #fedf7e;
     cursor: pointer;
-  }
-  .location {
-    margin: 7px 5px;
-  }
-  .status-active {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 70%;
-  }
-  p {
-    font-weight: 200;
-    margin: 3px 5px;
-    text-align: center;
-  }
-  span {
-    font-weight: 800;
   }
   @media screen and (max-width: 1350px) {
     .m-section {
@@ -223,20 +219,15 @@ const ManagerPPT = styled.section`
   }
   @media screen and (max-width: 900px) {
     .apart-det {
-      width: 100%;
-      justify-content: center;
       flex-direction: column;
+      align-items: flex-start;
     }
     .status-active,
     .apart-loc {
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: left;
     }
-    .h-name,
-    .location {
-      text-align: center;
-    }
-    .h-name {
+    .status-active {
       margin: 10px 0;
     }
     .a-ppt {
@@ -247,11 +238,8 @@ const ManagerPPT = styled.section`
     }
   }
   @media screen and (max-width: 700px) {
-    .status-active {
-      width: 95%;
-    }
-    p {
-      margin: 10px;
+    .p-icon {
+      display: none;
     }
   }
 `

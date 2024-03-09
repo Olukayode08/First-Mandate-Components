@@ -1,8 +1,12 @@
-import houseIcon from '../assets/Frame-2007.png'
+// import houseIcon from '../assets/Frame-2007.png'
+import { AiOutlineStop } from 'react-icons/ai'
+
 export const managerProperties = [
   {
     id: 2021,
-    image: houseIcon,
+    // image: houseIcon,
+    icon: <AiOutlineStop />,
+
     title: 'House of Elovia',
     location: '17, Street 7, GRA, Osogbo, Osun State.',
     tableData: [
