@@ -2,46 +2,53 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const UnitTypeDropdown = () => {
-  const [firstDropdownValue, setFirstDropdownValue] = useState('')
-  const [secondDropdownValue, setSecondDropdownValue] = useState('')
-  const [secondDropdownDisabled, setSecondDropdownDisabled] = useState(true)
+  const [selectedUnit, setSelectedUnit] = useState('')
+  const [selectedBed, setSelectedBed] = useState('')
 
-  const handleFirstDropdownChange = (event) => {
-    const selectedValue = event.target.value
-    setFirstDropdownValue(selectedValue)
-    setSecondDropdownDisabled(false) // Enable the second dropdown
+  const unitType = {
+    Flat: ['One', 'Two', 'Three', 'Four', 'Five'],
+    'Self Contain': ['One'],
+    Bungalow: ['One', 'Two', 'Three', 'Four', 'Five'],
   }
 
-  const handleSecondDropdownChange = (event) => {
-    const selectedValue = event.target.value
-    setSecondDropdownValue(selectedValue)
+  const handleUnitType = (e) => {
+    const unit = e.target.value
+    setSelectedUnit(unit)
+    setSelectedBed('')
   }
 
+  const handleBedCount = (e) => {
+    const bed = e.target.value
+    setSelectedBed(bed)
+  }
   return (
     <>
       <UnitTypeD>
         <div className='unit-type'>
           <div className='select'>
-            <select
-              value={firstDropdownValue}
-              onChange={handleFirstDropdownChange}
-            >
-              <option value=''>Select Option</option>
-              <option value='option1'>Flat</option>
-              <option value='option2'>Self Contain</option>
-              <option value='option3'>Bungalow</option>
+            <select id='country' onChange={handleUnitType} value={selectedUnit}>
+              <option value=''>Select</option>
+              {Object.keys(unitType).map((unit) => (
+                <option key={unit} value={unit}>
+                  {unit}
+                </option>
+              ))}
             </select>
           </div>
           <div className='select'>
             <select
-              value={secondDropdownValue}
-              onChange={handleSecondDropdownChange}
-              disabled={secondDropdownDisabled}
+              id='bed'
+              onChange={handleBedCount}
+              value={selectedBed}
+              disabled={!selectedUnit}
             >
-              <option value=''>No. of bedroom</option>
-              <option value='suboption1'>Suboption 1</option>
-              <option value='suboption2'>Suboption 2</option>
-              <option value='suboption3'>Suboption 3</option>
+              <option value=''>No. of bedrooms.</option>
+              {selectedUnit &&
+                unitType[selectedUnit].map((bed) => (
+                  <option key={bed} value={bed}>
+                    {bed}
+                  </option>
+                ))}
             </select>
           </div>
         </div>
@@ -77,13 +84,11 @@ const UnitTypeD = styled.section`
 
   @media screen and (max-width: 550px) {
     .unit-type {
+      width: 97%;
       gap: 15px;
     }
-    .unit-type {
-      width: 100%;
-    }
     .select {
-      width: 95%;
+      width: 100%;
     }
   }
 `

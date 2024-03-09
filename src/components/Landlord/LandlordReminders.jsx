@@ -159,11 +159,11 @@ const LandlordR = styled.section`
   .r-due-date {
     width: 100%;
   }
-  .r-img {
+  /* .r-img {
     width: 70px;
     height: 60px;
     border-radius: 4px;
-  }
+  } */
   .name-amt {
     display: flex;
     flex-direction: column;
@@ -249,10 +249,10 @@ const LandlordR = styled.section`
     .r-mobile {
       display: block;
     }
-    .r-img {
+    /* .r-img {
       width: 60px;
       height: 50px;
-    }
+    } */
   }
   @media screen and (max-width: 450px) {
     .r-section {

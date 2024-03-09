@@ -2,13 +2,20 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import UnitTypeDropdown from '../Dropdowns/UnitTypeDropdown'
 import { IoMdArrowBack } from 'react-icons/io'
+import { useNavigate } from 'react-router-dom'
 
 const LandlordUploadUnit = () => {
   const [rentStatus, setRentStatus] = useState('option1')
+  const navigate = useNavigate()
 
   const handleRentStatus = (e) => {
     setRentStatus(e.target.value)
   }
+
+  const backProperties = () => {
+    navigate('/landlord/properties')
+  }
+
   return (
     <>
       <LUUnit>
@@ -58,7 +65,7 @@ const LandlordUploadUnit = () => {
               </div>
             </div>
             <div className='step-buttons'>
-              <div className='prev-button back'>
+              <div onClick={backProperties} className='prev-button back'>
                 <IoMdArrowBack />
                 <button>Go back</button>
               </div>

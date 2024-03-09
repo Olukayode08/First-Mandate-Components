@@ -111,7 +111,7 @@ function App() {
             <Route path='notifications' element={<LandlordNotifications />} />
             <Route path='properties' element={<LandlordPropertyPage />} />
             <Route path='upload-property' element={<UploadPropertyPage />} />
-            <Route path='upload-unit' element={<LandlordUploadUnit />} />
+            <Route path='add-unit' element={<LandlordUploadUnit />} />
             <Route path='tenants' element={<LandlordTenantList />} />
             <Route
               path='select-property'

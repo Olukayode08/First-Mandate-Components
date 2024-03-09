@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import editIcon from '../../assets/pencil-edit-01.png'
 import { managerProperties } from '../../datas/ManagerProperties'
+import ManagerPropertiesDropdown from '../Dropdowns/ManagerPropertiesDropdown'
 
 const ManagerPropertyPageTwo = () => {
   return (
@@ -18,71 +18,73 @@ const ManagerPropertyPageTwo = () => {
                 <FaRegPlusSquare size={20} />
               </Link>
             </div>
-              {managerProperties.map((property) => (
-                <div key={property.id} className='manager-p'>
-                  <div className='apart-det'>
-                    {/* <img className='p-img' src={property.image} alt='House' /> */}
-                    <div className='apartment'>
-                      <p className='p-icon'>{property.icon}</p>
-                      <div className='apart-loc'>
-                        <h3 className='h-name'>{property.title}</h3>
-                        <h1 className='location'>{property.location}</h1>
-                        <div className='status-active'>
-                          <p>
-                            Status:
-                            <span> Active</span>
-                          </p>
+            {managerProperties.map((property) => (
+              <div key={property.id} className='manager-p'>
+                <div className='apart-det'>
+                  {/* <img className='p-img' src={property.image} alt='House' /> */}
+                  <div className='apartment'>
+                    <p className='p-icon'>{property.icon}</p>
+                    <div className='apart-loc'>
+                      <h3 className='h-name'>{property.title}</h3>
+                      <h1 className='location'>{property.location}</h1>
+                      <div className='status-active'>
+                        <p>
+                          Status:
+                          <span> Active</span>
+                        </p>
 
-                          <p>
-                            Unit:
-                            <span> 4 Units</span>
-                          </p>
-                          <p>
-                            Building Type:
-                            <span> Flat</span>
-                          </p>
-                        </div>
+                        <p>
+                          Unit:
+                          <span> 4 Units</span>
+                        </p>
+                        <p>
+                          Building Type:
+                          <span> Flat</span>
+                        </p>
                       </div>
                     </div>
-                    <img className='edit-img' src={editIcon} alt='Edit' />
                   </div>
-
-                  <ManagerP>
-                    <div className='table'>
-                      <table>
-                        <thead>
-                          <tr className='t-heading'>
-                            <th>Unit No.</th>
-                            <th>Unit Name</th>
-                            <th>Unit Type</th>
-                            <th>Bedrooms</th>
-                            <th>Tenant's name</th>
-                            <th>Rent Term</th>
-                            <th>Status</th>
-                            <th>Rent amt.</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {property.tableData.map((table) => {
-                            return (
-                              <tr key={table.id} className='t-list'>
-                                <td>{table.no}</td>
-                                <td>{table.name}</td>
-                                <td>{table.unitType}</td>
-                                <td>{table.bed}</td>
-                                <td>{table.tenantName}</td>
-                                <td>{table.rentTerm}</td>
-                                <td>{table.status}</td>
-                                <td>{table.amt}</td>
-                              </tr>
-                            )
-                          })}
-                        </tbody>
-                      </table>
-                    </div>
-                  </ManagerP>
+                  <div>
+                    <ManagerPropertiesDropdown />
+                  </div>
                 </div>
-              ))}
+
+                <ManagerP>
+                  <div className='table'>
+                    <table>
+                      <thead>
+                        <tr className='t-heading'>
+                          <th>Unit No.</th>
+                          <th>Unit Name</th>
+                          <th>Unit Type</th>
+                          <th>Bedrooms</th>
+                          <th>Tenant's name</th>
+                          <th>Rent Term</th>
+                          <th>Status</th>
+                          <th>Rent amt.</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {property.tableData.map((table) => {
+                          return (
+                            <tr key={table.id} className='t-list'>
+                              <td>{table.no}</td>
+                              <td>{table.name}</td>
+                              <td>{table.unitType}</td>
+                              <td>{table.bed}</td>
+                              <td>{table.tenantName}</td>
+                              <td>{table.rentTerm}</td>
+                              <td>{table.status}</td>
+                              <td>{table.amt}</td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </ManagerP>
+              </div>
+            ))}
           </div>
         </section>
       </ManagerPPT>
@@ -191,12 +193,6 @@ const ManagerPPT = styled.section`
   }
   span {
     font-weight: 800;
-  }
-  .edit-img {
-    padding: 10px 12px;
-    border-radius: 4px;
-    background: #fedf7e;
-    cursor: pointer;
   }
   @media screen and (max-width: 1350px) {
     .m-section {
