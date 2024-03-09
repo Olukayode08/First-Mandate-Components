@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import CountryDropdown from '../Dropdowns/CountryDropdown'
-const UploadPropertyTwo = () => {
+const UploadPropertyOne = () => {
   return (
     <>
-      <UploadPT>
+      <UploadPO>
         <section>
           <div className='section'>
             <div className='input'>
@@ -17,10 +17,10 @@ const UploadPropertyTwo = () => {
               />
             </div>
             <div className='input'>
-              <label>Address*</label>
+              <label>Area*</label>
               <input
                 type='text'
-                placeholder='Enter address'
+                placeholder='eg GRA, Egbeda, Oke-Ado'
                 required
                 className='name-input-field'
               />
@@ -58,11 +58,11 @@ const UploadPropertyTwo = () => {
             </div>
           </div>
         </section>
-      </UploadPT>
+      </UploadPO>
     </>
   )
 }
-const UploadPT = styled.section`
+const UploadPO = styled.section`
   .section {
     display: flex;
     flex-direction: column;
@@ -101,4 +101,4 @@ const UploadPT = styled.section`
     }
   }
 `
-export default UploadPropertyTwo
+export default UploadPropertyOne

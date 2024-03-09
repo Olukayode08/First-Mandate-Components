@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import UnitTypeDropdown from '../Dropdowns/UnitTypeDropdown'
 
-const UploadPropertyOne = () => {
+const UploadUnit = () => {
   const [rentStatus, setRentStatus] = useState('option1')
 
   const handleRentStatus = (e) => {
@@ -10,7 +10,7 @@ const UploadPropertyOne = () => {
   }
   return (
     <>
-      <UploadPO>
+      <UploadU>
         <section>
           <div className='unit-h'>Unit 1</div>
           <div className='section'>
@@ -40,7 +40,7 @@ const UploadPropertyOne = () => {
                   onChange={handleRentStatus}
                   className='btn-input'
                 />
-                <p className='ppt-details'>Yes</p>
+                <p className='ppt-details'>Occupied</p>
               </div>
               <div className='radio-btn'>
                 <input
@@ -50,16 +50,16 @@ const UploadPropertyOne = () => {
                   onChange={handleRentStatus}
                   className='btn-input'
                 />
-                <p className='ppt-details'>No</p>
+                <p className='ppt-details'>Vacant</p>
               </div>
             </div>
           </div>
         </section>
-      </UploadPO>
+      </UploadU>
     </>
   )
 }
-const UploadPO = styled.section`
+const UploadU = styled.section`
   .unit-h {
     width: 80px;
     margin: 10px 0;
@@ -110,12 +110,12 @@ const UploadPO = styled.section`
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    width: 200px;
+    width: 280px;
   }
   .radio-btn {
     display: flex;
     align-items: center;
-    width: 80px;
+    width: 130px;
     flex-shrink: 0;
   }
   .btn-input {
@@ -142,4 +142,4 @@ const UploadPO = styled.section`
   }
 `
 
-export default UploadPropertyOne
+export default UploadUnit

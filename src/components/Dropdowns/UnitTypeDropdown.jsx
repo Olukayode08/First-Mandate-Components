@@ -27,9 +27,9 @@ const UnitTypeDropdown = () => {
               onChange={handleFirstDropdownChange}
             >
               <option value=''>Select Option</option>
-              <option value='option1'>Option 1</option>
-              <option value='option2'>Option 2</option>
-              <option value='option3'>Option 3</option>
+              <option value='option1'>Flat</option>
+              <option value='option2'>Self Contain</option>
+              <option value='option3'>Bungalow</option>
             </select>
           </div>
           <div className='select'>
@@ -38,7 +38,7 @@ const UnitTypeDropdown = () => {
               onChange={handleSecondDropdownChange}
               disabled={secondDropdownDisabled}
             >
-              <option value=''>Select Option</option>
+              <option value=''>No. of bedroom</option>
               <option value='suboption1'>Suboption 1</option>
               <option value='suboption2'>Suboption 2</option>
               <option value='suboption3'>Suboption 3</option>

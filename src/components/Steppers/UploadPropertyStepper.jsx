@@ -4,13 +4,16 @@ import { IoMdArrowBack } from 'react-icons/io'
 import Reload from '../../hooks/Reload'
 import CongratsModal from '../modal/CongratsModal'
 import { FirstMandate } from '../../context/Context'
-import UploadPropertyOne from '../UploadPpt/UploadPropertyOne'
-import UploadPropertyTwo from '../UploadPpt/UploadPropertyTwo'
-import UploadPropertyThree from '../UploadPpt/UploadPropertyThree'
+// import UploadPropertyOne from '../UploadPpt/UploadUnit'
+// import UploadPropertyTwo from '../UploadPpt/UploadPropertyOne'
+// import UploadPropertyThree from '../UploadPpt/UploadPropertyTwo'
 import { useNavigate } from 'react-router-dom'
+import UploadPropertyOne from '../UploadProperty/UploadPropertyOne'
+import UploadPropertyTwo from '../UploadProperty/UploadPropertyTwo'
+
 // import UploadProperty from '../UploadPpt/UploadProperty'
 
-const totalSteps = 3
+const totalSteps = 2
 const UploadPropertyStepper = () => {
   const [step, setStep] = useState(1)
   const { modal, toggleModal } = useContext(FirstMandate)
@@ -39,9 +42,9 @@ const UploadPropertyStepper = () => {
           )} */}
           <div className='multi-step-form'>
             <h2>Upload New Property</h2>
-            {step === 1 && <p className='active-step'>1 of 3</p>}
-            {step === 2 && <p className='active-step'>2 of 3</p>}
-            {step === 3 && <p className='active-step'>3 of 3</p>}
+            {step === 1 && <p className='active-step'>1 of 2</p>}
+            {step === 2 && <p className='active-step'>2 of 2</p>}
+            {/* {step === 3 && <p className='active-step'>3 of 3</p>} */}
             <div className='step-indicator'>
               <div className='progress-bar'>
                 <span
@@ -53,29 +56,26 @@ const UploadPropertyStepper = () => {
             <div className='step-content'>
               {step === 1 && <Step1 />}
               {step === 2 && <Step2 />}
-              {step === 3 && <Step3 />}
+              {/* {step === 3 && <Step3 />} */}
             </div>
             <div className='step-buttons'>
-              {step <= 3 && (
+              {step === 1 && (
+                <div className='prev-button'>
+                  <button onClick={prevStep}>Cancel</button>
+                </div>
+              )}
+              {step === 2 && (
                 <div className='prev-button back'>
                   <IoMdArrowBack />
                   <button onClick={prevStep}>Go back</button>
                 </div>
               )}
               {step === 1 && (
-                <button
-                  // onClick={() => setUploadNewProperty(false)}
-                  className='prev-button add-unit'
-                >
-                  Save & Add New Unit
-                </button>
-              )}
-              {step < 3 && (
                 <button className='next-button' onClick={nextStep}>
                   Save & Continue
                 </button>
               )}
-              {step === 3 && (
+              {step === 2 && (
                 <button onClick={toggleModal} className='next-button'>
                   Save & Upload Property
                 </button>
@@ -108,14 +108,14 @@ const Step2 = () => {
   )
 }
 
-const Step3 = () => {
-  return (
-    <div>
-      <Reload />
-      <UploadPropertyThree />
-    </div>
-  )
-}
+// const Step3 = () => {
+//   return (
+//     <div>
+//       <Reload />
+//       <UploadPropertyThree />
+//     </div>
+//   )
+// }
 
 const UploadPS = styled.section`
   /* Multi stepper */
@@ -155,8 +155,6 @@ const UploadPS = styled.section`
   .step-buttons {
     margin-top: 20px;
     display: flex;
-    align-items: flex-start;
-    justify-content: left;
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
@@ -178,7 +176,6 @@ const UploadPS = styled.section`
     font-size: 16px;
     height: 50px;
   }
-  .next-button,
   .prev-button,
   .next-button {
     border-radius: 4px;
@@ -186,11 +183,6 @@ const UploadPS = styled.section`
   }
   .prev-button {
     background-color: #ffdfe2;
-  }
-  .add-unit {
-    background-color: #ffffff;
-    border: 1px solid black;
-    height: 48px;
   }
   .next-button {
     background-color: #fedf7e;

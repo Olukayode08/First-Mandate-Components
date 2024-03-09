@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import RentTermsDropdown from '../Dropdowns/RentTermsDropdown'
 import RentAmountDropdown from '../Dropdowns/RentAmountDropdown'
-import RentPaymentDropdown from '../Dropdowns/RentPaymentDropdown'
+// import RentPaymentDropdown from '../Dropdowns/RentPaymentDropdown'
 
-const UploadPropertyThree = () => {
+const UploadPropertyTwo = () => {
   return (
     <>
-      <UploadPThree>
+      <UploadPTwo>
         <section>
           <div>
             <RentTermsDropdown />
@@ -15,17 +15,17 @@ const UploadPropertyThree = () => {
           <div>
             <RentAmountDropdown />
           </div>
-          <div className='input'>
+          {/* <div className='input'>
             <label>Current Rent Payment Status*</label>
             <div className='p-status'>
               <p className='payment part-p'>Paid in Part</p>
               <p className='payment full-p'>Paid in Full</p>
               <p className='payment not-p'>Not Paid</p>
             </div>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <RentPaymentDropdown />
-          </div>
+          </div> */}
           <div className='utilities'>
             <label>Payments to be managed apart from Rent</label>
             <div className='checkboxes'>
@@ -44,11 +44,11 @@ const UploadPropertyThree = () => {
             </div>
           </div>
         </section>
-      </UploadPThree>
+      </UploadPTwo>
     </>
   )
 }
-const UploadPThree = styled.section`
+const UploadPTwo = styled.section`
   .section {
     display: flex;
     flex-direction: column;
@@ -135,4 +135,4 @@ const UploadPThree = styled.section`
     }
   }
 `
-export default UploadPropertyThree
+export default UploadPropertyTwo

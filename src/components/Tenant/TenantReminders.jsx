@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
 
 const TenantReminders = () => {
+  const [data, setData] = useState(landlordReminder)
+
+  const handleDelete = (id) => {
+    setData(data.filter((item) => item.id !== id))
+  }
 
   const insertLineBreaks = (text) => {
     const maxLength = 70
@@ -36,7 +41,7 @@ const TenantReminders = () => {
           <main className='r-section'>
             <div className='landlord-reminder'>
               <h3 className='r-heading'>Reminders</h3>
-              {landlordReminder.map((reminder) => {
+              {data.map((reminder) => {
                 return (
                   <div key={reminder.id} className='reminders'>
                     <div className='r-due-date'>
@@ -52,6 +57,12 @@ const TenantReminders = () => {
                       </p>
                       <div className='l-btns'>
                         <p className='l-btn edit-icon'>Edit</p>
+                        <p
+                          className='l-btn delete'
+                          onClick={() => handleDelete(reminder.id)}
+                        >
+                          Delete
+                        </p>
                       </div>
                     </div>
                     <p className='r-mobile'>{reminder.description}</p>
@@ -136,10 +147,13 @@ const TenantR = styled.section`
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
+    padding: 11px 17px;
   }
   .edit-icon {
-    padding: 11px 17px;
     background-color: #fedf7e;
+  }
+  .delete {
+    background-color: #ffdfe2;
   }
   .r-mobile {
     display: none;

@@ -55,7 +55,7 @@ import TenantProfileSettings from './components/Tenant/TenantProfileSettings'
 import TenantPaymentPage from './components/Tenant/TenantPaymentPage'
 import TenantPaymentReview from './components/Tenant/TenantPaymentReview'
 import LandlordSendReminder from './components/Landlord/LandlordSendReminder'
-import UploadPropertyPage from './components/UploadPpt/UploadPropertyPage'
+import UploadPropertyPage from './components/UploadProperty/UploadPropertyPage'
 import LandlordSelectProperty from './components/Landlord/LandlordSelectProperty'
 import ManagerSendReminder from './components/Manager/ManagerSendReminder'
 import ManagerEditProfilePage from './components/Manager/ManagerEditProfilePage'
@@ -66,6 +66,7 @@ import LandlordEmptyTenant from './components/Landlord/LandlordEmptyTenant'
 import LandlordEmptyManager from './components/Landlord/LandlordEmptyManager'
 import LandlordEmptyReminder from './components/Landlord/LandlordEmptyReminder'
 import PageLayout from './pages/PageLayout'
+import LandlordUploadUnit from './components/Landlord/LandlordUploadUnit'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -110,6 +111,7 @@ function App() {
             <Route path='notifications' element={<LandlordNotifications />} />
             <Route path='properties' element={<LandlordPropertyPage />} />
             <Route path='upload-property' element={<UploadPropertyPage />} />
+            <Route path='upload-unit' element={<LandlordUploadUnit />} />
             <Route path='tenants' element={<LandlordTenantList />} />
             <Route
               path='select-property'

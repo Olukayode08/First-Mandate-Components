@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import houseIcon from '../../assets/Frame-2007.png'
+import { RiRadioButtonLine } from 'react-icons/ri'
 
 const TenantApartmentDetails = () => {
   return (
@@ -11,13 +11,29 @@ const TenantApartmentDetails = () => {
             <div className='rent-sec'>
               <h3 className='rent-det'>My Rent Details</h3>
               <div className='apart-det'>
-                <img src={houseIcon} alt='House' />
-                <div className='apart-loc'>
-                  <h3 className='h-name'>House of Elovia</h3>
-                  <h3 className='location'>
-                    Location:
-                    <span> 32, Street 7, GRA, Osogbo, Osun State.</span>
-                  </h3>
+                <div className='apartment'>
+                  <p className='p-icon'>
+                    <RiRadioButtonLine />
+                  </p>
+                  <div className='apart-loc'>
+                    <h3>House of Elovia</h3>
+                    <h1>Ikeja Road, Lagos State</h1>
+                    <div className='status-active'>
+                      <p>
+                        Status:
+                        <span> Active</span>
+                      </p>
+
+                      <p>
+                        Unit:
+                        <span> 4 Units</span>
+                      </p>
+                      <p>
+                        Building Type:
+                        <span> Flat</span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className='apartment-details'>
@@ -108,11 +124,18 @@ const TenantAD = styled.section`
   }
   .apart-det {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
+    justify-content: space-between;
+    align-items: flex-start;
     margin: 20px 0;
-    width: 600px;
+    width: 100%;
+  }
+  .apartment {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .p-icon {
+    font-size: 40px;
   }
   .input,
   .apart-loc {
@@ -120,10 +143,19 @@ const TenantAD = styled.section`
     flex-direction: column;
   }
   .apart-loc {
-    gap: 10px;
+    gap: 17px;
+  }
+  .status-active {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  p {
+    font-weight: 200;
+    text-align: left;
   }
   span {
-    opacity: 0.7;
+    font-weight: 800;
   }
   .apartment-details {
     display: flex;
@@ -186,6 +218,7 @@ const TenantAD = styled.section`
     cursor: pointer;
     border-radius: 4px;
     font-family: inherit;
+    /* flex-shrink: 0; */
   }
   @media screen and (max-width: 1350px) {
     .a-section {
@@ -204,18 +237,23 @@ const TenantAD = styled.section`
   }
   @media screen and (max-width: 900px) {
     .apart-det {
-      width: 95%;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .status-active,
+    .apart-loc {
+      align-items: flex-start;
       justify-content: left;
-      align-items: center;
+    }
+    .status-active {
+      margin: 10px 0;
     }
     h1,
     h3 {
       font-size: 16px;
     }
     .plan-text,
-    .rent-det,
-    .h-name,
-    .location {
+    .rent-det {
       text-align: left;
     }
   }
@@ -232,6 +270,9 @@ const TenantAD = styled.section`
       flex-direction: column;
       gap: 0;
       flex-wrap: nowrap;
+    }
+    .p-icon {
+      display: none;
     }
   }
   @media screen and (max-width: 450px) {
@@ -254,6 +295,11 @@ const TenantAD = styled.section`
     }
     .request-r {
       width: 100%;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    button {
+      padding: 10px 7px;
     }
   }
 `

@@ -23,7 +23,7 @@ const RentTermsDropdown = () => {
       <RentTermsDD>
         <div className='rent-terms'>
           <div className='input'>
-            <label>Rent terms</label>
+            <label>Rent term</label>
             <div className='select'>
               <select value={selectedOption} onChange={handleDropdownChange}>
                 <option value=''>Select Rent Terms</option>
@@ -33,7 +33,7 @@ const RentTermsDropdown = () => {
             </div>
           </div>
 
-          <div className='input'>
+          {/* <div className='input'>
             <label>Rent Start Date*</label>
             <input
               type='date'
@@ -52,7 +52,7 @@ const RentTermsDropdown = () => {
               disabled={endDateDisabled}
               className='rent-t-input'
             />
-          </div>
+          </div> */}
         </div>
       </RentTermsDD>
     </>

@@ -189,13 +189,12 @@ const ManagerR = styled.section`
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
+    padding: 11px 17px;
   }
   .edit-icon {
-    padding: 11px 17px;
     background-color: #fedf7e;
   }
   .delete {
-    padding: 11px 17px;
     background-color: #ffdfe2;
   }
   .r-mobile {
