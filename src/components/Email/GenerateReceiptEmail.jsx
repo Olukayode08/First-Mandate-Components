@@ -104,7 +104,7 @@ const GenerateRE = styled.section`
   }
   h1 {
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0.4px;
     margin: 25px 0 7px 0;
   }
   .receipt-content {

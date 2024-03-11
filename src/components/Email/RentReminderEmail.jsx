@@ -76,7 +76,7 @@ const RentRE = styled.section`
   }
   h1 {
     font-size: 25px;
-    letter-spacing: 1px;
+    letter-spacing: 0.4px;
     margin: 25px 0;
   }
   .user-content {
