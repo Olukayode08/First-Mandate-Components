@@ -102,15 +102,11 @@ const TenantApartmentDetails = () => {
   )
 }
 const TenantAD = styled.section`
-  position: relative;
   .a-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
     background-color: #fff;
+    width: 100%;
     border-radius: 4px;
     padding: 20px;
   }
@@ -219,21 +215,6 @@ const TenantAD = styled.section`
     border-radius: 4px;
     font-family: inherit;
     /* flex-shrink: 0; */
-  }
-  @media screen and (max-width: 1350px) {
-    .a-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1200px) {
-    .a-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .apart-det {

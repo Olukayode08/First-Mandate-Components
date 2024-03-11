@@ -32,7 +32,7 @@ const Context = ({ children }) => {
     setDetails({ ...details, [e.target.name]: e.target.value })
   }
 
-  // Modal Section
+  // Upload Property Congrats Modal
   const [modal, setModal] = useState(false)
 
   const toggleModal = () => {
@@ -60,7 +60,7 @@ const Context = ({ children }) => {
     setEmailResetCongrats(!emailResetCongrats)
   }
 
-  // Upload Property
+  // Upload Property Multiple or single
   const [uploadNewProperty, setUploadNewProperty] = useState(false)
   const uploadProperty = () => {
     setUploadNewProperty(true)

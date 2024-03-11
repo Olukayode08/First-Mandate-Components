@@ -1,8 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
-// import Signup from './components/Registration/Signup'
-// import Login from './components/Registration/Login'
-import Sidebar from './components/Sidebars/Sidebar'
 import { ThemeContext } from './context/Darkmode'
 import UploadPptSidebar from './components/Sidebars/UploadPptSidebar'
 import MyProperties from './components/Properties/MyProperties'
@@ -65,7 +62,6 @@ import LandlordEmptyProperty from './components/Landlord/LandlordEmptyProperty'
 import LandlordEmptyTenant from './components/Landlord/LandlordEmptyTenant'
 import LandlordEmptyManager from './components/Landlord/LandlordEmptyManager'
 import LandlordEmptyReminder from './components/Landlord/LandlordEmptyReminder'
-import PageLayout from './pages/PageLayout'
 import LandlordUploadUnit from './components/Landlord/LandlordUploadUnit'
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -88,8 +84,6 @@ function App() {
       <Reload />
       <div className='app' id={theme}>
         <Routes>
-          <Route path='/page-layout' element={<PageLayout />} />
-
           <Route path='/' element={<SignupPage />} />
           <Route path='/sign-in' element={<SigninPage />} />
           <Route path='/verify-code' element={<VerificationCode />} />
@@ -98,9 +92,6 @@ function App() {
             path='/reset-email-password'
             element={<ResetEmailPassword />}
           />
-          {/* <Route path='/' element={<Signup />} />
-          <Route path='/login' element={<Login />} /> */}
-          <Route path='/sidebar' element={<Sidebar />} />
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/my-ppts' element={<MyProperties />} />
           <Route path='/checkbox' element={<Checkbox />} />

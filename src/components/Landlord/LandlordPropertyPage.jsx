@@ -1,11 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { landlordProperties } from '../../datas/LandlordProperties'
 import { Link } from 'react-router-dom'
 import LandlordPropertiesDropdown from '../Dropdowns/LandlordPropertiesDropdown'
+import LandlordEmptyProperty from './LandlordEmptyProperty'
 
 const LandlordPropertyPage = () => {
+    const [data] = useState(landlordProperties)
+
+    if (data.length === 0) {
+      return (
+        <div>
+          <LandlordEmptyProperty />
+        </div>
+      )
+    }
   return (
     <>
       <LandlordPP>
@@ -15,7 +25,7 @@ const LandlordPropertyPage = () => {
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
-            {landlordProperties.map((property) => (
+            {data.map((property) => (
               <div key={property.id} className='manager-p'>
                 <div className='apart-det'>
                   {/* <img className='p-img' src={property.image} alt='House' /> */}
@@ -47,7 +57,6 @@ const LandlordPropertyPage = () => {
                 </div>
 
                 <LandlordP>
-              
                   <div className='table'>
                     <table>
                       <thead>
@@ -116,14 +125,9 @@ const LandlordP = styled.section`
   }
 `
 const LandlordPP = styled.section`
-  position: relative;
   .m-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 81%;
+    width: 100%;
+    border-radius: 4px;
     padding: 20px;
   }
   .add-r {
@@ -183,21 +187,6 @@ const LandlordPP = styled.section`
   }
   span {
     font-weight: 800;
-  }
-  @media screen and (max-width: 1350px) {
-    .m-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .m-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .apart-det {

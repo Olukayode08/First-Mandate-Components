@@ -44,19 +44,16 @@ const TenantNotifications = () => {
   )
 }
 const TenantN = styled.section`
-  position: relative;
   .l-notify {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
     background-color: #fff;
+    width: 100%;
     border-radius: 4px;
     padding: 20px;
   }
   h1 {
+    font-size: 18px;
     padding: 0 20px;
     margin: 20px 0;
   }
@@ -87,24 +84,8 @@ const TenantN = styled.section`
     text-align: center;
     margin: 15px 0;
     padding: 7px 10px;
+    cursor: pointer;
     border-radius: 4px;
-  }
-  @media screen and (max-width: 1350px) {
-    .l-notify {
-      width: 79%;
-    }
-    h3 {
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .l-notify {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
 `
 export default TenantNotifications

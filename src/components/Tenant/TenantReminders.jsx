@@ -77,17 +77,13 @@ const TenantReminders = () => {
   )
 }
 const TenantR = styled.section`
-  position: relative;
   .r-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
+    width: 100%;
   }
   .landlord-reminder {
     display: flex;
@@ -155,21 +151,6 @@ const TenantR = styled.section`
     text-align: center;
     margin: 10px 0;
     flex-shrink: 0;
-  }
-  @media screen and (max-width: 1350px) {
-    .r-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .r-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .r-desc {

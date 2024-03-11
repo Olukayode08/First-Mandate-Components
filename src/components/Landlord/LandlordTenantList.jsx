@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { landlordTenantList } from '../../datas/LandlordTenantList'
 import { Link } from 'react-router-dom'
+import LandlordEmptyTenant from './LandlordEmptyTenant'
 
 const LandlordTenantList = () => {
   // const insertLineBreaks = (text) => {
@@ -30,6 +31,15 @@ const LandlordTenantList = () => {
   //     </React.Fragment>
   //   ))
   // }
+  const [data] = useState(landlordTenantList)
+
+  if (data.length === 0) {
+    return (
+      <div>
+        <LandlordEmptyTenant />
+      </div>
+    )
+  }
   return (
     <>
       <LTenantL>
@@ -61,7 +71,7 @@ const LandlordTenantList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {landlordTenantList.map((list) => {
+                  {data.map((list) => {
                     return (
                       <tr key={list.id} className='t-list'>
                         <td>{list.no}</td>
@@ -90,17 +100,8 @@ const LandlordTenantList = () => {
   )
 }
 const LTenantL = styled.section`
-  position: relative;
   .a-t-section {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 81%;
-    margin: 0 auto;
+    width: 100%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -163,21 +164,6 @@ const LTenantL = styled.section`
     margin: 5px 0;
     padding: 7px 10px;
     border-radius: 4px;
-  }
-  @media screen and (max-width: 1350px) {
-    .a-t-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .a-t-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .a-tenant {

@@ -1,10 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { landlordManagerList } from '../../datas/LandlordManagerList'
 import { Link } from 'react-router-dom'
+import LandlordEmptyManager from './LandlordEmptyManager'
 
 const LandlordAddManager = () => {
+  const [data] = useState(landlordManagerList)
+
+      if (data.length === 0) {
+        return (
+          <div>
+            <LandlordEmptyManager />
+          </div>
+        )
+      }
   return (
     <>
       <LAManager>
@@ -31,7 +41,7 @@ const LandlordAddManager = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {landlordManagerList.map((list) => {
+                  {data.map((list) => {
                     return (
                       <tr key={list.id} className='m-list'>
                         <td>{list.no}</td>
@@ -54,14 +64,8 @@ const LandlordAddManager = () => {
   )
 }
 const LAManager = styled.section`
-  position: relative;
   .a-t-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 81%;
+    width: 100%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -108,21 +112,6 @@ const LAManager = styled.section`
   }
   .m-list {
     height: 50px;
-  }
-  @media screen and (max-width: 1350px) {
-    .a-t-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .a-t-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .a-tenant {

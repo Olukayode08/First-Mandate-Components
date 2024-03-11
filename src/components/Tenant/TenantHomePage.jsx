@@ -35,17 +35,13 @@ const TenantHomePage = () => {
   )
 }
 const TenantHP = styled.section`
-  position: relative;
   .t-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 81%;
     display: flex;
     flex-direction: column;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
+    width: 100%;
   }
   .l-name {
     display: flex;
@@ -102,21 +98,6 @@ const TenantHP = styled.section`
   p {
     text-align: center;
     line-height: 27px;
-  }
-  @media screen and (max-width: 1350px) {
-    .t-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .t-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 550px) {
     .l-name,

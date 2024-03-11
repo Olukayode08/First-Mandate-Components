@@ -14,7 +14,7 @@ const LandlordEmptyManager = () => {
               <p>Yoy have not added a manager yet.</p>
               <p>Please add manager to see the list.</p>
             </div>
-            <Link className='add-r'>
+            <Link to='/landlord/add-manager' className='add-r'>
               <h4>Add New Manager</h4>
               <FaRegPlusSquare size={20} />
             </Link>
@@ -25,19 +25,13 @@ const LandlordEmptyManager = () => {
   )
 }
 const LandlordEM = styled.section`
-  section {
-    position: relative;
-  }
   .e-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 80vh;
-    width: 81%;
+    width: 100%;
     background-color: #ffffff;
     padding: 20px;
   }
@@ -60,21 +54,6 @@ const LandlordEM = styled.section`
     color: #000;
     cursor: pointer;
     text-decoration: none;
-  }
-  @media screen and (max-width: 1350px) {
-    .e-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .e-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     img {

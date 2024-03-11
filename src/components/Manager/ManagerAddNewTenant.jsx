@@ -81,14 +81,10 @@ const ManagerAddNewTenant = () => {
   )
 }
 const MANTenant = styled.section`
-  position: relative;
   .l-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
+    width: 100%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -180,21 +176,6 @@ const MANTenant = styled.section`
     font-size: 16px;
     cursor: pointer;
     color: #000;
-  }
-  @media screen and (max-width: 1350px) {
-    .l-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .l-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 600px) {
     .rent-date {

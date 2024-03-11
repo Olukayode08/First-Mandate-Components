@@ -95,17 +95,13 @@ const TenantAddApartmentDetails = () => {
   )
 }
 const TenantAAD = styled.section`
-  position: relative;
   .ap-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
+    width: 100%;
   }
   .input {
     display: flex;
@@ -195,21 +191,6 @@ const TenantAAD = styled.section`
     cursor: pointer;
     font-family: inherit;
     color: #000;
-  }
-  @media screen and (max-width: 1350px) {
-    .ap-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .ap-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 550px) {
     .t-name-input {

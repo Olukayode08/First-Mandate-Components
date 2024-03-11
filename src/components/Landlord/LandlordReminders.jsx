@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { landlordReminder } from '../../datas/LandLordReminder'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
+import LandlordEmptyReminder from './LandlordEmptyReminder'
 
 const LandlordReminders = () => {
   const [data, setData] = useState(landlordReminder)
@@ -36,6 +37,11 @@ const LandlordReminders = () => {
       </React.Fragment>
     ))
   }
+    if (data.length === 0) {
+      return <div>
+        <LandlordEmptyReminder />
+      </div>
+    }
   return (
     <>
       <LandlordR>
@@ -92,15 +98,11 @@ const LandlordReminders = () => {
   )
 }
 const LandlordR = styled.section`
-  position: relative;
   .r-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 81%;
+    width: 100%;
+    background-color: #fff;
     border-radius: 4px;
     padding: 20px;
-    background-color: #fff;
   }
   .landlord-reminder {
     display: flex;
@@ -202,21 +204,6 @@ const LandlordR = styled.section`
     text-align: center;
     margin: 10px 0;
     flex-shrink: 0;
-  }
-  @media screen and (max-width: 1350px) {
-    .r-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .r-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .a-tenant {

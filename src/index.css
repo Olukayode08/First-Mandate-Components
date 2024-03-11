@@ -10,7 +10,10 @@ body {
   font-family: 'Varela Round', sans-serif;
   overflow-x: hidden;
 }
-
+h3,
+h1{
+  font-size: 18px;
+}
 .dark-mode {
  background-color: #fedf7e;
   color: #000;

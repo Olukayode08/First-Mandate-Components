@@ -93,15 +93,11 @@ const TenantAddReminder = () => {
   )
 }
 const TAReminder = styled.section`
-  position: relative;
   .n-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
     background-color: #fff;
+    width: 100%;
     border-radius: 4px;
     padding: 20px;
   }
@@ -198,22 +194,6 @@ const TAReminder = styled.section`
     margin: 20px 0;
     cursor: pointer;
   }
-  @media screen and (max-width: 1350px) {
-    .n-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .n-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
-  }
-
   @media screen and (max-width: 600px) {
     .radio-btns {
       width: 95%;

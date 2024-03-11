@@ -55,19 +55,11 @@ const LandlordSelectProperty = () => {
   )
 }
 const LandlordSP = styled.section`
-  section {
-    position: relative;
-  }
   .s-property {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 20px;
-    right: 20px;
-    border-radius: 4px;
-    width: 81%;
-    padding: 20px;
+    width: 100%;
     background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
   }
   h3 {
     width: 100%;
@@ -126,21 +118,6 @@ const LandlordSP = styled.section`
     padding: 10px 20px;
     flex-shrink: 0;
     border-radius: 4px;
-  }
-  @media screen and (max-width: 1350px) {
-    .s-property {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .s-property {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .search-p {

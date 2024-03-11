@@ -44,16 +44,11 @@ const ManagerNotifications = () => {
   )
 }
 const ManagerN = styled.section`
-  position: relative;
   .l-notify {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    align-items: flex-start;
-    width: 81%;
+    width: 100%;
     padding: 20px;
   }
   h1 {
@@ -88,22 +83,6 @@ const ManagerN = styled.section`
     margin: 15px 0;
     padding: 7px 10px;
     border-radius: 4px;
-  }
-
-  @media screen and (max-width: 1350px) {
-    .l-notify {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .l-notify {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
 `
 export default ManagerNotifications

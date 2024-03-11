@@ -8,22 +8,18 @@ const TenantHeader = () => {
   return (
     <>
       <THeader>
-          <div className='header'>
-            <div className='logo'>
-              <img src={logo} alt='1st Mandate' />
-            </div>
-            <div className='select-user'>
-              <select name='user' id='user'>
-                <option value='Tenant'>Tenant</option>
-                <option value='Landlord'>Landlord</option>
-                <option value='Manager'>Property Manager</option>
-              </select>
-              <div className='icons'>
-                <FaRegBell className='icon' />
-                <FaRegUser className='icon' />
-              </div>
+        <div className='header'>
+          <div className='logo'>
+            <img src={logo} alt='1st Mandate' />
+          </div>
+          <div className='user'>
+            <p className='m-user'>Tenant</p>
+            <div className='icons'>
+              <FaRegBell className='icon' />
+              <FaRegUser className='icon' />
             </div>
           </div>
+        </div>
       </THeader>
     </>
   )
@@ -44,32 +40,22 @@ const THeader = styled.section`
     position: absolute;
     left: 50px;
   }
-  .select-user {
+  .user {
     position: absolute;
-    right: 0;
+    right: 50px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 7px;
+    gap: 10px;
   }
-  select {
-    width: 120px;
+  .m-user {
     font-size: 15px;
-    border: none;
     margin-right: 7px;
-    outline: none;
-    background: transparent;
-    color: #000;
-    font-family: inherit;
     cursor: pointer;
   }
   .icons {
     display: flex;
     gap: 10px;
     border-left: 1px solid #000;
-    margin-left: 10px;
   }
   .icon {
     margin: 0 10px;
@@ -80,10 +66,22 @@ const THeader = styled.section`
     .header {
       padding: 0 10px;
     }
+    .user {
+      right: 10px;
+    }
   }
   @media screen and (max-width: 320px) {
-    select {
-      width: 90px;
+    .user {
+      gap: 5px;
+    }
+    .m-user {
+      font-size: 13px;
+    }
+    .logo {
+      left: 40px;
+    }
+    .icon {
+      font-size: 17px;
     }
   }
 `

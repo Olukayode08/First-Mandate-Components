@@ -51,17 +51,11 @@ const LandlordNotifications = () => {
   )
 }
 const LNotify = styled.section`
-  position: relative;
   .l-notify {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 81%;
-    padding: 20px;
+    width: 100%;
     background-color: #fff;
     border-radius: 4px;
+    padding: 20px;
   }
   .a-tenant {
     display: flex;
@@ -110,21 +104,6 @@ const LNotify = styled.section`
     margin: 15px 0;
     padding: 7px 10px;
     border-radius: 4px;
-  }
-  @media screen and (max-width: 1350px) {
-    .l-notify {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .l-notify {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .a-tenant {

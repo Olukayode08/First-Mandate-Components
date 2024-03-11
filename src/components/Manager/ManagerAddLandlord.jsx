@@ -54,14 +54,10 @@ const ManagerAddLandlord = () => {
   )
 }
 const ManagerAL = styled.section`
-  position: relative;
   .a-t-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
+    width: 100%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -70,7 +66,6 @@ const ManagerAL = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     margin: 20px 0;
   }
   .add-r {
@@ -104,25 +99,10 @@ const ManagerAL = styled.section`
   .l-m-heading {
     text-align: center;
     height: 60px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
+    background-color: #f6f6f8;
   }
   .m-list {
     height: 50px;
-  }
-  @media screen and (max-width: 1350px) {
-    .a-t-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .a-t-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .a-tenant {

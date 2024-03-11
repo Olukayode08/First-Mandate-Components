@@ -1,54 +1,45 @@
 import React from 'react'
 import styled from 'styled-components'
-
 const LandlordAddNewTenant = () => {
   return (
     <>
       <LANTenant>
         <section>
           <main className='l-section'>
-            <h3>Add New Tenant</h3>
-              <label>Select Unit</label>
-              <div className='select'>
-                <select>
-                  <option value='option1'>Unit 1</option>
-                  <option value='option2'>Unit 2</option>
-                  <option value='option3'>Unit 3</option>
-                </select>
-              </div>
-
-              <div className='input'>
-                <label>Name</label>
-                <input
-                  type='text'
-                  placeholder="Enter tenant's name"
-                  className='t-name-input'
-                />
-              </div>
-              <div className='input'>
-                <label>Email</label>
-                <input
-                  type='email'
-                  placeholder='Enter email address'
-                  className='t-name-input'
-                />
+            <h3 className='add-t'>Add New Tenant</h3>
+            <label>Select Unit</label>
+            <div className='select'>
+              <select>
+                <option value='option1'>Unit 1</option>
+                <option value='option2'>Unit 2</option>
+                <option value='option3'>Unit 3</option>
+              </select>
             </div>
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
+
+            <div className='input'>
+              <label>Name</label>
+              <input
+                type='text'
+                placeholder="Enter tenant's name"
+                className='t-name-input'
+              />
+            </div>
+            <div className='input'>
+              <label>Email</label>
+              <input
+                type='email'
+                placeholder='Enter email address'
+                className='t-name-input'
+              />
+            </div>
+            <div className='input'>
+              <label>Phone</label>
+              <input type='text' placeholder='+234' className='t-name-input' />
+            </div>
+            <div className='input'>
+              <label>Phone</label>
+              <input type='text' placeholder='+234' className='t-name-input' />
+            </div>
             <div className='rent-date'>
               <div className='start-date'>
                 <label>Rent Start Date</label>
@@ -89,26 +80,21 @@ const LandlordAddNewTenant = () => {
   )
 }
 const LANTenant = styled.section`
-  position: relative;
   .l-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 81%;
+    width: 100%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
   }
-  h3 {
-    margin: 15px 0;
+  .add-t {
+    margin: 20px 0;
   }
   .select {
     display: flex;
     flex-direction: column;
     width: 160px;
     padding: 0 10px;
+    margin: 10px 0;
     height: 40px;
     border: 1px solid black;
     border-radius: 4px;
@@ -188,21 +174,6 @@ const LANTenant = styled.section`
     font-size: 16px;
     cursor: pointer;
     color: #000;
-  }
-  @media screen and (max-width: 1350px) {
-    .l-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .l-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 600px) {
     .rent-date {

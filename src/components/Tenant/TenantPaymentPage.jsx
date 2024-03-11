@@ -29,15 +29,11 @@ const TenantPaymentPage = () => {
   )
 }
 const TenantPP = styled.section`
-  position: relative;
   .l-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
     background-color: #fff;
+    width: 100%;
     border-radius: 4px;
     padding: 20px;
   }
@@ -82,9 +78,6 @@ const TenantPP = styled.section`
     margin: 25px 0;
   }
   @media screen and (max-width: 1350px) {
-    .l-section {
-      width: 79%;
-    }
     h3 {
       text-align: center;
       width: 100%;
@@ -95,16 +88,6 @@ const TenantPP = styled.section`
       align-items: center;
       justify-content: center;
       width: 100%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .l-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
     }
   }
   @media screen and (max-width: 500px) {

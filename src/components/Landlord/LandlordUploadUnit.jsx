@@ -81,16 +81,8 @@ const LandlordUploadUnit = () => {
   )
 }
 const LUUnit = styled.section`
-  section {
-    position: relative;
-  }
   .upload-unit {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 81%;
+    width: 100%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
@@ -205,21 +197,6 @@ const LUUnit = styled.section`
   }
   .next-button {
     background-color: #fedf7e;
-  }
-  @media screen and (max-width: 1350px) {
-    .upload-unit {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .upload-unit {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 550px) {
     .u-name-input {

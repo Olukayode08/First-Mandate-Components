@@ -48,17 +48,13 @@ const TenantApartmentDetailsTwo = () => {
   )
 }
 const TenantADT = styled.section`
-  position: relative;
   .a-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    width: 81%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
+    width: 100%;
   }
   h2 {
     margin: 15px 10px;
@@ -118,26 +114,7 @@ const TenantADT = styled.section`
     font-size: 16px;
     cursor: pointer;
   }
-  @media screen and (max-width: 1350px) {
-    .a-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .a-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
-  }
   @media screen and (max-width: 400px) {
-    .a-section {
-      align-items: center;
-      justify-content: center;
-    }
     h2 {
       margin: 15px 0;
     }

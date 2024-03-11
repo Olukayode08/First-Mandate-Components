@@ -65,15 +65,10 @@ const TenantProfileSettings = () => {
 const TenantPS = styled.section`
   position: relative;
   .l-profile-s {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 81%;
-    background-color: #ffffff;
+    width: 100%;
+    border-radius: 4px;
     padding: 20px;
   }
   .log-out {
@@ -102,6 +97,7 @@ const TenantPS = styled.section`
     width: 100%;
     padding: 20px;
     margin: 10px 0;
+    background-color: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
   }
   .p-img {
@@ -134,6 +130,7 @@ const TenantPS = styled.section`
     width: 100%;
     margin: 10px 0;
     padding: 20px;
+    background-color: #ffffff;
     box-shadow: 0px 2px 16px 0px #00000026;
   }
   .r-s-btns {
@@ -166,23 +163,8 @@ const TenantPS = styled.section`
   .n-btn {
     display: flex;
     align-items: center;
-    gap: 15px;
     justify-content: center;
-  }
-  @media screen and (max-width: 1350px) {
-    .l-profile-s {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .l-profile-s {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
+    gap: 15px;
   }
   @media screen and (max-width: 700px) {
     .profile-picture {

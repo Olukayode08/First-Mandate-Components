@@ -62,15 +62,11 @@ const TenantEditProfilePage = () => {
   )
 }
 const TenantEPP = styled.section`
-  position: relative;
   .a-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    width: 81%;
+    width: 100%;
+    border-radius: 4px;
     padding: 20px;
   }
   h3 {
@@ -79,6 +75,7 @@ const TenantEPP = styled.section`
   .rent-sec {
     width: 100%;
     padding: 20px;
+    background-color: #fff;
     box-shadow: 0px 2px 16px 0px #00000026;
     display: flex;
     flex-direction: column;
@@ -138,22 +135,6 @@ const TenantEPP = styled.section`
     border-radius: 4px;
     font-size: 15px;
     cursor: pointer;
-  }
-
-  @media screen and (max-width: 1350px) {
-    .a-section {
-      width: 79%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .a-section {
-      width: 90%;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 20px auto;
-      padding: 10px;
-    }
   }
   @media screen and (max-width: 900px) {
     .t-details {
