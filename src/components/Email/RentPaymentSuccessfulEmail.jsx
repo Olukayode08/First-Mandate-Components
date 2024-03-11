@@ -1,49 +1,55 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BsInstagram } from 'react-icons/bs'
-import { FaXTwitter } from 'react-icons/fa6'
-import { FiFacebook } from 'react-icons/fi'
 import logo from '../../assets/1st mandate logo 1.png'
-// import footerLogo from '../../assets/1st mandate logo 1 (1).png'
+import footerLogo from '../../assets/1st mandate logo 1 (1).png'
 
-const ResetPasswordEmail = () => {
+const RentPaymentSuccessfulEmail = () => {
   return (
     <>
-      <ResetPE>
+      <RentPSE>
         <section>
           <div className='logo-info'>
             <div className='logo'>
               <img src={logo} alt='1st Mandate' />
             </div>
-            <p className='acc-info'>ACCOUNT INFORMATION</p>
+            <p className='acc-info'>YOUR ACCOUNT</p>
           </div>
           <main>
             <div className='content'>
-              <h1>Reset your password</h1>
-              <p>
-                You’re receiving this email because you requested a password
-                reset for your 1st Mandate Account.
-              </p>
-              <p>Please tap the button below to choose a new password</p>
-              <button>Reset Password</button>
+              <h1>Rent Payment Successful</h1>
+              <div className='user-content'>
+                <p>Hi [User],</p>
+                <p>
+                  Your rent payment for [Property Name] has been successfully
+                  processed. Thank you for your prompt payment.
+                </p>
+              </div>
+              <div className='user-content'>
+                <p>Transaction details:</p>
+                <p>
+                  Amount: <span>#200,000.00k</span>
+                </p>
+                <p>
+                  Date: <span>dd/mm/yyyy</span>
+                </p>
+              </div>
+              <div className='user-content'>
+                <p>Best regards,</p>
+                <p>1st Mandate</p>
+              </div>
             </div>
           </main>
           <footer>
-            {/* <img src={footerLogo} alt='1st Mandate' /> */}
-            <h5>1st Mandate, Inc.</h5>
-            <h5>7a, Surulere Street, Lagos, Nigeria.</h5>
-            <div className='socials'>
-              <BsInstagram />
-              <FaXTwitter />
-              <FiFacebook />
-            </div>
+            <img className='footer-logo' src={footerLogo} alt='1st Mandate' />
+            <h5>hello@1stmandate.com</h5>
+            <h5>copyright © 2024 1st Mandate. All Rights Reserved.</h5>
           </footer>
         </section>
-      </ResetPE>
+      </RentPSE>
     </>
   )
 }
-const ResetPE = styled.section`
+const RentPSE = styled.section`
   section {
     display: flex;
     flex-direction: column;
@@ -69,14 +75,25 @@ const ResetPE = styled.section`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    width: 90%;
+    width: 75%;
     padding: 10px;
+  }
+  h1 {
+    font-size: 25px;
+    letter-spacing: 1px;
+    margin: 25px 0;
+  }
+  .user-content {
+    margin: 17px 0;
   }
   p {
     text-align: left;
     font-size: 16px;
-    margin: 15px 0;
+    font-weight: 100;
     line-height: 28px;
+  }
+  span {
+    font-weight: 700;
   }
   .acc-info {
     font-size: 12px;
@@ -85,22 +102,6 @@ const ResetPE = styled.section`
     letter-spacing: 0.5px;
     flex-shrink: 0;
   }
-  h1 {
-    font-size: 25px;
-    margin: 25px 0;
-  }
-  button {
-    background-color: #000;
-    color: #ffffff;
-    padding: 12px 0;
-    border: transparent;
-    border-radius: 5px;
-    width: 300px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 16px;
-    margin: 30px 0;
-  }
   footer {
     display: flex;
     flex-direction: column;
@@ -108,29 +109,40 @@ const ResetPE = styled.section`
     justify-content: center;
     margin: 20px 0 0 0;
   }
+  .footer-logo {
+    margin: 5px 0;
+  }
   h5 {
-    color: #00000080;
     text-align: center;
+    color: #00000080;
     line-height: 22px;
     font-weight: 100;
     font-size: 14px;
+    margin: 3px 0;
   }
-  .socials {
-    display: flex;
-    gap: 15px;
-    margin: 5px;
-    cursor: pointer;
-  }
+
   @media screen and (max-width: 580px) {
     .logo-info,
     main {
       width: 450px;
     }
+    .content {
+      width: 95%;
+    }
   }
   @media screen and (max-width: 450px) {
+    section {
+      height: 100%;
+    }
     .logo-info,
     main {
       width: 380px;
+    }
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 15px;
     }
   }
   @media screen and (max-width: 380px) {
@@ -139,13 +151,5 @@ const ResetPE = styled.section`
       width: 300px;
     }
   }
-  @media screen and (max-width: 320px) {
-    section {
-      height: 100%;
-    }
-    button {
-      width: 250px;
-    }
-  }
 `
-export default ResetPasswordEmail
+export default RentPaymentSuccessfulEmail

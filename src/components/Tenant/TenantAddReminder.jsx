@@ -171,7 +171,7 @@ const TAReminder = styled.section`
     height: 50px;
     padding: 0 10px;
     border: 1px solid black;
-    border-radius: 3px;
+    border-radius: 4px;
   }
   .n-select {
     width: 100%;

@@ -123,7 +123,7 @@ const ConfirmE = styled.section`
     line-height: 22px;
     font-size: 14px;
     font-weight: 100;
-    font-size: 14px;
+    color: #00000080;
     margin: 3px 0;
   }
   .socials {

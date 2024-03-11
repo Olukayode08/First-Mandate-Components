@@ -63,6 +63,12 @@ import LandlordEmptyTenant from './components/Landlord/LandlordEmptyTenant'
 import LandlordEmptyManager from './components/Landlord/LandlordEmptyManager'
 import LandlordEmptyReminder from './components/Landlord/LandlordEmptyReminder'
 import LandlordUploadUnit from './components/Landlord/LandlordUploadUnit'
+import RentPaymentSuccessfulEmail from './components/Email/RentPaymentSuccessfulEmail'
+import RentPaymentReceiptEmail from './components/Email/RentPaymentReceiptEmail'
+import RentReminderEmail from './components/Email/RentReminderEmail'
+import GenerateReceiptEmail from './components/Email/GenerateReceiptEmail'
+import TenantPaymentForm from './components/Tenant/TenantPaymentForm'
+import TenantPaymentReceipt from './components/Tenant/TenantPaymentReceipt'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -171,6 +177,8 @@ function App() {
             />
             <Route path='payment' element={<TenantPaymentPage />} />
             <Route path='payment-review' element={<TenantPaymentReview />} />
+            <Route path='payment-form' element={<TenantPaymentForm />} />
+            <Route path='payment-receipt' element={<TenantPaymentReceipt/>} />
           </Route>
 
           {/* Email Page */}
@@ -179,6 +187,16 @@ function App() {
             <Route path='confirm-email' element={<ConfirmEmail />} />
             <Route path='general-email' element={<GeneralEmail />} />
             <Route path='welcome-email' element={<WelcomeEmail />} />
+            <Route
+              path='rent-payment'
+              element={<RentPaymentSuccessfulEmail />}
+            />
+            <Route
+              path='payment-receipt'
+              element={<RentPaymentReceiptEmail />}
+            />
+            <Route path='payment-reminder' element={<RentReminderEmail />} />
+            <Route path='generate-receipt' element={<GenerateReceiptEmail />} />
           </Route>
           <Route path='/*' element={<ErrorPage />} />
         </Routes>

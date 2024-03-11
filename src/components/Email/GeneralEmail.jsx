@@ -116,7 +116,7 @@ const GeneralE = styled.section`
   h5 {
     text-align: center;
     line-height: 22px;
-    font-size: 14px;
+    color: #00000080;
     font-weight: 100;
     font-size: 14px;
     margin: 3px 0;
