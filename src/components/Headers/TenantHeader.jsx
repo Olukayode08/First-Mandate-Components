@@ -12,8 +12,12 @@ const TenantHeader = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <div className='user'>
-            <p className='m-user'>Tenant</p>
+          <div className='select-user'>
+            <select name='user' id='user'>
+              <option value='Landlord'>Landlord</option>
+              <option value='Manager'>Property Manager</option>
+              <option value='Tenant'>Tenant</option>
+            </select>
             <div className='icons'>
               <FaRegBell className='icon' />
               <FaRegUser className='icon' />
@@ -40,17 +44,23 @@ const THeader = styled.section`
     position: absolute;
     left: 50px;
   }
-  .user {
+  .select-user {
     position: absolute;
     right: 50px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
-  .m-user {
+  select {
+    border: none;
+    background: transparent;
+    color: #000;
+    outline: none;
+    font-weight: inherit;
     font-size: 15px;
-    margin-right: 7px;
+    margin-right: 5px;
     cursor: pointer;
+    padding: 10px;
   }
   .icons {
     display: flex;
@@ -66,19 +76,23 @@ const THeader = styled.section`
     .header {
       padding: 0 10px;
     }
-    .user {
+    .select-user {
       right: 10px;
     }
   }
   @media screen and (max-width: 320px) {
-    .user {
+    .select-user {
+      right: 0;
       gap: 5px;
     }
-    .m-user {
+    select {
       font-size: 13px;
     }
     .logo {
       left: 40px;
+    }
+    .icons {
+      gap: 5px;
     }
     .icon {
       font-size: 17px;

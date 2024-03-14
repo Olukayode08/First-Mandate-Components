@@ -24,7 +24,11 @@ const GenerateReceiptEmail = () => {
                 </h4>
                 <h4>PAID BY</h4>
                 <h4>Peace Adekola</h4>
-                <h4>pea******2@gmail.com</h4>
+                <h4>
+                  <a href='pea******2@gmail.com' className='signature-link'>
+                    pea******2@gmail.com
+                  </a>
+                </h4>
               </div>
               <div className='receipt-content'>
                 <h3>TRANSACTION DETAILS</h3>
@@ -52,7 +56,11 @@ const GenerateReceiptEmail = () => {
               <div>
                 <h4>PAID TO</h4>
                 <h4>Kelly</h4>
-                <h4>hi.k******i@gmail.com</h4>
+                <h4>
+                  <a href='hi.k******i@gmail.com' className='signature-link'>
+                    hi.k******i@gmail.com
+                  </a>
+                </h4>
               </div>
 
               <button>Generate Receipt</button>

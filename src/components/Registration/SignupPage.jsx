@@ -6,7 +6,14 @@ import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
 
 const SignupPage = () => {
-  const { toggleSignupModal, signupCongrats } = useContext(FirstMandate)
+  const {
+    // toggleSignupModal,
+    signupCongrats,
+    details,
+    handleSubmit,
+    handleChange,
+    error,
+  } = useContext(FirstMandate)
   return (
     <>
       <SignupP>
@@ -14,22 +21,31 @@ const SignupPage = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <main>
+          <form onSubmit={handleSubmit}>
             <h3>Sign Up for 1st Mandate</h3>
-            <p className='error'>Please enter a valid email address</p>
+            <p className='error'>{error}</p>
             <input
               type='email'
+              name='email'
+              value={details.email}
+              autoComplete='off'
+              onChange={handleChange}
               className='email-input'
               required
               placeholder='E-mail'
             />
             <input
-              type='text'
+              type='password'
+              name='password'
+              value={details.password}
+              autoComplete='off'
+              onChange={handleChange}
               className='password-input'
               placeholder='Password'
               required
             />
-            <button onClick={toggleSignupModal}>Create account</button>
+            <button>Create account</button>
+            {/* <button onClick={toggleSignupModal}>Create account</button> */}
             <p className='create-account'>
               By clicking “Create account” or “Continue with Google”, you agree
               to the 1st Mandate <span>TOS</span> and
@@ -38,7 +54,7 @@ const SignupPage = () => {
             <p className='create-account'>
               Already have an account? <span>Log in</span>
             </p>
-          </main>
+          </form>
         </section>
       </SignupP>
       <div>{signupCongrats && <SignupCongratsModal />}</div>
@@ -54,7 +70,7 @@ const SignupP = styled.section`
     top: 40px;
     left: 40px;
   }
-  main {
+  form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,7 +135,7 @@ const SignupP = styled.section`
       top: 20px;
       left: 20px;
     }
-    main {
+    form {
       width: 430px;
     }
     .error,
@@ -130,7 +146,7 @@ const SignupP = styled.section`
     }
   }
   @media screen and (max-width: 440px) {
-    main {
+    form {
       width: 360px;
     }
     .error,
@@ -141,7 +157,7 @@ const SignupP = styled.section`
     }
   }
   @media screen and (max-width: 360px) {
-    main {
+    form {
       width: 320px;
       height: 100%;
     }

@@ -1,0 +1,199 @@
+Below is a comprehensive example of a React.js application that implements sign up, sign in, and logout functionalities using a mock Postman backend API. This example utilizes React state management without using props:
+
+```jsx
+import React, { useState } from 'react';
+
+const App = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSignUp = async () => {
+    try {
+      const response = await fetch('https://mockapi.postman.com/users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Sign up failed');
+      }
+
+      setIsLoggedIn(true);
+      setUsername('');
+      setPassword('');
+      setError('');
+    } catch (error) {
+      setError('Sign up failed. Please try again.');
+    }
+  };
+
+  const handleSignIn = async () => {
+    try {
+      const response = await fetch('https://mockapi.postman.com/users/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Sign in failed');
+      }
+
+      setIsLoggedIn(true);
+      setUsername('');
+      setPassword('');
+      setError('');
+    } catch (error) {
+      setError('Sign in failed. Please check your credentials and try again.');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <div>
+          <h1>Welcome, {username}!</h1>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <h1>Sign Up</h1>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleSignUp}>Sign Up</button>
+          <h1>Sign In</h1>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleSignIn}>Sign In</button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
+```
+
+In this example:
+
+- The state variables `username`, `password`, `isLoggedIn`, and `error` are used to manage the sign-up, sign-in, and error handling functionalities.
+- Two functions `handleSignUp` and `handleSignIn` are responsible for making POST requests to the mock backend API for sign-up and sign-in actions, respectively. They update the state accordingly based on the response received from the server.
+- The `handleLogout` function updates the `isLoggedIn` state to false, effectively logging the user out.
+- The JSX code renders different UI elements based on the `isLoggedIn` state. If the user is logged in, it displays a welcome message and a logout button. If the user is not logged in, it displays sign-up and sign-in forms along with error messages if any.
+
+Please note that in a real-world application, you would replace the mock backend API URLs with actual backend endpoints and implement proper authentication and error handling mechanisms. Additionally, you may want to consider storing authentication tokens securely (e.g., using cookies or local storage) for persistent login sessions.
+
+
+
+
+To clear data from local storage after 5 minutes of user inactivity and log out the user in a React.js application using a Postman mock API, you can utilize `setTimeout` and `clearTimeout` functions to manage a timer that tracks user activity. Here's how you can implement it:
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const handleInactiveUser = () => {
+      // Set a timeout to log out the user after 5 minutes of inactivity
+      const timeoutId = setTimeout(() => {
+        setIsLoggedIn(false);
+        // Clear user data from local storage
+        localStorage.removeItem('userData');
+      }, 5 * 60 * 1000); // 5 minutes in milliseconds
+
+      // Reset the timer if the user interacts with the page
+      const resetTimer = () => {
+        clearTimeout(timeoutId);
+      };
+
+      // Add event listeners to reset the timer on user interaction
+      window.addEventListener('mousemove', resetTimer);
+      window.addEventListener('keydown', resetTimer);
+
+      // Remove event listeners on component unmount
+      return () => {
+        window.removeEventListener('mousemove', resetTimer);
+        window.removeEventListener('keydown', resetTimer);
+      };
+    };
+
+    handleInactiveUser();
+  }, [isLoggedIn]);
+
+  const handleLogin = () => {
+    // Perform login logic here, for example, making API call to mock API
+    // Assuming successful login, set isLoggedIn to true
+    setIsLoggedIn(true);
+    // Set user data to local storage
+    localStorage.setItem('userData', JSON.stringify({ isLoggedIn: true }));
+  };
+
+  const handleLogout = () => {
+    // Log out the user
+    setIsLoggedIn(false);
+    // Clear user data from local storage
+    localStorage.removeItem('userData');
+  };
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <div>
+          <h1>Welcome, User!</h1>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <h1>Login</h1>
+          <button onClick={handleLogin}>Login</button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
+```
+
+In this example:
+
+- The `useEffect` hook is used to set up a timer that logs out the user and clears data from local storage after 5 minutes of inactivity.
+- The `handleInactiveUser` function sets a timeout to log out the user after 5 minutes. It also resets the timer whenever the user interacts with the page (e.g., mouse movement or key press).
+- The `handleLogin` function simulates a login action and sets the user as logged in. It also stores user data in local storage.
+- The `handleLogout` function logs out the user and clears user data from local storage.
+
+Make sure to replace the login and logout logic with your actual authentication methods and update the mock API calls accordingly. Additionally, adjust the event listeners according to the types of user interactions you want to consider as activity.

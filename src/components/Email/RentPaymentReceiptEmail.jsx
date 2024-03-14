@@ -48,7 +48,11 @@ const RentPaymentReceiptEmail = () => {
           </main>
           <footer>
             <img className='footer-logo' src={footerLogo} alt='1st Mandate' />
-            <h5>hello@1stmandate.com</h5>
+            <h5>
+              <a href='hello@1stmandate.com' className='signature-link'>
+                hello@1stmandate.com
+              </a>
+            </h5>
             <h5>copyright © 2024 1st Mandate. All Rights Reserved.</h5>
           </footer>
         </section>
@@ -118,6 +122,11 @@ const RentPRE = styled.section`
   }
   .footer-logo {
     margin: 5px 0;
+  }
+  .signature-link {
+    text-decoration: none;
+    color: #00000080;
+    font-size: 14px;
   }
   h5 {
     text-align: center;
