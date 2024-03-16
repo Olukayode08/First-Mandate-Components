@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ThemeContext } from './context/Darkmode'
 import UploadPptSidebar from './components/Sidebars/UploadPptSidebar'
-import MyProperties from './components/Properties/MyProperties'
 import Reload from './hooks/Reload'
 import LandLord from './pages/Landlord/LandLord'
 import TenantAddApartmentDetails from './components/Tenant/TenantAddApartmentDetails'
@@ -99,7 +98,6 @@ function App() {
             element={<ResetEmailPassword />}
           />
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
-          <Route path='/my-ppts' element={<MyProperties />} />
           <Route path='/checkbox' element={<Checkbox />} />
 
           {/* Landlord page */}
@@ -110,10 +108,7 @@ function App() {
             <Route path='upload-property' element={<UploadPropertyPage />} />
             <Route path='add-unit' element={<LandlordUploadUnit />} />
             <Route path='tenants' element={<LandlordTenantList />} />
-            <Route
-              path='select-property'
-              element={<LandlordSelectProperty />}
-            />
+            <Route path='select-unit' element={<LandlordSelectProperty />} />
             <Route path='add-tenant' element={<LandlordAddNewTenant />} />
             <Route path='managers' element={<LandlordAddManager />} />
             <Route path='add-manager' element={<LandlordAddNewManager />} />
@@ -178,7 +173,7 @@ function App() {
             <Route path='payment' element={<TenantPaymentPage />} />
             <Route path='payment-review' element={<TenantPaymentReview />} />
             <Route path='payment-form' element={<TenantPaymentForm />} />
-            <Route path='payment-receipt' element={<TenantPaymentReceipt/>} />
+            <Route path='payment-receipt' element={<TenantPaymentReceipt />} />
           </Route>
 
           {/* Email Page */}

@@ -1,21 +1,35 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { landlordProperties } from '../../datas/LandlordProperties'
 import { Link } from 'react-router-dom'
 import LandlordPropertiesDropdown from '../Dropdowns/LandlordPropertiesDropdown'
 import LandlordEmptyProperty from './LandlordEmptyProperty'
-
+import { landlordProperties } from '../../datas/LandlordProperties'
+import LandlordEditProperty from './LandlordEditProperty'
+import LandlordPropertyUnit from './LandlordPropertyUnit'
 const LandlordPropertyPage = () => {
-    const [data] = useState(landlordProperties)
+  const [properties, setProperties] = useState(landlordProperties)
+  const [editProperty, setEditProperty] = useState(null)
+  const handleEdit = (property) => {
+    setEditProperty(property)
+  }
 
-    if (data.length === 0) {
-      return (
-        <div>
-          <LandlordEmptyProperty />
-        </div>
+  const handleSave = (updatedProperty) => {
+    setProperties(
+      properties.map((property) =>
+        property.id === updatedProperty.id ? updatedProperty : property
       )
-    }
+    )
+    setEditProperty(null)
+  }
+  // Data Length Empty Property
+  if (properties.length === 0) {
+    return (
+      <div>
+        <LandlordEmptyProperty />
+      </div>
+    )
+  }
   return (
     <>
       <LandlordPP>
@@ -25,10 +39,9 @@ const LandlordPropertyPage = () => {
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
-            {data.map((property) => (
+            {properties.map((property) => (
               <div key={property.id} className='manager-p'>
                 <div className='apart-det'>
-                  {/* <img className='p-img' src={property.image} alt='House' /> */}
                   <div className='apartment'>
                     <p className='p-icon'>{property.icon}</p>
                     <div className='apart-loc'>
@@ -51,45 +64,21 @@ const LandlordPropertyPage = () => {
                       </div>
                     </div>
                   </div>
+                  {editProperty && (
+                    <LandlordEditProperty
+                      property={editProperty}
+                      onSave={handleSave}
+                      onCancel={() => setEditProperty(null)}
+                    />
+                  )}
                   <div>
-                    <LandlordPropertiesDropdown />
+                    <LandlordPropertiesDropdown
+                      property={property}
+                      handleEdit={handleEdit}
+                    />
                   </div>
                 </div>
-
-                <LandlordP>
-                  <div className='table'>
-                    <table>
-                      <thead>
-                        <tr className='t-heading'>
-                          <th>Unit No.</th>
-                          <th>Unit Name</th>
-                          <th>Unit Type</th>
-                          <th>Bedrooms</th>
-                          <th>Tenant's name</th>
-                          <th>Rent Term</th>
-                          <th>Status</th>
-                          <th>Rent amt.</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {property.tableData.map((table) => {
-                          return (
-                            <tr key={table.id} className='t-list'>
-                              <td>{table.no}</td>
-                              <td>{table.name}</td>
-                              <td>{table.unitType}</td>
-                              <td>{table.bed}</td>
-                              <td>{table.tenantName}</td>
-                              <td>{table.rentTerm}</td>
-                              <td>{table.status}</td>
-                              <td>{table.amt}</td>
-                            </tr>
-                          )
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </LandlordP>
+                <LandlordPropertyUnit property={property} />
               </div>
             ))}
           </div>
@@ -98,32 +87,6 @@ const LandlordPropertyPage = () => {
     </>
   )
 }
-
-const LandlordP = styled.section`
-  .table {
-    overflow-x: scroll;
-    width: 100%;
-  }
-  table {
-    border-collapse: separate;
-    border-spacing: 0 20px;
-    width: 100%;
-  }
-  th,
-  td {
-    white-space: nowrap;
-    padding: 0 20px;
-    text-align: center;
-  }
-  .t-heading {
-    text-align: center;
-    height: 60px;
-    background: #f6f6f8;
-  }
-  .t-list {
-    height: 40px;
-  }
-`
 const LandlordPP = styled.section`
   .m-section {
     width: 100%;

@@ -10,7 +10,7 @@ const SignupPage = () => {
     // toggleSignupModal,
     signupCongrats,
     details,
-    handleSubmit,
+    UserSignUp,
     handleChange,
     error,
   } = useContext(FirstMandate)
@@ -21,7 +21,7 @@ const SignupPage = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={UserSignUp}>
             <h3>Sign Up for 1st Mandate</h3>
             <p className='error'>{error}</p>
             <input

@@ -85,7 +85,8 @@ const LandlordSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/tenants' ||
-                    location.pathname === '/landlord/add-tenant'
+                    location.pathname === '/landlord/add-tenant' ||
+                    location.pathname === '/landlord/select-unit'
                       ? 'active links'
                       : 'links'
                   }

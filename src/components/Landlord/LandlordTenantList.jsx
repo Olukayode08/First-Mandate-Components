@@ -47,7 +47,7 @@ const LandlordTenantList = () => {
           <main className='a-t-section'>
             <div className='a-tenant'>
               <h3>My Tenants</h3>
-              <Link to='/landlord/add-tenant' className='add-r'>
+              <Link to='/landlord/select-unit' className='add-r'>
                 <h4>Add New Tenant</h4>
                 <FaRegPlusSquare size={20} />
               </Link>

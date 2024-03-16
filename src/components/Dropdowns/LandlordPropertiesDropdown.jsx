@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import editIcon from '../../assets/pencil-edit-01.png'
 import { useNavigate } from 'react-router-dom'
-const LandlordPropertiesDropdown = () => {
+
+const LandlordPropertiesDropdown = ({property, handleEdit}) => {
+
   const navigate = useNavigate()
   const dropdownRef = useRef(null)
 
@@ -28,7 +30,7 @@ const LandlordPropertiesDropdown = () => {
   }, [])
 
   const navigateTenant = () => {
-    navigate('/landlord/add-tenant')
+    navigate('/landlord/select-unit')
     setTimeout(() => {
       setShowDropdown(false)
     }, 1000)
@@ -57,7 +59,9 @@ const LandlordPropertiesDropdown = () => {
               Add Units
             </p>
             <p className='nav'>Edit Units</p>
-            <p className='nav'>Edit Property</p>
+            <p onClick={() => handleEdit(property)} className='nav'>
+              Edit Property
+            </p>
             <p className='nav'>Delete</p>
           </div>
         )}

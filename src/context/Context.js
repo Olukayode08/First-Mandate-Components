@@ -3,11 +3,10 @@ import { useNavigate } from 'react-router-dom'
 
 const FirstMandate = createContext()
 
-const BASE_URL = 'https://reqres.in/api/register'
-
+// const BASE_URL = process.env.REACT_APP_API_KEY
+const BASE_URL = 'http://localhost:5000'
 const Context = ({ children }) => {
   const navigate = useNavigate()
-
   // Sign-up Congratulations
   const [signupCongrats, setSignupCongrats] = useState(false)
   const toggleSignupModal = () => {
@@ -36,6 +35,9 @@ const Context = ({ children }) => {
 
   // Signup Validation
   const [error, setError] = useState('')
+  const [user, setUser] = useState()
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
   const [details, setDetails] = useState({
     email: '',
     password: '',
@@ -64,8 +66,8 @@ const Context = ({ children }) => {
     setError('')
   }, [details.email, details.password])
 
-  // Handle Submission
-  const handleSubmit = async (e) => {
+  // Handle Signup Submission
+  const UserSignUp = async (e) => {
     e.preventDefault()
     if (!validatePassword(details.password)) {
       return notify(
@@ -85,8 +87,12 @@ const Context = ({ children }) => {
         },
       })
       const data = await response.json()
+      setIsAuthenticated(true)
+      setUser(data)
+      setDetails('')
+      setError('')
       navigate('/landlord')
-      console.warn('Data', data)
+      console.log('Data', data)
     } catch (err) {
       if (err?.response) {
         return notify('No Server Response')
@@ -97,6 +103,37 @@ const Context = ({ children }) => {
       }
     }
   }
+  const UserSignIn = async (e) => {
+    e.preventDefault()
+    let userDetails = { details }
+    try {
+      const response = await fetch(BASE_URL, {
+        method: 'POST',
+        body: JSON.stringify(userDetails),
+        headers: {
+          'Content- Type': 'application/json',
+          Accept: 'application/json',
+        },
+      })
+      const data = await response.json()
+      setIsAuthenticated(true)
+      setUser(data)
+      setDetails('')
+      setError('')
+      navigate('/landlord')
+      console.log('Data', data)
+    } catch (err) {
+      if (err?.response) {
+        return notify('No Server Response')
+      } else if (err.response?.status === 400) {
+        return notify('Missing Username or Password')
+      } else if (err.response?.status === 401) {
+        return notify('UnAuthorized')
+      } else {
+        return notify('Login Failed')
+      }
+    }
+  }
 
   return (
     <>
@@ -104,7 +141,10 @@ const Context = ({ children }) => {
         value={{
           details,
           handleChange,
-          handleSubmit,
+          UserSignUp,
+          UserSignIn,
+          isAuthenticated,
+          user,
           error,
           modal,
           toggleModal,
