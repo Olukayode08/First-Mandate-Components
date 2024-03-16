@@ -67,13 +67,13 @@ const RentPRE = styled.section`
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0 auto;
+    margin: 20px 0;
   }
   .logo-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0 20px 0;
+    margin: 0 0 20px 0;
     width: 550px;
   }
   main {
@@ -118,7 +118,7 @@ const RentPRE = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
   }
   .footer-logo {
     margin: 5px 0;

@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BsInstagram } from 'react-icons/bs'
-import { FaXTwitter } from 'react-icons/fa6'
-import { FiFacebook } from 'react-icons/fi'
 import logo from '../../assets/1st mandate logo 1.png'
+import footerLogo from '../../assets/1st mandate logo 1 (1).png'
 
 const GeneralEmail = () => {
   return (
@@ -14,7 +12,7 @@ const GeneralEmail = () => {
             <div className='logo'>
               <img src={logo} alt='1st Mandate' />
             </div>
-            <p className='acc-info'>ACCOUNT INFORMATION</p>
+            <p className='acc-info'>YOUR ACCOUNT</p>
           </div>
           <main>
             <div className='content'>
@@ -44,13 +42,13 @@ const GeneralEmail = () => {
             </div>
           </main>
           <footer>
-            <h5>1st Mandate, Inc.</h5>
-            <h5>7a, Surulere Street, Lagos, Nigeria.</h5>
-            <div className='socials'>
-              <BsInstagram />
-              <FaXTwitter />
-              <FiFacebook />
-            </div>
+            <img className='footer-logo' src={footerLogo} alt='1st Mandate' />
+            <h5>
+              <a href='hello@1stmandate.com' className='signature-link'>
+                hello@1stmandate.com
+              </a>
+            </h5>
+            <h5>copyright © 2024 1st Mandate. All Rights Reserved.</h5>
           </footer>
         </section>
       </GeneralE>
@@ -64,13 +62,13 @@ const GeneralE = styled.section`
     justify-content: center;
     align-items: center;
     height: 100%;
-    margin: 0 auto;
+    margin: 20px 0;
   }
   .logo-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
+    margin: 0 0 20px 0;
     width: 550px;
   }
   main {
@@ -111,21 +109,23 @@ const GeneralE = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    margin: 10px 0 0 0;
+  }
+  .footer-logo {
+    margin: 5px 0;
+  }
+  .signature-link {
+    text-decoration: none;
+    color: #00000080;
+    font-size: 14px;
   }
   h5 {
     text-align: center;
-    line-height: 22px;
     color: #00000080;
+    line-height: 22px;
     font-weight: 100;
     font-size: 14px;
     margin: 3px 0;
-  }
-  .socials {
-    display: flex;
-    gap: 15px;
-    margin: 5px;
-    cursor: pointer;
   }
   @media screen and (max-width: 580px) {
     .logo-info,

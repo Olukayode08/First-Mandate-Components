@@ -97,6 +97,7 @@ function App() {
             path='/reset-email-password'
             element={<ResetEmailPassword />}
           />
+
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
 
@@ -171,8 +172,8 @@ function App() {
               element={<TenantProfileSettings />}
             />
             <Route path='payment' element={<TenantPaymentPage />} />
-            <Route path='payment-review' element={<TenantPaymentReview />} />
             <Route path='payment-form' element={<TenantPaymentForm />} />
+            <Route path='payment-review' element={<TenantPaymentReview />} />
             <Route path='payment-receipt' element={<TenantPaymentReceipt />} />
           </Route>
 
@@ -183,7 +184,7 @@ function App() {
             <Route path='general-email' element={<GeneralEmail />} />
             <Route path='welcome-email' element={<WelcomeEmail />} />
             <Route
-              path='rent-payment'
+              path='payment-success'
               element={<RentPaymentSuccessfulEmail />}
             />
             <Route

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+
 const TenantPaymentForm = () => {
   return (
     <>
@@ -53,9 +54,9 @@ const TenantPaymentForm = () => {
               <div className='d-date-input'>
                 <select required>
                   <option value='one'>Flutterwave</option>
-                  <option value='one'>Paystack</option>
                   <option value='two'>Card</option>
-                  <option value='three'>Transfer</option>
+                  <option value='three'>Transfer</option>{' '}
+                  <option value='four'>Paystack</option>
                 </select>
               </div>
             </div>

@@ -56,13 +56,13 @@ const RentRE = styled.section`
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0 auto;
+    margin: 20px 0;
   }
   .logo-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0 20px 0;
+    margin: 0 0 20px 0;
     width: 550px;
   }
   main {
@@ -108,7 +108,7 @@ const RentRE = styled.section`
     padding: 12px 0;
     border: transparent;
     border-radius: 5px;
-    width: 300px;
+    width: 250px;
     cursor: pointer;
     text-align: center;
     font-size: 16px;
@@ -119,7 +119,7 @@ const RentRE = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
   }
   .footer-logo {
     margin: 5px 0;
@@ -165,9 +165,6 @@ const RentRE = styled.section`
     .logo-info,
     main {
       width: 300px;
-    }
-    button {
-      width: 250px;
     }
   }
 `

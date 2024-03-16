@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import welcomeIcon from '../../assets/undraw_welcome_cats_thqn 1.png'
-import { BsInstagram } from 'react-icons/bs'
-import { FaXTwitter } from 'react-icons/fa6'
-import { FiFacebook } from 'react-icons/fi'
+import welcomeIcon from '../../assets/undraw_welcoming_re_x0qo 1.png'
+import footerLogo from '../../assets/1st mandate logo 1 (1).png'
 import logo from '../../assets/1st mandate logo 1.png'
 
 const WelcomeEmail = () => {
@@ -12,23 +10,41 @@ const WelcomeEmail = () => {
       <WelcomeE>
         <section>
           <main>
-            <img src={logo} alt='1st Mandate' />
-            <img src={welcomeIcon} alt='Welcome' />
-            <p>Welcome to 1st Mandate</p>
-            <p>
-              Thanks for signing up for 1st Mandate. Please take a sec to
-              confirm your email.
-            </p>
-            <button>Yep, confirmed!</button>
+            <div className='content'>
+              <div className='logo'>
+                <img src={logo} alt='First Mandate' />
+              </div>
+              <div className='user-content'>
+                <div className='logo'>
+                  <img src={welcomeIcon} alt='First Mandate' />
+                </div>
+                <p>Welcome to 1st Mandate</p>
+              </div>
+              <div className='user-content'>
+                <p>Dear [User],</p>
+                <p>
+                  Welcome to 1st Mandate! We're thrilled to have you on board.
+                  To continue please click the button below to verify your email
+                  address:
+                </p>
+              </div>
+              <div className='user-content'>
+                <button>Verify Email Address</button>
+              </div>
+              <div className='user-content'>
+                <p>Best regards,</p>
+                <p>1st Mandate</p>
+              </div>
+            </div>
           </main>
           <footer>
-            <h5>1st Mandate, Inc.</h5>
-            <h5>7a, Surulere Street, Lagos, Nigeria.</h5>
-            <div className='socials'>
-              <BsInstagram />
-              <FaXTwitter />
-              <FiFacebook />
-            </div>
+            <img className='footer-logo' src={footerLogo} alt='1st Mandate' />
+            <h5>
+              <a href='hello@1stmandate.com' className='signature-link'>
+                hello@1stmandate.com
+              </a>
+            </h5>
+            <h5>copyright © 2024 1st Mandate. All Rights Reserved.</h5>
           </footer>
         </section>
       </WelcomeE>
@@ -42,79 +58,103 @@ const WelcomeE = styled.section`
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0 auto;
+    margin: 20px;
   }
   main {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    margin: 0 auto;
-    padding: 10px;
+    width: 550px;
     background-color: #ffffff;
   }
-  button,
-  h3,
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 75%;
+    padding: 10px;
+  }
+  .logo {
+    margin: 13px 0;
+  }
+  .user-content {
+    margin: 17px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   p {
     text-align: center;
-    margin: 15px 0;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 100;
     line-height: 28px;
-    letter-spacing: 0em;
-  }
-  img {
-    margin: 20px 0;
   }
   button {
     background-color: #000;
     color: #ffffff;
     padding: 12px 0;
     border: transparent;
+    font-weight: inherit;
     border-radius: 5px;
-    width: 280px;
+    width: 300px;
     cursor: pointer;
+    text-align: center;
+    font-size: 16px;
   }
   footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    margin: 10px 0 0 0;
+  }
+  .footer-logo {
+    margin: 5px 0;
+  }
+  .signature-link {
+    text-decoration: none;
+    color: #00000080;
+    font-size: 14px;
   }
   h5 {
     text-align: center;
-    line-height: 22px;
     color: #00000080;
+    line-height: 22px;
     font-weight: 100;
     font-size: 14px;
     margin: 3px 0;
   }
-  .socials {
-    display: flex;
-    gap: 15px;
-    margin: 5px;
-    cursor: pointer;
-  }
-  @media screen and (max-width: 500px) {
+
+  @media screen and (max-width: 580px) {
     main {
-      width: 400px;
+      width: 450px;
+    }
+    .content {
+      width: 95%;
     }
   }
-  @media screen and (max-width: 410px) {
-    main {
-      width: 350px;
-    }
-  }
-  @media screen and (max-width: 360px) {
-    main {
-      width: 280px;
-    }
-  }
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 450px) {
     section {
       height: 100%;
+    }
+    main {
+      width: 380px;
+    }
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    main {
+      width: 300px;
+    }
+    button {
+      width: 250px;
     }
   }
 `
