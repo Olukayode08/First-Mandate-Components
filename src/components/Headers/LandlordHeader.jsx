@@ -80,7 +80,7 @@ const LandlordH = styled.section`
       right: 10px;
     }
   }
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 380px) {
     .select-user {
       right: 0;
       gap: 5px;

@@ -68,6 +68,7 @@ import RentReminderEmail from './components/Email/RentReminderEmail'
 import GenerateReceiptEmail from './components/Email/GenerateReceiptEmail'
 import TenantPaymentForm from './components/Tenant/TenantPaymentForm'
 import TenantPaymentReceipt from './components/Tenant/TenantPaymentReceipt'
+import TenantPaymentReviewTwo from './components/Tenant/TenantPaymentReviewTwo'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -174,6 +175,7 @@ function App() {
             <Route path='payment' element={<TenantPaymentPage />} />
             <Route path='payment-form' element={<TenantPaymentForm />} />
             <Route path='payment-review' element={<TenantPaymentReview />} />
+            <Route path='payment-review-two' element={<TenantPaymentReviewTwo />} />
             <Route path='payment-receipt' element={<TenantPaymentReceipt />} />
           </Route>
 
