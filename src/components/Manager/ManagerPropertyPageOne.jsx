@@ -10,10 +10,9 @@ const ManagerPropertyPageOne = () => {
       <ManagerPPO>
         <section>
           <main className='l-section'>
-            <div className='l-home-page'>
               <div className='a-ppt'>
                 <h3>Properties</h3>
-               <Link className='add-r'>
+                <Link className='add-r'>
                   <h4>Add New Property</h4>
                   <FaRegPlusSquare size={20} />
                 </Link>
@@ -32,7 +31,6 @@ const ManagerPropertyPageOne = () => {
                   )
                 })}
               </div>
-            </div>
           </main>
         </section>
       </ManagerPPO>
@@ -44,15 +42,8 @@ const ManagerPPO = styled.section`
   .l-section {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
     width: 100%;
     padding: 20px;
-  }
-  .l-home-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
   }
   .a-ppt {
     display: flex;
@@ -67,18 +58,19 @@ const ManagerPPO = styled.section`
     justify-content: space-between;
     background-color: #ffe48e;
     padding: 15px;
+    font-weight: 100;
     border-radius: 10px;
     width: 250px;
     text-decoration: none;
     color: #000;
     cursor: pointer;
+    font-family: inherit;
   }
   .l-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    gap: 10px;
+    gap: 20px;
   }
   .options {
     display: flex;
@@ -86,10 +78,10 @@ const ManagerPPO = styled.section`
     align-items: center;
     justify-content: center;
     padding: 15px;
-    box-shadow: -2px 4px 16px 0px #eeeeee;
-    width: 330px;
+    background-color: #fff;
+    flex: 1 1 320px;
+    /* width: 330px; */
     height: 370px;
-    margin: 20px 0;
     border-radius: 4px;
     cursor: pointer;
   }
@@ -106,41 +98,19 @@ const ManagerPPO = styled.section`
     line-height: 22px;
     margin: 5px 0;
   }
-  @media screen and (max-width: 1350px) {
-    .a-ppt {
-      width: 75%;
-      margin: 0 auto;
-    }
-    .l-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-  }
-  @media screen and (max-width: 1250px) {
-    .l-name {
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
-  @media screen and (max-width: 1000px) {
-    .l-name {
-      background-color: none;
-      box-shadow: none;
-    }
+  @media screen and (max-width: 700px) {
     .a-ppt {
       flex-direction: column;
+      margin: 0;
     }
     .add-r {
-      margin: 20px 0 10px 0;
+      margin: 20px 0;
     }
   }
   @media screen and (max-width: 500px) {
     .options {
-      width: 280px;
+      flex: 1 1 280px;
+      /* width: 280px; */
     }
   }
 `

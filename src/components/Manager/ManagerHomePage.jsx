@@ -58,7 +58,7 @@ const ManagerHP = styled.section`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 15px;
+    gap: 20px;
   }
   .options {
     display: flex;
@@ -67,9 +67,9 @@ const ManagerHP = styled.section`
     justify-content: center;
     padding: 20px;
     background-color: #f6f6f8;
-    width: 350px;
+    flex: 1 1 350px;
+    /* width: 350px; */
     height: 300px;
-    margin: 20px 0;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
@@ -94,16 +94,14 @@ const ManagerHP = styled.section`
     line-height: 27px;
   }
   @media screen and (max-width: 550px) {
-    .l-name,
     .l-options {
       align-items: center;
       justify-content: center;
     }
-    .l-name {
-      background: none;
-    }
+
     .options {
-      width: 280px;
+      flex: 1 1 280px;
+      /* width: 280px; */
     }
   }
 `

@@ -47,11 +47,11 @@ const TenantPP = styled.section`
     margin: 20px 0;
   }
   .l-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     width: 100%;
-    gap: 10px;
+    gap: 20px;
   }
   .options {
     display: flex;
@@ -60,9 +60,9 @@ const TenantPP = styled.section`
     justify-content: center;
     padding: 20px;
     background: #f6f6f8;
-    width: 300px;
+    flex: 1 1 300px;
+    /* width: 300px; */
     height: 200px;
-    margin: 20px 0;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
@@ -77,22 +77,10 @@ const TenantPP = styled.section`
   .option-h {
     margin: 25px 0;
   }
-  @media screen and (max-width: 1350px) {
-    h3 {
-      text-align: center;
-      width: 100%;
-    }
-    .l-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-  }
   @media screen and (max-width: 500px) {
     .options {
-      width: 280px;
+      flex: 1 1 280px;
+      /* width: 280px; */
     }
   }
 `

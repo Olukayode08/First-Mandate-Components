@@ -52,7 +52,7 @@ const LandlordHP = styled.section`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 15px;
+    gap: 20px;
   }
   .options {
     display: flex;
@@ -64,7 +64,6 @@ const LandlordHP = styled.section`
     flex: 1 1 350px;
     /* width: 350px; */
     height: 300px;
-    margin: 20px 0;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;

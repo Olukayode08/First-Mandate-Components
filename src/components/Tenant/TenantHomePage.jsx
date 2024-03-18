@@ -70,9 +70,9 @@ const TenantHP = styled.section`
     justify-content: center;
     padding: 20px;
     background: #f6f6f8;
-    width: 350px;
+    flex: 1 1 350px;
+    /* width: 350px; */
     height: 300px;
-    margin: 20px 0;
     border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
@@ -100,16 +100,13 @@ const TenantHP = styled.section`
     line-height: 27px;
   }
   @media screen and (max-width: 550px) {
-    .l-name,
     .l-options {
       align-items: center;
       justify-content: center;
     }
-    .l-name {
-      background: none;
-    }
     .options {
-      width: 280px;
+      flex: 1 1 280px;
+      /* width: 280px; */
     }
   }
 `
