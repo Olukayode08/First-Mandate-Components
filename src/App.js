@@ -70,6 +70,8 @@ import TenantPaymentForm from './components/Tenant/TenantPaymentForm'
 import TenantPaymentReceipt from './components/Tenant/TenantPaymentReceipt'
 import TenantPaymentReviewTwo from './components/Tenant/TenantPaymentReviewTwo'
 import LandlordDueDates from './components/Landlord/LandlordDueDates'
+import Calendar from './components/Calender/Calendar'
+import CalendarTwo from './components/Calender/CalendarTwo'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -102,6 +104,8 @@ function App() {
 
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
+          <Route path='/calendar' element={<Calendar />} />
+          <Route path='/calendar-two' element={<CalendarTwo />} />
 
           {/* Landlord page */}
           <Route path='/landlord' element={<LandLord />}>

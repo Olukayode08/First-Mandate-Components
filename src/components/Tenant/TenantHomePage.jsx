@@ -49,6 +49,7 @@ const TenantHP = styled.section`
     align-items: flex-start;
     justify-content: space-between;
     padding: 20px;
+    margin: 0 0 20px 0;
     background: #f6f6f8;
     width: 100%;
     height: 100px;
@@ -71,7 +72,7 @@ const TenantHP = styled.section`
     padding: 20px;
     background: #f6f6f8;
     flex: 1 1 350px;
-    /* width: 350px; */
+    /* max-width: 350px; */
     height: 300px;
     border-radius: 4px;
     text-decoration: none;

@@ -43,6 +43,7 @@ const LandlordHP = styled.section`
     align-items: flex-start;
     justify-content: space-between;
     padding: 20px;
+    margin: 0 0 20px 0;
     background: #f6f6f8;
     width: 100%;
     height: 100px;

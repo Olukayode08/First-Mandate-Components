@@ -50,6 +50,7 @@ const ManagerHP = styled.section`
     justify-content: space-between;
     padding: 20px;
     background-color: #f6f6f8;
+    margin: 0 0 20px 0;
     width: 100%;
     height: 100px;
     border-radius: 4px;
