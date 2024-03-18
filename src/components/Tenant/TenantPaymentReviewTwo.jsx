@@ -58,7 +58,7 @@ const TenantPRT = styled.section`
     align-items: center;
     gap: 8px;
     width: 200px;
-    margin: 20px 0;
+    margin: 35px 0 20px 0;
   }
   .r-btn {
     height: 15px;
