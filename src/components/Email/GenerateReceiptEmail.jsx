@@ -91,9 +91,9 @@ const GenerateRE = styled.section`
     justify-content: center;
     align-items: center;
     height: 100%;
-    margin: 20px 0;
     padding: 20px 0;
   }
+  
   .logo-info {
     display: flex;
     justify-content: space-between;

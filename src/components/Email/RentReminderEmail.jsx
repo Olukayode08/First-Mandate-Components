@@ -55,7 +55,7 @@ const RentRE = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 20px 0;
   }
   .logo-info {
@@ -147,9 +147,6 @@ const RentRE = styled.section`
     }
   }
   @media screen and (max-width: 450px) {
-    section {
-      height: 100%;
-    }
     .logo-info,
     main {
       width: 380px;

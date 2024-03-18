@@ -53,7 +53,7 @@ const ResetPE = styled.section`
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 20px;
+    padding: 20px 0;
   }
   .logo-info {
     display: flex;
@@ -152,6 +152,9 @@ const ResetPE = styled.section`
     .logo-info,
     main {
       width: 300px;
+    }
+    section {
+      height: 100%;
     }
   }
 `
