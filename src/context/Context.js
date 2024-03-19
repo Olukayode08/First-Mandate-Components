@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const FirstMandate = createContext()
 
 // const BASE_URL = process.env.REACT_APP_API_KEY
-const BASE_URL = 'http://localhost:5000'
+
 const Context = ({ children }) => {
   const navigate = useNavigate()
   // Sign-up Congratulations
@@ -76,16 +76,21 @@ const Context = ({ children }) => {
     } else if (!validateEmail(details.email)) {
       return notify('Invalid Email Address')
     }
-    let userDetails = { details }
+    // let userDetails = { details }
     try {
-      const response = await fetch(BASE_URL, {
-        method: 'POST',
-        body: JSON.stringify(userDetails),
-        headers: {
-          'Content- Type': 'application/json',
-          Accept: 'application/json',
-        },
-      })
+      const response = await fetch(
+        // BASE_URL,
+        'https://api.github.com/user/repos',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // Accept: 'application/json',
+          },
+          body: JSON.stringify(details),
+        }
+      )
+      console.log(details)
       const data = await response.json()
       setIsAuthenticated(true)
       setUser(data)
@@ -103,24 +108,30 @@ const Context = ({ children }) => {
       }
     }
   }
+
+  // User Sigi-In
   const UserSignIn = async (e) => {
     e.preventDefault()
-    let userDetails = { details }
+    // let userDetails = { details }
     try {
-      const response = await fetch(BASE_URL, {
-        method: 'POST',
-        body: JSON.stringify(userDetails),
-        headers: {
-          'Content- Type': 'application/json',
-          Accept: 'application/json',
-        },
-      })
+      const response = await fetch(
+        // BASE_URL,
+        'https://api.github.com/user/repos',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(details),
+        }
+      )
+      console.log(details)
       const data = await response.json()
       setIsAuthenticated(true)
       setUser(data)
       setDetails('')
       setError('')
-      navigate('/landlord')
+      navigate('/manager/tenants')
       console.log('Data', data)
     } catch (err) {
       if (err?.response) {

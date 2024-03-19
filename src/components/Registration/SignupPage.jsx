@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { useContext } from 'react'
 import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'

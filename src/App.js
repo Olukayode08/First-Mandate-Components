@@ -70,8 +70,11 @@ import TenantPaymentForm from './components/Tenant/TenantPaymentForm'
 import TenantPaymentReceipt from './components/Tenant/TenantPaymentReceipt'
 import TenantPaymentReviewTwo from './components/Tenant/TenantPaymentReviewTwo'
 import LandlordDueDates from './components/Landlord/LandlordDueDates'
-import Calendar from './components/Calender/Calendar'
-import CalendarTwo from './components/Calender/CalendarTwo'
+import Calendar from './components/Calendar/Calendar'
+import CalendarMonths from './components/Calendar/CalendarMonths'
+import CalendarDays from './components/Calendar/CalendarDays'
+import CalendarYears from './components/Calendar/CalendarYears'
+import CalendarWeeks from './components/Calendar/CalendarWeeks'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -105,7 +108,10 @@ function App() {
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
           <Route path='/calendar' element={<Calendar />} />
-          <Route path='/calendar-two' element={<CalendarTwo />} />
+          <Route path='/calendar-months' element={<CalendarMonths />} />
+          <Route path='/calendar-days' element={<CalendarDays />} />
+          <Route path='/calendar-weeks' element={<CalendarWeeks />} />
+          <Route path='/calendar-years' element={<CalendarYears />} />
 
           {/* Landlord page */}
           <Route path='/landlord' element={<LandLord />}>
@@ -200,11 +206,11 @@ function App() {
               element={<RentPaymentSuccessfulEmail />}
             />
             <Route
-              path='payment-receipt'
+              path='email-receipt'
               element={<RentPaymentReceiptEmail />}
             />
             <Route path='payment-reminder' element={<RentReminderEmail />} />
-            <Route path='generate-receipt' element={<GenerateReceiptEmail />} />
+            <Route path='pdf-receipt' element={<GenerateReceiptEmail />} />
           </Route>
           <Route path='/*' element={<ErrorPage />} />
         </Routes>

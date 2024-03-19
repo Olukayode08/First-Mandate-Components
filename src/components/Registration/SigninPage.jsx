@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
+import { FirstMandate } from '../../context/Context'
 
 const SigninPage = () => {
+  const {
+    details,
+    UserSignIn,
+    handleChange,
+    error,
+  } = useContext(FirstMandate)
   return (
     <>
       <SigninP>
@@ -10,16 +17,25 @@ const SigninPage = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <main>
+          <form onSubmit={UserSignIn}>
             <h3>Sign In to 1st Mandate</h3>
+            <p className='error'>{error}</p>
             <input
               type='email'
+              name='email'
+              value={details.email}
+              autoComplete='off'
+              onChange={handleChange}
               className='email-input'
               required
               placeholder='E-mail'
             />
             <input
-              type='text'
+              type='password'
+              name='password'
+              value={details.password}
+              autoComplete='off'
+              onChange={handleChange}
               className='password-input'
               placeholder='Password'
               required
@@ -29,7 +45,7 @@ const SigninPage = () => {
             <p className='create-account'>
               No account?<span> Create one</span>
             </p>
-          </main>
+          </form>
         </section>
       </SigninP>
     </>
@@ -44,7 +60,7 @@ const SigninP = styled.section`
     top: 40px;
     left: 40px;
   }
-  main {
+  form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,6 +80,13 @@ const SigninP = styled.section`
   }
   h3 {
     font-size: 21px;
+  }
+  .error {
+    color: #ff0000;
+    text-align: left;
+    margin: 0 auto;
+    align-self: flex-start;
+    width: 400px;
   }
   .password-input,
   .email-input {
@@ -102,9 +125,10 @@ const SigninP = styled.section`
       top: 20px;
       left: 20px;
     }
-    main {
+    form {
       width: 430px;
     }
+    .error,
     button,
     .password-input,
     .email-input {
@@ -112,9 +136,10 @@ const SigninP = styled.section`
     }
   }
   @media screen and (max-width: 440px) {
-    main {
+    form {
       width: 360px;
     }
+    .error,
     button,
     .password-input,
     .email-input {
@@ -122,10 +147,11 @@ const SigninP = styled.section`
     }
   }
   @media screen and (max-width: 360px) {
-    main {
+    form {
       width: 320px;
       height: 100%;
     }
+    .error,
     button,
     .password-input,
     .email-input {

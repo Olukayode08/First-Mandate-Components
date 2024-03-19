@@ -3,20 +3,20 @@ import styled from 'styled-components'
 
 const RentTermsDropdown = () => {
   const [selectedOption, setSelectedOption] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-  const [startDateDisabled, setStartDateDisabled] = useState(true)
-  const [endDateDisabled, setEndDateDisabled] = useState(true)
+  // const [startDate, setStartDate] = useState('')
+  // const [endDate, setEndDate] = useState('')
+  const [ setStartDateDisabled] = useState(true)
+  // const [endDateDisabled, setEndDateDisabled] = useState(true)
 
   const handleDropdownChange = (e) => {
     setSelectedOption(e.target.value)
     setStartDateDisabled(false)
   }
 
-  const handleStartDateChange = (e) => {
-    setStartDate(e.target.value)
-    setEndDateDisabled(false)
-  }
+  // const handleStartDateChange = (e) => {
+  //   setStartDate(e.target.value)
+  //   setEndDateDisabled(false)
+  // }
 
   return (
     <>

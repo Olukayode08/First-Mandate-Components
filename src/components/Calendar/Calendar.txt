@@ -1,0 +1,40 @@
+// src/components/Calendar.tsx
+
+import React, { useState } from 'react';
+import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { Tabs, Tab } from '@mui/material';
+import { format } from 'date-fns';
+
+const localizer = momentLocalizer(moment);
+
+const Calendar = () => {
+  const [activeDate, setActiveDate] = useState(new Date()); // Initialize with today's date
+
+  const handleTabChange = (event, newValue) => {
+    // Logic to switch between day, week, month, and year views
+    // Update activeDate accordingly
+  };
+
+  return (
+    <div className="calendar-container">
+      <Tabs value={/* selected tab value */} onChange={handleTabChange}>
+        <Tab label="Day" value="day" />
+        <Tab label="Week" value="week" />
+        <Tab label="Month" value="month" />
+        <Tab label="Year" value="year" />
+      </Tabs>
+      <BigCalendar
+        localizer={localizer}
+        events={/* your events data */}
+        startAccessor="start"
+        endAccessor="end"
+        views={['day', 'week', 'month', 'year']}
+        date={activeDate}
+        // Other props as needed
+      />
+    </div>
+  );
+};
+
+export default Calendar;
