@@ -1,27 +1,20 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { FirstMandate } from '../../context/Context'
-import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
+import { FirstMandate } from '../../context/Context'
 
-const SignupPage = () => {
-  const {
-    // toggleSignupModal,
-    signupCongrats,
-    details,
-    UserSignUp,
-    handleChange,
-    error,
-  } = useContext(FirstMandate)
+const Login = () => {
+  const { details, isSigningUp, UserSignIn, handleChange, error } =
+    useContext(FirstMandate)
   return (
     <>
-      <SignupP>
+      <LoginP>
         <section>
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={UserSignUp}>
-            <h3>Sign Up for 1st Mandate</h3>
+          <form onSubmit={UserSignIn}>
+            <h3>Sign In to 1st Mandate</h3>
             <p className='error'>{error}</p>
             <input
               type='email'
@@ -43,24 +36,23 @@ const SignupPage = () => {
               placeholder='Password'
               required
             />
-            <button>Create account</button>
-            {/* <button onClick={toggleSignupModal}>Create account</button> */}
+            <button
+              disabled={isSigningUp}
+              className={isSigningUp ? 'btn-disabled' : 'btn'}
+            >
+              Log in
+            </button>
+            <p className='create-account'>Reset password</p>
             <p className='create-account'>
-              By clicking “Create account” or “Continue with Google”, you agree
-              to the 1st Mandate <span>TOS</span> and
-              <span> Privacy policy.</span>
-            </p>
-            <p className='create-account'>
-              Already have an account? <span>Log in</span>
+              No account?<span> Create one</span>
             </p>
           </form>
         </section>
-      </SignupP>
-      <div>{signupCongrats && <SignupCongratsModal />}</div>
+      </LoginP>
     </>
   )
 }
-const SignupP = styled.section`
+const LoginP = styled.section`
   section {
     position: relative;
   }
@@ -111,7 +103,6 @@ const SignupP = styled.section`
     margin: 10px 0;
   }
   button {
-    background-color: #000;
     color: #ffffff;
     padding: 12px 0;
     border: transparent;
@@ -119,6 +110,13 @@ const SignupP = styled.section`
     width: 400px;
     margin: 10px 0;
     cursor: pointer;
+  }
+  .btn {
+    background: #000;
+  }
+  .btn-disabled {
+    background: #00000080;
+    cursor: not-allowed;
   }
   .create-account {
     font-weight: 200;
@@ -168,4 +166,4 @@ const SignupP = styled.section`
     }
   }
 `
-export default SignupPage
+export default Login

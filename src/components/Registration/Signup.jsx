@@ -1,25 +1,39 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import logo from '../../assets/1st mandate logo 1.png'
 import { FirstMandate } from '../../context/Context'
+import SignupCongratsModal from '../modal/SignupCongratsModal'
+import logo from '../../assets/1st mandate logo 1.png'
 
-const SigninPage = () => {
+const Signup = () => {
   const {
+    toggleSignupModal,
+    signupCongrats,
     details,
-    UserSignIn,
+    isSigningUp,
+    UserSignUp,
     handleChange,
     error,
   } = useContext(FirstMandate)
   return (
     <>
-      <SigninP>
+      <SignupP>
         <section>
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={UserSignIn}>
-            <h3>Sign In to 1st Mandate</h3>
+          <form onSubmit={UserSignUp}>
+            <h3>Sign Up for 1st Mandate</h3>
             <p className='error'>{error}</p>
+            <input
+              type='text'
+              name='name'
+              value={details.name}
+              autoComplete='off'
+              onChange={handleChange}
+              className='email-input'
+              required
+              placeholder='Full Name'
+            />
             <input
               type='email'
               name='email'
@@ -40,18 +54,29 @@ const SigninPage = () => {
               placeholder='Password'
               required
             />
-            <button>Log in</button>
-            <p className='create-account'>Reset password</p>
+            <button
+              onClick={toggleSignupModal}
+              disabled={isSigningUp}
+              className={isSigningUp ? 'btn-disabled' : 'btn'}
+            >
+              Create account
+            </button>
             <p className='create-account'>
-              No account?<span> Create one</span>
+              By clicking “Create account” or “Continue with Google”, you agree
+              to the 1st Mandate <span>TOS</span> and
+              <span> Privacy policy.</span>
+            </p>
+            <p className='create-account'>
+              Already have an account? <span>Log in</span>
             </p>
           </form>
         </section>
-      </SigninP>
+      </SignupP>
+      <div>{signupCongrats && <SignupCongratsModal />}</div>
     </>
   )
 }
-const SigninP = styled.section`
+const SignupP = styled.section`
   section {
     position: relative;
   }
@@ -111,6 +136,13 @@ const SigninP = styled.section`
     margin: 10px 0;
     cursor: pointer;
   }
+  .btn {
+    background: #000;
+  }
+  .btn-disabled {
+    background: #00000080;
+    cursor: not-allowed;
+  }
   .create-account {
     font-weight: 200;
     font-size: 15px;
@@ -159,4 +191,4 @@ const SigninP = styled.section`
     }
   }
 `
-export default SigninPage
+export default Signup

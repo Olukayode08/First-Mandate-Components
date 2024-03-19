@@ -34,8 +34,8 @@ import ResetPasswordEmail from './components/Email/ResetPasswordEmail'
 import ConfirmEmail from './components/Email/ConfirmEmail'
 import GeneralEmail from './components/Email/GeneralEmail'
 import WelcomeEmail from './components/Email/WelcomeEmail'
-import SignupPage from './components/Registration/SignupPage'
-import SigninPage from './components/Registration/SigninPage'
+import Signup from './components/Registration/Signup'
+import Login from './components/Registration/Login'
 import VerificationCode from './components/Registration/VerificationCode'
 import ResetPassword from './components/Registration/ResetPassword'
 import ResetEmailPassword from './components/Registration/ResetEmailPassword'
@@ -96,8 +96,8 @@ function App() {
       <Reload />
       <div className='app' id={theme}>
         <Routes>
-          <Route path='/' element={<SignupPage />} />
-          <Route path='/sign-in' element={<SigninPage />} />
+          <Route path='/' element={<Signup />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
           <Route path='/reset-password' element={<ResetPassword />} />
           <Route
@@ -205,10 +205,7 @@ function App() {
               path='payment-success'
               element={<RentPaymentSuccessfulEmail />}
             />
-            <Route
-              path='email-receipt'
-              element={<RentPaymentReceiptEmail />}
-            />
+            <Route path='email-receipt' element={<RentPaymentReceiptEmail />} />
             <Route path='payment-reminder' element={<RentReminderEmail />} />
             <Route path='pdf-receipt' element={<GenerateReceiptEmail />} />
           </Route>

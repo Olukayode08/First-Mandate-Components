@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom'
 
 const FirstMandate = createContext()
 
-// const BASE_URL = process.env.REACT_APP_API_KEY
+const BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL
 
 const Context = ({ children }) => {
   const navigate = useNavigate()
+
   // Sign-up Congratulations
   const [signupCongrats, setSignupCongrats] = useState(false)
   const toggleSignupModal = () => {
@@ -24,6 +25,7 @@ const Context = ({ children }) => {
   const toggleEmailModal = () => {
     setEmailResetCongrats(!emailResetCongrats)
   }
+
   // Upload Property Congrats Modal
   const [modal, setModal] = useState(false)
   const toggleModal = () => {
@@ -36,9 +38,11 @@ const Context = ({ children }) => {
   // Signup Validation
   const [error, setError] = useState('')
   const [user, setUser] = useState()
+  const [isSigningUp, setIsSigningUp] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const [details, setDetails] = useState({
+    name: '',
     email: '',
     password: '',
   })
@@ -46,17 +50,20 @@ const Context = ({ children }) => {
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value })
   }
+
   // Validate Password
   const validatePassword = (password) => {
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
     return passwordRegex.test(password)
   }
+
   // Validate Email
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regex.test(email)
   }
+
   // Notifify Error
   const notify = (error) => {
     setError(error)
@@ -66,7 +73,7 @@ const Context = ({ children }) => {
     setError('')
   }, [details.email, details.password])
 
-  // Handle Signup Submission
+  // User Signup Authentification
   const UserSignUp = async (e) => {
     e.preventDefault()
     if (!validatePassword(details.password)) {
@@ -76,73 +83,80 @@ const Context = ({ children }) => {
     } else if (!validateEmail(details.email)) {
       return notify('Invalid Email Address')
     }
-    // let userDetails = { details }
+    setIsSigningUp(true)
     try {
-      const response = await fetch(
-        // BASE_URL,
-        'https://api.github.com/user/repos',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            // Accept: 'application/json',
-          },
-          body: JSON.stringify(details),
-        }
-      )
-      console.log(details)
+      const response = await fetch(`${BASE_URL}/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(details),
+      })
       const data = await response.json()
-      setIsAuthenticated(true)
-      setUser(data)
-      setDetails('')
-      setError('')
-      navigate('/landlord')
-      console.log('Data', data)
+      if (response?.status === 422) {
+        return notify('Email Address Unavailable')
+      } else {
+        console.log('Data', data)
+        setIsAuthenticated(true)
+        setUser(data)
+        setDetails({
+          name: '',
+          email: '',
+          password: '',
+        })
+        setError('')
+        setTimeout(() => {
+          navigate('/landlord')
+        }, 2000)
+      }
     } catch (err) {
       if (err?.response) {
         return notify('No Server Response')
-      } else if (err.response?.status === 409) {
-        return notify('Email Used')
       } else {
         return notify('Registration Failed')
       }
+    } finally {
+      setIsSigningUp(false)
     }
   }
 
-  // User Sigi-In
+  // User Login Authentification
   const UserSignIn = async (e) => {
     e.preventDefault()
-    // let userDetails = { details }
+    setIsSigningUp(true)
     try {
-      const response = await fetch(
-        // BASE_URL,
-        'https://api.github.com/user/repos',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(details),
-        }
-      )
-      console.log(details)
+      const response = await fetch(`${BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(details),
+      })
       const data = await response.json()
-      setIsAuthenticated(true)
-      setUser(data)
-      setDetails('')
-      setError('')
-      navigate('/manager/tenants')
-      console.log('Data', data)
+      if (response?.status === 401) {
+        return notify('Invalid Login Credentials')
+      } else {
+        console.log('Data', data)
+        setIsAuthenticated(true)
+        setUser(data)
+        setDetails({
+          name: '',
+          email: '',
+          password: '',
+        })
+        setError('')
+        navigate('/manager')
+      }
     } catch (err) {
       if (err?.response) {
         return notify('No Server Response')
-      } else if (err.response?.status === 400) {
-        return notify('Missing Username or Password')
       } else if (err.response?.status === 401) {
         return notify('UnAuthorized')
       } else {
-        return notify('Login Failed')
+        return notify('Invalid Email Address')
       }
+    } finally {
+      setIsSigningUp(false)
     }
   }
 
@@ -154,6 +168,8 @@ const Context = ({ children }) => {
           handleChange,
           UserSignUp,
           UserSignIn,
+          isSigningUp,
+          setIsSigningUp,
           isAuthenticated,
           user,
           error,
