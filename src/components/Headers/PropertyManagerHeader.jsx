@@ -3,6 +3,7 @@ import { FaRegBell } from 'react-icons/fa6'
 import { FaRegUser } from 'react-icons/fa'
 import logo from '../../assets/1st mandate logo 1.png'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const PropertyManagerHeader = () => {
   return (
@@ -19,8 +20,12 @@ const PropertyManagerHeader = () => {
               <option value='Tenant'>Tenant</option>
             </select>
             <div className='icons'>
-              <FaRegBell className='icon' />
-              <FaRegUser className='icon' />
+              <Link className='link' to='/manager/notifications'>
+                <FaRegBell className='icon' />
+              </Link>
+              <Link className='link' to='/manager/profile'>
+                <FaRegUser className='icon' />
+              </Link>
             </div>
           </div>
         </div>
@@ -65,6 +70,10 @@ const Wrapper = styled.section`
     display: flex;
     gap: 10px;
     border-left: 1px solid #000;
+  }
+  .link {
+    text-decoration: none;
+    color: #000;
   }
   .icon {
     margin: 0 10px;

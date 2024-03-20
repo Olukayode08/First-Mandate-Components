@@ -77,6 +77,11 @@ import CalendarYears from './components/Calendar/CalendarYears'
 import CalendarWeeks from './components/Calendar/CalendarWeeks'
 import ManagerDueDates from './components/Manager/ManagerDueDates'
 import TenantDueDates from './components/Tenant/TenantDueDates'
+import BigCalendar from './components/Calendar/BigCalendar'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import TenantWallet from './components/Tenant/TenantWallet'
+import TenantWalletTransaction from './components/Tenant/TenantWalletTransaction'
+
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -98,7 +103,7 @@ function App() {
       <Reload />
       <div className='app' id={theme}>
         <Routes>
-          <Route path='/signup' element={<Signup />} />
+          <Route path='' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
           <Route path='/reset-password' element={<ResetPassword />} />
@@ -110,10 +115,11 @@ function App() {
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
           <Route path='/calendar' element={<Calendar />} />
-          <Route path='/calendar-months' element={<CalendarMonths />} />
           <Route path='/calendar-days' element={<CalendarDays />} />
           <Route path='/calendar-weeks' element={<CalendarWeeks />} />
+          <Route path='/calendar-months' element={<CalendarMonths />} />
           <Route path='/calendar-years' element={<CalendarYears />} />
+          <Route path='/big-calendar' element={<BigCalendar />} />
 
           {/* Landlord page */}
           <Route path='/landlord' element={<LandLord />}>
@@ -130,13 +136,10 @@ function App() {
             <Route path='reminders' element={<LandlordReminders />} />
             <Route path='add-reminder' element={<LandlordAddReminder />} />
             <Route path='send-reminder' element={<LandlordSendReminder />} />
-            <Route path='due-dates' element={<LandlordDueDates />} />
+            <Route path='due-date' element={<LandlordDueDates />} />
 
             <Route path='edit-profile' element={<LandlordEditProfilePage />} />
-            <Route
-              path='profile-settings'
-              element={<LandlordProfileSettings />}
-            />
+            <Route path='profile' element={<LandlordProfileSettings />} />
             <Route path='empty-property' element={<LandlordEmptyProperty />} />
             <Route path='empty-tenant' element={<LandlordEmptyTenant />} />
             <Route path='empty-manager' element={<LandlordEmptyManager />} />
@@ -154,14 +157,11 @@ function App() {
             <Route path='landlords' element={<ManagerAddLandlord />} />
             <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
             <Route path='reminders' element={<ManagerReminders />} />
-            <Route path='due-dates' element={<ManagerDueDates />} />
+            <Route path='due-date' element={<ManagerDueDates />} />
             <Route path='send-reminder' element={<ManagerSendReminder />} />
             <Route path='add-reminder' element={<ManagerAddReminder />} />
             <Route path='edit-profile' element={<ManagerEditProfilePage />} />
-            <Route
-              path='profile-settings'
-              element={<ManagerProfileSettings />}
-            />
+            <Route path='profile' element={<ManagerProfileSettings />} />
             <Route path='documents' element={<ManagerDocuments />} />
           </Route>
 
@@ -182,13 +182,10 @@ function App() {
               element={<TenantAddApartmentDetails />}
             />
             <Route path='reminders' element={<TenantReminders />} />
-            <Route path='due-dates' element={<TenantDueDates />} />
+            <Route path='due-date' element={<TenantDueDates />} />
             <Route path='add-reminder' element={<TenantAddReminder />} />
             <Route path='edit-profile' element={<TenantEditProfilePage />} />
-            <Route
-              path='profile-settings'
-              element={<TenantProfileSettings />}
-            />
+            <Route path='profile' element={<TenantProfileSettings />} />
             <Route path='payment' element={<TenantPaymentPage />} />
             <Route path='payment-form' element={<TenantPaymentForm />} />
             <Route path='payment-review' element={<TenantPaymentReview />} />
@@ -197,6 +194,8 @@ function App() {
               element={<TenantPaymentReviewTwo />}
             />
             <Route path='payment-receipt' element={<TenantPaymentReceipt />} />
+            <Route path='wallet' element={<TenantWallet />} />
+            <Route path='wallet-transaction' element={<TenantWalletTransaction />} />
           </Route>
 
           {/* Email Page */}
@@ -206,11 +205,11 @@ function App() {
             <Route path='general-email' element={<GeneralEmail />} />
             <Route path='welcome-email' element={<WelcomeEmail />} />
             <Route
-              path='payment-success'
+              path='payment-notification'
               element={<RentPaymentSuccessfulEmail />}
             />
             <Route path='email-receipt' element={<RentPaymentReceiptEmail />} />
-            <Route path='payment-reminder' element={<RentReminderEmail />} />
+            <Route path='rent-reminder' element={<RentReminderEmail />} />
             <Route path='pdf-receipt' element={<GenerateReceiptEmail />} />
           </Route>
           <Route path='/*' element={<ErrorPage />} />

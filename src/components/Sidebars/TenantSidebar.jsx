@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Squash as Hamburger } from 'hamburger-react'
 import { IoHomeOutline } from 'react-icons/io5'
 import { FaFileImport } from 'react-icons/fa'
-import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
+// import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
 import { LuWalletCards } from 'react-icons/lu'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { IoNotifications } from 'react-icons/io5'
@@ -77,16 +77,17 @@ const TenantSidebar = () => {
                   to='/tenant/apartment-details'
                 >
                   <FaFileImport size={23} className='icon' />
-                  <p className='desc'>Apartment</p>
+                  <p className='desc'>My Apartment</p>
                 </Link>
-                <Link onClick={closeSidebar} className='links' to='#'>
+                {/* <Link onClick={closeSidebar} className='links' to='#'>
                   <HiOutlineSquare3Stack3D size={23} className='icon' />
                   <p className='desc'>Landlord</p>
                 </Link>
                 <Link onClick={closeSidebar} className='links' to='#'>
                   <MdOutlineOnDeviceTraining size={23} className='icon' />
                   <p className='desc'>Manager</p>
-                </Link>
+                </Link> */}
+
                 <Link
                   onClick={closeSidebar}
                   className={
@@ -115,8 +116,23 @@ const TenantSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
+                    location.pathname === '/tenant/due-date'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/tenant/due-date'
+                >
+                  <MdOutlineOnDeviceTraining size={23} className='icon' />
+                  <p className='desc'>Rent Due Date</p>
+                </Link>
+                <Link
+                  onClick={closeSidebar}
+                  className={
                     location.pathname === '/tenant/payment' ||
-                    location.pathname === '/tenant/payment-review'
+                    location.pathname === '/tenant/payment-review' ||
+                    location.pathname === '/tenant/payment-review-two' ||
+                    location.pathname === '/tenant/payment-form' ||
+                    location.pathname === '/tenant/payment-receipt'
                       ? 'active links'
                       : 'links'
                   }
@@ -203,7 +219,7 @@ const TenantS = styled.section`
     align-items: flex-start;
     justify-content: left;
     width: 165px;
-    margin: 20px 0;
+    margin: 40px 0;
   }
   img {
     width: 100%;
@@ -216,7 +232,6 @@ const TenantS = styled.section`
     margin: 7px 0;
   }
   .theme {
-    margin-top: 60px;
     width: 165px;
   }
   @media screen and (max-width: 1250px) {

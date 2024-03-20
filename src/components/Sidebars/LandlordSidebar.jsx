@@ -112,6 +112,7 @@ const LandlordSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/reminders' ||
+                    location.pathname === '/landlord/send-reminder' ||
                     location.pathname === '/landlord/add-reminder'
                       ? 'active links'
                       : 'links'
@@ -135,11 +136,15 @@ const LandlordSidebar = () => {
                 </Link>
                 <Link
                   onClick={closeSidebar}
-                  className='links buttom-img'
-                  to='#'
+                  className={
+                    location.pathname === '/landlord/due-date'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/landlord/due-date'
                 >
                   <TbReportSearch size={23} className='icon' />
-                  <p className='desc'>Rent Due Dates</p>
+                  <p className='desc'>Rent Due Date</p>
                 </Link>
                 <div className='banner-add'>
                   <img
@@ -218,7 +223,7 @@ const LandlordS = styled.section`
     align-items: flex-start;
     justify-content: left;
     width: 165px;
-    margin: 20px 0;
+    margin: 40px 0;
   }
   img {
     width: 100%;
@@ -231,7 +236,6 @@ const LandlordS = styled.section`
     margin: 7px 0;
   }
   .theme {
-    margin-top: 60px;
     width: 165px;
   }
   @media screen and (max-width: 1250px) {

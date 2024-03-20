@@ -1,0 +1,32 @@
+export const tenantTransaction = [
+  {
+    id: 20011,
+    date: 'dd/mm/yy',
+    paymentType: 'Rent',
+    amount: '#300,000.00',
+    time: '10:41pm',
+    pMethod: 'Bank Transfer',
+    property: 'Not Successful',
+    style: { color: 'red' },
+  },
+  {
+    id: 20012,
+    date: 'dd/mm/yy',
+    paymentType: 'Rent',
+    amount: '#500,000.00',
+    time: '12:00am',
+    pMethod: 'Bank Transfer',
+    property: 'Successful',
+    style: { color: '#004400' },
+  },
+  {
+    id: 20013,
+    date: 'dd/mm/yy',
+    paymentType: 'Rent',
+    amount: '#500,000.00',
+    time: '12:00am',
+    pMethod: 'Bank Transfer',
+    property: 'Successful',
+    style: { color: '#004400' },
+  },
+]

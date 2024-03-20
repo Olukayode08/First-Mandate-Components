@@ -67,6 +67,7 @@ const PropertyManagerSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
+                    location.pathname === '/manager/property' ||
                     location.pathname === '/manager/properties'
                       ? 'active links'
                       : 'links'
@@ -106,6 +107,7 @@ const PropertyManagerSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/manager/reminders' ||
+                    location.pathname === '/manager/send-reminder' ||
                     location.pathname === '/manager/add-reminder'
                       ? 'active links'
                       : 'links'
@@ -127,14 +129,17 @@ const PropertyManagerSidebar = () => {
                   <IoNotifications size={23} className='icon' />
                   <p className='desc'>Notifications</p>
                 </Link>
-
                 <Link
                   onClick={closeSidebar}
-                  className='links buttom-img'
-                  to='#'
+                  className={
+                    location.pathname === '/manager/due-date'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/manager/due-date'
                 >
                   <TbReportSearch size={23} className='icon' />
-                  <p className='desc'>Rent Due Dates</p>
+                  <p className='desc'>Rent Due Date</p>
                 </Link>
                 <div className='banner-add'>
                   <img
@@ -214,7 +219,7 @@ const PMSidebar = styled.section`
     align-items: flex-start;
     justify-content: left;
     width: 165px;
-    margin: 20px 0;
+    margin: 40px 0;
   }
   img {
     width: 100%;
@@ -227,7 +232,6 @@ const PMSidebar = styled.section`
     margin: 7px 0;
   }
   .theme {
-    margin-top: 60px;
     width: 165px;
   }
   @media screen and (max-width: 1250px) {

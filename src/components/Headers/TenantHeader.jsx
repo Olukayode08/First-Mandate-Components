@@ -3,6 +3,7 @@ import { FaRegBell } from 'react-icons/fa6'
 import { FaRegUser } from 'react-icons/fa'
 import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
+import { Link } from 'react-router-dom'
 
 const TenantHeader = () => {
   return (
@@ -19,8 +20,12 @@ const TenantHeader = () => {
               <option value='Tenant'>Tenant</option>
             </select>
             <div className='icons'>
-              <FaRegBell className='icon' />
-              <FaRegUser className='icon' />
+              <Link className='link' to='/tenant/notifications'>
+                <FaRegBell className='icon' />
+              </Link>
+              <Link className='link' to='/tenant/profile'>
+                <FaRegUser className='icon' />
+              </Link>
             </div>
           </div>
         </div>
@@ -66,6 +71,10 @@ const THeader = styled.section`
     display: flex;
     gap: 10px;
     border-left: 1px solid #000;
+  }
+  .link {
+    text-decoration: none;
+    color: #000;
   }
   .icon {
     margin: 0 10px;
