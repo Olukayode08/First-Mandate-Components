@@ -8,12 +8,6 @@ const BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL
 const Context = ({ children }) => {
   const navigate = useNavigate()
 
-  // Sign-up Congratulations
-  const [signupCongrats, setSignupCongrats] = useState(false)
-  const toggleSignupModal = () => {
-    setSignupCongrats(!signupCongrats)
-  }
-
   // Reset Password Congratulations
   const [resetPasswordCongrats, setPasswordCongrats] = useState(false)
   const toggleResetPasswordModal = () => {
@@ -105,9 +99,6 @@ const Context = ({ children }) => {
           password: '',
         })
         setError('')
-        setTimeout(() => {
-          navigate('/landlord')
-        }, 2000)
       }
     } catch (err) {
       if (err?.response) {
@@ -145,15 +136,15 @@ const Context = ({ children }) => {
           password: '',
         })
         setError('')
-        navigate('/manager')
+        setTimeout(() => {
+          navigate('/landlord')
+        }, 1000)
       }
     } catch (err) {
       if (err?.response) {
         return notify('No Server Response')
-      } else if (err.response?.status === 401) {
-        return notify('UnAuthorized')
       } else {
-        return notify('Invalid Email Address')
+        return notify('Login Unsuccessful')
       }
     } finally {
       setIsSigningUp(false)
@@ -175,8 +166,6 @@ const Context = ({ children }) => {
           error,
           modal,
           toggleModal,
-          signupCongrats,
-          toggleSignupModal,
           resetPasswordCongrats,
           toggleResetPasswordModal,
           emailResetCongrats,

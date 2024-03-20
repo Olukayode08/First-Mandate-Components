@@ -1,19 +1,33 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Signup = () => {
   const {
-    toggleSignupModal,
-    signupCongrats,
+    isAuthenticated,
     details,
     isSigningUp,
     UserSignUp,
     handleChange,
     error,
   } = useContext(FirstMandate)
+
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (isAuthenticated) {
+      setTimeout(() => {
+        setShowSuccessMessage(true)
+        setTimeout(() => {
+          setShowSuccessMessage(false)
+          navigate('/landlord')
+        }, 500)
+      }, 100)
+    }
+  }, [navigate, isAuthenticated])
   return (
     <>
       <SignupP>
@@ -55,7 +69,6 @@ const Signup = () => {
               required
             />
             <button
-              onClick={toggleSignupModal}
               disabled={isSigningUp}
               className={isSigningUp ? 'btn-disabled' : 'btn'}
             >
@@ -67,12 +80,15 @@ const Signup = () => {
               <span> Privacy policy.</span>
             </p>
             <p className='create-account'>
-              Already have an account? <span>Log in</span>
+              Already have an account?{' '}
+              <Link to='/login' className='link'>
+                Log in
+              </Link>
             </p>
           </form>
         </section>
       </SignupP>
-      <div>{signupCongrats && <SignupCongratsModal />}</div>
+      <div>{showSuccessMessage && <SignupCongratsModal />}</div>
     </>
   )
 }
@@ -147,10 +163,16 @@ const SignupP = styled.section`
     font-weight: 200;
     font-size: 15px;
     line-height: 23px;
+    color: #00000080;
   }
+  .link,
   span {
     font-weight: 600;
     cursor: pointer;
+    color: #000;
+  }
+  .link {
+    text-decoration: none;
   }
   @media screen and (max-width: 470px) {
     .logo {

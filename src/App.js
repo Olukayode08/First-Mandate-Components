@@ -75,6 +75,8 @@ import CalendarMonths from './components/Calendar/CalendarMonths'
 import CalendarDays from './components/Calendar/CalendarDays'
 import CalendarYears from './components/Calendar/CalendarYears'
 import CalendarWeeks from './components/Calendar/CalendarWeeks'
+import ManagerDueDates from './components/Manager/ManagerDueDates'
+import TenantDueDates from './components/Tenant/TenantDueDates'
 function App() {
   const { theme } = useContext(ThemeContext)
 
@@ -96,7 +98,7 @@ function App() {
       <Reload />
       <div className='app' id={theme}>
         <Routes>
-          <Route path='/' element={<Signup />} />
+          <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
           <Route path='/reset-password' element={<ResetPassword />} />
@@ -152,6 +154,7 @@ function App() {
             <Route path='landlords' element={<ManagerAddLandlord />} />
             <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
             <Route path='reminders' element={<ManagerReminders />} />
+            <Route path='due-dates' element={<ManagerDueDates />} />
             <Route path='send-reminder' element={<ManagerSendReminder />} />
             <Route path='add-reminder' element={<ManagerAddReminder />} />
             <Route path='edit-profile' element={<ManagerEditProfilePage />} />
@@ -179,6 +182,7 @@ function App() {
               element={<TenantAddApartmentDetails />}
             />
             <Route path='reminders' element={<TenantReminders />} />
+            <Route path='due-dates' element={<TenantDueDates />} />
             <Route path='add-reminder' element={<TenantAddReminder />} />
             <Route path='edit-profile' element={<TenantEditProfilePage />} />
             <Route

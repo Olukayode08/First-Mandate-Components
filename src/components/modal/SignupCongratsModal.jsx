@@ -1,16 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { FirstMandate } from '../../context/Context'
 
 const SignupCongratsModal = () => {
-  const { toggleSignupModal } = useContext(FirstMandate)
 
   return (
     <>
       <SignupCM>
         <section>
           <div className='modal'>
-            <div className='overlay' onClick={toggleSignupModal}></div>
+            <div className='overlay'></div>
             <div className='modal-content'>
               <p className='modal-text'>
                 You have successfully signed up to 1st Mandate.

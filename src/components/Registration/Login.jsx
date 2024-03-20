@@ -2,10 +2,12 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
 import { FirstMandate } from '../../context/Context'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   const { details, isSigningUp, UserSignIn, handleChange, error } =
     useContext(FirstMandate)
+
   return (
     <>
       <LoginP>
@@ -44,7 +46,10 @@ const Login = () => {
             </button>
             <p className='create-account'>Reset password</p>
             <p className='create-account'>
-              No account?<span> Create one</span>
+              No account?{' '}
+              <Link className='link' to='/signup'>
+                Create one
+              </Link>
             </p>
           </form>
         </section>
@@ -119,13 +124,16 @@ const LoginP = styled.section`
     cursor: not-allowed;
   }
   .create-account {
-    font-weight: 200;
+    font-weight: 100;
     font-size: 15px;
     line-height: 23px;
+    color: #00000080;
   }
-  span {
+  .link {
     font-weight: 600;
     cursor: pointer;
+    color: #000;
+    text-decoration: none;
   }
   @media screen and (max-width: 470px) {
     .logo {

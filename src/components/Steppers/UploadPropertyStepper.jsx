@@ -4,15 +4,9 @@ import { IoMdArrowBack } from 'react-icons/io'
 import Reload from '../../hooks/Reload'
 import CongratsModal from '../modal/CongratsModal'
 import { FirstMandate } from '../../context/Context'
-// import UploadPropertyOne from '../UploadPpt/UploadUnit'
-// import UploadPropertyTwo from '../UploadPpt/UploadPropertyOne'
-// import UploadPropertyThree from '../UploadPpt/UploadPropertyTwo'
 import { useNavigate } from 'react-router-dom'
 import UploadPropertyOne from '../UploadProperty/UploadPropertyOne'
 import UploadPropertyTwo from '../UploadProperty/UploadPropertyTwo'
-
-// import UploadProperty from '../UploadPpt/UploadProperty'
-
 const totalSteps = 2
 const UploadPropertyStepper = () => {
   const [step, setStep] = useState(1)
@@ -35,16 +29,10 @@ const UploadPropertyStepper = () => {
     <>
       <UploadPS>
         <section>
-          {/* {!uploadNewProperty ? (
-            <UploadProperty />
-          ) : (
-        
-          )} */}
           <div className='multi-step-form'>
             <h2>Upload New Property</h2>
             {step === 1 && <p className='active-step'>1 of 2</p>}
             {step === 2 && <p className='active-step'>2 of 2</p>}
-            {/* {step === 3 && <p className='active-step'>3 of 3</p>} */}
             <div className='step-indicator'>
               <div className='progress-bar'>
                 <span
@@ -56,7 +44,6 @@ const UploadPropertyStepper = () => {
             <div className='step-content'>
               {step === 1 && <Step1 />}
               {step === 2 && <Step2 />}
-              {/* {step === 3 && <Step3 />} */}
             </div>
             <div className='step-buttons'>
               {step === 1 && (
@@ -107,15 +94,6 @@ const Step2 = () => {
     </div>
   )
 }
-
-// const Step3 = () => {
-//   return (
-//     <div>
-//       <Reload />
-//       <UploadPropertyThree />
-//     </div>
-//   )
-// }
 
 const UploadPS = styled.section`
   /* Multi stepper */
