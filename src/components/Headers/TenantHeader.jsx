@@ -13,12 +13,13 @@ const TenantHeader = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <div className='select-user'>
-            <select name='user' id='user'>
+          <div className='user'>
+            {/* <select name='user' id='user'>
               <option value='Landlord'>Landlord</option>
               <option value='Manager'>Property Manager</option>
               <option value='Tenant'>Tenant</option>
-            </select>
+            </select> */}
+            <p>Tenant</p>
             <div className='icons'>
               <Link className='link' to='/tenant/notifications'>
                 <FaRegBell className='icon' />
@@ -49,14 +50,18 @@ const THeader = styled.section`
     position: absolute;
     left: 50px;
   }
-  .select-user {
+  .user {
     position: absolute;
     right: 50px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
-  select {
+  p {
+    margin-right: 10px;
+    font-size: 15px;
+  }
+  /* select {
     border: none;
     background: transparent;
     color: #000;
@@ -66,7 +71,7 @@ const THeader = styled.section`
     margin-right: 5px;
     cursor: pointer;
     padding: 10px;
-  }
+  } */
   .icons {
     display: flex;
     gap: 10px;
@@ -85,18 +90,21 @@ const THeader = styled.section`
     .header {
       padding: 0 10px;
     }
-    .select-user {
+    .user {
       right: 10px;
     }
   }
   @media screen and (max-width: 380px) {
-    .select-user {
+    .user {
       right: 0;
       gap: 5px;
     }
-    select {
-      font-size: 13px;
+    p{
+      font-size: 14px;
     }
+    /* select {
+      font-size: 13px;
+    } */
     .logo {
       left: 40px;
     }

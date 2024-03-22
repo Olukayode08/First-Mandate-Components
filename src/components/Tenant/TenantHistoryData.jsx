@@ -1,34 +1,40 @@
 import React from 'react'
 import styled from 'styled-components'
-import { tenantTransaction } from '../../datas/TenantTransaction'
+import { tenantTransactionHistory } from '../../datas/TenantTransactionHistory'
 
-const TenantTransaction = () => {
+const TenantHistoryData = () => {
   return (
     <>
-      <TenantT>
+      <TenantHD>
         <section>
           <div className='table'>
             <table>
               <thead>
                 <tr className='t-heading'>
+                  <th>S/N</th>
                   <th>Date</th>
                   <th>Payment Type</th>
                   <th>Amount</th>
                   <th>Time</th>
+                  <th>Paid by</th>
+                  <th>Property</th>
+                  <th>Unit</th>
                   <th>Payment Method</th>
-                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                {tenantTransaction.map((list) => {
+                {tenantTransactionHistory.map((list) => {
                   return (
                     <tr key={list.id} className='t-list'>
+                      <td>1</td>
                       <td>{list.date}</td>
                       <td>{list.paymentType}</td>
                       <td>{list.amount}</td>
                       <td>{list.time}</td>
+                      <td>Lateef O.</td>
+                      <td>Elovia</td>
+                      <td>4</td>
                       <td>{list.pMethod}</td>
-                      <td style={list.style}>{list.property}</td>
                     </tr>
                   )
                 })}
@@ -36,16 +42,17 @@ const TenantTransaction = () => {
             </table>
           </div>
         </section>
-      </TenantT>
+      </TenantHD>
     </>
   )
 }
-const TenantT = styled.section`
+const TenantHD = styled.section`
   .table {
     overflow-x: scroll;
     width: 100%;
-    background-color: #f6f6f8;
+    background-color: #ffffff;
     padding: 20px;
+    border-radius: 4px;
   }
   table {
     border-collapse: separate;
@@ -62,11 +69,11 @@ const TenantT = styled.section`
     text-align: center;
   }
   .t-heading {
-    height: 40px;
+    height: 50px;
   }
   .t-list {
-    height: 40px;
-    background-color: #fff;
+    height: 50px;
+    background-color: #f6f6f8;
   }
 `
-export default TenantTransaction
+export default TenantHistoryData

@@ -3,9 +3,12 @@ import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 const Signup = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || '/'
   const {
     isAuthenticated,
     details,
@@ -16,18 +19,17 @@ const Signup = () => {
   } = useContext(FirstMandate)
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-  const navigate = useNavigate()
   useEffect(() => {
     if (isAuthenticated) {
       setTimeout(() => {
         setShowSuccessMessage(true)
         setTimeout(() => {
           setShowSuccessMessage(false)
-          navigate('/landlord')
+        navigate(from, { replace: true })
         }, 500)
       }, 100)
     }
-  }, [navigate, isAuthenticated])
+  }, [navigate, from, isAuthenticated])
   return (
     <>
       <SignupP>

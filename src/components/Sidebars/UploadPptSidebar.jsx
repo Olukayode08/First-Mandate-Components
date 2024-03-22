@@ -68,7 +68,7 @@ const UploadPptSidebar = () => {
                   </Link>
                   {tenants.map((tenant) => {
                     return (
-                      <div key={tenant} className='user-ppt'>
+                      <div key={tenant.id} className='user-ppt'>
                         {tenant.iconTwo}
                         <div className='username'>
                           <h3>{tenant.user}</h3>

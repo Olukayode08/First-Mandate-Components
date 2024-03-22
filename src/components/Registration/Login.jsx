@@ -4,9 +4,16 @@ import logo from '../../assets/1st mandate logo 1.png'
 import { FirstMandate } from '../../context/Context'
 import { Link } from 'react-router-dom'
 
+
 const Login = () => {
-  const { details, isSigningUp, UserSignIn, handleChange, error } =
-    useContext(FirstMandate)
+  const {
+    details,
+    isSigningUp,
+    UserSignIn,
+    handleChange,
+    error,
+  } = useContext(FirstMandate)
+
 
   return (
     <>

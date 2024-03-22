@@ -13,12 +13,8 @@ const LandlordHeader = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <div className='select-user'>
-            <select name='user' id='user'>
-              <option value='Landlord'>Landlord</option>
-              <option value='Manager'>Property Manager</option>
-              <option value='Tenant'>Tenant</option>
-            </select>
+          <div className='user'>
+            <p>Landlord</p>
             <div className='icons'>
               <Link className='link' to='/landlord/notifications'>
                 <FaRegBell className='icon' />
@@ -49,23 +45,16 @@ const LandlordH = styled.section`
     position: absolute;
     left: 50px;
   }
-  .select-user {
+  .user {
     position: absolute;
     right: 50px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
-  select {
-    border: none;
-    background: transparent;
-    color: #000;
-    outline: none;
-    font-weight: inherit;
+  p {
+    margin-right: 10px;
     font-size: 15px;
-    margin-right: 5px;
-    cursor: pointer;
-    padding: 10px;
   }
   .icons {
     display: flex;
@@ -85,17 +74,17 @@ const LandlordH = styled.section`
     .header {
       padding: 0 10px;
     }
-    .select-user {
+    .user {
       right: 10px;
     }
   }
   @media screen and (max-width: 380px) {
-    .select-user {
+    .user {
       right: 0;
       gap: 5px;
     }
-    select {
-      font-size: 13px;
+    p {
+      font-size: 14px;
     }
     .logo {
       left: 40px;

@@ -81,6 +81,9 @@ import BigCalendar from './components/Calendar/BigCalendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import TenantWallet from './components/Tenant/TenantWallet'
 import TenantWalletTransaction from './components/Tenant/TenantWalletTransaction'
+import TenantHistory from './components/Tenant/TenantHistory'
+import TenantCalendar from './components/Tenant/TenantCalendar'
+import ProtectedRoute from './hooks/ProtectedRoute'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -103,7 +106,7 @@ function App() {
       <Reload />
       <div className='app' id={theme}>
         <Routes>
-          <Route path='' element={<Signup />} />
+          <Route path='/' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
           <Route path='/reset-password' element={<ResetPassword />} />
@@ -122,81 +125,104 @@ function App() {
           <Route path='/big-calendar' element={<BigCalendar />} />
 
           {/* Landlord page */}
-          <Route path='/landlord' element={<LandLord />}>
-            <Route path='' element={<LandlordHomePage />} />
-            <Route path='notifications' element={<LandlordNotifications />} />
-            <Route path='properties' element={<LandlordPropertyPage />} />
-            <Route path='upload-property' element={<UploadPropertyPage />} />
-            <Route path='add-unit' element={<LandlordUploadUnit />} />
-            <Route path='tenants' element={<LandlordTenantList />} />
-            <Route path='select-unit' element={<LandlordSelectProperty />} />
-            <Route path='add-tenant' element={<LandlordAddNewTenant />} />
-            <Route path='managers' element={<LandlordAddManager />} />
-            <Route path='add-manager' element={<LandlordAddNewManager />} />
-            <Route path='reminders' element={<LandlordReminders />} />
-            <Route path='add-reminder' element={<LandlordAddReminder />} />
-            <Route path='send-reminder' element={<LandlordSendReminder />} />
-            <Route path='due-date' element={<LandlordDueDates />} />
+          {/* <Route element={<ProtectedRoute />}> */}
+            <Route path='/landlord' element={<LandLord />}>
+              <Route path='' element={<LandlordHomePage />} />
+              <Route path='notifications' element={<LandlordNotifications />} />
+              <Route path='properties' element={<LandlordPropertyPage />} />
+              <Route path='upload-property' element={<UploadPropertyPage />} />
+              <Route path='add-unit' element={<LandlordUploadUnit />} />
+              <Route path='tenants' element={<LandlordTenantList />} />
+              <Route path='select-unit' element={<LandlordSelectProperty />} />
+              <Route path='add-tenant' element={<LandlordAddNewTenant />} />
+              <Route path='managers' element={<LandlordAddManager />} />
+              <Route path='add-manager' element={<LandlordAddNewManager />} />
+              <Route path='reminders' element={<LandlordReminders />} />
+              <Route path='add-reminder' element={<LandlordAddReminder />} />
+              <Route path='send-reminder' element={<LandlordSendReminder />} />
+              <Route path='due-date' element={<LandlordDueDates />} />
 
-            <Route path='edit-profile' element={<LandlordEditProfilePage />} />
-            <Route path='profile' element={<LandlordProfileSettings />} />
-            <Route path='empty-property' element={<LandlordEmptyProperty />} />
-            <Route path='empty-tenant' element={<LandlordEmptyTenant />} />
-            <Route path='empty-manager' element={<LandlordEmptyManager />} />
-            <Route path='empty-reminder' element={<LandlordEmptyReminder />} />
-          </Route>
+              <Route
+                path='edit-profile'
+                element={<LandlordEditProfilePage />}
+              />
+              <Route path='profile' element={<LandlordProfileSettings />} />
+              <Route
+                path='empty-property'
+                element={<LandlordEmptyProperty />}
+              />
+              <Route path='empty-tenant' element={<LandlordEmptyTenant />} />
+              <Route path='empty-manager' element={<LandlordEmptyManager />} />
+              <Route
+                path='empty-reminder'
+                element={<LandlordEmptyReminder />}
+              />
+            </Route>
+          {/* </Route> */}
 
           {/* Manager's Page */}
-          <Route path='/manager' element={<PropertyManager />}>
-            <Route path='' element={<ManagerHomePage />} />
-            <Route path='notifications' element={<ManagerNotifications />} />
-            <Route path='properties' element={<ManagerPropertyPageOne />} />
-            <Route path='property' element={<ManagerPropertyPageTwo />} />
-            <Route path='tenants' element={<ManagerTenantList />} />
-            <Route path='add-tenant' element={<ManagerAddNewTenant />} />
-            <Route path='landlords' element={<ManagerAddLandlord />} />
-            <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
-            <Route path='reminders' element={<ManagerReminders />} />
-            <Route path='due-date' element={<ManagerDueDates />} />
-            <Route path='send-reminder' element={<ManagerSendReminder />} />
-            <Route path='add-reminder' element={<ManagerAddReminder />} />
-            <Route path='edit-profile' element={<ManagerEditProfilePage />} />
-            <Route path='profile' element={<ManagerProfileSettings />} />
-            <Route path='documents' element={<ManagerDocuments />} />
-          </Route>
+          {/* <Route element={<ProtectedRoute />}> */}
+            <Route path='/manager' element={<PropertyManager />}>
+              <Route path='' element={<ManagerHomePage />} />
+              <Route path='notifications' element={<ManagerNotifications />} />
+              <Route path='properties' element={<ManagerPropertyPageOne />} />
+              <Route path='property' element={<ManagerPropertyPageTwo />} />
+              <Route path='tenants' element={<ManagerTenantList />} />
+              <Route path='add-tenant' element={<ManagerAddNewTenant />} />
+              <Route path='landlords' element={<ManagerAddLandlord />} />
+              <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
+              <Route path='reminders' element={<ManagerReminders />} />
+              <Route path='due-date' element={<ManagerDueDates />} />
+              <Route path='send-reminder' element={<ManagerSendReminder />} />
+              <Route path='add-reminder' element={<ManagerAddReminder />} />
+              <Route path='edit-profile' element={<ManagerEditProfilePage />} />
+              <Route path='profile' element={<ManagerProfileSettings />} />
+              <Route path='documents' element={<ManagerDocuments />} />
+            </Route>
+          {/* </Route> */}
 
           {/* Tenant Page */}
-          <Route path='/tenant' element={<Tenant />}>
-            <Route path='' element={<TenantHomePage />} />
-            <Route path='notifications' element={<TenantNotifications />} />
-            <Route
-              path='apartment-details'
-              element={<TenantApartmentDetails />}
-            />
-            <Route
-              path='apartment-details-two'
-              element={<TenantApartmentDetailsTwo />}
-            />
-            <Route
-              path='add-apartment-details'
-              element={<TenantAddApartmentDetails />}
-            />
-            <Route path='reminders' element={<TenantReminders />} />
-            <Route path='due-date' element={<TenantDueDates />} />
-            <Route path='add-reminder' element={<TenantAddReminder />} />
-            <Route path='edit-profile' element={<TenantEditProfilePage />} />
-            <Route path='profile' element={<TenantProfileSettings />} />
-            <Route path='payment' element={<TenantPaymentPage />} />
-            <Route path='payment-form' element={<TenantPaymentForm />} />
-            <Route path='payment-review' element={<TenantPaymentReview />} />
-            <Route
-              path='payment-review-two'
-              element={<TenantPaymentReviewTwo />}
-            />
-            <Route path='payment-receipt' element={<TenantPaymentReceipt />} />
-            <Route path='wallet' element={<TenantWallet />} />
-            <Route path='wallet-transaction' element={<TenantWalletTransaction />} />
-          </Route>
+          {/* <Route element={<ProtectedRoute />}> */}
+            <Route path='/tenant' element={<Tenant />}>
+              <Route path='' element={<TenantHomePage />} />
+              <Route path='notifications' element={<TenantNotifications />} />
+              <Route
+                path='apartment-details'
+                element={<TenantApartmentDetails />}
+              />
+              <Route
+                path='apartment-details-two'
+                element={<TenantApartmentDetailsTwo />}
+              />
+              <Route
+                path='add-apartment-details'
+                element={<TenantAddApartmentDetails />}
+              />
+              <Route path='reminders' element={<TenantReminders />} />
+              <Route path='due-date' element={<TenantDueDates />} />
+              <Route path='add-reminder' element={<TenantAddReminder />} />
+              <Route path='edit-profile' element={<TenantEditProfilePage />} />
+              <Route path='profile' element={<TenantProfileSettings />} />
+              <Route path='payment' element={<TenantPaymentPage />} />
+              <Route path='payment-form' element={<TenantPaymentForm />} />
+              <Route path='payment-review' element={<TenantPaymentReview />} />
+              <Route
+                path='payment-review-two'
+                element={<TenantPaymentReviewTwo />}
+              />
+              <Route
+                path='payment-receipt'
+                element={<TenantPaymentReceipt />}
+              />
+              <Route path='wallet' element={<TenantWallet />} />
+              <Route
+                path='wallet-transaction'
+                element={<TenantWalletTransaction />}
+              />
+              <Route path='history' element={<TenantHistory />} />
+              <Route path='calendar' element={<TenantCalendar />} />
+            </Route>
+          {/* </Route> */}
 
           {/* Email Page */}
           <Route path='/email' element={<Email />}>

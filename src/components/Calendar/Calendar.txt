@@ -251,3 +251,35 @@ const MyCalendar = () => {
 };
 
 export default MyCalendar;
+
+
+
+React Big Calendar uses several CSS classes to style its components. Here's a list of some commonly used classes along with their functions:
+
+1. **.rbc-calendar**: The main container for the calendar component.
+   
+2. **.rbc-toolbar**: Container for the toolbar component, which includes navigation buttons and the current view name.
+
+3. **.rbc-toolbar-label**: Styles the label that displays the current view name (e.g., "Month", "Week").
+
+4. **.rbc-month-view, .rbc-week-view, .rbc-day-view**: Styles specific calendar views (month, week, day).
+
+5. **.rbc-row, .rbc-row-bg, .rbc-day-slot, .rbc-date-cell**: These classes style the rows, background, slots, and individual date cells within the calendar.
+
+6. **.rbc-event**: Styles events displayed on the calendar.
+
+7. **.rbc-timeslot-group, .rbc-time-slot**: Styles for time slots in day and week views.
+
+8. **.rbc-now**: Applied to the current date cell or time slot.
+
+9. **.rbc-today**: Applied to today's date cell.
+
+10. **.rbc-off-range**: Applied to date cells outside the current month's range.
+
+11. **.rbc-header, .rbc-header-row, .rbc-header-gutter, .rbc-header-cell**: Styles for the header cells and rows in the calendar.
+
+12. **.rbc-slot-selection**: Styles for the selection area when selecting multiple slots.
+
+13. **.rbc-addons-dnd, .rbc-addons-dnd .rbc-addons-dnd-resizable, .rbc-addons-dnd .rbc-addons-dnd-draggable**: Styles specific to the drag-and-drop functionality provided by the `react-big-calendar-dnd` addon.
+
+These classes provide a starting point for styling React Big Calendar components. Depending on your specific requirements and customizations, you may need to explore additional classes or use more specific selectors to achieve the desired appearance.
