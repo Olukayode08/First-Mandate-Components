@@ -73,7 +73,7 @@ const Signup = () => {
               disabled={isSigningUp}
               className={isSigningUp ? 'btn-disabled' : 'btn'}
             >
-              {loading ? <div className='spinner'></div> : 'Login'}
+              {loading ? <div className='spinner'></div> : 'Create account'}
             </button>
             <p className='create-account'>
               By clicking “Create account” or “Continue with Google”, you agree
