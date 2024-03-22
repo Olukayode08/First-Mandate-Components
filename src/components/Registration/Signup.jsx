@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Signup = () => {
   const navigate = useNavigate()
   const {
+    loading,
     isAuthenticated,
     details,
     isSigningUp,
@@ -72,7 +73,7 @@ const Signup = () => {
               disabled={isSigningUp}
               className={isSigningUp ? 'btn-disabled' : 'btn'}
             >
-              Create account
+              {loading ? <div className='spinner'></div> : 'Login'}
             </button>
             <p className='create-account'>
               By clicking “Create account” or “Continue with Google”, you agree
@@ -173,6 +174,23 @@ const SignupP = styled.section`
   }
   .link {
     text-decoration: none;
+  }
+  .spinner {
+    margin: 0 auto;
+    border: 2px solid #000;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
   @media screen and (max-width: 470px) {
     .logo {

@@ -29,11 +29,12 @@ const Context = ({ children }) => {
     // }, 2000)
   }
 
-  // Signup Validation
+  // Signup and Login Validation
   const [error, setError] = useState('')
   const [user, setUser] = useState()
   const [isSigningUp, setIsSigningUp] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loading, setLoading] = useState('')
 
   const [details, setDetails] = useState({
     name: '',
@@ -78,6 +79,7 @@ const Context = ({ children }) => {
       return notify('Invalid Email Address')
     }
     setIsSigningUp(true)
+    setLoading(true)
     try {
       const response = await fetch(`${BASE_URL}/signup`, {
         method: 'POST',
@@ -108,13 +110,16 @@ const Context = ({ children }) => {
       }
     } finally {
       setIsSigningUp(false)
+      setLoading(false)
     }
   }
+
 
   // User Login Authentification
   const UserSignIn = async (e) => {
     e.preventDefault()
     setIsSigningUp(true)
+    setLoading(true)
     try {
       const response = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
@@ -128,8 +133,8 @@ const Context = ({ children }) => {
         return notify('Invalid Login Credentials')
       } else {
         // console.log(userData)
-        // localStorage.setItem('token', userData.data.authorization.token)
-        // console.log(localStorage)
+        localStorage.setItem('token', userData.data.authorization.token)
+        console.log(localStorage)
         setIsAuthenticated(true)
         setUser(userData)
         setDetails({
@@ -148,6 +153,7 @@ const Context = ({ children }) => {
       }
     } finally {
       setIsSigningUp(false)
+      setLoading(false)
     }
   }
 
@@ -162,6 +168,8 @@ const Context = ({ children }) => {
           isSigningUp,
           setIsSigningUp,
           isAuthenticated,
+          loading,
+          setLoading,
           user,
           error,
           modal,

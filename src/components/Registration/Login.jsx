@@ -4,16 +4,9 @@ import logo from '../../assets/1st mandate logo 1.png'
 import { FirstMandate } from '../../context/Context'
 import { Link } from 'react-router-dom'
 
-
 const Login = () => {
-  const {
-    details,
-    isSigningUp,
-    UserSignIn,
-    handleChange,
-    error,
-  } = useContext(FirstMandate)
-
+  const { loading, details, isSigningUp, UserSignIn, handleChange, error } =
+    useContext(FirstMandate)
 
   return (
     <>
@@ -49,12 +42,12 @@ const Login = () => {
               disabled={isSigningUp}
               className={isSigningUp ? 'btn-disabled' : 'btn'}
             >
-              Log in
+              {loading ? <div className='spinner'></div> : 'Login'}
             </button>
             <p className='create-account'>Reset password</p>
             <p className='create-account'>
               No account?{' '}
-              <Link className='link' to='/signup'>
+              <Link className='link' to='/'>
                 Create one
               </Link>
             </p>
@@ -141,6 +134,23 @@ const LoginP = styled.section`
     cursor: pointer;
     color: #000;
     text-decoration: none;
+  }
+  .spinner {
+    margin: 0 auto;
+    border: 2px solid #000;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
   @media screen and (max-width: 470px) {
     .logo {
