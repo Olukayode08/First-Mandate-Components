@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const FirstMandate = createContext()
 
@@ -7,8 +7,6 @@ const BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL
 
 const Context = ({ children }) => {
   const navigate = useNavigate()
-  const location = useLocation()
-  const from = location.state?.from?.pathname || '/'
 
   // Reset Password Congratulations
   const [resetPasswordCongrats, setPasswordCongrats] = useState(false)
@@ -129,8 +127,8 @@ const Context = ({ children }) => {
       if (response?.status === 401) {
         return notify('Invalid Login Credentials')
       } else {
-        console.log(userData)
-        localStorage.setItem('token', userData.data.authorization.token)
+        // console.log(userData)
+        // localStorage.setItem('token', userData.data.authorization.token)
         // console.log(localStorage)
         setIsAuthenticated(true)
         setUser(userData)
@@ -140,7 +138,7 @@ const Context = ({ children }) => {
           password: '',
         })
         setError('')
-        navigate(from, { replace: true })
+        navigate('/landlord')
       }
     } catch (err) {
       if (err?.response) {
