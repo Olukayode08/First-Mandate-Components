@@ -125,7 +125,7 @@ function App() {
           <Route path='/big-calendar' element={<BigCalendar />} />
 
           {/* Landlord page */}
-          {/* <Route element={<ProtectedRoute />}> */}
+          <Route element={<ProtectedRoute />}>
             <Route path='/landlord' element={<LandLord />}>
               <Route path='' element={<LandlordHomePage />} />
               <Route path='notifications' element={<LandlordNotifications />} />
@@ -158,10 +158,10 @@ function App() {
                 element={<LandlordEmptyReminder />}
               />
             </Route>
-          {/* </Route> */}
+          </Route>
 
           {/* Manager's Page */}
-          {/* <Route element={<ProtectedRoute />}> */}
+          <Route element={<ProtectedRoute />}>
             <Route path='/manager' element={<PropertyManager />}>
               <Route path='' element={<ManagerHomePage />} />
               <Route path='notifications' element={<ManagerNotifications />} />
@@ -179,10 +179,10 @@ function App() {
               <Route path='profile' element={<ManagerProfileSettings />} />
               <Route path='documents' element={<ManagerDocuments />} />
             </Route>
-          {/* </Route> */}
+          </Route>
 
           {/* Tenant Page */}
-          {/* <Route element={<ProtectedRoute />}> */}
+          <Route element={<ProtectedRoute />}>
             <Route path='/tenant' element={<Tenant />}>
               <Route path='' element={<TenantHomePage />} />
               <Route path='notifications' element={<TenantNotifications />} />
@@ -222,7 +222,7 @@ function App() {
               <Route path='history' element={<TenantHistory />} />
               <Route path='calendar' element={<TenantCalendar />} />
             </Route>
-          {/* </Route> */}
+          </Route>
 
           {/* Email Page */}
           <Route path='/email' element={<Email />}>
