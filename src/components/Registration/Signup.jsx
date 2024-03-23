@@ -1,34 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Signup = () => {
-  const navigate = useNavigate()
   const {
+    showSuccessMessage,
     loading,
-    isAuthenticated,
     details,
     isSigningUp,
     UserSignUp,
     handleChange,
     error,
   } = useContext(FirstMandate)
-
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-  useEffect(() => {
-    if (isAuthenticated) {
-      setTimeout(() => {
-        setShowSuccessMessage(true)
-        setTimeout(() => {
-          setShowSuccessMessage(false)
-        navigate('/landlord')
-        }, 500)
-      }, 100)
-    }
-  }, [navigate, isAuthenticated])
+  
   return (
     <>
       <SignupP>

@@ -35,6 +35,7 @@ const Context = ({ children }) => {
   const [isSigningUp, setIsSigningUp] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState('')
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
   const [details, setDetails] = useState({
     name: '',
@@ -66,7 +67,7 @@ const Context = ({ children }) => {
   // Clear Error
   useEffect(() => {
     setError('')
-  }, [details.email, details.password])
+  }, [details.email, details.password, details.name])
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -76,10 +77,10 @@ const Context = ({ children }) => {
   }, [])
 
   // Log Out User
-  // const logout = () => {
-  //   localStorage.removeItem('token')
-  //   setIsAuthenticated(false)
-  // }
+  const logOut = () => {
+    localStorage.removeItem('token')
+    setIsAuthenticated(false)
+  }
 
   // Authentification Timer
   useEffect(() => {
@@ -145,7 +146,15 @@ const Context = ({ children }) => {
       } else {
         localStorage.setItem('token', userData.data.authorization.token)
         setIsAuthenticated(true)
-        navigate('/landlord')
+        setTimeout(() => {
+          setShowSuccessMessage(true)
+          setTimeout(() => {
+            setShowSuccessMessage(false)
+          }, 2500)
+        }, 500)
+        setTimeout(() => {
+          navigate('/landlord')
+        }, 3000)
         setUser(userData)
         // console.log(localStorage)
         // console.log(userData)
@@ -221,6 +230,8 @@ const Context = ({ children }) => {
           isSigningUp,
           setIsSigningUp,
           isAuthenticated,
+          showSuccessMessage,
+          logOut,
           loading,
           setLoading,
           user,
