@@ -13,5 +13,3 @@ const ProtectedRoute = () => {
 }
 
 export default ProtectedRoute
-
-// !!localStorage.getItem('token')
