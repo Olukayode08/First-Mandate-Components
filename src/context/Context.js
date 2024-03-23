@@ -33,7 +33,10 @@ const Context = ({ children }) => {
   const [error, setError] = useState('')
   const [user, setUser] = useState()
   const [isSigningUp, setIsSigningUp] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem('token')
+    // false
+  )
   const [loading, setLoading] = useState('')
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
@@ -93,25 +96,19 @@ const Context = ({ children }) => {
 
     const resetLogoutTimer = () => {
       clearTimeout(logoutTimer)
-      logoutTimer = setTimeout(clearInactiveUser, 3 * 60 * 1000) // 2 minutes
+      logoutTimer = setTimeout(clearInactiveUser, 4 * 60 * 1000) // 4 minutes
     }
-
     const clearLogoutTimer = () => {
       clearTimeout(logoutTimer)
     }
-
     const handleUserActivity = () => {
       resetLogoutTimer()
     }
-
     const userActivityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart']
-
     userActivityEvents.forEach((event) => {
       window.addEventListener(event, handleUserActivity)
     })
-
     resetLogoutTimer()
-
     return () => {
       userActivityEvents.forEach((event) => {
         window.removeEventListener(event, handleUserActivity)
