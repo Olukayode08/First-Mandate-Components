@@ -35,6 +35,7 @@ const Context = ({ children }) => {
   const [isSigningUp, setIsSigningUp] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem('token')
+    // false
   )
   const [loading, setLoading] = useState('')
 
@@ -94,7 +95,7 @@ const Context = ({ children }) => {
 
     const resetLogoutTimer = () => {
       clearTimeout(logoutTimer)
-      logoutTimer = setTimeout(clearInactiveUser, 5 * 60 * 1000) // 2 minutes
+      logoutTimer = setTimeout(clearInactiveUser, 3 * 60 * 1000) // 2 minutes
     }
 
     const clearLogoutTimer = () => {

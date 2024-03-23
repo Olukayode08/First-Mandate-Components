@@ -5,10 +5,10 @@ import { FirstMandate } from '../context/Context'
 const ProtectedRoute = () => {
   const { isAuthenticated } = useContext(FirstMandate)
 
-  return isAuthenticated ? (
+  return isAuthenticated && !!localStorage.getItem('token') ? (
     <Outlet />
   ) : (
-    <Navigate to='/login'/>
+    <Navigate to='/login' />
   )
 }
 
