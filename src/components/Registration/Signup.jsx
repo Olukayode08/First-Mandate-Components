@@ -15,7 +15,7 @@ const Signup = () => {
     handleChange,
     error,
   } = useContext(FirstMandate)
-  
+
   return (
     <>
       <SignupP>
@@ -60,7 +60,14 @@ const Signup = () => {
               disabled={isSigningUp}
               className={isSigningUp ? 'btn-disabled' : 'btn'}
             >
-              {loading ? <div className='spinner'></div> : 'Create account'}
+              {loading ? (
+                <div className='login-spinner'>
+                  <div className='spinner'></div>
+                  <p>Create account</p>
+                </div>
+              ) : (
+                <p className='login-btn'>Create account</p>
+              )}
             </button>
             <p className='create-account'>
               By clicking “Create account” or “Continue with Google”, you agree
@@ -131,12 +138,11 @@ const SignupP = styled.section`
     margin: 10px 0;
   }
   button {
-    background-color: #000;
     color: #ffffff;
-    padding: 12px 0;
-    border: transparent;
     border-radius: 4px;
+    border: transparent;
     width: 400px;
+    height: 45px;
     margin: 10px 0;
     cursor: pointer;
   }
@@ -146,6 +152,14 @@ const SignupP = styled.section`
   .btn-disabled {
     background: #00000080;
     cursor: not-allowed;
+  }
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
   }
   .create-account {
     font-weight: 200;
@@ -162,15 +176,31 @@ const SignupP = styled.section`
   .link {
     text-decoration: none;
   }
+  .login-spinner {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
   .spinner {
-    margin: 0 auto;
-    border: 2px solid #000;
+    border: 3px solid #fff;
+    border-top: 3px solid #3498db;
     border-radius: 50%;
     width: 25px;
     height: 25px;
     animation: spin 1s linear infinite;
   }
 
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
   @keyframes spin {
     0% {
       transform: rotate(0deg);

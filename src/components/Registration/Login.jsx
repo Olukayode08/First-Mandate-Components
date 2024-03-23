@@ -42,7 +42,14 @@ const Login = () => {
               disabled={isSigningUp}
               className={isSigningUp ? 'btn-disabled' : 'btn'}
             >
-              {loading ? <div className='spinner'></div> : 'Login'}
+              {loading ? (
+                <div className='login-spinner'>
+                  <div className='spinner'></div>
+                  <p>Login</p>
+                </div>
+              ) : (
+                <p className='login-btn'>Login</p>
+              )}
             </button>
             <p className='create-account'>Reset password</p>
             <p className='create-account'>
@@ -109,10 +116,10 @@ const LoginP = styled.section`
   }
   button {
     color: #ffffff;
-    padding: 12px 0;
-    border: transparent;
     border-radius: 4px;
+    border: transparent;
     width: 400px;
+    height: 45px;
     margin: 10px 0;
     cursor: pointer;
   }
@@ -122,6 +129,14 @@ const LoginP = styled.section`
   .btn-disabled {
     background: #00000080;
     cursor: not-allowed;
+  }
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
   }
   .create-account {
     font-weight: 100;
@@ -135,9 +150,17 @@ const LoginP = styled.section`
     color: #000;
     text-decoration: none;
   }
+  .login-spinner {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
   .spinner {
-    margin: 0 auto;
-    border: 2px solid #000;
+    border: 3px solid #fff;
+    border-top: 3px solid #3498db;
     border-radius: 50%;
     width: 25px;
     height: 25px;
