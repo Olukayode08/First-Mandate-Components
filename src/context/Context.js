@@ -33,10 +33,7 @@ const Context = ({ children }) => {
   const [error, setError] = useState('')
   const [user, setUser] = useState()
   const [isSigningUp, setIsSigningUp] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem('token')
-    // false
-  )
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState('')
 
   const [details, setDetails] = useState({
