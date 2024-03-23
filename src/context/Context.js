@@ -29,11 +29,13 @@ const Context = ({ children }) => {
     // }, 2000)
   }
 
-  // Signup and Login Validation
+  // Signup and Login Validation States
   const [error, setError] = useState('')
   const [user, setUser] = useState()
   const [isSigningUp, setIsSigningUp] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem('token')
+  )
   const [loading, setLoading] = useState('')
 
   const [details, setDetails] = useState({
@@ -68,6 +70,57 @@ const Context = ({ children }) => {
     setError('')
   }, [details.email, details.password])
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      setIsAuthenticated(true)
+    }
+  }, [])
+
+  // Log Out User
+  // const logout = () => {
+  //   localStorage.removeItem('token')
+  //   setIsAuthenticated(false)
+  // }
+
+  // Authentification Timer
+  useEffect(() => {
+    let logoutTimer
+
+    const clearInactiveUser = () => {
+      localStorage.removeItem('token')
+      setIsAuthenticated(false)
+    }
+
+    const resetLogoutTimer = () => {
+      clearTimeout(logoutTimer)
+      logoutTimer = setTimeout(clearInactiveUser, 5 * 60 * 1000) // 2 minutes
+    }
+
+    const clearLogoutTimer = () => {
+      clearTimeout(logoutTimer)
+    }
+
+    const handleUserActivity = () => {
+      resetLogoutTimer()
+    }
+
+    const userActivityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart']
+
+    userActivityEvents.forEach((event) => {
+      window.addEventListener(event, handleUserActivity)
+    })
+
+    resetLogoutTimer()
+
+    return () => {
+      userActivityEvents.forEach((event) => {
+        window.removeEventListener(event, handleUserActivity)
+      })
+      clearLogoutTimer()
+    }
+  }, [])
+
   // User Signup Authentification
   const UserSignUp = async (e) => {
     e.preventDefault()
@@ -88,13 +141,16 @@ const Context = ({ children }) => {
         },
         body: JSON.stringify(details),
       })
-      const data = await response.json()
+      const userData = await response.json()
       if (response?.status === 422) {
         return notify('Email Address Unavailable')
       } else {
-        console.log('Data', data)
+        localStorage.setItem('token', userData.data.authorization.token)
         setIsAuthenticated(true)
-        setUser(data)
+        navigate('/landlord')
+        setUser(userData)
+        // console.log(localStorage)
+        // console.log(userData)
         setDetails({
           name: '',
           email: '',
@@ -114,7 +170,6 @@ const Context = ({ children }) => {
     }
   }
 
-
   // User Login Authentification
   const UserSignIn = async (e) => {
     e.preventDefault()
@@ -132,18 +187,18 @@ const Context = ({ children }) => {
       if (response?.status === 401) {
         return notify('Invalid Login Credentials')
       } else {
-        // console.log(userData)
         localStorage.setItem('token', userData.data.authorization.token)
-        console.log(localStorage)
         setIsAuthenticated(true)
+        navigate('/landlord')
         setUser(userData)
+        // console.log(localStorage)
+        // console.log(userData)
         setDetails({
           name: '',
           email: '',
           password: '',
         })
         setError('')
-        navigate('/landlord')
       }
     } catch (err) {
       if (err?.response) {
