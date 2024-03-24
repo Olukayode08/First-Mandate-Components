@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import profile from '../../assets/Frame 2007 (1).png'
 import edit from '../../assets/edit-01 (2).png'
 import logout from '../../assets/logout-03.png'
+import { FirstMandate } from '../../context/Context'
 
 const LandlordProfileSettings = () => {
+  const {logOut} = useContext(FirstMandate)
   return (
     <>
       <LandlordPS>
@@ -12,7 +14,7 @@ const LandlordProfileSettings = () => {
           <main className='l-profile-s'>
             <div className='log-out'>
               <h3>My Profile</h3>
-              <div className='logout-btn'>
+              <div className='logout-btn' onClick={logOut}>
                 <img src={logout} alt='Edit-Profile' />
                 <p>Logout</p>
               </div>

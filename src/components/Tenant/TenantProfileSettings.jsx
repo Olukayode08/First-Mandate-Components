@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import profile from '../../assets/Frame 2007 (1).png'
 import edit from '../../assets/edit-01 (2).png'
 import logout from '../../assets/logout-03.png'
+import { FirstMandate } from '../../context/Context'
 
 const TenantProfileSettings = () => {
+  const { logOut } = useContext(FirstMandate)
+
   return (
     <>
       <TenantPS>
         <section>
           <main className='l-profile-s'>
-            <div className='log-out'>
+            <div className='log-out' onClick={logOut}>
               <h3>My Profile</h3>
               <div className='logout-btn'>
                 <img src={logout} alt='Edit-Profile' />
