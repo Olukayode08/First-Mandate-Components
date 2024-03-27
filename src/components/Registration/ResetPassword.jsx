@@ -1,12 +1,20 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
-import ResetPasswordCongrats from '../modal/ResetPasswordCongrats'
+import EmailCongratsModal from '../modal/EmailCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
+import { Link } from 'react-router-dom'
 
 const ResetPassword = () => {
-  const { toggleResetPasswordModal, resetPasswordCongrats } =
-    useContext(FirstMandate)
+  const {
+    resetLoading,
+    resetError,
+    ResetPassword,
+    resetEmail,
+    setResetEmail,
+    isResettingPassword,
+    showResetMessage,
+  } = useContext(FirstMandate)
 
   return (
     <>
@@ -15,27 +23,39 @@ const ResetPassword = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <main>
-            <h3>Enter New Password</h3>
+          <form onSubmit={ResetPassword}>
+            <h3>Enter your email address to reset password</h3>
+            <p className='error'>{resetError}</p>
             <input
-              type='text'
-              className='password-input'
-              placeholder='Password'
+              type='email'
+              name='resetEmail'
+              value={resetEmail}
+              autoComplete='off'
+              onChange={(e) => setResetEmail(e.target.value)}
+              className='email-input'
               required
+              placeholder='E-mail'
             />
-            <label>Confirm Password</label>
-            <input
-              type='text'
-              className='password-input'
-              placeholder='Confirm Password'
-              required
-            />
-            <label className='error'>Password Incorrect</label>
-            <button onClick={toggleResetPasswordModal}>Reset Password</button>
-          </main>
+            <button
+              disabled={isResettingPassword}
+              className={isResettingPassword ? 'btn-disabled' : 'btn'}
+            >
+              {resetLoading ? (
+                <div className='login-spinner'>
+                  <div className='spinner'></div>
+                  <p>Reset Password</p>
+                </div>
+              ) : (
+                <p className='login-btn'>Reset Password</p>
+              )}
+            </button>
+            <Link className='link' to='/login'>
+              Cancel
+            </Link>
+          </form>
         </section>
       </ResetP>
-      <div>{resetPasswordCongrats && <ResetPasswordCongrats />}</div>
+      <div>{showResetMessage && <EmailCongratsModal />}</div>
     </>
   )
 }
@@ -48,7 +68,7 @@ const ResetP = styled.section`
     top: 40px;
     left: 40px;
   }
-  main {
+  form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,12 +84,22 @@ const ResetP = styled.section`
     margin: 15px 0;
     font-size: 16px;
     line-height: 28px;
-    letter-spacing: 0em;
   }
   h3 {
     font-size: 22px;
   }
-  .password-input {
+  p {
+    margin: 10px 0;
+    text-align: center;
+  }
+  .error {
+    color: #ff0000;
+    text-align: left;
+    margin: 0 auto;
+    align-self: flex-start;
+    width: 400px;
+  }
+  .email-input {
     width: 400px;
     border: 1px solid black;
     height: 52px;
@@ -78,27 +108,66 @@ const ResetP = styled.section`
     border-radius: 4px;
     outline: none;
     background: transparent;
-    font-size: 15px;
+    font-size: 16px;
     margin: 10px 0;
   }
-  label {
-    text-align: left;
-    margin: 20px 0 0 0;
-    font-size: 16px;
-    width: 400px;
-  }
-  .error {
-    color: #ff0000;
-  }
   button {
-    background-color: #000;
     color: #ffffff;
-    padding: 12px 0;
+    height: 45px;
     border: transparent;
     border-radius: 4px;
     width: 400px;
     margin: 10px 0;
     cursor: pointer;
+  }
+  .btn {
+    background: #000;
+  }
+  .btn-disabled {
+    background: #00000080;
+    cursor: not-allowed;
+  }
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .login-spinner {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .spinner {
+    border: 3px solid #fff;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .link {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 100;
+    font-size: 15px;
+    margin: 10px;
+    line-height: 23px;
+    color: #000;
   }
 
   @media screen and (max-width: 470px) {
@@ -106,32 +175,32 @@ const ResetP = styled.section`
       top: 20px;
       left: 20px;
     }
-    main {
+    form {
       width: 430px;
     }
-    label,
+    .error,
     button,
-    .password-input {
+    .email-input {
       width: 350px;
     }
   }
   @media screen and (max-width: 440px) {
-    main {
+    form {
       width: 360px;
     }
-    label,
+    .error,
     button,
-    .password-input {
+    .email-input {
       width: 350px;
     }
   }
   @media screen and (max-width: 360px) {
-    main {
+    form {
       width: 320px;
     }
-    label,
+    .error,
     button,
-    .password-input {
+    .email-input {
       width: 280px;
     }
   }

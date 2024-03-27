@@ -1,38 +1,45 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
-import EmailCongratsModal from '../modal/EmailCongratsModal'
+import ResetPasswordCongrats from '../modal/ResetPasswordCongrats'
 import logo from '../../assets/1st mandate logo 1.png'
 
-const ResetEmailPassword = () => {
-  const { toggleEmailModal, emailResetCongrats } = useContext(FirstMandate)
+const EnterNewPassword = () => {
+  const { toggleResetPasswordModal, resetPasswordCongrats } =
+    useContext(FirstMandate)
 
   return (
     <>
-      <ResetEP>
+      <ResetP>
         <section>
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
           <main>
-            <h3>Enter your email address to reset password</h3>
-            <p className='error'>Please enter a valid email address</p>
+            <h3>Enter New Password</h3>
             <input
-              type='email'
-              className='email-input'
-              placeholder='E-mail'
+              type='text'
+              className='password-input'
+              placeholder='Password'
               required
             />
-            <button onClick={toggleEmailModal}>Reset Password</button>
-            <p>Cancel</p>
+            <label>Confirm Password</label>
+            <input
+              type='text'
+              className='password-input'
+              placeholder='Confirm Password'
+              required
+            />
+            <label className='error'>Password Incorrect</label>
+            <button onClick={toggleResetPasswordModal}>Reset Password</button>
           </main>
         </section>
-      </ResetEP>
-      <div>{emailResetCongrats && <EmailCongratsModal />}</div>
+      </ResetP>
+      <div>{resetPasswordCongrats && <ResetPasswordCongrats />}</div>
     </>
   )
 }
-const ResetEP = styled.section`
+const ResetP = styled.section`
   section {
     position: relative;
   }
@@ -57,22 +64,12 @@ const ResetEP = styled.section`
     margin: 15px 0;
     font-size: 16px;
     line-height: 28px;
+    letter-spacing: 0em;
   }
   h3 {
     font-size: 22px;
   }
-  p {
-    margin: 10px 0;
-    text-align: center;
-  }
-  .error {
-    color: #ff0000;
-    text-align: left;
-    margin: 0 auto;
-    align-self: flex-start;
-    width: 400px;
-  }
-  .email-input {
+  .password-input {
     width: 400px;
     border: 1px solid black;
     height: 52px;
@@ -81,13 +78,22 @@ const ResetEP = styled.section`
     border-radius: 4px;
     outline: none;
     background: transparent;
-    font-size: 16px;
+    font-size: 15px;
     margin: 10px 0;
+  }
+  label {
+    text-align: left;
+    margin: 20px 0 0 0;
+    font-size: 16px;
+    width: 400px;
+  }
+  .error {
+    color: #ff0000;
   }
   button {
     background-color: #000;
     color: #ffffff;
-    padding: 8px 0;
+    padding: 12px 0;
     border: transparent;
     border-radius: 4px;
     width: 400px;
@@ -103,9 +109,9 @@ const ResetEP = styled.section`
     main {
       width: 430px;
     }
-    .error,
+    label,
     button,
-    .email-input {
+    .password-input {
       width: 350px;
     }
   }
@@ -113,9 +119,9 @@ const ResetEP = styled.section`
     main {
       width: 360px;
     }
-    .error,
+    label,
     button,
-    .email-input {
+    .password-input {
       width: 350px;
     }
   }
@@ -123,11 +129,11 @@ const ResetEP = styled.section`
     main {
       width: 320px;
     }
-    .error,
+    label,
     button,
-    .email-input {
+    .password-input {
       width: 280px;
     }
   }
 `
-export default ResetEmailPassword
+export default EnterNewPassword

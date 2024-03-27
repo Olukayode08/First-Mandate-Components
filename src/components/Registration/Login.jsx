@@ -5,8 +5,14 @@ import { FirstMandate } from '../../context/Context'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
-  const { loading, details, isSigningUp, UserSignIn, handleChange, error } =
-    useContext(FirstMandate)
+  const {
+    details,
+    handleChange,
+    loginLoading,
+    isLoginIn,
+    UserSignin,
+    loginError,
+  } = useContext(FirstMandate)
 
   return (
     <>
@@ -15,9 +21,9 @@ const Login = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={UserSignIn}>
+          <form onSubmit={UserSignin}>
             <h3>Sign In to 1st Mandate</h3>
-            <p className='error'>{error}</p>
+            <p className='error'>{loginError}</p>
             <input
               type='email'
               name='email'
@@ -39,10 +45,10 @@ const Login = () => {
               required
             />
             <button
-              disabled={isSigningUp}
-              className={isSigningUp ? 'btn-disabled' : 'btn'}
+              disabled={isLoginIn}
+              className={isLoginIn ? 'btn-disabled' : 'btn'}
             >
-              {loading ? (
+              {loginLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
                   <p>Login</p>
@@ -51,7 +57,9 @@ const Login = () => {
                 <p className='login-btn'>Login</p>
               )}
             </button>
-            <p className='create-account'>Reset password</p>
+            <Link className='reset-p' to='/reset-password'>
+              Reset password
+            </Link>
             <p className='create-account'>
               No account?{' '}
               <Link className='link' to='/'>
@@ -138,6 +146,15 @@ const LoginP = styled.section`
     width: 100%;
     margin: 0 auto;
   }
+  .reset-p,
+  .link {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .reset-p {
+    color: #00000080;
+    margin: 10px 0 5px 0;
+  }
   .create-account {
     font-weight: 100;
     font-size: 15px;
@@ -146,9 +163,7 @@ const LoginP = styled.section`
   }
   .link {
     font-weight: 600;
-    cursor: pointer;
     color: #000;
-    text-decoration: none;
   }
   .login-spinner {
     display: flex;

@@ -14,32 +14,18 @@ const Context = ({ children }) => {
     setPasswordCongrats(!resetPasswordCongrats)
   }
 
-  // Email Reset Password Congratulations
-  const [emailResetCongrats, setEmailResetCongrats] = useState(false)
-  const toggleEmailModal = () => {
-    setEmailResetCongrats(!emailResetCongrats)
-  }
-
   // Upload Property Congrats Modal
   const [modal, setModal] = useState(false)
   const toggleModal = () => {
     setModal(!modal)
-    // setTimeout(() => {
-    //   navigate('/landlord')
-    // }, 2000)
   }
 
   // Signup and Login Validation States
-  const [error, setError] = useState('')
-  const [user, setUser] = useState()
-  const [isSigningUp, setIsSigningUp] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem('token')
     // false
   )
-  const [loading, setLoading] = useState('')
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-
+  const [user, setUser] = useState()
   const [details, setDetails] = useState({
     name: '',
     email: '',
@@ -63,13 +49,10 @@ const Context = ({ children }) => {
     return regex.test(email)
   }
 
-  // Notifify Error
-  const notify = (error) => {
-    setError(error)
-  }
   // Clear Error
   useEffect(() => {
-    setError('')
+    setSignupError('')
+    setLoginError('')
   }, [details.email, details.password, details.name])
 
   useEffect(() => {
@@ -118,14 +101,18 @@ const Context = ({ children }) => {
   }, [])
 
   // User Signup Authentification
-  const UserSignUp = async (e) => {
+  const [loading, setLoading] = useState('')
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [signupError, setSignupError] = useState('')
+  const [isSigningUp, setIsSigningUp] = useState(false)
+  const UserSignup = async (e) => {
     e.preventDefault()
     if (!validatePassword(details.password)) {
-      return notify(
+      setSignupError(
         'Password must contain at least 8 characters with uppercase, lowercase, number, and symbol.'
       )
     } else if (!validateEmail(details.email)) {
-      return notify('Invalid Email Address')
+      setSignupError('Invalid Email Address')
     }
     setIsSigningUp(true)
     setLoading(true)
@@ -139,7 +126,7 @@ const Context = ({ children }) => {
       })
       const userData = await response.json()
       if (response?.status === 422) {
-        return notify('Email Address Unavailable')
+        setSignupError('Email Address Unavailable')
       } else {
         localStorage.setItem('token', userData.data.authorization.token)
         setIsAuthenticated(true)
@@ -160,13 +147,13 @@ const Context = ({ children }) => {
           email: '',
           password: '',
         })
-        setError('')
+        setSignupError('')
       }
     } catch (err) {
       if (err?.response) {
-        return notify('No Server Response')
+        setSignupError('No Server Response')
       } else {
-        return notify('Registration Failed')
+        setSignupError('Registration Failed')
       }
     } finally {
       setIsSigningUp(false)
@@ -175,10 +162,13 @@ const Context = ({ children }) => {
   }
 
   // User Login Authentification
-  const UserSignIn = async (e) => {
+  const [loginError, setLoginError] = useState('')
+  const [isLoginIn, setIsLoginIn] = useState(false)
+  const [loginLoading, setLoginLoading] = useState('')
+  const UserSignin = async (e) => {
     e.preventDefault()
-    setIsSigningUp(true)
-    setLoading(true)
+    setIsLoginIn(true)
+    setLoginLoading(true)
     try {
       const response = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
@@ -189,7 +179,7 @@ const Context = ({ children }) => {
       })
       const userData = await response.json()
       if (response?.status === 401) {
-        return notify('Invalid Login Credentials')
+        setLoginError('Invalid Login Credentials')
       } else {
         localStorage.setItem('token', userData.data.authorization.token)
         setIsAuthenticated(true)
@@ -202,43 +192,105 @@ const Context = ({ children }) => {
           email: '',
           password: '',
         })
-        setError('')
+        setLoginError('')
       }
     } catch (err) {
       if (err?.response) {
-        return notify('No Server Response')
+        setLoginError('No Server Response')
       } else {
-        return notify('Login Unsuccessful')
+        setLoginError('Login Unsuccessful')
       }
     } finally {
-      setIsSigningUp(false)
-      setLoading(false)
+      setIsLoginIn(false)
+      setLoginLoading(false)
     }
   }
 
+  // User Reset Password
+
+  const [resetEmail, setResetEmail] = useState('')
+  const [resetError, setResetError] = useState('')
+  const [showResetMessage, setShowResetMessage] = useState(false)
+  const [isResettingPassword, setIsResettingPassword] = useState(false)
+  const [resetLoading, setResetLoading] = useState(false)
+
+  // Clear Reset Error
+  useEffect(() => {
+    setResetError('')
+  }, [resetEmail])
+
+  const ResetPassword = async (e) => {
+    e.preventDefault()
+    setIsResettingPassword(true)
+    setResetLoading(true)
+    try {
+      const response = await fetch(`${BASE_URL}/forgot-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(resetEmail),
+      })
+      // const data = await response.json()
+      console.log(response?.status)
+      if (response?.status === 404) {
+        setResetError('User does not exist')
+      } else if (response?.status === 401) {
+        setResetError('User does not exist')
+      } else {
+        setTimeout(() => {
+          setShowResetMessage(true)
+          setTimeout(() => {
+            setShowResetMessage(false)
+          }, 3000)
+        }, 500)
+        setResetEmail('')
+        setResetError(
+          'Password reset successfully. Check your email to proceed'
+        )
+      }
+    } catch (err) {
+      if (err?.response) {
+        setResetError('No Server Response')
+      } else {
+        setResetError('Unauthorized')
+      }
+    } finally {
+      setIsResettingPassword(false)
+      setResetLoading(false)
+    }
+  }
   return (
     <>
       <FirstMandate.Provider
         value={{
           details,
           handleChange,
-          UserSignUp,
-          UserSignIn,
+          UserSignup,
+          UserSignin,
+          loginLoading,
+          isLoginIn,
+          loginError,
           isSigningUp,
           setIsSigningUp,
           isAuthenticated,
           showSuccessMessage,
           logOut,
+          resetEmail,
+          setResetEmail,
           loading,
           setLoading,
           user,
-          error,
+          ResetPassword,
+          showResetMessage,
+          isResettingPassword,
+          resetError,
+          resetLoading,
+          signupError,
           modal,
           toggleModal,
           resetPasswordCongrats,
           toggleResetPasswordModal,
-          emailResetCongrats,
-          toggleEmailModal,
         }}
       >
         {children}

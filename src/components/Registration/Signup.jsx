@@ -11,9 +11,9 @@ const Signup = () => {
     loading,
     details,
     isSigningUp,
-    UserSignUp,
+    UserSignup,
     handleChange,
-    error,
+    signupError,
   } = useContext(FirstMandate)
 
   return (
@@ -23,9 +23,9 @@ const Signup = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={UserSignUp}>
+          <form onSubmit={UserSignup}>
             <h3>Sign Up for 1st Mandate</h3>
-            <p className='error'>{error}</p>
+            <p className='error'>{signupError}</p>
             <input
               type='text'
               name='name'

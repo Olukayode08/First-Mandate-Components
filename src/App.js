@@ -37,8 +37,8 @@ import WelcomeEmail from './components/Email/WelcomeEmail'
 import Signup from './components/Registration/Signup'
 import Login from './components/Registration/Login'
 import VerificationCode from './components/Registration/VerificationCode'
+import EnterNewPassword from './components/Registration/EnterNewPassword'
 import ResetPassword from './components/Registration/ResetPassword'
-import ResetEmailPassword from './components/Registration/ResetEmailPassword'
 import ErrorPage from './components/Error/ErrorPage'
 import LandlordEditProfilePage from './components/Landlord/LandlordEditProfilePage'
 import LandlordProfileSettings from './components/Landlord/LandlordProfileSettings'
@@ -109,12 +109,8 @@ function App() {
           <Route path='/' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
+          <Route path='/new-password' element={<EnterNewPassword />} />
           <Route path='/reset-password' element={<ResetPassword />} />
-          <Route
-            path='/reset-email-password'
-            element={<ResetEmailPassword />}
-          />
-
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
           <Route path='/calendar' element={<Calendar />} />
