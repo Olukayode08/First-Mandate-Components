@@ -1,16 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { FirstMandate } from '../../context/Context'
 
 const EmailCongratsModal = () => {
-  const { toggleEmailModal } = useContext(FirstMandate)
-
   return (
     <>
       <EmailCM>
         <section>
           <div className='modal'>
-            <div className='overlay' onClick={toggleEmailModal}></div>
+            <div className='overlay'></div>
             <div className='modal-content'>
               <p className='modal-text'>
                 Password reset request is successful and link to reset has been

@@ -1,16 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { FirstMandate } from '../../context/Context'
 
 const ResetPasswordCongrats = () => {
-  const { toggleResetPasswordModal } = useContext(FirstMandate)
-
   return (
     <>
       <RPCongrats>
         <section>
           <div className='modal'>
-            <div className='overlay' onClick={toggleResetPasswordModal}></div>
+            <div className='overlay'></div>
             <div className='modal-content'>
               <p className='modal-text'>
                 Password reset is successful, you can now login to your account.

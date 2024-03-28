@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap'); */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,18 +8,20 @@
 
 body {
   font-family: 'Varela Round', sans-serif;
+  /* font-family: 'Nunito Sans', sans-serif; */
+  font-optical-sizing: auto;
   overflow-x: hidden;
 }
 h3,
-h1{
+h1 {
   font-size: 18px;
 }
 .dark-mode {
- background-color: #fedf7e;
+  background-color: #fedf7e;
   color: #000;
 }
-.light-mode{
-  background-color: #F6F6F8;
+.light-mode {
+  background-color: #f6f6f8;
   color: #000;
 }
 /* Theme */
@@ -38,14 +40,14 @@ h1{
   background: #fedf7e;
   color: #13131a;
 }
-button{
+button {
   font-family: inherit;
 }
 
 /* Temporary */
-  td{
-    font-size: 13px;
-  }
+td {
+  font-size: 13px;
+}
 @media screen and (min-width: 2000px) {
   .app {
     max-width: 1900px;

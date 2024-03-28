@@ -8,16 +8,13 @@ const BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL
 const Context = ({ children }) => {
   const navigate = useNavigate()
 
-  // Reset Password Congratulations
-  const [resetPasswordCongrats, setPasswordCongrats] = useState(false)
-  const toggleResetPasswordModal = () => {
-    setPasswordCongrats(!resetPasswordCongrats)
-  }
-
   // Upload Property Congrats Modal
   const [modal, setModal] = useState(false)
   const toggleModal = () => {
     setModal(!modal)
+    // setTimeout(()=>{
+    //   navigate('/landlord')
+    // }, 5000)
   }
 
   // Signup and Login Validation States
@@ -79,7 +76,7 @@ const Context = ({ children }) => {
 
     const resetLogoutTimer = () => {
       clearTimeout(logoutTimer)
-      logoutTimer = setTimeout(clearInactiveUser, 4 * 60 * 1000) // 4 minutes
+      logoutTimer = setTimeout(clearInactiveUser, 5 * 60 * 1000) // 5 minutes
     }
     const clearLogoutTimer = () => {
       clearTimeout(logoutTimer)
@@ -111,8 +108,10 @@ const Context = ({ children }) => {
       setSignupError(
         'Password must contain at least 8 characters with uppercase, lowercase, number, and symbol.'
       )
+      return
     } else if (!validateEmail(details.email)) {
       setSignupError('Invalid Email Address')
+      return
     }
     setIsSigningUp(true)
     setLoading(true)
@@ -134,8 +133,8 @@ const Context = ({ children }) => {
           setShowSuccessMessage(true)
           setTimeout(() => {
             setShowSuccessMessage(false)
-          }, 2500)
-        }, 500)
+          }, 2800)
+        }, 200)
         setTimeout(() => {
           navigate('/landlord')
         }, 3000)
@@ -239,10 +238,10 @@ const Context = ({ children }) => {
       } else {
         setTimeout(() => {
           setShowResetMessage(true)
-          setTimeout(() => {
-            setShowResetMessage(false)
-          }, 3000)
-        }, 500)
+          // setTimeout(() => {
+          //   setShowResetMessage(false)
+          // }, 100000)
+        }, 200)
         setResetEmail('')
         setResetError(
           'Password reset successfully. Check your email to proceed'
@@ -257,6 +256,76 @@ const Context = ({ children }) => {
     } finally {
       setIsResettingPassword(false)
       setResetLoading(false)
+    }
+  }
+
+  // User Enter New Password
+  const [newPasswordError, setNewPasswordError] = useState('')
+  const [newPasswordLoading, setNewPasswordLoading] = useState('')
+  const [newPasswordsuccessMessage, setNewPasswordsuccessMessage] =
+    useState(false)
+  const [isRegisteringNewPassword, setIsRegisteringNewPassword] =
+    useState(false)
+  const [newPasswordDetails, setNewPasswordDetails] = useState({
+    newPassword: '',
+    newConfirmPassword: '',
+  })
+  const handleChangeNewPassword = (e) => {
+    setNewPasswordDetails({
+      ...newPasswordDetails,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  // Clear New Password Error
+  useEffect(() => {
+    setNewPasswordError('')
+  }, [newPasswordDetails.newPassword, newPasswordDetails.newConfirmPassword])
+
+  const NewPassword = async (e) => {
+    e.preventDefault()
+    if (!validatePassword(newPasswordDetails.newPassword)) {
+      setNewPasswordError(
+        'Password must contain at least 8 characters with uppercase, lowercase, number, and symbol.'
+      )
+      return
+    } else if (
+      newPasswordDetails.newPassword !== newPasswordDetails.newConfirmPassword
+    ) {
+      setNewPasswordError('Passwords do not match!')
+      return
+    }
+    setIsRegisteringNewPassword(true)
+    setNewPasswordLoading(true)
+    try {
+      const response = await fetch(`${BASE_URL}/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(resetEmail),
+      })
+      const data = await response.json()
+      console.log(data);
+      setTimeout(() => {
+         setNewPasswordsuccessMessage(true)
+        setTimeout(() => {
+          setNewPasswordsuccessMessage(false)
+          navigate('/login')
+        }, 4000)
+      }, 200)
+      setNewPasswordDetails({
+        newPassword: '',
+        newConfirmPassword: '',
+      })
+      setNewPasswordError('Password reset successfully.')
+    } catch (err) {
+      if (err?.response) {
+        setNewPasswordError('No Server Response')
+      }
+    } finally {
+      setIsRegisteringNewPassword(false)
+      setNewPasswordLoading(false)
     }
   }
   return (
@@ -288,8 +357,13 @@ const Context = ({ children }) => {
           signupError,
           modal,
           toggleModal,
-          resetPasswordCongrats,
-          toggleResetPasswordModal,
+          newPasswordLoading,
+          isRegisteringNewPassword,
+          newPasswordsuccessMessage,
+          handleChangeNewPassword,
+          newPasswordDetails,
+          NewPassword,
+          newPasswordError,
         }}
       >
         {children}

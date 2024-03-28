@@ -5,8 +5,15 @@ import ResetPasswordCongrats from '../modal/ResetPasswordCongrats'
 import logo from '../../assets/1st mandate logo 1.png'
 
 const EnterNewPassword = () => {
-  const { toggleResetPasswordModal, resetPasswordCongrats } =
-    useContext(FirstMandate)
+  const {
+    isRegisteringNewPassword,
+    handleChangeNewPassword,
+    newPasswordLoading,
+    newPasswordsuccessMessage,
+    newPasswordDetails,
+    NewPassword,
+    newPasswordError,
+  } = useContext(FirstMandate)
 
   return (
     <>
@@ -15,27 +22,47 @@ const EnterNewPassword = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <main>
+          <form onSubmit={NewPassword}>
             <h3>Enter New Password</h3>
             <input
-              type='text'
+              type='password'
+              name='newPassword'
               className='password-input'
               placeholder='Password'
+              autoComplete='off'
+              value={newPasswordDetails.newPassword}
+              onChange={handleChangeNewPassword}
               required
             />
             <label>Confirm Password</label>
             <input
-              type='text'
+              type='password'
+              name='newConfirmPassword'
               className='password-input'
+              autoComplete='off'
+              value={newPasswordDetails.newConfirmPassword}
+              onChange={handleChangeNewPassword}
               placeholder='Confirm Password'
               required
             />
-            <label className='error'>Password Incorrect</label>
-            <button onClick={toggleResetPasswordModal}>Reset Password</button>
-          </main>
+            <label className='error'>{newPasswordError}</label>
+            <button
+              disabled={isRegisteringNewPassword}
+              className={isRegisteringNewPassword ? 'btn-disabled' : 'btn'}
+            >
+              {newPasswordLoading ? (
+                <div className='login-spinner'>
+                  <div className='spinner'></div>
+                  <p>Reset Password</p>
+                </div>
+              ) : (
+                <p className='login-btn'>Reset Password</p>
+              )}
+            </button>{' '}
+          </form>
         </section>
       </ResetP>
-      <div>{resetPasswordCongrats && <ResetPasswordCongrats />}</div>
+      <div>{newPasswordsuccessMessage && <ResetPasswordCongrats />}</div>
     </>
   )
 }
@@ -48,7 +75,7 @@ const ResetP = styled.section`
     top: 40px;
     left: 40px;
   }
-  main {
+  form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,22 +118,60 @@ const ResetP = styled.section`
     color: #ff0000;
   }
   button {
-    background-color: #000;
     color: #ffffff;
-    padding: 12px 0;
+    height: 45px;
     border: transparent;
     border-radius: 4px;
     width: 400px;
     margin: 10px 0;
     cursor: pointer;
   }
+  .btn {
+    background: #000;
+  }
+  .btn-disabled {
+    background: #00000080;
+    cursor: not-allowed;
+  }
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .login-spinner {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .spinner {
+    border: 3px solid #fff;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+  }
 
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
   @media screen and (max-width: 470px) {
     .logo {
       top: 20px;
       left: 20px;
     }
-    main {
+    form {
       width: 430px;
     }
     label,
@@ -116,7 +181,7 @@ const ResetP = styled.section`
     }
   }
   @media screen and (max-width: 440px) {
-    main {
+    form {
       width: 360px;
     }
     label,
@@ -126,7 +191,7 @@ const ResetP = styled.section`
     }
   }
   @media screen and (max-width: 360px) {
-    main {
+    form {
       width: 320px;
     }
     label,
