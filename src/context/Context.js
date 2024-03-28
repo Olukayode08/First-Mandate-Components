@@ -28,7 +28,6 @@ const Context = ({ children }) => {
     email: '',
     password: '',
   })
-
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value })
   }
@@ -46,7 +45,7 @@ const Context = ({ children }) => {
     return regex.test(email)
   }
 
-  // Clear Error
+  // Clear Login and Signup Error
   useEffect(() => {
     setSignupError('')
     setLoginError('')
