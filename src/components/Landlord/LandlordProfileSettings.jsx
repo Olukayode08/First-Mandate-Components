@@ -4,6 +4,7 @@ import profile from '../../assets/Frame 2007 (1).png'
 import edit from '../../assets/edit-01 (2).png'
 import logout from '../../assets/logout-03.png'
 import { FirstMandate } from '../../context/Context'
+import { Link } from 'react-router-dom'
 
 const LandlordProfileSettings = () => {
   const {logOut} = useContext(FirstMandate)
@@ -21,10 +22,10 @@ const LandlordProfileSettings = () => {
             </div>
             <div className='profile-picture'>
               <img className='p-img' src={profile} alt='Profile' />
-              <div className='edit-p'>
+              <Link to='/landlord/edit-profile' className='edit-p'>
                 <img src={edit} alt='Edit-Profile' />
                 <p>Edit Profile</p>
-              </div>
+              </Link>
               <p>Peace Adekola</p>
               <p>08146573112</p>
               <p>peaceadekola2@gmail.com</p>
@@ -109,6 +110,7 @@ const LandlordPS = styled.section`
     justify-content: space-between;
     align-items: center;
     width: 130px;
+    text-decoration: none;
     background: #f6f6f8;
     color: #000;
     padding: 10px;

@@ -207,7 +207,6 @@ const Context = ({ children }) => {
   }
 
   // User Reset Password
-
   const [resetEmail, setResetEmail] = useState('')
   const [resetError, setResetError] = useState('')
   const [showResetMessage, setShowResetMessage] = useState(false)
