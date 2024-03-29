@@ -1,20 +1,18 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { FirstMandate } from '../../context/Context'
+import { FirstMandateLandlord } from '../../context/LandlordContext'
 
 const CongratsModal = () => {
-  const { toggleModal } = useContext(FirstMandate)
+  const { uploadError } = useContext(FirstMandateLandlord)
 
   return (
     <>
       <Modal>
         <section>
           <div className='modal'>
-            <div className='overlay' onClick={toggleModal}></div>
+            <div className='overlay'></div>
             <div className='modal-content'>
-              <p className='modal-text'>
-                Congratulations, your property has been uploaded successfully
-              </p>
+              <p className='modal-text'>{uploadError}</p>
             </div>
           </div>
         </section>

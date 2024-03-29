@@ -10,16 +10,48 @@ import UploadPropertyTwo from '../UploadProperty/UploadPropertyTwo'
 const totalSteps = 2
 const UploadPropertyStepper = () => {
   const navigate = useNavigate()
-  const { uploadSuccess, AddProperty } = useContext(FirstMandateLandlord)
+
+  const {
+    uploadSuccess,
+    uploadError,
+    uploadLoading,
+    setAddProperty,
+    addProperty,
+    AddProperty,
+    setUploadError,
+  } = useContext(FirstMandateLandlord)
 
   const [step, setStep] = useState(1)
 
   const nextStep = () => {
-    setStep(step + 1)
+    if (
+      addProperty.title &&
+      addProperty.address &&
+      addProperty.country &&
+      addProperty.city &&
+      addProperty.state &&
+      addProperty.manager_name &&
+      addProperty.manager_email &&
+      addProperty.manager_phone
+    ) {
+      setStep(step + 1)
+    } else {
+      setUploadError('Please fill in all required fields.')
+    }
   }
 
   const prevStep = () => {
     if (step === 1) {
+      setAddProperty({
+        title: '',
+        address: '',
+        country: '',
+        city: '',
+        state: '',
+        manager_name: '',
+        manager_email: '',
+        manager_phone: '',
+      })
       navigate('/landlord/properties')
     }
     setStep(step - 1)
@@ -30,7 +62,8 @@ const UploadPropertyStepper = () => {
     <>
       <UploadPS>
         <section>
-          <form onSubmit={AddProperty} className='multi-step-form'>
+          <div className='multi-step-form'>
+            <p className='error'>{uploadError}</p>
             <h2>Upload New Property</h2>
             {step === 1 && <p className='active-step'>1 of 2</p>}
             {step === 2 && <p className='active-step'>2 of 2</p>}
@@ -63,11 +96,25 @@ const UploadPropertyStepper = () => {
                   Save & Continue
                 </button>
               )}
+
               {step === 2 && (
-                <button className='next-button'>Save & Upload Property</button>
+                <button
+                  className={uploadLoading ? 'btn-disabled' : 'btn'}
+                  onClick={AddProperty}
+                  disabled={uploadLoading}
+                >
+                  {uploadLoading ? (
+                    <div className='login-spinner'>
+                      <div className='spinner'></div>
+                      <p>Save & Upload Property</p>
+                    </div>
+                  ) : (
+                    <p className='login-btn'>Save & Upload Property</p>
+                  )}
+                </button>
               )}
             </div>
-          </form>
+          </div>
         </section>
       </UploadPS>
       {/* Congratulations Conponent */}
@@ -129,6 +176,11 @@ const UploadPS = styled.section`
     margin-top: 20px;
     width: 100%;
   }
+  .error {
+    color: #ff0000;
+    text-align: left;
+    margin: 10px 0;
+  }
   .step-buttons {
     margin-top: 20px;
     display: flex;
@@ -140,12 +192,15 @@ const UploadPS = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    border-radius: 4px;
+    padding: 0 18px;
+    gap: 5px;
     flex-shrink: 0;
   }
   button {
     background: transparent;
     border: none;
+    outline: none;
     cursor: pointer;
     color: #000;
     flex-shrink: 0;
@@ -153,16 +208,60 @@ const UploadPS = styled.section`
     font-size: 16px;
     height: 50px;
   }
-  .prev-button,
-  .next-button {
+  .prev-button {
+    background-color: #ffdfe2;
     border-radius: 4px;
     padding: 0 18px;
   }
-  .prev-button {
-    background-color: #ffdfe2;
-  }
   .next-button {
     background-color: #fedf7e;
+    border-radius: 4px;
+    padding: 0 18px;
+  }
+  .btn {
+    background-color: #fedf7e;
+    color: #000;
+    border-radius: 4px;
+    padding: 0 18px;
+  }
+  .btn-disabled {
+    background: #00000080;
+    cursor: not-allowed;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0 18px;
+  }
+  .login-spinner {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .spinner {
+    border: 3px solid #fff;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+  }
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   @media screen and (max-width: 420px) {

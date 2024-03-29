@@ -9,7 +9,6 @@ const Login = () => {
     details,
     handleChange,
     loginLoading,
-    isLoginIn,
     UserSignin,
     loginError,
   } = useContext(FirstMandate)
@@ -45,8 +44,8 @@ const Login = () => {
               required
             />
             <button
-              disabled={isLoginIn}
-              className={isLoginIn ? 'btn-disabled' : 'btn'}
+              disabled={loginLoading}
+              className={loginLoading ? 'btn-disabled' : 'btn'}
             >
               {loginLoading ? (
                 <div className='login-spinner'>

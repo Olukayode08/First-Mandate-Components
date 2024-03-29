@@ -6,7 +6,6 @@ import logo from '../../assets/1st mandate logo 1.png'
 
 const EnterNewPassword = () => {
   const {
-    isRegisteringNewPassword,
     handleChangeNewPassword,
     newPasswordLoading,
     newPasswordsuccessMessage,
@@ -47,8 +46,8 @@ const EnterNewPassword = () => {
             />
             <label className='error'>{newPasswordError}</label>
             <button
-              disabled={isRegisteringNewPassword}
-              className={isRegisteringNewPassword ? 'btn-disabled' : 'btn'}
+              disabled={newPasswordLoading}
+              className={newPasswordLoading ? 'btn-disabled' : 'btn'}
             >
               {newPasswordLoading ? (
                 <div className='login-spinner'>

@@ -48,6 +48,11 @@ button {
 td {
   font-size: 13px;
 }
+select,
+input{
+  background-color: transparent;
+  outline: none;
+}
 @media screen and (min-width: 2000px) {
   .app {
     max-width: 1900px;

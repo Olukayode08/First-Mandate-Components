@@ -12,7 +12,6 @@ const ResetPassword = () => {
     ResetPassword,
     resetEmail,
     setResetEmail,
-    isResettingPassword,
     showResetMessage,
   } = useContext(FirstMandate)
 
@@ -37,8 +36,8 @@ const ResetPassword = () => {
               placeholder='E-mail'
             />
             <button
-              disabled={isResettingPassword}
-              className={isResettingPassword ? 'btn-disabled' : 'btn'}
+              disabled={resetLoading}
+              className={resetLoading ? 'btn-disabled' : 'btn'}
             >
               {resetLoading ? (
                 <div className='login-spinner'>

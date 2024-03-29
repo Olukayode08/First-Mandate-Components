@@ -121,7 +121,7 @@ function App() {
           <Route path='/big-calendar' element={<BigCalendar />} />
 
           {/* Landlord page */}
-          {/* <Route element={<ProtectedRoute />}> */}
+          <Route element={<ProtectedRoute />}>
             <Route path='/landlord' element={<LandLord />}>
               <Route path='' element={<LandlordHomePage />} />
               <Route path='notifications' element={<LandlordNotifications />} />
@@ -154,7 +154,7 @@ function App() {
                 element={<LandlordEmptyReminder />}
               />
             </Route>
-          {/* </Route> */}
+          </Route>
 
           {/* Manager's Page */}
           <Route element={<ProtectedRoute />}>

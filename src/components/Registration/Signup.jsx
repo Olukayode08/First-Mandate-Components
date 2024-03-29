@@ -10,7 +10,6 @@ const Signup = () => {
     showSuccessMessage,
     loading,
     details,
-    isSigningUp,
     UserSignup,
     handleChange,
     signupError,
@@ -57,8 +56,8 @@ const Signup = () => {
               required
             />
             <button
-              disabled={isSigningUp}
-              className={isSigningUp ? 'btn-disabled' : 'btn'}
+              disabled={loading}
+              className={loading ? 'btn-disabled' : 'btn'}
             >
               {loading ? (
                 <div className='login-spinner'>

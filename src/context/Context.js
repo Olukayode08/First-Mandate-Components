@@ -7,6 +7,8 @@ const BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL
 
 const Context = ({ children }) => {
   const navigate = useNavigate()
+  const token = localStorage.getItem('token')
+
 
   // Signup and Login Validation States
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -91,7 +93,6 @@ const Context = ({ children }) => {
   const [loading, setLoading] = useState('')
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [signupError, setSignupError] = useState('')
-  const [isSigningUp, setIsSigningUp] = useState(false)
   const UserSignup = async (e) => {
     e.preventDefault()
     if (!validatePassword(details.password)) {
@@ -99,17 +100,18 @@ const Context = ({ children }) => {
         'Password must contain at least 8 characters with uppercase, lowercase, number, and symbol.'
       )
       return
-    } else if (!validateEmail(details.email)) {
+    }
+    if (!validateEmail(details.email)) {
       setSignupError('Invalid Email Address')
       return
     }
-    setIsSigningUp(true)
     setLoading(true)
     try {
       const response = await fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify(details),
       })
@@ -117,7 +119,8 @@ const Context = ({ children }) => {
       if (response?.status === 422) {
         setSignupError('Email Address Unavailable')
         return
-      } else {
+      }
+      if (response?.status === 200) {
         localStorage.setItem('token', userData.data.authorization.token)
         setIsAuthenticated(true)
         setTimeout(() => {
@@ -130,15 +133,15 @@ const Context = ({ children }) => {
           navigate('/landlord')
         }, 3000)
         setUser(userData)
-        // console.log(localStorage)
-        // console.log(userData)
-        setDetails({
-          name: '',
-          email: '',
-          password: '',
-        })
-        setSignupError('')
       }
+      // console.log(localStorage)
+      // console.log(userData)
+      setDetails({
+        name: '',
+        email: '',
+        password: '',
+      })
+      setSignupError('')
     } catch (err) {
       if (err?.response) {
         setSignupError('No Server Response')
@@ -146,44 +149,43 @@ const Context = ({ children }) => {
         setSignupError('Registration Failed')
       }
     } finally {
-      setIsSigningUp(false)
       setLoading(false)
     }
   }
 
   // User Login Authentification
   const [loginError, setLoginError] = useState('')
-  const [isLoginIn, setIsLoginIn] = useState(false)
   const [loginLoading, setLoginLoading] = useState('')
   const UserSignin = async (e) => {
     e.preventDefault()
-    setIsLoginIn(true)
     setLoginLoading(true)
     try {
       const response = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify(details),
       })
       const userData = await response.json()
       if (response?.status === 401) {
         setLoginError('Invalid Login Credentials')
-      } else {
+      }
+      if (response?.status === 200) {
         localStorage.setItem('token', userData.data.authorization.token)
         setIsAuthenticated(true)
         navigate('/landlord')
         setUser(userData)
         // console.log(localStorage)
         // console.log(userData)
-        setDetails({
-          name: '',
-          email: '',
-          password: '',
-        })
-        setLoginError('')
       }
+      setDetails({
+        name: '',
+        email: '',
+        password: '',
+      })
+      setLoginError('')
     } catch (err) {
       if (err?.response) {
         setLoginError('No Server Response')
@@ -191,7 +193,6 @@ const Context = ({ children }) => {
         setLoginError('Login Unsuccessful')
       }
     } finally {
-      setIsLoginIn(false)
       setLoginLoading(false)
     }
   }
@@ -200,7 +201,6 @@ const Context = ({ children }) => {
   const [resetEmail, setResetEmail] = useState('')
   const [resetError, setResetError] = useState('')
   const [showResetMessage, setShowResetMessage] = useState(false)
-  const [isResettingPassword, setIsResettingPassword] = useState(false)
   const [resetLoading, setResetLoading] = useState(false)
 
   // Clear Reset Error
@@ -210,13 +210,13 @@ const Context = ({ children }) => {
 
   const ResetPassword = async (e) => {
     e.preventDefault()
-    setIsResettingPassword(true)
-    setResetLoading(true)
+    setResetLoading(false)
     try {
       const response = await fetch(`${BASE_URL}/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify(resetEmail),
       })
@@ -224,20 +224,22 @@ const Context = ({ children }) => {
       console.log(response?.status)
       if (response?.status === 404) {
         setResetError('User does not exist')
-      } else if (response?.status === 401) {
+      }
+      if (response?.status === 401) {
         setResetError('User does not exist')
-      } else {
+      }
+      if (response?.status === 200) {
         setTimeout(() => {
           setShowResetMessage(true)
           // setTimeout(() => {
           //   setShowResetMessage(false)
           // }, 100000)
         }, 200)
-        setResetEmail('')
         setResetError(
           'Password reset successfully. Check your email to proceed'
         )
       }
+      setResetEmail('')
     } catch (err) {
       if (err?.response) {
         setResetError('No Server Response')
@@ -245,7 +247,6 @@ const Context = ({ children }) => {
         setResetError('Unauthorized')
       }
     } finally {
-      setIsResettingPassword(false)
       setResetLoading(false)
     }
   }
@@ -255,8 +256,7 @@ const Context = ({ children }) => {
   const [newPasswordLoading, setNewPasswordLoading] = useState('')
   const [newPasswordsuccessMessage, setNewPasswordsuccessMessage] =
     useState(false)
-  const [isRegisteringNewPassword, setIsRegisteringNewPassword] =
-    useState(false)
+
   const [newPasswordDetails, setNewPasswordDetails] = useState({
     newPassword: '',
     newConfirmPassword: '',
@@ -280,31 +280,35 @@ const Context = ({ children }) => {
         'Password must contain at least 8 characters with uppercase, lowercase, number, and symbol.'
       )
       return
-    } else if (
+    }
+    if (
       newPasswordDetails.newPassword !== newPasswordDetails.newConfirmPassword
     ) {
       setNewPasswordError('Passwords do not match!')
       return
     }
-    setIsRegisteringNewPassword(true)
     setNewPasswordLoading(true)
     try {
       const response = await fetch(`${BASE_URL}/reset-password`, {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify(resetEmail),
       })
       const data = await response.json()
-      console.log(data);
-      setTimeout(() => {
-         setNewPasswordsuccessMessage(true)
+      console.log(data)
+      if (response?.status === 200) {
         setTimeout(() => {
-          setNewPasswordsuccessMessage(false)
-          navigate('/login')
-        }, 4000)
-      }, 200)
+          setNewPasswordsuccessMessage(true)
+          setTimeout(() => {
+            setNewPasswordsuccessMessage(false)
+            navigate('/login')
+          }, 4000)
+        }, 200)
+      }
       setNewPasswordDetails({
         newPassword: '',
         newConfirmPassword: '',
@@ -315,7 +319,6 @@ const Context = ({ children }) => {
         setNewPasswordError('No Server Response')
       }
     } finally {
-      setIsRegisteringNewPassword(false)
       setNewPasswordLoading(false)
     }
   }
@@ -328,10 +331,7 @@ const Context = ({ children }) => {
           UserSignup,
           UserSignin,
           loginLoading,
-          isLoginIn,
           loginError,
-          isSigningUp,
-          setIsSigningUp,
           isAuthenticated,
           showSuccessMessage,
           logOut,
@@ -342,12 +342,10 @@ const Context = ({ children }) => {
           user,
           ResetPassword,
           showResetMessage,
-          isResettingPassword,
           resetError,
           resetLoading,
           signupError,
           newPasswordLoading,
-          isRegisteringNewPassword,
           newPasswordsuccessMessage,
           handleChangeNewPassword,
           newPasswordDetails,
