@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Context } from './context/Context';
 import { Darkmode } from './context/Darkmode';
+import { LandlordContext } from './context/LandlordContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,7 +13,9 @@ root.render(
     <BrowserRouter>
       <Darkmode>
         <Context>
-          <App />
+          <LandlordContext>
+            <App />
+          </LandlordContext>
         </Context>
       </Darkmode>
     </BrowserRouter>

@@ -3,15 +3,16 @@ import styled from 'styled-components'
 import { IoMdArrowBack } from 'react-icons/io'
 import Reload from '../../hooks/Reload'
 import CongratsModal from '../modal/CongratsModal'
-import { FirstMandate } from '../../context/Context'
+import { FirstMandateLandlord } from '../../context/LandlordContext'
 import { useNavigate } from 'react-router-dom'
 import UploadPropertyOne from '../UploadProperty/UploadPropertyOne'
 import UploadPropertyTwo from '../UploadProperty/UploadPropertyTwo'
 const totalSteps = 2
 const UploadPropertyStepper = () => {
-  const [step, setStep] = useState(1)
-  const { modal, toggleModal } = useContext(FirstMandate)
   const navigate = useNavigate()
+  const { uploadSuccess, AddProperty } = useContext(FirstMandateLandlord)
+
+  const [step, setStep] = useState(1)
 
   const nextStep = () => {
     setStep(step + 1)
@@ -29,7 +30,7 @@ const UploadPropertyStepper = () => {
     <>
       <UploadPS>
         <section>
-          <div className='multi-step-form'>
+          <form onSubmit={AddProperty} className='multi-step-form'>
             <h2>Upload New Property</h2>
             {step === 1 && <p className='active-step'>1 of 2</p>}
             {step === 2 && <p className='active-step'>2 of 2</p>}
@@ -63,16 +64,14 @@ const UploadPropertyStepper = () => {
                 </button>
               )}
               {step === 2 && (
-                <button onClick={toggleModal} className='next-button'>
-                  Save & Upload Property
-                </button>
+                <button className='next-button'>Save & Upload Property</button>
               )}
             </div>
-          </div>
+          </form>
         </section>
       </UploadPS>
       {/* Congratulations Conponent */}
-      <div>{modal && <CongratsModal />}</div>
+      <div>{uploadSuccess && <CongratsModal />}</div>
     </>
   )
 }

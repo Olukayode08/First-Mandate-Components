@@ -8,15 +8,6 @@ const BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL
 const Context = ({ children }) => {
   const navigate = useNavigate()
 
-  // Upload Property Congrats Modal
-  const [modal, setModal] = useState(false)
-  const toggleModal = () => {
-    setModal(!modal)
-    // setTimeout(()=>{
-    //   navigate('/landlord')
-    // }, 5000)
-  }
-
   // Signup and Login Validation States
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem('token')
@@ -125,6 +116,7 @@ const Context = ({ children }) => {
       const userData = await response.json()
       if (response?.status === 422) {
         setSignupError('Email Address Unavailable')
+        return
       } else {
         localStorage.setItem('token', userData.data.authorization.token)
         setIsAuthenticated(true)
@@ -354,8 +346,6 @@ const Context = ({ children }) => {
           resetError,
           resetLoading,
           signupError,
-          modal,
-          toggleModal,
           newPasswordLoading,
           isRegisteringNewPassword,
           newPasswordsuccessMessage,

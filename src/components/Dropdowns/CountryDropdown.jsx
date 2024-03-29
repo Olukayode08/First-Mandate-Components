@@ -1,50 +1,52 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-const countries = {
-  Nigeria: {
-    Lagos: ['Badagry', 'Epe', 'Ikeja', 'Ikorodu', 'Lagos', 'Mushin', 'Shomolu'],
-    Ogun: ['Abeokuta', 'Ijebu-Ode', 'Ilaro', 'Shagamu'],
-    Ondo: ['Badagry', 'Epe', 'Ikeja', 'Ikorodu', 'Lagos', 'Mushin', 'Shomolu'],
-    Osun: ['Abeokuta', 'Ijebu-Ode', 'Ilaro', 'Shagamu'],
-    Oyo: ['Badagry', 'Epe', 'Ikeja', 'Ikorodu', 'Lagos', 'Mushin', 'Shomolu'],
+const mockData = {
+  countries: ['Nigeria', 'USA', 'Canada', 'UK'],
+  states: {
+    Nigeria: ['Lagos', 'Ogun', 'Osun'],
+    USA: ['New York', 'California', 'Texas'],
+    Canada: ['Ontario', 'Quebec', 'British Columbia'],
+    UK: ['England', 'Scotland', 'Wales'],
   },
-  USA: {
+  cities: {
+    Lagos: ['Ikeja', 'Epe', 'Ikorodu', 'Agege'],
+    Ogun: ['Sagamu', 'Owode', 'Ijebu Ode'],
+    Osun: ['Ife', 'Ilesa', 'Osogbo', 'Ejigbo'],
+    'New York': ['New York City', 'Buffalo', 'Rochester'],
     California: ['Los Angeles', 'San Francisco', 'San Diego'],
     Texas: ['Houston', 'Dallas', 'Austin'],
-  },
-  Canada: {
-    Ontario: ['Toronto', 'Ottawa', 'Hamilton'],
-    Quebec: ['Montreal', 'Quebec City'],
+    Ontario: ['Toronto', 'Ottawa', 'Mississauga'],
+    Quebec: ['Montreal', 'Quebec City', 'Laval'],
+    'British Columbia': ['Vancouver', 'Victoria', 'Burnaby'],
+    England: ['London', 'Manchester', 'Birmingham'],
+    Scotland: ['Glasgow', 'Edinburgh', 'Aberdeen'],
+    Wales: ['Cardiff', 'Swansea', 'Newport'],
   },
 }
 
-const CountryDropdown = () => {
-  const [selectedCountry, setSelectedCountry] = useState('')
-  const [selectedState, setSelectedState] = useState('')
-  const [selectedCity, setSelectedCity] = useState('')
-  const [states, setStates] = useState([])
-  const [cities, setCities] = useState([])
-
-  const handleCountryChange = (event) => {
-    const country = event.target.value
-    setSelectedCountry(country)
-    setSelectedState('')
-    setSelectedCity('')
-    setStates(Object.keys(countries[country]))
-    setCities([])
+const CountryDropdown = ({
+  handleChangeAddProperty,
+  addProperty,
+  setAddProperty,
+}) => {
+  const handleCountryChange = (e) => {
+    const { value } = e.target
+    setAddProperty({
+      ...addProperty,
+      country: value,
+      state: '',
+      city: '',
+    })
   }
 
-  const handleStateChange = (event) => {
-    const state = event.target.value
-    setSelectedState(state)
-    setSelectedCity('')
-    setCities(countries[selectedCountry][state])
-  }
-
-  const handleCityChange = (event) => {
-    const city = event.target.value
-    setSelectedCity(city)
+  const handleStateChange = (e) => {
+    const { value } = e.target
+    setAddProperty({
+      ...addProperty,
+      state: value,
+      city: '',
+    })
   }
 
   return (
@@ -53,13 +55,14 @@ const CountryDropdown = () => {
         <section className='select-section'>
           <div className='select'>
             <select
-              id='country'
-              value={selectedCountry}
+              name='country'
+              value={addProperty.country}
               onChange={handleCountryChange}
+              required
             >
               <option value=''>Country</option>
-              {Object.keys(countries).map((country, index) => (
-                <option key={index} value={country}>
+              {mockData.countries.map((country) => (
+                <option key={country} value={country}>
                   {country}
                 </option>
               ))}
@@ -68,33 +71,37 @@ const CountryDropdown = () => {
 
           <div className='select'>
             <select
-              id='state'
-              value={selectedState}
+              name='state'
+              value={addProperty.state}
               onChange={handleStateChange}
-              disabled={!selectedCountry}
+              disabled={!addProperty.country}
+              required
             >
               <option value=''>State</option>
-              {states.map((state, index) => (
-                <option key={index} value={state}>
-                  {state}
-                </option>
-              ))}
+              {addProperty.country &&
+                mockData.states[addProperty.country].map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
             </select>
           </div>
 
           <div className='select'>
             <select
-              id='city'
-              value={selectedCity}
-              onChange={handleCityChange}
-              disabled={!selectedState}
+              name='city'
+              value={addProperty.city}
+              onChange={handleChangeAddProperty}
+              disabled={!addProperty.state}
+              required
             >
               <option value=''>City</option>
-              {cities.map((city, index) => (
-                <option key={index} value={city}>
-                  {city}
-                </option>
-              ))}
+              {addProperty.state &&
+                mockData.cities[addProperty.state].map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
             </select>
           </div>
         </section>

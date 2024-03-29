@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import CountryDropdown from '../Dropdowns/CountryDropdown'
+import { FirstMandateLandlord } from '../../context/LandlordContext'
 const UploadPropertyOne = () => {
+  const { handleChangeAddProperty, addProperty, setAddProperty } =
+    useContext(FirstMandateLandlord)
+
   return (
     <>
       <UploadPO>
@@ -13,6 +17,10 @@ const UploadPropertyOne = () => {
                 type='text'
                 placeholder='Enter a brief title / name of the property'
                 required
+                name='title'
+                value={addProperty.title}
+                onChange={handleChangeAddProperty}
+                autoComplete='off'
                 className='name-input-field'
               />
             </div>
@@ -22,12 +30,20 @@ const UploadPropertyOne = () => {
                 type='text'
                 placeholder='eg GRA, Egbeda, Oke-Ado'
                 required
+                name='address'
+                value={addProperty.address}
+                onChange={handleChangeAddProperty}
+                autoComplete='off'
                 className='name-input-field'
               />
             </div>
             <div className='location'>
               <label>Location</label>
-              <CountryDropdown />
+              <CountryDropdown
+                addProperty={addProperty}
+                handleChangeAddProperty={handleChangeAddProperty}
+                setAddProperty={setAddProperty}
+              />
             </div>
             <div className='input'>
               <label>Manager's Name</label>
@@ -35,6 +51,10 @@ const UploadPropertyOne = () => {
                 type='text'
                 placeholder='Enter Full name'
                 required
+                name='manager_name'
+                value={addProperty.manager_name}
+                onChange={handleChangeAddProperty}
+                autoComplete='off'
                 className='name-input-field'
               />
             </div>
@@ -44,6 +64,10 @@ const UploadPropertyOne = () => {
                 type='email'
                 placeholder='Enter Email'
                 required
+                name='manager_email'
+                value={addProperty.manager_email}
+                onChange={handleChangeAddProperty}
+                autoComplete='off'
                 className='name-input-field'
               />
             </div>
@@ -53,6 +77,10 @@ const UploadPropertyOne = () => {
                 type='text'
                 placeholder='+234'
                 required
+                name='manager_phone'
+                value={addProperty.manager_phone}
+                onChange={handleChangeAddProperty}
+                autoComplete='off'
                 className='name-input-field'
               />
             </div>
