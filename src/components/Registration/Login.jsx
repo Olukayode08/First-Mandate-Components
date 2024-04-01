@@ -1,17 +1,44 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
 import { FirstMandate } from '../../context/Context'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useFirstMandateMutation } from '../../data-layer/utils'
 
 const Login = () => {
+  const { setIsAuthenticated } = useContext(FirstMandate)
+  const navigate = useNavigate()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const {
-    details,
-    handleChange,
-    loginLoading,
-    UserSignin,
-    loginError,
-  } = useContext(FirstMandate)
+    mutateAsync: postLogin,
+    isLoading,
+    error,
+  } = useFirstMandateMutation('/login', {
+    onSuccess: (data) => {
+      localStorage.setItem('token', data.data.authorization.token)
+      setIsAuthenticated(true)
+      navigate('/landlord')
+    },
+    onError: (error) => {
+    },
+  })
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+
+    if (!(email || password)) {
+      return
+    }
+
+    try {
+      await postLogin({ email, password })
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
 
   return (
     <>
@@ -20,15 +47,15 @@ const Login = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={UserSignin}>
+          <form onSubmit={handleLogin}>
             <h3>Sign In to 1st Mandate</h3>
-            <p className='error'>{loginError}</p>
+            {error && <p className='error'>{error.message}</p>}
             <input
               type='email'
               name='email'
-              value={details.email}
+              value={email}
               autoComplete='off'
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
               className='email-input'
               required
               placeholder='E-mail'
@@ -36,18 +63,18 @@ const Login = () => {
             <input
               type='password'
               name='password'
-              value={details.password}
+              value={password}
               autoComplete='off'
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
               className='password-input'
               placeholder='Password'
               required
             />
             <button
-              disabled={loginLoading}
-              className={loginLoading ? 'btn-disabled' : 'btn'}
+              disabled={isLoading}
+              className={isLoading ? 'btn-disabled' : 'btn'}
             >
-              {loginLoading ? (
+              {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
                   <p>Login</p>

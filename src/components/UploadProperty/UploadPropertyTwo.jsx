@@ -3,7 +3,11 @@ import styled from 'styled-components'
 import RentTermsDropdown from '../Dropdowns/RentTermsDropdown'
 import RentAmountDropdown from '../Dropdowns/RentAmountDropdown'
 
-const UploadPropertyTwo = () => {
+const UploadPropertyTwo = ({
+  handleChangeAddProperty,
+  setAddProperty,
+  addProperty,
+}) => {
   return (
     <>
       <UploadPTwo>

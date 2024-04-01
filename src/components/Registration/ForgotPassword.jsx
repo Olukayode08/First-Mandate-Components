@@ -1,20 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { FirstMandate } from '../../context/Context'
 import EmailCongratsModal from '../modal/EmailCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
 import { Link } from 'react-router-dom'
+import { useFirstMandateMutation } from '../../data-layer/utils'
 
 const ResetPassword = () => {
+  const [email, setEmail] = useState('')
   const {
-    resetLoading,
-    resetError,
-    ResetPassword,
-    resetEmail,
-    setResetEmail,
-    showResetMessage,
-  } = useContext(FirstMandate)
+    mutateAsync: postResetPassword,
+    isLoading,
+    error,
+    isSuccess,
+  } = useFirstMandateMutation('/forgot-password', {
+    onSuccess: (data) => {},
+    onError: (error) => {},
+  })
 
+  const handleResetPassword = async (e) => {
+    e.preventDefault()
+
+    if (!(email)) {
+      return
+    }
+
+    try {
+      await postResetPassword({ email })
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
   return (
     <>
       <ResetP>
@@ -22,24 +37,24 @@ const ResetPassword = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={ResetPassword}>
+          <form onSubmit={handleResetPassword}>
             <h3>Enter your email address to reset password</h3>
-            <p className='error'>{resetError}</p>
+            {error && <p className='error'>{error.message}</p>}
             <input
               type='email'
-              name='resetEmail'
-              value={resetEmail}
+              name='email'
+              value={email}
               autoComplete='off'
-              onChange={(e) => setResetEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               className='email-input'
               required
               placeholder='E-mail'
             />
             <button
-              disabled={resetLoading}
-              className={resetLoading ? 'btn-disabled' : 'btn'}
+              disabled={isLoading}
+              className={isLoading ? 'btn-disabled' : 'btn'}
             >
-              {resetLoading ? (
+              {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
                   <p>Reset Password</p>
@@ -54,7 +69,7 @@ const ResetPassword = () => {
           </form>
         </section>
       </ResetP>
-      <div>{showResetMessage && <EmailCongratsModal />}</div>
+      <div>{isSuccess && <EmailCongratsModal />}</div>
     </>
   )
 }

@@ -11,7 +11,7 @@ const UploadUnit = () => {
   return (
     <>
       <UploadU>
-        <section>
+        <form onSubmit={AddUnit}>
           <div className='unit-h'>Unit 1</div>
           <div className='section'>
             <div className='input'>
@@ -54,7 +54,7 @@ const UploadUnit = () => {
               </div>
             </div>
           </div>
-        </section>
+        </form>
       </UploadU>
     </>
   )

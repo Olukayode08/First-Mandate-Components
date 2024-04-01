@@ -1,18 +1,57 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { FirstMandate } from '../../context/Context'
 import ResetPasswordCongrats from '../modal/ResetPasswordCongrats'
 import logo from '../../assets/1st mandate logo 1.png'
+import { useFirstMandateMutation } from '../../data-layer/utils'
 
+const token = localStorage.getItem('token')
 const EnterNewPassword = () => {
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+
+  // Validate Password
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    return passwordRegex.test(password)
+  }
+
+  useEffect(() => {
+    setPasswordError('')
+  }, [confirmPassword, setConfirmPassword])
   const {
-    handleChangeNewPassword,
-    newPasswordLoading,
-    newPasswordsuccessMessage,
-    newPasswordDetails,
-    NewPassword,
-    newPasswordError,
-  } = useContext(FirstMandate)
+    mutateAsync: postNewPassword,
+    isLoading,
+    error,
+    isSuccess,
+  } = useFirstMandateMutation('/reset-password', {
+    onSuccess: (data) => {},
+    onError: (error) => {},
+  })
+
+  const handleNewPassword = async (e) => {
+    e.preventDefault()
+    if (!validatePassword(password)) {
+      setPasswordError(
+        'Password must contain at least 8 characters with uppercase, lowercase, number, and symbol.'
+      )
+      return
+    }
+    if (password !== confirmPassword) {
+      setPasswordError('Passwords do not match!')
+      return
+    }
+    if (!(password || token)) {
+      return
+    }
+
+    try {
+      await postNewPassword({ password, token })
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
 
   return (
     <>
@@ -21,35 +60,37 @@ const EnterNewPassword = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={NewPassword}>
+          <form onSubmit={handleNewPassword}>
             <h3>Enter New Password</h3>
             <input
               type='password'
-              name='newPassword'
+              name='paassword'
               className='password-input'
               placeholder='Password'
               autoComplete='off'
-              value={newPasswordDetails.newPassword}
-              onChange={handleChangeNewPassword}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
             <label>Confirm Password</label>
             <input
               type='password'
-              name='newConfirmPassword'
+              name='confirmPassword'
               className='password-input'
               autoComplete='off'
-              value={newPasswordDetails.newConfirmPassword}
-              onChange={handleChangeNewPassword}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder='Confirm Password'
               required
             />
-            <label className='error'>{newPasswordError}</label>
+            {!!(error || passwordError) && (
+              <p className='error'>{passwordError || error?.message}</p>
+            )}
             <button
-              disabled={newPasswordLoading}
-              className={newPasswordLoading ? 'btn-disabled' : 'btn'}
+              disabled={isLoading}
+              className={isLoading ? 'btn-disabled' : 'btn'}
             >
-              {newPasswordLoading ? (
+              {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
                   <p>Reset Password</p>
@@ -57,11 +98,11 @@ const EnterNewPassword = () => {
               ) : (
                 <p className='login-btn'>Reset Password</p>
               )}
-            </button>{' '}
+            </button>
           </form>
         </section>
       </ResetP>
-      <div>{newPasswordsuccessMessage && <ResetPasswordCongrats />}</div>
+      <div>{isSuccess && <ResetPasswordCongrats />}</div>
     </>
   )
 }
@@ -115,6 +156,8 @@ const ResetP = styled.section`
   }
   .error {
     color: #ff0000;
+    line-height: 28px;
+    width: 400px;
   }
   button {
     color: #ffffff;
@@ -173,6 +216,7 @@ const ResetP = styled.section`
     form {
       width: 430px;
     }
+    .error,
     label,
     button,
     .password-input {
@@ -183,6 +227,7 @@ const ResetP = styled.section`
     form {
       width: 360px;
     }
+    .error,
     label,
     button,
     .password-input {
@@ -193,6 +238,7 @@ const ResetP = styled.section`
     form {
       width: 320px;
     }
+    .error,
     label,
     button,
     .password-input {

@@ -1,47 +1,77 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { landlordReminder } from '../../datas/LandLordReminder'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import LandlordEmptyReminder from './LandlordEmptyReminder'
+import {
+  useFirstMandateQuery,
+  useFirstMandateMutation,
+} from '../../data-layer/utils'
+
+const token = localStorage.getItem('token')
+
+const RemainderCard = ({ reminder, refetchReminders }) => {
+  const navigate = useNavigate()
+
+  const {
+    mutateAsync: deleteReminder,
+    isLoading: isDeleting,
+    error,
+  } = useFirstMandateMutation(`/reminders/${reminder.uuid}  `, {
+    method: 'DELETE',
+    onSuccess: (data) => {
+      refetchReminders()
+    },
+    onError: (error) => {
+      console.error(error)
+    },
+  })
+
+  const handleDeleteRemainder = async () => {
+    try {
+      await deleteReminder()
+    } catch (e) {
+      console.log(error)
+    }
+  }
+
+  return (
+    <tr key={reminder.uuid} className='r-list'>
+      <th>{reminder.reminder_type}</th>
+      <th>{reminder.short_description}</th>
+      <th
+        onClick={() => navigate(`/landlord/add-reminder/${reminder.uuid}/edit`)}
+      >
+        <div className='edit-icon'>Edit</div>
+      </th>
+      <th>
+        <button
+          disabled={isDeleting}
+          onClick={handleDeleteRemainder}
+          className='delete-icon'
+        >
+          {isDeleting ? 'Loading Delete' : 'Delete'}
+        </button>
+      </th>
+    </tr>
+  )
+}
 
 const LandlordReminders = () => {
-  const [data, setData] = useState(landlordReminder)
+  const { isLoading: pageLoading, data, refetch: refetchReminders } = useFirstMandateQuery(
+    '/reminders',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {
+      },
+    }
+  )
+  console.log(data)
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id))
+  if (pageLoading) {
+    return <div className='page-loading'>Loading</div>
   }
 
-  const insertLineBreaks = (text) => {
-    const maxLength = 70
-    const words = text.split(' ')
-    let lines = []
-    let currentLine = ''
-
-    words.forEach((word) => {
-      if ((currentLine + word).length > maxLength) {
-        lines.push(currentLine)
-        currentLine = ''
-      }
-      currentLine += (currentLine ? ' ' : '') + word
-    })
-
-    if (currentLine) {
-      lines.push(currentLine)
-    }
-
-    return lines.map((line, index) => (
-      <React.Fragment key={index}>
-        {line}
-        <br />
-      </React.Fragment>
-    ))
-  }
-    if (data.length === 0) {
-      return <div>
-        <LandlordEmptyReminder />
-      </div>
-    }
   return (
     <>
       <LandlordR>
@@ -51,45 +81,32 @@ const LandlordReminders = () => {
               <div className='a-tenant'>
                 <h3>Reminders</h3>
                 <div className='set-reminders'>
-                  {/* <Link to='/landlord/send-reminder' className='set-r'>
-                    <h4>Send Reminder</h4>
-                    <FaRegPlusSquare size={20} />
-                  </Link> */}
                   <Link to='/landlord/add-reminder' className='add-r'>
                     <h4>Add Reminder</h4>
                     <FaRegPlusSquare size={20} />
                   </Link>
                 </div>
               </div>
-              {data.map((reminder) => {
-                return (
-                  <div key={reminder.id} className='reminders'>
-                    <div className='r-due-date'>
-                      <div className='img-amt'>
-                        <img className='r-img' src={reminder.image} alt='' />
-                        <div className='name-amt'>
-                          <h3 className='r-amt'>Mr Kelly</h3>
-                          <h3 className='r-amt'>{reminder.amount}</h3>
-                        </div>
-                      </div>
-
-                      <p className='r-desc'>
-                        {insertLineBreaks(reminder.description)}
-                      </p>
-                      <div className='l-btns'>
-                        <p className='l-btn edit-icon'>Edit</p>
-                        <p
-                          className='l-btn delete'
-                          onClick={() => handleDelete(reminder.id)}
-                        >
-                          Delete
-                        </p>
-                      </div>
-                    </div>
-                    <p className='r-mobile'>{reminder.description}</p>
+              <div className='table'>
+                <table>
+                  <tbody>
+                    {data.data?.data && data.data?.data.length > 0
+                      ? data.data?.data.map((reminder) => (
+                          <RemainderCard
+                            key={reminder.uuid}
+                            reminder={reminder}
+                            refetchReminders={refetchReminders}
+                          />
+                        ))
+                      : null}
+                  </tbody>
+                </table>
+                {!pageLoading && !data.data?.data?.length && (
+                  <div>
+                    <LandlordEmptyReminder />
                   </div>
-                )
-              })}
+                )}
+              </div>
             </div>
           </main>
         </section>
@@ -98,6 +115,7 @@ const LandlordReminders = () => {
   )
 }
 const LandlordR = styled.section`
+
   .r-section {
     width: 100%;
     background-color: #fff;
@@ -136,74 +154,46 @@ const LandlordR = styled.section`
     cursor: pointer;
     text-decoration: none;
   }
-  /* .set-r {
-    background-color: #ffffff;
-    border: 1px solid black;
-    height: 48px;
-  } */
-  .reminders {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background: #f6f6f8;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 4px;
-    position: relative;
+  button {
+    border: none;
+    background: transparent;
   }
-  .img-amt,
-  .r-due-date {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
-  .r-due-date {
+  .table {
+    overflow-x: scroll;
     width: 100%;
   }
-  /* .r-img {
-    width: 70px;
+  table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    width: 100%;
+  }
+  th,
+  td {
+    white-space: nowrap;
+    padding: 0 20px;
+    text-align: left;
+  }
+  .r-list {
     height: 60px;
-    border-radius: 4px;
-  } */
-  .name-amt {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .r-amt {
-    flex-shrink: 0;
-    font-size: 16px;
-  }
-  .r-desc {
-    margin-left: 45px;
-    line-height: 21px;
-    flex-shrink: 0;
-  }
-  .l-btns {
-    display: flex;
-    gap: 15px;
-    justify-content: right;
-    width: 100%;
-  }
-  .l-btn {
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    padding: 11px 17px;
+    background-color: #f6f6f8;
   }
   .edit-icon {
+    margin: 5px 0;
+    padding: 7px 0;
+    width: 60px;
+    border-radius: 4px;
     background-color: #fedf7e;
-  }
-  .delete {
-    background-color: #ffdfe2;
-  }
-  .r-mobile {
-    display: none;
     text-align: center;
-    margin: 10px 0;
-    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .delete-icon {
+    margin: 5px 0;
+    padding: 7px 0;
+    width: 80px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #ffdfe2;
   }
   @media screen and (max-width: 900px) {
     .a-tenant {
@@ -224,22 +214,10 @@ const LandlordR = styled.section`
     }
   }
   @media screen and (max-width: 750px) {
-    .r-due-date,
-    .reminders {
+    .r-due-date {
       align-items: center;
       justify-content: space-between;
     }
-    .r-desc {
-      display: none;
-      margin-left: 0;
-    }
-    .r-mobile {
-      display: block;
-    }
-    /* .r-img {
-      width: 60px;
-      height: 50px;
-    } */
   }
   @media screen and (max-width: 450px) {
     .r-section {

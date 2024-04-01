@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const LandlordPropertyUnit = ({property}) => {
+const LandlordPropertyUnit = ({ property }) => {
+
   return (
     <>
       <LandlordPU>
@@ -9,28 +10,21 @@ const LandlordPropertyUnit = ({property}) => {
           <table>
             <thead>
               <tr className='t-heading'>
-                <th>Unit No.</th>
                 <th>Unit Name</th>
                 <th>Unit Type</th>
                 <th>Bedrooms</th>
-                <th>Tenant's name</th>
-                <th>Rent Term</th>
-                <th>Status</th>
-                <th>Rent amt.</th>
+                <th>Occupation Status</th>
               </tr>
             </thead>
             <tbody>
-              {property.tableData.map((table) => {
+              {property.units.map((table) => {
                 return (
-                  <tr key={table.id} className='t-list'>
-                    <td>{table.no}</td>
-                    <td>{table.name}</td>
-                    <td>{table.unitType}</td>
-                    <td>{table.bed}</td>
-                    <td>{table.tenantName}</td>
-                    <td>{table.rentTerm}</td>
-                    <td>{table.status}</td>
-                    <td>{table.amt}</td>
+                  <tr key={table.uuid} className='t-list'>
+                    <td>{table.unit_name}</td>
+                    <td>{table.unit_type}</td>
+                    <td>{table.no_of_bedrooms}</td>
+                    <td>{table.occupation_status}</td>
+                    {/* <td>{table.uuid}</td> */}
                   </tr>
                 )
               })}

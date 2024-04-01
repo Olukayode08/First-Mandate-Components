@@ -1,20 +1,76 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useFirstMandateMutation } from '../../data-layer/utils'
 
 const Signup = () => {
-  const {
-    showSuccessMessage,
-    loading,
-    details,
-    UserSignup,
-    handleChange,
-    signupError,
-  } = useContext(FirstMandate)
+  const { setIsAuthenticated } = useContext(FirstMandate)
+  const navigate = useNavigate()
 
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const [signupError, setSignupError] = useState('')
+
+  // Validate Password
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    return passwordRegex.test(password)
+  }
+
+  // Validate Email
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return regex.test(email)
+  }
+  useEffect(() => {
+    setSignupError('')
+  }, [email, name, password])
+
+  const {
+    mutateAsync: postSignup,
+    isLoading,
+    isSuccess,
+    error: userError
+  } = useFirstMandateMutation('/signup', {
+    onSuccess: (data) => {
+      setIsAuthenticated(true)
+      localStorage.setItem('token', data.data.authorization.token)
+      setTimeout(() => {
+        navigate('/landlord')
+      }, 3000)
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
+
+  const handleSignup = async (e) => {
+    e.preventDefault()
+    if (!validatePassword(password)) {
+      setSignupError(
+        'Password must contain at least 8 characters with uppercase, lowercase, number, and symbol.'
+      )
+      return
+    }
+    if (!validateEmail(email)) {
+      setSignupError('Invalid Email Address')
+      return
+    }
+    if (!(email || password || name)) {
+      return
+    }
+
+    try {
+      await postSignup({ email, name, password })
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
   return (
     <>
       <SignupP>
@@ -22,15 +78,17 @@ const Signup = () => {
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <form onSubmit={UserSignup}>
+          <form onSubmit={handleSignup}>
             <h3>Sign Up for 1st Mandate</h3>
-            <p className='error'>{signupError}</p>
+            {!!(userError || signupError) && (
+              <p className='error'>{signupError || userError?.message}</p>
+            )}
             <input
               type='text'
               name='name'
-              value={details.name}
+              value={name}
               autoComplete='off'
-              onChange={handleChange}
+              onChange={(e) => setName(e.target.value)}
               className='email-input'
               required
               placeholder='Full Name'
@@ -38,9 +96,9 @@ const Signup = () => {
             <input
               type='email'
               name='email'
-              value={details.email}
+              value={email}
               autoComplete='off'
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
               className='email-input'
               required
               placeholder='E-mail'
@@ -48,18 +106,18 @@ const Signup = () => {
             <input
               type='password'
               name='password'
-              value={details.password}
+              value={password}
               autoComplete='off'
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
               className='password-input'
               placeholder='Password'
               required
             />
             <button
-              disabled={loading}
-              className={loading ? 'btn-disabled' : 'btn'}
+              disabled={isLoading}
+              className={isLoading ? 'btn-disabled' : 'btn'}
             >
-              {loading ? (
+              {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
                   <p>Create account</p>
@@ -82,7 +140,7 @@ const Signup = () => {
           </form>
         </section>
       </SignupP>
-      <div>{showSuccessMessage && <SignupCongratsModal />}</div>
+      <div>{isSuccess && <SignupCongratsModal />}</div>
     </>
   )
 }

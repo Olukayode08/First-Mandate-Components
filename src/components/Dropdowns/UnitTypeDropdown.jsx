@@ -1,54 +1,37 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-const UnitTypeDropdown = () => {
-  const [selectedUnit, setSelectedUnit] = useState('')
-  const [selectedBed, setSelectedBed] = useState('')
-
-  const unitType = {
-    Flat: ['One', 'Two', 'Three', 'Four', 'Five'],
-    'Self Contain': ['One'],
-    Bungalow: ['One', 'Two', 'Three', 'Four', 'Five'],
-  }
-
-  const handleUnitType = (e) => {
-    const unit = e.target.value
-    setSelectedUnit(unit)
-    setSelectedBed('')
-  }
-
-  const handleBedCount = (e) => {
-    const bed = e.target.value
-    setSelectedBed(bed)
-  }
+const UnitTypeDropdown = ({ addUnit, handleChangeAddUnit }) => {
   return (
     <>
       <UnitTypeD>
         <div className='unit-type'>
           <div className='select'>
-            <select id='country' onChange={handleUnitType} value={selectedUnit}>
-              <option value=''>Select</option>
-              {Object.keys(unitType).map((unit) => (
-                <option key={unit} value={unit}>
-                  {unit}
-                </option>
-              ))}
+            <select
+              name='unit_type'
+              value={addUnit.unit_type}
+              onChange={handleChangeAddUnit}
+            >
+              <option value=''>Select Type</option>
+              <option value='Duplex'>Duplex</option>
+              <option value='Flat'>Flat</option>
+              <option value='Self Contain'>Self Contain</option>
+              <option value='Bungalow'>Bungalow</option>
             </select>
           </div>
           <div className='select'>
             <select
-              id='bed'
-              onChange={handleBedCount}
-              value={selectedBed}
-              disabled={!selectedUnit}
+              name='no_of_bedrooms'
+              value={addUnit.no_of_bedrooms}
+              onChange={handleChangeAddUnit}
+              disabled={!addUnit.unit_type}
             >
               <option value=''>No. of bedrooms.</option>
-              {selectedUnit &&
-                unitType[selectedUnit].map((bed) => (
-                  <option key={bed} value={bed}>
-                    {bed}
-                  </option>
-                ))}
+              <option value='1'>1</option>
+              <option value='2'>2 </option>
+              <option value='3'>3 </option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
             </select>
           </div>
         </div>

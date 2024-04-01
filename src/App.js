@@ -16,10 +16,10 @@ import LandlordAddReminder from './components/Landlord/LandlordAddReminder'
 import TenantNotifications from './components/Tenant/TenantNotifications'
 import ManagerNotifications from './components/Manager/ManagerNotifications'
 import ManagerPropertyPageOne from './components/Manager/ManagerPropertyPageOne'
-import LandlordTenantList from './components/Landlord/LandlordTenantList'
+import LandlordTenants from './components/Landlord/LandlordTenants'
 import ManagerTenantList from './components/Manager/ManagerTenantList'
 import LandlordAddNewManager from './components/Landlord/LandlordAddNewManager'
-import LandlordAddManager from './components/Landlord/LandlordAddManager'
+import LandlordManagers from './components/Landlord/LandlordManagers'
 import LandlordAddNewTenant from './components/Landlord/LandlordAddNewTenant'
 import ManagerAddNewTenant from './components/Manager/ManagerAddNewTenant'
 import ManagerAddLandlord from './components/Manager/ManagerAddLandlord'
@@ -28,7 +28,7 @@ import ManagerReminders from './components/Manager/ManagerReminders'
 import TenantApartmentDetails from './components/Tenant/TenantApartmentDetails'
 import TenantApartmentDetailsTwo from './components/Tenant/TenantApartmentDetailsTwo'
 import ManagerPropertyPageTwo from './components/Manager/ManagerPropertyPageTwo'
-import LandlordPropertyPage from './components/Landlord/LandlordPropertyPage'
+import LandlordProperties from './components/Landlord/LandlordProperties'
 import Email from './pages/Email/Email'
 import ResetPasswordEmail from './components/Email/ResetPasswordEmail'
 import ConfirmEmail from './components/Email/ConfirmEmail'
@@ -38,7 +38,7 @@ import Signup from './components/Registration/Signup'
 import Login from './components/Registration/Login'
 import VerificationCode from './components/Registration/VerificationCode'
 import EnterNewPassword from './components/Registration/EnterNewPassword'
-import ResetPassword from './components/Registration/ResetPassword'
+import ForgotPassword from './components/Registration/ForgotPassword'
 import ErrorPage from './components/Error/ErrorPage'
 import LandlordEditProfilePage from './components/Landlord/LandlordEditProfilePage'
 import LandlordProfileSettings from './components/Landlord/LandlordProfileSettings'
@@ -61,7 +61,7 @@ import LandlordEmptyProperty from './components/Landlord/LandlordEmptyProperty'
 import LandlordEmptyTenant from './components/Landlord/LandlordEmptyTenant'
 import LandlordEmptyManager from './components/Landlord/LandlordEmptyManager'
 import LandlordEmptyReminder from './components/Landlord/LandlordEmptyReminder'
-import LandlordUploadUnit from './components/Landlord/LandlordUploadUnit'
+import LandlordAddUnit from './components/Landlord/LandlordAddUnit'
 import RentPaymentSuccessfulEmail from './components/Email/RentPaymentSuccessfulEmail'
 import RentPaymentReceiptEmail from './components/Email/RentPaymentReceiptEmail'
 import RentReminderEmail from './components/Email/RentReminderEmail'
@@ -84,6 +84,8 @@ import TenantWalletTransaction from './components/Tenant/TenantWalletTransaction
 import TenantHistory from './components/Tenant/TenantHistory'
 import TenantCalendar from './components/Tenant/TenantCalendar'
 import ProtectedRoute from './hooks/ProtectedRoute'
+import LandlordSingleProperty from './components/Landlord/LandlordSingleProperty'
+import LandlordSingleManager from './components/Landlord/LandlordSingleManager'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -110,7 +112,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
           <Route path='/new-password' element={<EnterNewPassword />} />
-          <Route path='/reset-password' element={<ResetPassword />} />
+          <Route path='/reset-password' element={<ForgotPassword />} />
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
           <Route path='/calendar' element={<Calendar />} />
@@ -125,16 +127,48 @@ function App() {
             <Route path='/landlord' element={<LandLord />}>
               <Route path='' element={<LandlordHomePage />} />
               <Route path='notifications' element={<LandlordNotifications />} />
-              <Route path='properties' element={<LandlordPropertyPage />} />
+              <Route path='properties' element={<LandlordProperties />} />
+              {/* <Route
+                path='properties/:singlePropertyId'
+                element={<LandlordSingleProperty />}
+              /> */}
               <Route path='upload-property' element={<UploadPropertyPage />} />
-              <Route path='add-unit' element={<LandlordUploadUnit />} />
-              <Route path='tenants' element={<LandlordTenantList />} />
+              <Route
+                path='add-unit/:propertyId/units'
+                element={<LandlordAddUnit />}
+              />
+              <Route path='tenants' element={<LandlordTenants />} />
               <Route path='select-unit' element={<LandlordSelectProperty />} />
+              <Route
+                path='add-tenant/:unitId/tenants'
+                element={<LandlordAddNewTenant />}
+              />
+              <Route
+                path='add-tenant/:unitId/edit'
+                element={<LandlordAddNewTenant />}
+              />
               <Route path='add-tenant' element={<LandlordAddNewTenant />} />
-              <Route path='managers' element={<LandlordAddManager />} />
+              <Route path='managers' element={<LandlordManagers />} />
+              {/* <Route
+                path='managers/:managerId'
+                element={<LandlordSingleManager />}
+              /> */}
+              <Route
+                path='add-manager/:propertyId'
+                element={<LandlordAddNewManager />}
+              />
               <Route path='add-manager' element={<LandlordAddNewManager />} />
+              <Route
+                path='add-manager/:propertyId/:managerId/edit'
+                element={<LandlordAddNewManager />}
+              />
               <Route path='reminders' element={<LandlordReminders />} />
               <Route path='add-reminder' element={<LandlordAddReminder />} />
+              <Route
+                path='add-reminder/:reminderId/edit'
+                element={<LandlordAddReminder />}
+              />
+
               <Route path='send-reminder' element={<LandlordSendReminder />} />
               <Route path='due-date' element={<LandlordDueDates />} />
 

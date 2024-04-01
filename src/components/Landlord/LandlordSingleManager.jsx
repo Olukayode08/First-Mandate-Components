@@ -1,31 +1,26 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { FaRegPlusSquare } from 'react-icons/fa'
-import { landlordManagerList } from '../../datas/LandlordManagerList'
-import { Link } from 'react-router-dom'
-import LandlordEmptyManager from './LandlordEmptyManager'
+import { useParams } from 'react-router-dom'
+import { useFirstMandateQuery } from '../../data-layer/utils'
 
-const LandlordAddManager = () => {
-  const [data] = useState(landlordManagerList)
+const token = localStorage.getItem('token')
 
-      if (data.length === 0) {
-        return (
-          <div>
-            <LandlordEmptyManager />
-          </div>
-        )
-      }
+const LandlordSingleManager = () => {
+  const { managerId } = useParams()
+
+  const { data } = useFirstMandateQuery(`/property-managers/${managerId}`, {
+    enabled: !!token,
+    onSuccess: (data) => {},
+  })
+  console.log(data)
+
   return (
     <>
-      <LAManager>
+      <LSManager>
         <section>
           <main className='a-t-section'>
             <div className='a-tenant'>
               <h3>My Manager</h3>
-              <Link to='/landlord/add-manager' className='add-r'>
-                <h4>Add New Manager</h4>
-                <FaRegPlusSquare size={20} />
-              </Link>
             </div>
             <div className='table'>
               <table>
@@ -33,37 +28,29 @@ const LandlordAddManager = () => {
                   <tr className='l-m-heading'>
                     <th>SN</th>
                     <th>Managers's Name</th>
-                    <th>Property Name</th>
-                    <th>Property Location</th>
                     <th>Email</th>
                     <th>Phone Number</th>
-                    <th>WhatsApp Number</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((list) => {
-                    return (
-                      <tr key={list.id} className='m-list'>
-                        <td>{list.no}</td>
-                        <td>{list.name}</td>
-                        <td>Nike House</td>
-                        <td>{list.location}</td>
-                        <td>{list.email}</td>
-                        <td>{list.phoneNo}</td>
-                        <td>{list.phoneNo}</td>
-                      </tr>
-                    )
-                  })}
+                  {data && (
+                    <tr className='m-list'>
+                      <td>1</td>
+                      <td>{data.name}</td>
+                      <td>{data.email}</td>
+                      <td>{data.phone}</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
           </main>
         </section>
-      </LAManager>
+      </LSManager>
     </>
   )
 }
-const LAManager = styled.section`
+const LSManager = styled.section`
   .a-t-section {
     width: 100%;
     background-color: #fff;
@@ -122,4 +109,4 @@ const LAManager = styled.section`
     }
   }
 `
-export default LandlordAddManager
+export default LandlordSingleManager

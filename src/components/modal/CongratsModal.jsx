@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { FirstMandateLandlord } from '../../context/LandlordContext'
 
 const CongratsModal = () => {
-  const { uploadError } = useContext(FirstMandateLandlord)
 
   return (
     <>
@@ -12,7 +10,7 @@ const CongratsModal = () => {
           <div className='modal'>
             <div className='overlay'></div>
             <div className='modal-content'>
-              <p className='modal-text'>{uploadError}</p>
+              <p className='modal-text'>Congratulations, your property has been uploaded successfully</p>
             </div>
           </div>
         </section>

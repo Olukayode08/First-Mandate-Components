@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import editIcon from '../../assets/pencil-edit-01.png'
 import { useNavigate } from 'react-router-dom'
 
-const LandlordPropertiesDropdown = ({property, handleEdit}) => {
-
+const LandlordPropertiesDropdown = ({ property }) => {
   const navigate = useNavigate()
   const dropdownRef = useRef(null)
 
@@ -23,24 +22,39 @@ const LandlordPropertiesDropdown = ({property, handleEdit}) => {
     }
 
     window.addEventListener('click', handleClickOutside)
-
     return () => {
       window.removeEventListener('click', handleClickOutside)
     }
   }, [])
 
-  const navigateTenant = () => {
-    navigate('/landlord/select-unit')
-    setTimeout(() => {
-      setShowDropdown(false)
-    }, 1000)
-  }
   const navigateUnit = () => {
-    navigate('/landlord/add-unit')
+    navigate(`/landlord/add-unit/${property.uuid}/units`)
     setTimeout(() => {
       setShowDropdown(false)
     }, 1000)
   }
+  const navigateProperty = () => {
+    navigate(`/landlord/properties/${property.uuid}`)
+    setTimeout(() => {
+      setShowDropdown(false)
+    }, 1000)
+  }
+    // navigate(`/landlord/add-tenant/${property.uuid}/tenants`)
+
+  const navigateTenant = () => {
+    navigate(`/landlord/select-unit`)
+    setTimeout(() => {
+      setShowDropdown(false)
+    }, 1000)
+  }
+
+    const navigateManager = () => {
+    navigate(`/landlord/add-manager/${property.uuid}`)
+      setTimeout(() => {
+        setShowDropdown(false)
+      }, 1000)
+    }
+
   return (
     <>
       <LandlordPD ref={dropdownRef}>
@@ -59,10 +73,12 @@ const LandlordPropertiesDropdown = ({property, handleEdit}) => {
               Add Units
             </p>
             <p className='nav'>Edit Units</p>
-            <p onClick={() => handleEdit(property)} className='nav'>
-              Edit Property
+            {/* <p onClick={navigateProperty} className='nav'>
+              View Property
+            </p> */}
+            <p onClick={navigateManager} className='nav'>
+              Add Manager
             </p>
-            <p className='nav'>Delete</p>
           </div>
         )}
       </LandlordPD>

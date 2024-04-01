@@ -2,9 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 import { ImSearch } from 'react-icons/im'
 import { IoMdCheckmark } from 'react-icons/io'
-import { selectProperty } from '../../datas/LandlordSelectProperty'
+import { useFirstMandateQuery } from '../../data-layer/utils'
+import LandlordEmptyProperty from './LandlordEmptyProperty'
+import { useNavigate } from 'react-router'
+
+
+const token = localStorage.getItem('token')
 
 const LandlordSelectProperty = () => {
+
+  const navigate = useNavigate()
+    const { data, isLoading: pageLoading } = useFirstMandateQuery(
+      '/properties',
+      {
+        enabled: !!token,
+        onSuccess: (data) => {},
+      }
+    )
+
+    if (pageLoading) {
+      return <div className='page-loading'>Loading</div>
+    }
   return (
     <>
       <LandlordSP>
@@ -21,33 +39,38 @@ const LandlordSelectProperty = () => {
                 <input type='text' placeholder='Search property' />
               </div>
             </div>
-            {selectProperty.map((property) => {
-              return (
-                <div key={property.id} className='units'>
-                  <div className='unit'>
-                    <p>{property.houseTitle}</p>
-                    <div className='house'>
-                      <div style={property.unitOneStyle} className='unit-a'>
-                        <IoMdCheckmark />
-                        <p>{property.unitOne}</p>
-                      </div>
-                      <div style={property.unitTwoStyle} className='unit-a'>
-                        <IoMdCheckmark />
-                        <p>{property.unitTwo}</p>
-                      </div>
-                      <div className='unit-a'>
-                        <IoMdCheckmark />
-                        <p>{property.unitThree}</p>
-                      </div>
-                      <div className='unit-a'>
-                        <IoMdCheckmark />
-                        <p>{property.unitFour}</p>
+            {data?.data?.data && data?.data?.data?.length > 0
+              ? data?.data?.data?.map((property) => (
+                  <div key={property.id} className='units'>
+                    <div className='unit'>
+                      <p>{property.title}</p>
+                      <div className='house'>
+                        {property.units.map((unit)=>{
+                          return (
+                            <div
+                              onClick={() =>
+                                navigate(
+                                  `/landlord/add-tenant/${unit.uuid}/tenants`
+                                )
+                              }
+                              key={unit.uuid}
+                              className='unit-a'
+                            >
+                              <IoMdCheckmark />
+                              <p>{unit.unit_name}</p>
+                            </div>
+                          )
+                        })}
                       </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                ))
+              : null}
+            {!pageLoading && !data.data?.data?.length && (
+              <div>
+                <LandlordEmptyProperty />
+              </div>
+            )}
           </main>
         </section>
       </LandlordSP>

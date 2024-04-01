@@ -1,48 +1,28 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { landlordTenantList } from '../../datas/LandlordTenantList'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import LandlordEmptyTenant from './LandlordEmptyTenant'
+import { useFirstMandateQuery } from '../../data-layer/utils'
 
-const LandlordTenantList = () => {
-  // const insertLineBreaks = (text) => {
-  //   const maxLength = 20
-  //   const words = text.split(' ')
-  //   let lines = []
-  //   let currentLine = ''
+const token = localStorage.getItem('token')
 
-  //   words.forEach((word) => {
-  //     if ((currentLine + word).length > maxLength) {
-  //       lines.push(currentLine)
-  //       currentLine = ''
-  //     }
-  //     currentLine += (currentLine ? ' ' : '') + word
-  //   })
+const LandlordTenants = () => {
+  // Fetch Tenants
+  const navigate = useNavigate()
+  const [tenants, setTenants] = useState()
+  const { data } = useFirstMandateQuery('/tenants', {
+    enabled: !!token,
+    onSuccess: (data) => {
+      setTenants(data.data?.data || [])
+    },
+  })
 
-  //   if (currentLine) {
-  //     lines.push(currentLine)
-  //   }
+  console.log(data)
 
-  //   return lines.map((line, index) => (
-  //     <React.Fragment key={index}>
-  //       {line}
-  //       <br />
-  //     </React.Fragment>
-  //   ))
-  // }
-  const [data] = useState(landlordTenantList)
-
-  if (data.length === 0) {
-    return (
-      <div>
-        <LandlordEmptyTenant />
-      </div>
-    )
-  }
   return (
     <>
-      <LTenantL>
+      <LTenants>
         <section>
           <main className='a-t-section'>
             <div className='a-tenant'>
@@ -61,45 +41,42 @@ const LandlordTenantList = () => {
                     <th>Property Name</th>
                     <th>Unit</th>
                     <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>WhatsApp Number</th>
-                    <th>Lease Start Date</th>
-                    <th>Lease End Date</th>
-                    <th>Payment Type</th>
-                    <th>Payment Status</th>
-                    <th>Rent Due Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((list) => {
-                    return (
-                      <tr key={list.id} className='t-list'>
-                        <td>{list.no}</td>
-                        {/* <td className='l-location'>{insertLineBreaks(list.location)}</td> */}
-                        <td>Nike Alade</td>
-                        <td>Nike House</td>
-                        <td>{list.unit}</td>
-                        <td>nikealade@gmail.com</td>
-                        <td>+234 8168345494</td>
-                        <td>+234 8168345494</td>
-                        <td>05/03/2024</td>
-                        <td>05/03/2024</td>
-                        <td>Full Payment</td>
-                        <td>Paid</td>
-                        <td>05/03/2024</td>
-                      </tr>
-                    )
-                  })}
+                  {tenants && tenants.length > 0
+                    ? tenants.map((list) => (
+                        <tr key={list.uuid} className='m-list'>
+                          <td>1</td>
+                          <td>{list.name}</td>
+                          <td>{list.email}</td>
+                          <td>{list.phone}</td>
+                          {/* <td
+                            onClick={() =>
+                              navigate(`/landlord/managers/${list.uuid}`)
+                            }
+                          >
+                            View Manager
+                          </td> */}
+                          <td>Edit Tenant</td>
+                        </tr>
+                      ))
+                    : null}
                 </tbody>
               </table>
+              {!tenants?.length && (
+                <div>
+                  <LandlordEmptyTenant />
+                </div>
+              )}
             </div>
           </main>
         </section>
-      </LTenantL>
+      </LTenants>
     </>
   )
 }
-const LTenantL = styled.section`
+const LTenants = styled.section`
   .a-t-section {
     width: 100%;
     background-color: #fff;
@@ -174,4 +151,4 @@ const LTenantL = styled.section`
     }
   }
 `
-export default LandlordTenantList
+export default LandlordTenants

@@ -1,11 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import CountryDropdown from '../Dropdowns/CountryDropdown'
-import { FirstMandateLandlord } from '../../context/LandlordContext'
-const UploadPropertyOne = () => {
-  const { handleChangeAddProperty, addProperty, setAddProperty } =
-    useContext(FirstMandateLandlord)
 
+const UploadPropertyOne = ({
+  handleChangeAddProperty,
+  setAddProperty,
+  addProperty,
+}) => {
   return (
     <>
       <UploadPO>

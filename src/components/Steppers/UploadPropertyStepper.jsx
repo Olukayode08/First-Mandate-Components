@@ -1,27 +1,80 @@
-import React, { useContext, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { IoMdArrowBack } from 'react-icons/io'
 import Reload from '../../hooks/Reload'
 import CongratsModal from '../modal/CongratsModal'
-import { FirstMandateLandlord } from '../../context/LandlordContext'
+import { useFirstMandateMutation } from '../../data-layer/utils'
 import { useNavigate } from 'react-router-dom'
 import UploadPropertyOne from '../UploadProperty/UploadPropertyOne'
 import UploadPropertyTwo from '../UploadProperty/UploadPropertyTwo'
+
 const totalSteps = 2
 const UploadPropertyStepper = () => {
   const navigate = useNavigate()
+  const [uploadError, setUploadError] = useState(null)
+  const [step, setStep] = useState(1)
+  const [addProperty, setAddProperty] = useState({
+    title: '',
+    address: '',
+    country: '',
+    city: '',
+    state: '',
+    manager_name: '',
+    manager_email: '',
+    manager_phone: '',
+  })
+  const handleChangeAddProperty = (e) => {
+    setAddProperty({ ...addProperty, [e.target.name]: e.target.value })
+  }
 
   const {
-    uploadSuccess,
-    uploadError,
-    uploadLoading,
-    setAddProperty,
-    addProperty,
-    AddProperty,
-    setUploadError,
-  } = useContext(FirstMandateLandlord)
+    mutateAsync: postProperties,
+    isLoading,
+    error: propertiesError,
+    isSuccess,
+  } = useFirstMandateMutation(`/properties`, {
+    onSuccess: (data) => {
+      // console.log(data)
+      setTimeout(() => {
+        navigate('/landlord/properties')
+      }, 3000)
+    },
+    onError: (error) => {
+      // console.error(error)
+    },
+  })
 
-  const [step, setStep] = useState(1)
+  const handleAddProperty = async (e) => {
+    const payload = {
+      title: addProperty.title,
+      address: addProperty.address,
+      country: addProperty.country,
+      city: addProperty.city,
+      state: addProperty.state,
+      manager_name: addProperty.manager_name,
+      manager_email: addProperty.manager_email,
+      manager_phone: addProperty.manager_phone,
+    }
+
+    try {
+      await postProperties(payload)
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
+  // Clear Error
+  useEffect(() => {
+    setUploadError('')
+  }, [
+    addProperty.title,
+    addProperty.address,
+    addProperty.country,
+    addProperty.city,
+    addProperty.state,
+    addProperty.manager_name,
+    addProperty.manager_email,
+    addProperty.manager_phone,
+  ])
 
   const nextStep = () => {
     if (
@@ -30,9 +83,9 @@ const UploadPropertyStepper = () => {
       addProperty.country &&
       addProperty.city &&
       addProperty.state &&
+      addProperty.manager_phone &&
       addProperty.manager_name &&
-      addProperty.manager_email &&
-      addProperty.manager_phone
+      addProperty.manager_email
     ) {
       setStep(step + 1)
     } else {
@@ -42,20 +95,11 @@ const UploadPropertyStepper = () => {
 
   const prevStep = () => {
     if (step === 1) {
-      setAddProperty({
-        title: '',
-        address: '',
-        country: '',
-        city: '',
-        state: '',
-        manager_name: '',
-        manager_email: '',
-        manager_phone: '',
-      })
       navigate('/landlord/properties')
     }
     setStep(step - 1)
   }
+
   const segmentWidth = `${100 / totalSteps}%`
 
   return (
@@ -63,7 +107,14 @@ const UploadPropertyStepper = () => {
       <UploadPS>
         <section>
           <div className='multi-step-form'>
-            <p className='error'>{uploadError}</p>
+            {!!(propertiesError || uploadError) && (
+              <p className='error'>{uploadError || propertiesError?.error}</p>
+            )}
+            {isSuccess && (
+              <p className='error success'>
+                Congratulations, your property has been uploaded successfully
+              </p>
+            )}
             <h2>Upload New Property</h2>
             {step === 1 && <p className='active-step'>1 of 2</p>}
             {step === 2 && <p className='active-step'>2 of 2</p>}
@@ -76,8 +127,20 @@ const UploadPropertyStepper = () => {
               </div>
             </div>
             <div className='step-content'>
-              {step === 1 && <Step1 />}
-              {step === 2 && <Step2 />}
+              {step === 1 && (
+                <Step1
+                  addProperty={addProperty}
+                  handleChangeAddProperty={handleChangeAddProperty}
+                  setAddProperty={setAddProperty}
+                />
+              )}
+              {step === 2 && (
+                <Step2
+                  addProperty={addProperty}
+                  handleChangeAddProperty={handleChangeAddProperty}
+                  setAddProperty={setAddProperty}
+                />
+              )}
             </div>
             <div className='step-buttons'>
               {step === 1 && (
@@ -96,14 +159,13 @@ const UploadPropertyStepper = () => {
                   Save & Continue
                 </button>
               )}
-
               {step === 2 && (
                 <button
-                  className={uploadLoading ? 'btn-disabled' : 'btn'}
-                  onClick={AddProperty}
-                  disabled={uploadLoading}
+                  className={isLoading ? 'btn-disabled' : 'btn'}
+                  onClick={handleAddProperty}
+                  disabled={isLoading}
                 >
-                  {uploadLoading ? (
+                  {isLoading ? (
                     <div className='login-spinner'>
                       <div className='spinner'></div>
                       <p>Save & Upload Property</p>
@@ -118,25 +180,33 @@ const UploadPropertyStepper = () => {
         </section>
       </UploadPS>
       {/* Congratulations Conponent */}
-      <div>{uploadSuccess && <CongratsModal />}</div>
+      <div>{isSuccess && <CongratsModal />}</div>
     </>
   )
 }
 
-const Step1 = () => {
+const Step1 = ({ addProperty, handleChangeAddProperty, setAddProperty }) => {
   return (
     <div>
       <Reload />
-      <UploadPropertyOne />
+      <UploadPropertyOne
+        addProperty={addProperty}
+        handleChangeAddProperty={handleChangeAddProperty}
+        setAddProperty={setAddProperty}
+      />
     </div>
   )
 }
 
-const Step2 = () => {
+const Step2 = ({ addProperty, handleChangeAddProperty, setAddProperty }) => {
   return (
     <div>
       <Reload />
-      <UploadPropertyTwo />
+      <UploadPropertyTwo
+        addProperty={addProperty}
+        handleChangeAddProperty={handleChangeAddProperty}
+        setAddProperty={setAddProperty}
+      />
     </div>
   )
 }
@@ -180,6 +250,9 @@ const UploadPS = styled.section`
     color: #ff0000;
     text-align: left;
     margin: 10px 0;
+  }
+  .success {
+    color: green;
   }
   .step-buttons {
     margin-top: 20px;

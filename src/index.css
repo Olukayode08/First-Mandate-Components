@@ -43,13 +43,19 @@ h1 {
 button {
   font-family: inherit;
 }
-
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 100vh;
+}
 /* Temporary */
 td {
   font-size: 13px;
 }
 select,
-input{
+input {
   background-color: transparent;
   outline: none;
 }
