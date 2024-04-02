@@ -93,7 +93,7 @@ const LandlordAddReminder = () => {
                   : 'Remainder was created successfully'}
               </p>
             )}
-            <h3>Add New Reminder</h3>
+            <p>{reminderId ? 'Edit Reminder' : 'Add New Reminder'}</p>
             <div className='n-status'>
               <label>Reminder Type</label>
               <div className='radio-btns'>

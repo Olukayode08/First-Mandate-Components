@@ -1,39 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ImSearch } from 'react-icons/im'
 import { IoMdCheckmark } from 'react-icons/io'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import LandlordEmptyProperty from './LandlordEmptyProperty'
-import { useNavigate } from 'react-router'
-
-
+import { useNavigate, useParams } from 'react-router'
 const token = localStorage.getItem('token')
 
 const LandlordSelectProperty = () => {
-
   const navigate = useNavigate()
-    const { data, isLoading: pageLoading } = useFirstMandateQuery(
-      '/properties',
-      {
-        enabled: !!token,
-        onSuccess: (data) => {},
-      }
-    )
+  const [occupiedError, setOccupiedError] = useState('')
+  const unitOccupied = () => {
+    setTimeout(() => {
+      setTimeout(() => {
+        setOccupiedError('')
+      }, 5000)
+      setOccupiedError('This unit has been Occupied')
+    }, 200)
+  }
 
-    if (pageLoading) {
-      return <div className='page-loading'>Loading</div>
-    }
+  const { tenantId } = useParams()
+  const pageUrl = window.location.href
+  const isEdit = pageUrl.includes('edit')
+
+  const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
+    enabled: !!token,
+    onSuccess: (data) => {},
+  })
+  console.log(data)
+  if (pageLoading) {
+    return <div className='page-loading'>Loading</div>
+  }
   return (
     <>
       <LandlordSP>
         <section>
           <main className='s-property'>
-            <h3>Add New Tenant</h3>
+            {isEdit ? <h3>Edit Tenant</h3> : <h3>Add New Tenant</h3>}
+            <p className='occupied-error'>{occupiedError}</p>
             <div className='search-p'>
-              <p className='search-text'>
-                Please select which property or unit you would love to add a
-                tenant to
-              </p>
+              {isEdit ? (
+                <p className='search-text'>
+                  Please select which property or unit you would love to edit a
+                  tenant
+                </p>
+              ) : (
+                <p className='search-text'>
+                  Please select which property or unit you would love to add a
+                  tenant to
+                </p>
+              )}
               <div className='input'>
                 <ImSearch />
                 <input type='text' placeholder='Search property' />
@@ -45,16 +61,32 @@ const LandlordSelectProperty = () => {
                     <div className='unit'>
                       <p>{property.title}</p>
                       <div className='house'>
-                        {property.units.map((unit)=>{
+                        {property.units.map((unit) => {
                           return (
                             <div
-                              onClick={() =>
-                                navigate(
-                                  `/landlord/add-tenant/${unit.uuid}/tenants`
-                                )
-                              }
+  
+                              onClick={() => {
+                                if (isEdit) {
+                                  navigate(
+                                    `/landlord/add-tenant/${tenantId}/${unit.uuid}/edit`
+                                  )
+                                } else if (
+                                  unit.occupation_status === 'occupied'
+                                ) {
+                                  unitOccupied()
+                                } else {
+                                  navigate(
+                                    `/landlord/add-tenant/${unit.uuid}/tenants`
+                                  )
+                                }
+                              }}
+
                               key={unit.uuid}
-                              className='unit-a'
+                              className={
+                                unit.occupation_status === 'occupied'
+                                  ? 'unit-a not-allowed'
+                                  : 'unit-a'
+                              }
                             >
                               <IoMdCheckmark />
                               <p>{unit.unit_name}</p>
@@ -86,6 +118,10 @@ const LandlordSP = styled.section`
   }
   h3 {
     width: 100%;
+  }
+  .occupied-error {
+    color: red;
+    margin: 10px 0;
   }
   .search-p {
     display: flex;
@@ -141,6 +177,10 @@ const LandlordSP = styled.section`
     padding: 10px 20px;
     flex-shrink: 0;
     border-radius: 4px;
+  }
+  .not-allowed {
+    background: #000;
+    color: #fff;
   }
   @media screen and (max-width: 900px) {
     .search-p {

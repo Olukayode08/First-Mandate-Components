@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { RiRadioButtonLine } from 'react-icons/ri'
-import LandlordPropertyUnit from './LandlordPropertyUnit'
+// import LandlordPropertyUnit from './LandlordPropertyUnit'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import { useParams } from 'react-router-dom'
 
 const token = localStorage.getItem('token')
-
 
 const LandlordSingleProperty = () => {
   const { singlePropertyId } = useParams()
@@ -19,12 +18,13 @@ const LandlordSingleProperty = () => {
     }
   )
 
+  // console.log(data?.data.address)
   return (
     <>
       <LandlordSP>
         <section>
           <div className='m-section'>
-            {data && (
+            {data?.data && (
               <div className='manager-p'>
                 <div className='apart-det'>
                   <div className='apartment'>
@@ -32,8 +32,8 @@ const LandlordSingleProperty = () => {
                       <RiRadioButtonLine />
                     </p>
                     <div className='apart-loc'>
-                      <h3>{data.title}</h3>
-                      <h1>{data.address}</h1>
+                      <h3>{data?.data.title}</h3>
+                      <h1>{data?.data.address}</h1>
                       <div className='status-active'>
                         <p>
                           Status:
@@ -46,13 +46,13 @@ const LandlordSingleProperty = () => {
                         </p>
                         <p>
                           Building Type:
-                          <span> {data.property_type}</span>
+                          <span> {data?.data.property_type}</span>
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <LandlordPropertyUnit data={data} />
+                {/* <LandlordPropertyUnit data={data} /> */}
               </div>
             )}
           </div>

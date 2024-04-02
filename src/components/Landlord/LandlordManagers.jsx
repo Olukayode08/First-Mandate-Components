@@ -4,18 +4,29 @@ import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import LandlordEmptyManager from './LandlordEmptyManager'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-
 const token = localStorage.getItem('token')
 
 const LandlordManagers = () => {
   const navigate = useNavigate()
+
+
   const [propertyManagers, setPropertyManagers] = useState([])
-  const { data } = useFirstMandateQuery('/property-managers', {
-    enabled: !!token,
-    onSuccess: (data) => {
-      setPropertyManagers(data.data?.data || [])
-    },
-  })
+
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/property-managers',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {
+        setPropertyManagers(data?.data?.data || [])
+      },
+    }
+  )
+
+
+
+  if (pageLoading) {
+    return <div className='page-loading'>Loading</div>
+  }
 
   return (
     <>
@@ -24,7 +35,7 @@ const LandlordManagers = () => {
           <main className='a-t-section'>
             <div className='a-tenant'>
               <h3>My Manager</h3>
-              <Link to='#' className='add-r'>
+              <Link to='/landlord/add-manager' className='add-r'>
                 <h4>Add New Manager</h4>
                 <FaRegPlusSquare size={20} />
               </Link>
@@ -69,7 +80,7 @@ const LandlordManagers = () => {
                     : null}
                 </tbody>
               </table>
-              {!propertyManagers?.length && (
+              {!pageLoading && !propertyManagers?.length && (
                 <div>
                   <LandlordEmptyManager />
                 </div>

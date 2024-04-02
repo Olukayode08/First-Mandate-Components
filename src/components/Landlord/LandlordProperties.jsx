@@ -7,9 +7,13 @@ import LandlordEmptyProperty from './LandlordEmptyProperty'
 import { RiRadioButtonLine } from 'react-icons/ri'
 import LandlordPropertyUnit from './LandlordPropertyUnit'
 import { useFirstMandateQuery } from '../../data-layer/utils'
+import { useNavigate } from 'react-router-dom'
+
 const token = localStorage.getItem('token')
 
 const LandlordProperties = () => {
+  const navigate = useNavigate()
+
   const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
     enabled: !!token,
     onSuccess: (data) => {},
@@ -27,9 +31,31 @@ const LandlordProperties = () => {
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
+            {/* {data?.data?.data && data?.data?.data?.length > 0 ? (
+              <select
+                name='property-select'
+                id='property-select'
+                onChange={(e) => {
+                  const selectedPropertyId = e.target.value
+                  if (selectedPropertyId) {
+                    navigate(`/landlord/add-manager/${selectedPropertyId}`)
+                  }
+                }}
+              >
+                <option value=''>Select</option>
+                {data?.data?.data?.map((property) => (
+                  <option key={property.uuid} value={property.uuid}>
+                    {property.title}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <p>No Property</p>
+            )} */}
+
             {data?.data?.data && data?.data?.data?.length > 0
               ? data?.data?.data?.map((property) => (
-                  <div key={property.id} className='manager-p'>
+                  <div key={property.uuid} className='manager-p'>
                     <div className='apart-det'>
                       <div className='apartment'>
                         <p className='p-icon'>

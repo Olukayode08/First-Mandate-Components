@@ -128,10 +128,10 @@ function App() {
               <Route path='' element={<LandlordHomePage />} />
               <Route path='notifications' element={<LandlordNotifications />} />
               <Route path='properties' element={<LandlordProperties />} />
-              {/* <Route
+              <Route
                 path='properties/:singlePropertyId'
                 element={<LandlordSingleProperty />}
-              /> */}
+              />
               <Route path='upload-property' element={<UploadPropertyPage />} />
               <Route
                 path='add-unit/:propertyId/units'
@@ -139,20 +139,17 @@ function App() {
               />
               <Route path='tenants' element={<LandlordTenants />} />
               <Route path='select-unit' element={<LandlordSelectProperty />} />
+              <Route path='select-unit/:tenantId/edit' element={<LandlordSelectProperty />} />
               <Route
                 path='add-tenant/:unitId/tenants'
                 element={<LandlordAddNewTenant />}
               />
               <Route
-                path='add-tenant/:unitId/edit'
+                path='add-tenant/:tenantId/:unitId/edit'
                 element={<LandlordAddNewTenant />}
               />
               <Route path='add-tenant' element={<LandlordAddNewTenant />} />
               <Route path='managers' element={<LandlordManagers />} />
-              {/* <Route
-                path='managers/:managerId'
-                element={<LandlordSingleManager />}
-              /> */}
               <Route
                 path='add-manager/:propertyId'
                 element={<LandlordAddNewManager />}

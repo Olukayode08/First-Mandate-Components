@@ -72,10 +72,9 @@ const LandlordPropertiesDropdown = ({ property }) => {
             <p onClick={navigateUnit} className='nav'>
               Add Units
             </p>
-            <p className='nav'>Edit Units</p>
-            {/* <p onClick={navigateProperty} className='nav'>
+            <p onClick={navigateProperty} className='nav'>
               View Property
-            </p> */}
+            </p>
             <p onClick={navigateManager} className='nav'>
               Add Manager
             </p>

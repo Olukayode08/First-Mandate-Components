@@ -6,7 +6,6 @@ import LandlordEmptyTenant from './LandlordEmptyTenant'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 
 const token = localStorage.getItem('token')
-
 const LandlordTenants = () => {
   // Fetch Tenants
   const navigate = useNavigate()
@@ -17,8 +16,7 @@ const LandlordTenants = () => {
       setTenants(data.data?.data || [])
     },
   })
-
-  console.log(data)
+  console.log(tenants)
 
   return (
     <>
@@ -39,7 +37,7 @@ const LandlordTenants = () => {
                     <th>SN</th>
                     <th>Tenant's Name</th>
                     <th>Property Name</th>
-                    <th>Unit</th>
+                    <th>Phone no.</th>
                     <th>Email</th>
                   </tr>
                 </thead>
@@ -51,14 +49,15 @@ const LandlordTenants = () => {
                           <td>{list.name}</td>
                           <td>{list.email}</td>
                           <td>{list.phone}</td>
-                          {/* <td
+                          <td
                             onClick={() =>
-                              navigate(`/landlord/managers/${list.uuid}`)
+                              navigate(
+                                `/landlord/select-unit/${list.uuid}/edit`
+                              )
                             }
                           >
-                            View Manager
-                          </td> */}
-                          <td>Edit Tenant</td>
+                            Edit Tenant
+                          </td>
                         </tr>
                       ))
                     : null}

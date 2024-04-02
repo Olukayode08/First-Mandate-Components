@@ -23,13 +23,31 @@ const rentTerms = [
   '12 month',
 ]
 
+const findUnit = (unitId, items) => {
+  /**
+   * Filters through the 'items' data structure to find and return the unit object
+   * whose 'uuid' matches the provided 'unitId'.
+   *
+   * @param {string} unitId - The UUID of the unit you want to find.
+   * @param {array} items - The list of items, each containing a 'units' array.
+   * @returns {object|null} The unit object if found, otherwise null.
+   */
+
+  for (const item of items) {
+    for (const unit of item.units) {
+      if (unit.uuid === unitId) {
+        return unit
+      }
+    }
+  }
+  return null // No matching unit found
+}
+
 const LandlordAddNewTenant = () => {
   const navigate = useNavigate()
-  const { unitId } = useParams()
-
-  const endpoint = unitId
-    ? `/tenants/${unitId}`
-    : `/property-units/${unitId}/tenants`
+  const { unitId, tenantId } = useParams()
+  const pageUrl = window.location.href
+  const isEdit = pageUrl.includes('edit')
 
   const [addTenant, setAddTenant] = useState({
     name: '',
@@ -67,15 +85,11 @@ const LandlordAddNewTenant = () => {
     mutateAsync: postTenant,
     isLoading,
     error,
+    isSuccess,
   } = useFirstMandateMutation(
-    // `/${unitId ? `tenants/${unitId}` : `property-units/${unitId}/tenants`}`,
-    // endpoint,
-    `/property-units/${unitId}/tenants`,
-
+    `/${isEdit ? `tenants/${tenantId}` : `property-units/${unitId}/tenants`}`,
     {
-      method: 'POST',
-
-      // method: unitId ? 'PUT' : 'POST',
+      method: isEdit ? 'PUT' : 'POST',
       onSuccess: (data) => {
         console.log(data)
         setTimeout(() => {
@@ -88,22 +102,40 @@ const LandlordAddNewTenant = () => {
     }
   )
 
-  const { data: tenantData } = useFirstMandateQuery(`/tenants/${unitId}`, {
-    enabled: !!token && !!unitId,
+  const { data } = useFirstMandateQuery('/tenants', {
+    enabled: !!token && !!tenantId,
     onSuccess: (data) => {
-      console.log(data)
-      handleTenantUpdate('name', data?.data?.name)
-      handleTenantUpdate('email', data?.data?.email)
-      handleTenantUpdate('phone', data?.data?.phone)
-      handleTenantUpdate('lease_start', data?.data?.lease_start)
-      handleTenantUpdate('lease_end', data?.data?.lease_end)
-      handleTenantUpdate('payment_type', data?.data?.payment_type)
-      handleTenantUpdate('no_of_installments', data?.data?.no_of_installments)
-      handleTenantUpdate('rent_payment_status', data?.data?.rent_payment_status)
-      handleTenantUpdate('rent_terms', data?.data?.rent_terms)
-      handleTenantUpdate('rent_due_date', data?.data?.rent_due_date)
+      // setTenants(data.data?.data || [])
+      console.log(data?.data?.data)
+      const tenant = data?.data?.data?.find(
+        (tenant) => tenant.uuid === tenantId
+      )
+      console.log('single tenants', tenant)
+      handleTenantUpdate('name', tenant?.name)
+      handleTenantUpdate('email', tenant?.email)
+      handleTenantUpdate('phone', tenant?.phone)
+      handleTenantUpdate('lease_start', tenant?.lease_start)
+      handleTenantUpdate('lease_end', tenant?.lease_end)
+      handleTenantUpdate('payment_type', tenant?.payment_type)
+      handleTenantUpdate('no_of_installments', tenant?.no_of_installments)
+      handleTenantUpdate('rent_payment_status', tenant?.rent_payment_status)
+      handleTenantUpdate('rent_terms', tenant?.rent_terms)
+      handleTenantUpdate('rent_due_date', tenant?.rent_due_date)
+    },
+    onError: (error) => {
+      console.log('error', error)
     },
   })
+
+  const { data: propertiesData } = useFirstMandateQuery('/properties', {
+    enabled: !!token,
+    select: (data) => findUnit(unitId, data?.data?.data),
+    onSuccess: (data) => {
+      console.log(data)
+    },
+  })
+
+  console.log('unit', propertiesData)
 
   const handleTenant = async (e) => {
     e.preventDefault()
@@ -133,8 +165,18 @@ const LandlordAddNewTenant = () => {
         <section>
           <form onSubmit={handleTenant} className='l-section'>
             {error && <p className='error'>{error?.message}</p>}
-            <h3>{unitId ? 'Add New Tenant' : 'Edit Tenant'}</h3>
-            <p className='unit'>Love Unit</p>
+            {isSuccess && (
+              <p className='error success'>
+                {isEdit
+                  ? 'Tenant edited successfully'
+                  : 'Tenant was added successfully'}
+              </p>
+            )}
+            <h3>{isEdit ? 'Edit Tenant' : 'Add New Tenant'}</h3>
+            <div className='input'>
+              <label>Unit Name</label>
+              <p className='unit'>{propertiesData?.unit_name || ''}</p>
+            </div>
             <div className='input'>
               <label>Name</label>
               <input
@@ -282,11 +324,11 @@ const LandlordAddNewTenant = () => {
               {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
-                  <p>{unitId ? 'Add Tenant' : 'Edit Tenant'}</p>
+                  <p>{isEdit ? 'Edit Tenant' : 'Add Tenant'}</p>
                 </div>
               ) : (
                 <p className='login-btn'>
-                  {unitId ? 'Add Tenant' : 'Edit Tenant'}
+                  {isEdit ? 'Edit Tenant' : 'Add Tenant'}
                 </p>
               )}
             </button>
@@ -308,14 +350,17 @@ const LANTenant = styled.section`
     text-align: left;
     margin: 10px 0;
   }
+  .success {
+    color: green;
+  }
   .add-t {
     margin: 20px 0;
   }
   .unit {
-    margin: 10px 0;
-    padding: 10px;
-    max-width: 150px;
+    padding: 13px 20px;
     border: 1px solid black;
+    border-radius: 4px;
+    text-align: center;
   }
   .input {
     display: flex;

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
-
 const FirstMandate = createContext()
+
 const Context = ({ children }) => {
 
     const token = localStorage.getItem('token')
@@ -10,11 +10,11 @@ const Context = ({ children }) => {
     // false
   )
 
-
   const logOut = ()=>{
     setIsAuthenticated(false)
     localStorage.removeItem('token')
   }
+
   // Authentification Timer
   // useEffect(() => {
   //   let logoutTimer
@@ -47,6 +47,14 @@ const Context = ({ children }) => {
   //   }
   // }, [])
 
+    // const { data: propertyData, isLoading: pageLoading } = useFirstMandateQuery(
+    //   '/properties',
+    //   {
+    //     enabled: !!token,
+    //     onSuccess: (data) => {},
+    //   }
+    // )
+
   return (
     <>
       <FirstMandate.Provider
@@ -54,6 +62,7 @@ const Context = ({ children }) => {
           isAuthenticated,
           setIsAuthenticated,
           logOut,
+
         }}
       >
         {children}

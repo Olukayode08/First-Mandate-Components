@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   useFirstMandateMutation,
   useFirstMandateQuery,
 } from '../../data-layer/utils'
+
 const token = localStorage.getItem('token')
 
 const LandlordAddNewManager = () => {
   const { propertyId, managerId } = useParams()
+  const [selectedPropertyuuid, setSelectedPropertyUuid] = useState(null)
   const navigate = useNavigate()
+
   const [addManager, setAddManager] = useState({
     name: '',
     email: '',
@@ -31,6 +34,7 @@ const LandlordAddNewManager = () => {
     mutateAsync: postManager,
     isLoading,
     error,
+    isSuccess,
   } = useFirstMandateMutation(
     `/property-managers${managerId ? `/${managerId}` : ''}`,
     {
@@ -46,7 +50,6 @@ const LandlordAddNewManager = () => {
       },
     }
   )
-
   const { data: propertyData } = useFirstMandateQuery(
     `/property-managers/${managerId}`,
     {
@@ -60,6 +63,16 @@ const LandlordAddNewManager = () => {
     }
   )
 
+  const { data: propertiesData } = useFirstMandateQuery('/properties', {
+    enabled: !!token && !propertyId,
+    select: (data) => data?.data?.data
+  })
+
+  // const getUnitById = (unitId, properties) => {
+  //   const
+  // }
+
+
   const handleManager = async (e) => {
     e.preventDefault()
 
@@ -67,7 +80,7 @@ const LandlordAddNewManager = () => {
       email: addManager.email,
       phone: addManager.phone,
       name: addManager.name,
-      property_uuid: propertyId,
+      property_uuid: propertyId || selectedPropertyuuid,
     }
 
     try {
@@ -83,7 +96,44 @@ const LandlordAddNewManager = () => {
         <section className='m-section'>
           <form onSubmit={handleManager}>
             {error && <p className='error'>{error?.message}</p>}
+            {isSuccess && (
+              <p className='error success'>
+                {managerId
+                  ? 'Manager edited successfully'
+                  : 'Manager was added successfully'}
+              </p>
+            )}
             <h3>{managerId ? 'Edit Manager' : 'Add New Manager'}</h3>
+            <div>
+              {!propertyId && (
+                <div className='input'>
+                  <label>Select Property</label>
+                  {propertiesData?.length > 0 ? (
+                    <div className='select'>
+                      <select
+                        name='property-select'
+                        id='property-select'
+                        required
+                        onChange={(e) => {
+                          const _selectedPropertyuuid = e.target.value
+                          setSelectedPropertyUuid(_selectedPropertyuuid)
+                        }}
+                      >
+                        <option value=''>Select</option>
+                        {propertiesData?.map((property) => (
+                          <option key={property.uuid} value={property.uuid}>
+                            {property.title}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  ) : (
+                    <p>No Property</p>
+                  )}
+                </div>
+              )}
+            </div>
+
             <div className='input'>
               <label>Name</label>
               <input
@@ -186,6 +236,9 @@ const LANManager = styled.section`
     text-align: left;
     margin: 10px 0;
   }
+  .success {
+    color: green;
+  }
   h3 {
     margin: 15px 0;
   }
@@ -201,8 +254,27 @@ const LANManager = styled.section`
     font-family: inherit;
     font-size: 17px;
     color: #000;
-    border-radius: 3px;
+    outline: none;
+    border-radius: 4px;
     background: transparent;
+  }
+  .select {
+    width: 180px;
+    height: 48px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 0 15px;
+  }
+  select {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-family: inherit;
+    font-size: 16px;
+    color: #000;
+    outline: none;
+    background: transparent;
+    border: none;
   }
   label {
     margin: 10px 0;

@@ -5,7 +5,6 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Context } from './context/Context';
 import { Darkmode } from './context/Darkmode';
-import { LandlordContext } from './context/LandlordContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient({
@@ -31,9 +30,7 @@ root.render(
       <QueryClientProvider client={queryClient}>
         <Darkmode>
           <Context>
-            <LandlordContext>
               <App />
-            </LandlordContext>
           </Context>
         </Darkmode>
       </QueryClientProvider>
