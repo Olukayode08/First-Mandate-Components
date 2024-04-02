@@ -20,7 +20,7 @@ const LandlordProperties = () => {
   })
 
   if (pageLoading) {
-    return <div className='page-loading'>Loading</div>
+    return <div className='page-loading'>Loading...</div>
   }
   return (
     <>
@@ -31,28 +31,6 @@ const LandlordProperties = () => {
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
-            {/* {data?.data?.data && data?.data?.data?.length > 0 ? (
-              <select
-                name='property-select'
-                id='property-select'
-                onChange={(e) => {
-                  const selectedPropertyId = e.target.value
-                  if (selectedPropertyId) {
-                    navigate(`/landlord/add-manager/${selectedPropertyId}`)
-                  }
-                }}
-              >
-                <option value=''>Select</option>
-                {data?.data?.data?.map((property) => (
-                  <option key={property.uuid} value={property.uuid}>
-                    {property.title}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <p>No Property</p>
-            )} */}
-
             {data?.data?.data && data?.data?.data?.length > 0
               ? data?.data?.data?.map((property) => (
                   <div key={property.uuid} className='manager-p'>

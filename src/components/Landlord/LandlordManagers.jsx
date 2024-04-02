@@ -9,7 +9,6 @@ const token = localStorage.getItem('token')
 const LandlordManagers = () => {
   const navigate = useNavigate()
 
-
   const [propertyManagers, setPropertyManagers] = useState([])
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
@@ -21,11 +20,8 @@ const LandlordManagers = () => {
       },
     }
   )
-
-
-
   if (pageLoading) {
-    return <div className='page-loading'>Loading</div>
+    return <div className='page-loading'>Loading...</div>
   }
 
   return (

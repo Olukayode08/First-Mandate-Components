@@ -66,12 +66,9 @@ const LandlordReminders = () => {
       },
     }
   )
-  console.log(data)
-
   if (pageLoading) {
-    return <div className='page-loading'>Loading</div>
+    return <div className='page-loading'>Loading...</div>
   }
-
   return (
     <>
       <LandlordR>

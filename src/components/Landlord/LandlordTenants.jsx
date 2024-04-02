@@ -10,7 +10,7 @@ const LandlordTenants = () => {
   // Fetch Tenants
   const navigate = useNavigate()
   const [tenants, setTenants] = useState()
-  const { data } = useFirstMandateQuery('/tenants', {
+  const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenants', {
     enabled: !!token,
     onSuccess: (data) => {
       setTenants(data.data?.data || [])
@@ -18,6 +18,10 @@ const LandlordTenants = () => {
   })
   console.log(tenants)
 
+
+    if (pageLoading) {
+      return <div className='page-loading'>Loading...</div>
+    }
   return (
     <>
       <LTenants>
@@ -36,9 +40,9 @@ const LandlordTenants = () => {
                   <tr className='t-heading'>
                     <th>SN</th>
                     <th>Tenant's Name</th>
-                    <th>Property Name</th>
-                    <th>Phone no.</th>
                     <th>Email</th>
+                    <th>Phone no.</th>
+                    <th>Edit Tenant</th>
                   </tr>
                 </thead>
                 <tbody>
