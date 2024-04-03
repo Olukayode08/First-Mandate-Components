@@ -92,7 +92,6 @@ const UploadPropertyStepper = () => {
       setUploadError('Please fill in all required fields.')
     }
   }
-
   const prevStep = () => {
     if (step === 1) {
       navigate('/landlord/properties')

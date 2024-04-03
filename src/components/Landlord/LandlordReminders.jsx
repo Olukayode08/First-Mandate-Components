@@ -52,8 +52,12 @@ const DeleteModal = ({
               Are you sure you want to delete this reminder?
             </p>
             <div className='btn-container'>
-              <button className='btn-delete' onClick={DeleteReminder}>Yes</button>
-              <button className='btn-cancel' onClick={cancelDelete}>No</button>
+              <button className='btn-delete' onClick={DeleteReminder}>
+                Yes
+              </button>
+              <button className='btn-cancel' onClick={cancelDelete}>
+                No
+              </button>
             </div>
           </div>
         </div>
@@ -62,7 +66,14 @@ const DeleteModal = ({
   )
 }
 
-const RemainderCard = ({ reminder, handleDeleteReminder }) => {
+const RemainderCard = ({
+  reminder,
+  cancelDelete,
+  refetchReminders,
+  showModal,
+  setShowModal,
+  handleDeleteReminder,
+}) => {
   const navigate = useNavigate()
 
   return (
@@ -95,12 +106,22 @@ const RemainderCard = ({ reminder, handleDeleteReminder }) => {
           Delete
         </button>
       </th>
+      <td>
+        <DeleteModal
+          setShowModal={setShowModal}
+          showModal={showModal}
+          reminder={reminder}
+          cancelDelete={cancelDelete}
+          refetchReminders={refetchReminders}
+        />
+      </td>
     </tr>
   )
 }
 
 const LandlordReminders = () => {
   const [showModal, setShowModal] = useState(false)
+
   const handleDeleteReminder = async () => {
     setShowModal(true)
   }
@@ -145,13 +166,9 @@ const LandlordReminders = () => {
                             reminder={reminder}
                             refetchReminders={refetchReminders}
                             handleDeleteReminder={handleDeleteReminder}
-                          />
-                          <DeleteModal
                             setShowModal={setShowModal}
                             showModal={showModal}
-                            reminder={reminder}
                             cancelDelete={cancelDelete}
-                            refetchReminders={refetchReminders}
                           />
                         </tbody>
                       ))

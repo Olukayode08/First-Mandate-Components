@@ -9,7 +9,6 @@ const LandlordAddUnit = () => {
   const navigate = useNavigate()
   const { propertyId } = useParams()
   const [buttonType, setButtonType] = useState()
-
   const [unitError, setUnitError] = useState(null)
   const [successError, setSuccessError] = useState(null)
 
@@ -59,9 +58,9 @@ const LandlordAddUnit = () => {
     setButtonType(_buttonType)
 
     if (
-      !addUnit.unit_name &&
-      !addUnit.unit_type &&
-      !addUnit.no_of_bedrooms &&
+      !addUnit.unit_name ||
+      !addUnit.unit_type ||
+      !addUnit.no_of_bedrooms ||
       !addUnit.occupation_status
     ) {
       setUnitError('Please fill in all required fields.')
@@ -69,15 +68,23 @@ const LandlordAddUnit = () => {
     }
     try {
       await postUnit(payload)
+
       setTimeout(() => {
         setSuccessError(
           'Congratulations, your unit has been added successfully'
         )
         setTimeout(() => {
-          if (buttonType === 'continue') {
+          setAddUnit({
+            unit_name: '',
+            unit_type: '',
+            no_of_bedrooms: '',
+            occupation_status: '',
+          })
+          setSuccessError('')
+          if (_buttonType === 'continue') {
             navigate('/landlord/properties')
+          } else if (_buttonType === 'addNew') {
             setSuccessError('')
-            return
           }
         }, 3000)
       }, 200)
@@ -152,41 +159,38 @@ const LandlordAddUnit = () => {
                 <button>Go back</button>
               </div>
               <button
-                onClick={() => handleAddUnit('stay')}
+                onClick={() => handleAddUnit('addNew')}
                 disabled={isLoading}
                 type='submit'
-                className={
-                  isLoading && buttonType === 'stay'
-                    ? 'btn-disabled add-unit'
-                    : 'btn add-unit'
-                }
+                className={`btn add-unit ${
+                  isLoading && buttonType === 'addNew' && 'btn-disabled'
+                }`}
               >
-                {isLoading && buttonType === 'stay' ? (
-                  <div className='login-spinner'>
-                    <div className='spinner'></div>
-                    <p>Save & Continue</p>
-                  </div>
-                ) : (
-                  <p className='login-btn'>Save & Continue</p>
-                )}
-              </button>
-              <button
-                onClick={() => handleAddUnit('continue')}
-                disabled={isLoading}
-                type='submit'
-                className={
-                  isLoading && buttonType === 'continue'
-                    ? 'next-btn-disabled next-button'
-                    : 'next-btn next-button'
-                }
-              >
-                {isLoading && buttonType === 'continue' ? (
+                {isLoading && buttonType === 'addNew' ? (
                   <div className='login-spinner'>
                     <div className='spinner'></div>
                     <p>Save & Add New Unit</p>
                   </div>
                 ) : (
                   <p className='login-btn'>Save & Add New Unit</p>
+                )}
+              </button>
+              <button
+                onClick={() => handleAddUnit('continue')}
+                disabled={isLoading}
+                type='submit'
+
+                className={`next-btn next-button ${
+                  isLoading && buttonType === 'continue' && 'next-btn-disabled'
+                }`}
+              >
+                {isLoading && buttonType === 'continue' ? (
+                  <div className='login-spinner'>
+                    <div className='spinner'></div>
+                    <p>Save & Continue</p>
+                  </div>
+                ) : (
+                  <p className='login-btn'>Save & Continue</p>
                 )}
               </button>
             </div>

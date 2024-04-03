@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
+import TenantEmptyReminder from './TenantEmptyReminder'
 import {
   useFirstMandateQuery,
   useFirstMandateMutation,
@@ -10,7 +11,6 @@ import electricity from '../../assets/Frame 2007 (3).png'
 import water from '../../assets/Frame 2007 (2).png'
 import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
-import TenantEmptyReminder from './TenantEmptyReminder'
 
 const token = localStorage.getItem('token')
 
@@ -66,7 +66,14 @@ const DeleteModal = ({
   )
 }
 
-const RemainderCard = ({ reminder, handleDeleteReminder }) => {
+const RemainderCard = ({
+  reminder,
+  cancelDelete,
+  refetchReminders,
+  showModal,
+  setShowModal,
+  handleDeleteReminder,
+}) => {
   const navigate = useNavigate()
 
   return (
@@ -99,12 +106,22 @@ const RemainderCard = ({ reminder, handleDeleteReminder }) => {
           Delete
         </button>
       </th>
+      <td>
+        <DeleteModal
+          setShowModal={setShowModal}
+          showModal={showModal}
+          reminder={reminder}
+          cancelDelete={cancelDelete}
+          refetchReminders={refetchReminders}
+        />
+      </td>
     </tr>
   )
 }
 
-const TenantReminders = () => {
+const LandlordReminders = () => {
   const [showModal, setShowModal] = useState(false)
+
   const handleDeleteReminder = async () => {
     setShowModal(true)
   }
@@ -149,13 +166,9 @@ const TenantReminders = () => {
                             reminder={reminder}
                             refetchReminders={refetchReminders}
                             handleDeleteReminder={handleDeleteReminder}
-                          />
-                          <DeleteModal
                             setShowModal={setShowModal}
                             showModal={showModal}
-                            reminder={reminder}
                             cancelDelete={cancelDelete}
-                            refetchReminders={refetchReminders}
                           />
                         </tbody>
                       ))
@@ -216,7 +229,9 @@ const LandlordR = styled.section`
   button {
     border: none;
     font-size: 15px;
+    outline: none;
     background: transparent;
+    cursor: pointer;
   }
   .table {
     overflow-x: scroll;
@@ -348,4 +363,4 @@ const LandlordR = styled.section`
     }
   }
 `
-export default TenantReminders
+export default LandlordReminders
