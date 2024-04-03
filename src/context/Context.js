@@ -2,12 +2,9 @@ import React, { createContext, useEffect, useState } from 'react'
 const FirstMandate = createContext()
 
 const Context = ({ children }) => {
-
-    const token = localStorage.getItem('token')
   // Signup and Login Validation States
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem('token')
-    // false
   )
 
   const logOut = ()=>{
@@ -47,13 +44,6 @@ const Context = ({ children }) => {
   //   }
   // }, [])
 
-    // const { data: propertyData, isLoading: pageLoading } = useFirstMandateQuery(
-    //   '/properties',
-    //   {
-    //     enabled: !!token,
-    //     onSuccess: (data) => {},
-    //   }
-    // )
 
   return (
     <>

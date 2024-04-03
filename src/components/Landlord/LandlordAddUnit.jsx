@@ -42,15 +42,6 @@ const LandlordAddUnit = () => {
   } = useFirstMandateMutation(`/properties/${propertyId}/units`, {
     onSuccess: (data) => {
       console.log(data)
-      setTimeout(() => {
-        setSuccessError(
-          'Congratulations, your unit has been added successfully'
-        )
-        setTimeout(() => {
-          setSuccessError('')
-          buttonType === 'continue' && navigate('/landlord/properties')
-        }, 3000)
-      }, 200)
     },
     onError: (error) => {
       console.error(error)
@@ -78,6 +69,18 @@ const LandlordAddUnit = () => {
     }
     try {
       await postUnit(payload)
+      setTimeout(() => {
+        setSuccessError(
+          'Congratulations, your unit has been added successfully'
+        )
+        setTimeout(() => {
+          if (buttonType === 'continue') {
+            navigate('/landlord/properties')
+            setSuccessError('')
+            return
+          }
+        }, 3000)
+      }, 200)
     } catch (e) {
       console.error(e.message)
     }
@@ -93,7 +96,6 @@ const LandlordAddUnit = () => {
             )}
             {!!successError && <p className='error success'>{successError}</p>}
             <h3>Upload Unit</h3>
-            <div className='unit-h'>Unit 1</div>
             <div className='section'>
               <div className='input'>
                 <label>Unit Name</label>
@@ -162,10 +164,10 @@ const LandlordAddUnit = () => {
                 {isLoading && buttonType === 'stay' ? (
                   <div className='login-spinner'>
                     <div className='spinner'></div>
-                    <p>Save & Add New Unit</p>
+                    <p>Save & Continue</p>
                   </div>
                 ) : (
-                  <p className='login-btn'>Save & Add New Unit</p>
+                  <p className='login-btn'>Save & Continue</p>
                 )}
               </button>
               <button
@@ -181,10 +183,10 @@ const LandlordAddUnit = () => {
                 {isLoading && buttonType === 'continue' ? (
                   <div className='login-spinner'>
                     <div className='spinner'></div>
-                    <p>Save & Continue</p>
+                    <p>Save & Add New Unit</p>
                   </div>
                 ) : (
-                  <p className='login-btn'>Save & Continue</p>
+                  <p className='login-btn'>Save & Add New Unit</p>
                 )}
               </button>
             </div>
@@ -206,19 +208,11 @@ const LAUnit = styled.section`
     text-align: left;
     margin: 10px 0;
   }
-  .success{
+  .success {
     color: green;
   }
   h3 {
     margin: 10px 0;
-  }
-  .unit-h {
-    width: 80px;
-    margin: 10px 0;
-    text-align: center;
-    border-radius: 4px;
-    background-color: #f6f6f8;
-    padding: 13px 0;
   }
   .section {
     display: flex;

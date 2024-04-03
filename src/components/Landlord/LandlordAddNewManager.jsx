@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
@@ -50,7 +50,7 @@ const LandlordAddNewManager = () => {
       },
     }
   )
-  const { data: propertyData } = useFirstMandateQuery(
+  const { data } = useFirstMandateQuery(
     `/property-managers/${managerId}`,
     {
       enabled: !!token && !!managerId,

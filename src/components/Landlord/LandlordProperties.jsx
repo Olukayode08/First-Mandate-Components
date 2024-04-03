@@ -7,12 +7,10 @@ import LandlordEmptyProperty from './LandlordEmptyProperty'
 import { RiRadioButtonLine } from 'react-icons/ri'
 import LandlordPropertyUnit from './LandlordPropertyUnit'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import { useNavigate } from 'react-router-dom'
 
 const token = localStorage.getItem('token')
 
 const LandlordProperties = () => {
-  const navigate = useNavigate()
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
     enabled: !!token,

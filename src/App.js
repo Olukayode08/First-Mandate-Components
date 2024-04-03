@@ -81,7 +81,6 @@ import TenantHistory from './components/Tenant/TenantHistory'
 import TenantCalendar from './components/Tenant/TenantCalendar'
 import ProtectedRoute from './hooks/ProtectedRoute'
 import LandlordSingleProperty from './components/Landlord/LandlordSingleProperty'
-import LandlordSingleManager from './components/Landlord/LandlordSingleManager'
 
 function App() {
   const { theme } = useContext(ThemeContext)
