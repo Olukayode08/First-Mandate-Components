@@ -1,35 +1,160 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import AddApartmentDropdown from '../Dropdowns/AddApartmentDropdown'
+import UnitDropdown from '../Dropdowns/UnitDropdown'
+import { useFirstMandateMutation } from '../../data-layer/utils'
+import { useNavigate } from 'react-router-dom'
 
 const TenantAddApartmentDetails = () => {
-  const [rentStatus, setRentStatus] = useState('option1')
+  const navigate = useNavigate()
 
-  const handleRentStatus = (e) => {
-    setRentStatus(e.target.value)
+  const [addApartment, setAddApartment] = useState({
+    property_title: '',
+    address: '',
+    city: '',
+    state: '',
+    unit_name: '',
+    unit_type: '',
+    no_of_bedrooms: '',
+    lease_start: '',
+    lease_end: '',
+    rent_amount: '',
+    rent_payment_status: '',
+    rent_due_date: '',
+    renew_rent: true,
+  })
+
+  const handleChangeAddApartment = (e) => {
+    setAddApartment({ ...addApartment, [e.target.name]: e.target.value })
   }
+
+  const handleChangeUnitName = (e) => {
+    const { value } = e.target
+    setAddApartment({
+      ...addApartment,
+      unit_name: value,
+      unit_type: '',
+    })
+  }
+
+  const handleChangeUnitType = (e) => {
+    const { value } = e.target
+    setAddApartment({ ...addApartment, unit_type: value })
+  }
+
+  const handleChangeRenewTerms = (e) => {
+    const { name, value } = e.target
+    const newValue = name === 'renew_rent' ? value === 'Yes' : value
+    setAddApartment((prevState) => ({
+      ...prevState,
+      [name]: newValue,
+    }))
+  }
+  const {
+    mutateAsync: postApartment,
+    isLoading,
+    error,
+    isSuccess,
+  } = useFirstMandateMutation(`/tenant/apartments`, {
+    method: 'POST',
+    onSuccess: (data) => {
+      console.log(data)
+      setTimeout(() => {
+        navigate('/tenant/apartment-details')
+      }, 3000)
+    },
+    // onError: (error) => {
+    //   console.error(error)
+    // },
+  })
+
+  const handleApartment = async (e) => {
+    e.preventDefault()
+    const payload = {
+      property_title: addApartment.property_title,
+      address: addApartment.address,
+      city: addApartment.city,
+      state: addApartment.state,
+      unit_name: addApartment.unit_name,
+      unit_type: addApartment.unit_type,
+      no_of_bedrooms: addApartment.no_of_bedrooms,
+      lease_start: addApartment.lease_start,
+      lease_end: addApartment.lease_end,
+      rent_amount: addApartment.rent_amount,
+      rent_payment_status: addApartment.rent_payment_status,
+      rent_due_date: addApartment.rent_due_date,
+      renew_rent: addApartment.renew_rent,
+    }
+    try {
+      await postApartment(payload)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
     <>
       <TenantAAD>
         <section>
-          <div className='ap-section'>
+          <form onSubmit={handleApartment} className='ap-section'>
+            {error && <p className='error'>{error?.message}</p>}
+            {isSuccess && (
+              <p className='error success'>
+                Apartment Details was added successfully
+              </p>
+            )}
             <h3>Add Apartment</h3>
             <div>
               <div className='input'>
                 <label>Property Name</label>
-                <input type='text' className='t-name-input' />
-              </div>
-            </div>
-              <div className='input'>
-                <label>Location</label>
                 <input
                   type='text'
-                  placeholder='Enter Address'
                   className='t-name-input'
+                  name='property_title'
+                  value={addApartment.property_title}
+                  onChange={handleChangeAddApartment}
+                  required
+                  autoComplete='off'
                 />
               </div>
+            </div>
+            <div className='input'>
+              <label>Location</label>
+              <input
+                type='text'
+                className='t-name-input'
+                name='address'
+                value={addApartment.address}
+                onChange={handleChangeAddApartment}
+                required
+                autoComplete='off'
+              />
+            </div>
             <div className='add-ap'>
-              <AddApartmentDropdown />
+              <AddApartmentDropdown
+                addApartment={addApartment}
+                handleChangeAddApartment={handleChangeAddApartment}
+              />
+            </div>
+            <div className='add-ap'>
+              <UnitDropdown
+                addApartment={addApartment}
+                handleChangeUnitType={handleChangeUnitType}
+                handleChangeUnitName={handleChangeUnitName}
+                handleChangeAddApartment={handleChangeAddApartment}
+              />
+            </div>
+            <div className='input'>
+              <label>Rent Amount</label>
+              <input
+                type='text'
+                className='r-date-input'
+                name='rent_amount'
+                value={addApartment.rent_amount}
+                onChange={handleChangeAddApartment}
+                required
+                autoComplete='off'
+              />
             </div>
             <div className='rent-date'>
               <div className='start-date'>
@@ -37,6 +162,11 @@ const TenantAddApartmentDetails = () => {
                 <input
                   type='date'
                   placeholder='dd/mm/yyyy'
+                  name='lease_start'
+                  value={addApartment.lease_start}
+                  onChange={handleChangeAddApartment}
+                  required
+                  autoComplete='off'
                   className='r-date-input'
                 />
               </div>
@@ -44,6 +174,11 @@ const TenantAddApartmentDetails = () => {
                 <label>Rent End Date</label>
                 <input
                   type='date'
+                  name='lease_end'
+                  value={addApartment.lease_end}
+                  onChange={handleChangeAddApartment}
+                  required
+                  autoComplete='off'
                   placeholder='dd/mm/yyyy'
                   className='r-date-input'
                 />
@@ -51,26 +186,44 @@ const TenantAddApartmentDetails = () => {
             </div>
             <div className='input'>
               <label>Rent Payment Status</label>
-              <p className='not-p'>Not Paid</p>
+              <div className='user-select'>
+                <select
+                  id='rent_payment_status'
+                  name='rent_payment_status'
+                  required
+                  value={addApartment.rent_payment_status}
+                  onChange={handleChangeAddApartment}
+                >
+                  <option value=''>Select</option>
+                  <option value='Paid in part'>Paid in part</option>
+                  <option value='Paid in full'>Paid in full</option>
+                  <option value='Not Paid'>Not Paid</option>
+                </select>
+              </div>
             </div>
             <div className='input'>
               <label>Rent Payment Due Date</label>
               <input
                 type='date'
                 placeholder='dd/mm/yyyy'
-                className='d-date-input'
+                name='rent_due_date'
+                value={addApartment.rent_due_date}
+                onChange={handleChangeAddApartment}
+                required
+                autoComplete='off'
+                className='r-date-input'
               />
             </div>
-
             <div className='renew-status'>
               <label>Would you love to renew your rent </label>
               <div className='radio-btns'>
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='option1'
-                    checked={rentStatus === 'option1'}
-                    onChange={handleRentStatus}
+                    name='renew_rent'
+                    value='Yes'
+                    checked={addApartment.renew_rent === true}
+                    onChange={handleChangeRenewTerms}
                     className='btn-input'
                   />
                   <p className='ppt-details'>Yes</p>
@@ -78,17 +231,32 @@ const TenantAddApartmentDetails = () => {
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='option2'
-                    checked={rentStatus === 'option2'}
-                    onChange={handleRentStatus}
+                    name='renew_rent'
+                    value='No'
+                    checked={addApartment.renew_rent === false}
+                    onChange={handleChangeRenewTerms}
                     className='btn-input'
                   />
                   <p className='ppt-details'>No</p>
                 </div>
               </div>
             </div>
-            <button className='add-tenant'>Add Apartment</button>
-          </div>
+            <button
+              disabled={isLoading}
+              className={
+                isLoading ? 'btn-disabled add-tenant' : 'btn add-tenant'
+              }
+            >
+              {isLoading ? (
+                <div className='login-spinner'>
+                  <div className='spinner'></div>
+                  <p>Add Apartment</p>
+                </div>
+              ) : (
+                <p className='login-btn'>Add Apartment</p>
+              )}
+            </button>
+          </form>
         </section>
       </TenantAAD>
     </>
@@ -102,6 +270,14 @@ const TenantAAD = styled.section`
     border-radius: 4px;
     padding: 20px;
     width: 100%;
+  }
+  .error {
+    color: #ff0000;
+    text-align: left;
+    margin: 10px 0;
+  }
+  .success {
+    color: green;
   }
   .input {
     display: flex;
@@ -117,6 +293,23 @@ const TenantAAD = styled.section`
     color: #000;
     border-radius: 3px;
     background: transparent;
+  }
+  .user-select {
+    width: 200px;
+    height: 48px;
+    border: 1px solid black;
+    padding: 0 10px;
+    border-radius: 4px;
+  }
+  select {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    outline: none;
+    background: transparent;
+    border: transparent;
+    color: #000;
+    font-family: inherit;
   }
   label {
     margin: 10px 0;
@@ -141,14 +334,7 @@ const TenantAAD = styled.section`
     display: flex;
     flex-direction: column;
   }
-  .not-p {
-    background-color: #ff0000;
-    color: #ffffff;
-    padding: 12px 0;
-    width: 100px;
-    text-align: center;
-    border-radius: 4px;
-  }
+
   .d-date-input {
     width: 280px;
     height: 48px;
@@ -180,17 +366,55 @@ const TenantAAD = styled.section`
     flex-shrink: 0;
   }
   .add-tenant {
-    width: 180px;
+    width: 220px;
     text-align: center;
-    background-color: #fedf7e;
     height: 50px;
     border-radius: 4px;
     border: transparent;
     margin: 10px 0;
     font-size: 16px;
     cursor: pointer;
-    font-family: inherit;
+  }
+  .btn {
+    background-color: #fedf7e;
     color: #000;
+  }
+  .btn-disabled {
+    background: #00000080;
+    color: #fff;
+    cursor: not-allowed;
+  }
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .login-spinner {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .spinner {
+    border: 3px solid #fff;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
   @media screen and (max-width: 550px) {
     .t-name-input {

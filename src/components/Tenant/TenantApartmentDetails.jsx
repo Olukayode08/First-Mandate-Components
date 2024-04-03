@@ -1,100 +1,136 @@
 import React from 'react'
 import styled from 'styled-components'
 import { RiRadioButtonLine } from 'react-icons/ri'
+import { useFirstMandateQuery } from '../../data-layer/utils'
+import TenantEmptyApartment from './TenantEmptyApartment'
+
+
+const token = localStorage.getItem('token')
 
 const TenantApartmentDetails = () => {
+
+const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenant/apartments', {
+  enabled: !!token,
+  onSuccess: (data) => {
+    console.log(data);
+  },
+})
+  if (pageLoading) {
+    return <div className='page-loading'>Loading...</div>
+  }
   return (
     <>
       <TenantAD>
         <section>
           <div className='a-section'>
-            <div className='rent-sec'>
-              <h3 className='rent-det'>My Rent Details</h3>
-              <div className='apart-det'>
-                <div className='apartment'>
-                  <p className='p-icon'>
-                    <RiRadioButtonLine />
-                  </p>
-                  <div className='apart-loc'>
-                    <h3>House of Elovia</h3>
-                    <h1>Ikeja Road, Lagos State</h1>
-                    <div className='status-active'>
-                      <p>
-                        Status:
-                        <span> Active</span>
-                      </p>
+            {data?.data?.data && data?.data?.data?.length > 0
+              ? data?.data?.data?.map((property) => (
+                  <div key={property.uuid} className='rent-sec'>
+                    <h3 className='rent-det'>My Rent Details</h3>
+                    <div className='apart-det'>
+                      <div className='apartment'>
+                        <p className='p-icon'>
+                          <RiRadioButtonLine />
+                        </p>
+                        <div className='apart-loc'>
+                          <h3>{property.name}</h3>
+                          <h1>Ikeja Road, Lagos State</h1>
+                          <div className='status-active'>
+                            <p>
+                              Status:
+                              <span> Active</span>
+                            </p>
 
-                      <p>
-                        Unit:
-                        <span> 4 Units</span>
-                      </p>
-                      <p>
-                        Building Type:
-                        <span> Flat</span>
-                      </p>
+                            <p>
+                              Unit:
+                              <span> 4 Units</span>
+                            </p>
+                            <p>
+                              Building Type:
+                              <span> Flat</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                    <div className='apartment-details'>
+                      <h3 className='rent-det'>Apartment Details</h3>
+                      <div className='t-details'>
+                        <div className='input'>
+                          <h1>Lanlord's Name</h1>
+                          <input
+                            type='text'
+                            disabled
+                            placeholder={property.landlord_name}
+                          />
+                        </div>
+                        <div className='input'>
+                          <h1>Manager's Name</h1>
+                          <input
+                            type='text'
+                            disabled
+                            placeholder={property.manager_name}
+                          />
+                        </div>
+                      </div>
+                      <div className='t-details'>
+                        <div className='input'>
+                          <h1>Lanlord's Phone</h1>
+                          <input
+                            type='text'
+                            disabled
+                            placeholder={property.landlord_phone}
+                          />
+                        </div>
+                        <div className='input'>
+                          <h1>Managers's Phone</h1>
+                          <input
+                            type='text'
+                            disabled
+                            placeholder={property.manager_phone}
+                          />
+                        </div>
+                      </div>
+                      <div className='t-details'>
+                        <div className='input'>
+                          <h1>Rent Amount per year</h1>
+                          <input
+                            type='text'
+                            disabled
+                            placeholder={property.rent_amount}
+                          />
+                        </div>
+                        <div className='input'>
+                          <h1>Current Rent Status</h1>
+                          <input type='text' disabled placeholder={property.occupation_status} />
+                        </div>
+                      </div>
+                    </div>
+                    {/* <div className='t-plan'>
+                      <p className='plan-text'>
+                        What do you plan to do after your rent has ended?
+                      </p>
+                      <p className='plan-text'>Please pick an option below.</p>
+                      <div className='btns'>
+                        <div className='btn-plan'>
+                          <button>Renew Terms</button>
+                          <button>End Terms</button>
+                        </div>
+                        <div className='btn-plan'>
+                          <button className='request-r'>
+                            Request Term Renegotiation
+                          </button>
+                        </div>
+                      </div>
+                    </div> */}
                   </div>
-                </div>
+                ))
+              : null}
+            {!pageLoading && !data.data?.data?.length && (
+              <div>
+                <TenantEmptyApartment />
               </div>
-              <div className='apartment-details'>
-                <h3 className='rent-det'>Apartment Details</h3>
-                <div className='t-details'>
-                  <div className='input'>
-                    <h1>Lanlord's Name</h1>
-                    <input type='text' disabled placeholder='Mr Adekola' />
-                  </div>
-                  <div className='input'>
-                    <h1>Manager's Name</h1>
-                    <input type='text' disabled placeholder='Mr. Adewumi' />
-                  </div>
-                </div>
-                <div className='t-details'>
-                  <div className='input'>
-                    <h1>Lanlord's Phone</h1>
-                    <input
-                      type='text'
-                      disabled
-                      placeholder='+234 814 6573 112'
-                    />
-                  </div>
-                  <div className='input'>
-                    <h1>Managers's Phone</h1>
-                    <input
-                      type='text'
-                      disabled
-                      placeholder='+234 814 6573 112'
-                    />
-                  </div>
-                </div>
-                <div className='t-details'>
-                  <div className='input'>
-                    <h1>Rent Amount per year</h1>
-                    <input type='text' disabled placeholder='#800.000.00k' />
-                  </div>
-                  <div className='input'>
-                    <h1>Current Rent Status</h1>
-                    <input type='text' disabled placeholder='Occupied' />
-                  </div>
-                </div>
-              </div>
-              <div className='t-plan'>
-                <p className='plan-text'>
-                  What do you plan to do after your rent has ended?
-                </p>
-                <p className='plan-text'>Please pick an option below.</p>
-                <div className='btns'>
-                  <div className='btn-plan'>
-                    <button>Renew Terms</button>
-                    <button>End Terms</button>
-                  </div>
-                  <div className='btn-plan'>
-                    <button className='request-r'>
-                      Request Term Renegotiation
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </section>
       </TenantAD>
@@ -105,15 +141,16 @@ const TenantAD = styled.section`
   .a-section {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
     width: 100%;
-    border-radius: 4px;
-    padding: 20px;
   }
   .rent-sec {
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
     width: 100%;
+    margin: 20px 0;
   }
   .rent-det {
     font-size: 18px;
@@ -257,6 +294,9 @@ const TenantAD = styled.section`
     }
   }
   @media screen and (max-width: 450px) {
+    .rent-sec {
+      padding: 15px;
+    }
     .apart-det {
       gap: 15px;
     }
@@ -279,6 +319,9 @@ const TenantAD = styled.section`
     }
   }
   @media screen and (max-width: 320px) {
+    .rent-sec {
+      padding: 10px;
+    }
     button {
       padding: 10px 7px;
     }

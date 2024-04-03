@@ -23,6 +23,8 @@ const rentTerms = [
   '12 month',
 ]
 
+// Do not Touch
+
 const findUnit = (unitId, items) => {
   /**
    * Filters through the 'items' data structure to find and return the unit object
@@ -96,17 +98,16 @@ const LandlordAddNewTenant = () => {
           navigate('/landlord/tenants')
         }, 3000)
       },
-      onError: (error) => {
-        console.error(error)
-      },
+      // onError: (error) => {
+      //   console.error(error)
+      // },
     }
   )
 
   const { data } = useFirstMandateQuery('/tenants', {
     enabled: !!token && !!tenantId,
     onSuccess: (data) => {
-      // setTenants(data.data?.data || [])
-      console.log(data?.data?.data)
+
       const tenant = data?.data?.data?.find(
         (tenant) => tenant.uuid === tenantId
       )
@@ -135,7 +136,6 @@ const LandlordAddNewTenant = () => {
     },
   })
 
-  console.log('unit', propertiesData)
 
   const handleTenant = async (e) => {
     e.preventDefault()

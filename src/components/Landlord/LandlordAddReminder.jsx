@@ -35,7 +35,6 @@ const LandlordAddReminder = () => {
     {
       method: reminderId ? 'PUT' : 'POST',
       onSuccess: (data) => {
-        console.log(isSuccess)
         console.log(data)
         setTimeout(() => {
           navigate('/landlord/reminders')
@@ -93,7 +92,11 @@ const LandlordAddReminder = () => {
                   : 'Remainder was created successfully'}
               </p>
             )}
-            <p>{reminderId ? 'Edit Reminder' : 'Add New Reminder'}</p>
+            <div className='input'>
+              <label className='reminder-h'>
+                {reminderId ? 'Edit Reminder' : 'Add New Reminder'}
+              </label>
+            </div>
             <div className='n-status'>
               <label>Reminder Type</label>
               <div className='radio-btns'>
@@ -150,6 +153,7 @@ const LandlordAddReminder = () => {
               <label>Short description</label>
               <input
                 type='text'
+                required
                 name='short_description'
                 value={addReminder.short_description}
                 onChange={handleChangeAddReminder}
@@ -161,6 +165,7 @@ const LandlordAddReminder = () => {
               <label>When do you want to be notified</label>
               <input
                 type='date'
+                required
                 placeholder='dd/mm/yyy'
                 name='next_reminder_date'
                 value={addReminder.next_reminder_date}
@@ -174,6 +179,7 @@ const LandlordAddReminder = () => {
               <input
                 className='r-date-input'
                 type='time'
+                required
                 name='reminder_time'
                 value={addReminder.reminder_time}
                 onChange={handleChangeAddReminder}
@@ -200,12 +206,6 @@ const LandlordAddReminder = () => {
   )
 }
 const LAReminder = styled.section`
-  .page-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
   .n-section {
     width: 100%;
     background-color: #fff;
@@ -228,8 +228,12 @@ const LAReminder = styled.section`
     display: flex;
     flex-direction: column;
   }
+
   label {
     margin: 10px 0;
+    font-size: 16px;
+  }
+  .reminder-h {
     font-size: 18px;
   }
   .radio-btns {

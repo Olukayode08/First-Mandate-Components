@@ -1,26 +1,106 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useParams, useNavigate } from 'react-router-dom'
+import {
+  useFirstMandateMutation,
+  useFirstMandateQuery,
+} from '../../data-layer/utils'
+
+const token = localStorage.getItem('token')
 
 const TenantAddReminder = () => {
-  const [notificationType, setNotificationType] = useState('option1')
-  const handleNotificationType = (e) => {
-    setNotificationType(e.target.value)
+  const navigate = useNavigate()
+  const { reminderId } = useParams()
+  const [addReminder, setAddReminder] = useState({
+    reminder_type: '',
+    short_description: '',
+    next_reminder_date: '',
+    reminder_time: '',
+  })
+
+  const handleChangeAddReminder = (e) => {
+    setAddReminder({ ...addReminder, [e.target.name]: e.target.value })
+  }
+
+  const handleReminderUpdate = (fieldName, value) => {
+    setAddReminder((prev) => ({ ...prev, [fieldName]: value }))
+  }
+  const {
+    mutateAsync: postReminder,
+    isLoading,
+    error,
+    isSuccess,
+  } = useFirstMandateMutation(
+    `/tenant/reminders${reminderId ? `/${reminderId}` : ''}  `,
+    {
+      method: reminderId ? 'PUT' : 'POST',
+      onSuccess: (data) => {
+        console.log(data)
+        setTimeout(() => {
+          navigate('/tenant/reminders')
+        }, 3000)
+      },
+      onError: (error) => {
+        console.error(error)
+      },
+    }
+  )
+
+  const { data } = useFirstMandateQuery(`/tenant/reminders/${reminderId}`, {
+    enabled: !!token && !!reminderId,
+    onSuccess: (data) => {
+      console.log(data)
+      handleReminderUpdate('reminder_type', data?.data?.reminder_type)
+      handleReminderUpdate('short_description', data?.data?.short_description)
+      handleReminderUpdate('next_reminder_date', data?.data?.next_reminder_date)
+      handleReminderUpdate('reminder_time', data?.data?.reminder_time)
+    },
+  })
+
+  const handleReminder = async (e) => {
+    e.preventDefault()
+
+    const payload = {
+      reminder_type: addReminder.reminder_type,
+      short_description: addReminder.short_description,
+      next_reminder_date: addReminder.next_reminder_date,
+      reminder_time: addReminder.reminder_time,
+    }
+
+    try {
+      await postReminder(payload)
+    } catch (e) {
+      console.error(e)
+    }
   }
   return (
     <>
-      <TAReminder>
+      <LAReminder>
         <section>
-          <main className='n-section'>
-            <h3>Add New Reminder</h3>
+          <form onSubmit={handleReminder} className='n-section'>
+            {error && <p className='error'>{error?.message}</p>}
+            {isSuccess && (
+              <p className='error success'>
+                {reminderId
+                  ? 'Remainder edited successfully'
+                  : 'Remainder was created successfully'}
+              </p>
+            )}
+            <div className='input'>
+              <label className='reminder-h'>
+                {reminderId ? 'Edit Reminder' : 'Add New Reminder'}
+              </label>
+            </div>
             <div className='n-status'>
               <label>Reminder Type</label>
               <div className='radio-btns'>
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='option1'
-                    checked={notificationType === 'option1'}
-                    onChange={handleNotificationType}
+                    value='Rent due date'
+                    name='reminder_type'
+                    onChange={handleChangeAddReminder}
+                    checked={addReminder.reminder_type === 'Rent due date'}
                     className='btn-input'
                   />
                   <p className='n-details'>Rent due date</p>
@@ -28,9 +108,12 @@ const TenantAddReminder = () => {
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='option2'
-                    checked={notificationType === 'option2'}
-                    onChange={handleNotificationType}
+                    value='Electricity Payment'
+                    name='reminder_type'
+                    onChange={handleChangeAddReminder}
+                    checked={
+                      addReminder.reminder_type === 'Electricity Payment'
+                    }
                     className='btn-input'
                   />
                   <p className='n-details'>Electricity Payment</p>
@@ -38,9 +121,10 @@ const TenantAddReminder = () => {
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='option3'
-                    checked={notificationType === 'option3'}
-                    onChange={handleNotificationType}
+                    value='Water bill'
+                    name='reminder_type'
+                    onChange={handleChangeAddReminder}
+                    checked={addReminder.reminder_type === 'Water bill'}
                     className='btn-input'
                   />
                   <p className='n-details'>Water bill</p>
@@ -48,9 +132,10 @@ const TenantAddReminder = () => {
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='option4'
-                    checked={notificationType === 'option4'}
-                    onChange={handleNotificationType}
+                    value='Security fee'
+                    name='reminder_type'
+                    onChange={handleChangeAddReminder}
+                    checked={addReminder.reminder_type === 'Security fee'}
                     className='btn-input'
                   />
                   <p className='n-details'>Security fee</p>
@@ -58,48 +143,76 @@ const TenantAddReminder = () => {
               </div>
             </div>
             {/* Text Boxes */}
-            <div className='section'>
-              <div className='input'>
-                <label className='p-date'>Short description</label>
-                <input type='text' className='r-desc-input' />
-              </div>
-              <div className='input'>
-                <label className='p-date'>
-                  When do you want to be notified
-                </label>
-                <input
-                  type='date'
-                  placeholder='dd/mm/yyy'
-                  className='r-date-input'
-                />
-              </div>
+            <div className='input'>
+              <label>Short description</label>
+              <input
+                type='text'
+                required
+                name='short_description'
+                value={addReminder.short_description}
+                onChange={handleChangeAddReminder}
+                autoComplete='off'
+                className='r-desc-input'
+              />
             </div>
-            <div className='section'>
+            <div className='input'>
+              <label>When do you want to be notified</label>
+              <input
+                type='date'
+                required
+                placeholder='dd/mm/yyy'
+                name='next_reminder_date'
+                value={addReminder.next_reminder_date}
+                onChange={handleChangeAddReminder}
+                autoComplete='off'
+                className='r-date-input'
+              />
+            </div>
+            <div className='input'>
               <label>Time</label>
-              <div className='n-input'>
-                <select className='n-select' id='unit' required>
-                  <option value='one'>Immediately</option>
-                  <option value='one'>1 week to due date</option>
-                  <option value='two'>2 weeks to due date</option>
-                  <option value='three'>1 month to due date</option>
-                </select>
-              </div>
+              <input
+                className='r-date-input'
+                type='time'
+                required
+                name='reminder_time'
+                value={addReminder.reminder_time}
+                onChange={handleChangeAddReminder}
+                autoComplete='off'
+              />
             </div>
-            <p className='save-btn'>Save</p>
-          </main>
+            <button
+              disabled={isLoading}
+              className={isLoading ? 'btn-disabled save-btn' : 'btn save-btn'}
+            >
+              {isLoading ? (
+                <div className='login-spinner'>
+                  <div className='spinner'></div>
+                  <p>{reminderId ? 'Edit Reminder' : 'Save'}</p>
+                </div>
+              ) : (
+                <p>{reminderId ? 'Edit Reminder' : 'Save'}</p>
+              )}
+            </button>
+          </form>
         </section>
-      </TAReminder>
+      </LAReminder>
     </>
   )
 }
-const TAReminder = styled.section`
+const LAReminder = styled.section`
   .n-section {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
     width: 100%;
+    background-color: #fff;
     border-radius: 4px;
     padding: 20px;
+  }
+  .error {
+    color: #ff0000;
+    text-align: left;
+    margin: 10px 0;
+  }
+  .success {
+    color: green;
   }
   h3 {
     margin: 10px 0 25px 0;
@@ -109,8 +222,12 @@ const TAReminder = styled.section`
     display: flex;
     flex-direction: column;
   }
+
   label {
     margin: 10px 0;
+    font-size: 16px;
+  }
+  .reminder-h {
     font-size: 18px;
   }
   .radio-btns {
@@ -144,9 +261,6 @@ const TAReminder = styled.section`
     flex-direction: column;
     margin: 10px 0;
   }
-  .p-date {
-    margin: 10px 0;
-  }
   input {
     outline: none;
     border: 1px solid black;
@@ -157,42 +271,56 @@ const TAReminder = styled.section`
     border-radius: 4px;
     background: transparent;
   }
-  .r-date-input {
-    height: 50px;
-    width: 250px;
-  }
   .r-desc-input {
     height: 80px;
     width: 500px;
   }
-  .n-input {
-    width: 250px;
-    margin: 10px 0;
+  .r-date-input {
     height: 50px;
-    padding: 0 10px;
-    border: 1px solid black;
-    border-radius: 4px;
-  }
-  .n-select {
-    width: 100%;
-    margin: 0 auto;
-    height: 100%;
-    background: transparent;
-    border: transparent;
-    outline: none;
-    color: #000;
-    font-family: inherit;
-    font-size: 15px;
+    width: 250px;
   }
   .save-btn {
-    width: 80px;
-    background-color: #fedf7e;
+    width: 200px;
+    height: 50px;
     text-align: center;
-    color: #000;
-    padding: 15px 0;
-    border-radius: 5px;
+    border: transparent;
+    border-radius: 4px;
     margin: 20px 0;
     cursor: pointer;
+    font-size: 16px;
+  }
+  .btn {
+    background-color: #fedf7e;
+    color: #000;
+  }
+  .btn-disabled {
+    background: #00000080;
+    color: #fff;
+    cursor: not-allowed;
+  }
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .login-spinner {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .spinner {
+    border: 3px solid #fff;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
   }
   @media screen and (max-width: 600px) {
     .radio-btns {

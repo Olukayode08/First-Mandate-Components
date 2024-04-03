@@ -1,47 +1,45 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-const AddApartmentDropdown = () => {
-  const [firstDropdownValue, setFirstDropdownValue] = useState('')
-  const [secondDropdownValue, setSecondDropdownValue] = useState('')
-  const [secondDropdownDisabled, setSecondDropdownDisabled] = useState(true)
-
-  const handleFirstDropdownChange = (event) => {
-    const selectedValue = event.target.value
-    setFirstDropdownValue(selectedValue)
-    setSecondDropdownDisabled(false) // Enable the second dropdown
-  }
-
-  const handleSecondDropdownChange = (event) => {
-    const selectedValue = event.target.value
-    setSecondDropdownValue(selectedValue)
-  }
-
+const mockStates = ['State 1', 'State 2', 'State 3']
+const mockCities = {
+  'State 1': ['City 1', 'City 2', 'City 3'],
+  'State 2': ['City 4', 'City 5', 'City 6'],
+  'State 3': ['City 7', 'City 8', 'City 9'],
+}
+const AddApartmentDropdown = ({ handleChangeAddApartment, addApartment }) => {
   return (
     <>
       <AADropdown>
         <div className='add-ap'>
           <div className='ap-select'>
             <select
-              value={firstDropdownValue}
-              onChange={handleFirstDropdownChange}
+              name='state'
+              value={addApartment.state}
+              onChange={handleChangeAddApartment}
             >
-              <option value=''>Country</option>
-              <option value='option1'>Option 1</option>
-              <option value='option2'>Option 2</option>
-              <option value='option3'>Option 3</option>
+              <option value=''>State</option>
+              {mockStates.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
             </select>
           </div>
           <div className='ap-select'>
             <select
-              value={secondDropdownValue}
-              onChange={handleSecondDropdownChange}
-              disabled={secondDropdownDisabled}
+              name='city'
+              value={addApartment.city}
+              onChange={handleChangeAddApartment}
+              disabled={!addApartment.state}
             >
-              <option value=''>State</option>
-              <option value='suboption1'>Suboption 1</option>
-              <option value='suboption2'>Suboption 2</option>
-              <option value='suboption3'>Suboption 3</option>
+              <option value=''>City</option>
+              {addApartment.state &&
+                mockCities[addApartment.state].map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
             </select>
           </div>
         </div>
@@ -81,7 +79,7 @@ const AADropdown = styled.section`
     .add-ap {
       width: 95%;
     }
-    .ap-select{
+    .ap-select {
       width: 90%;
     }
   }

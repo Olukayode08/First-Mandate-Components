@@ -57,10 +57,6 @@ import ManagerSendReminder from './components/Manager/ManagerSendReminder'
 import ManagerEditProfilePage from './components/Manager/ManagerEditProfilePage'
 import ManagerProfileSettings from './components/Manager/ManagerProfileSettings'
 import ManagerDocuments from './components/Manager/ManagerDocuments'
-import LandlordEmptyProperty from './components/Landlord/LandlordEmptyProperty'
-import LandlordEmptyTenant from './components/Landlord/LandlordEmptyTenant'
-import LandlordEmptyManager from './components/Landlord/LandlordEmptyManager'
-import LandlordEmptyReminder from './components/Landlord/LandlordEmptyReminder'
 import LandlordAddUnit from './components/Landlord/LandlordAddUnit'
 import RentPaymentSuccessfulEmail from './components/Email/RentPaymentSuccessfulEmail'
 import RentPaymentReceiptEmail from './components/Email/RentPaymentReceiptEmail'
@@ -139,7 +135,10 @@ function App() {
               />
               <Route path='tenants' element={<LandlordTenants />} />
               <Route path='select-unit' element={<LandlordSelectProperty />} />
-              <Route path='select-unit/:tenantId/edit' element={<LandlordSelectProperty />} />
+              <Route
+                path='select-unit/:tenantId/edit'
+                element={<LandlordSelectProperty />}
+              />
               <Route
                 path='add-tenant/:unitId/tenants'
                 element={<LandlordAddNewTenant />}
@@ -150,11 +149,11 @@ function App() {
               />
               <Route path='add-tenant' element={<LandlordAddNewTenant />} />
               <Route path='managers' element={<LandlordManagers />} />
+              <Route path='add-manager' element={<LandlordAddNewManager />} />
               <Route
                 path='add-manager/:propertyId'
                 element={<LandlordAddNewManager />}
               />
-              <Route path='add-manager' element={<LandlordAddNewManager />} />
               <Route
                 path='add-manager/:propertyId/:managerId/edit'
                 element={<LandlordAddNewManager />}
@@ -174,16 +173,6 @@ function App() {
                 element={<LandlordEditProfilePage />}
               />
               <Route path='profile' element={<LandlordProfileSettings />} />
-              <Route
-                path='empty-property'
-                element={<LandlordEmptyProperty />}
-              />
-              <Route path='empty-tenant' element={<LandlordEmptyTenant />} />
-              <Route path='empty-manager' element={<LandlordEmptyManager />} />
-              <Route
-                path='empty-reminder'
-                element={<LandlordEmptyReminder />}
-              />
             </Route>
           </Route>
 
@@ -228,6 +217,10 @@ function App() {
               <Route path='reminders' element={<TenantReminders />} />
               <Route path='due-date' element={<TenantDueDates />} />
               <Route path='add-reminder' element={<TenantAddReminder />} />
+              <Route
+                path='add-reminder/:reminderId/edit'
+                element={<TenantAddReminder />}
+              />
               <Route path='edit-profile' element={<TenantEditProfilePage />} />
               <Route path='profile' element={<TenantProfileSettings />} />
               <Route path='payment' element={<TenantPaymentPage />} />

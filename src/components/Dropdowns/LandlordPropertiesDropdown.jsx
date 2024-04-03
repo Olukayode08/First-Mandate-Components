@@ -39,7 +39,6 @@ const LandlordPropertiesDropdown = ({ property }) => {
       setShowDropdown(false)
     }, 1000)
   }
-    // navigate(`/landlord/add-tenant/${property.uuid}/tenants`)
 
   const navigateTenant = () => {
     navigate(`/landlord/select-unit`)

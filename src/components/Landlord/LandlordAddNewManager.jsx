@@ -68,10 +68,6 @@ const LandlordAddNewManager = () => {
     select: (data) => data?.data?.data
   })
 
-  // const getUnitById = (unitId, properties) => {
-  //   const
-  // }
-
 
   const handleManager = async (e) => {
     e.preventDefault()
