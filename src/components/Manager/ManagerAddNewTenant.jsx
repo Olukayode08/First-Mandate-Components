@@ -1,26 +1,188 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useParams, useNavigate } from 'react-router-dom'
+import {
+  useFirstMandateMutation,
+  useFirstMandateQuery,
+} from '../../data-layer/utils'
+import ManagerInstallmentDropdown from '../Dropdowns/ManagerInstallmentDropdown'
+
+const token = localStorage.getItem('token')
+const rentTerms = [
+  '1 month',
+  '2 month',
+  '3 month,',
+  '4 month',
+  '5 month',
+  '6 month',
+  '7 month',
+  '8 month',
+  '9 month,',
+  '10 month',
+  '11 month',
+  '12 month',
+]
+
+// Do not Touch
+const findUnit = (unitId, items) => {
+  /**
+   * Filters through the 'items' data structure to find and return the unit object
+   * whose 'uuid' matches the provided 'unitId'.
+   *
+   * @param {string} unitId - The UUID of the unit you want to find.
+   * @param {array} items - The list of items, each containing a 'units' array.
+   * @returns {object|null} The unit object if found, otherwise null.
+   */
+
+  for (const item of items) {
+    for (const unit of item.units) {
+      if (unit.uuid === unitId) {
+        return unit
+      }
+    }
+  }
+  return null // No matching unit found
+}
 
 const ManagerAddNewTenant = () => {
+  const navigate = useNavigate()
+  const { unitId, tenantId } = useParams()
+  const pageUrl = window.location.href
+  const isEdit = pageUrl.includes('edit')
+
+  const [addTenant, setAddTenant] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    phone_two: '',
+    lease_start: '',
+    lease_end: '',
+    payment_type: '',
+    no_of_installments: '',
+    rent_amount: '',
+    rent_payment_status: '',
+    rent_terms: '',
+    rent_due_date: '',
+  })
+
+  const handlePaymentTypeChange = (e) => {
+    const { value } = e.target
+    setAddTenant({ ...addTenant, payment_type: value, no_of_installments: '' })
+  }
+
+  const handleInstallmentChange = (e) => {
+    const { value } = e.target
+    setAddTenant({ ...addTenant, no_of_installments: value })
+  }
+  const handleChangeAddTenant = (e) => {
+    setAddTenant({ ...addTenant, [e.target.name]: e.target.value })
+  }
+
+  const handleTenantUpdate = (fieldName, value) => {
+    setAddTenant((prev) => ({ ...prev, [fieldName]: value }))
+  }
+
+  const {
+    mutateAsync: postTenant,
+    isLoading,
+    error,
+    isSuccess,
+  } = useFirstMandateMutation(
+    `/${isEdit ? `tenants/${tenantId}` : `property-units/${unitId}/tenants`}`,
+    {
+      method: isEdit ? 'PUT' : 'POST',
+      onSuccess: (data) => {
+        console.log(data)
+        setTimeout(() => {
+          navigate('/landlord/tenants')
+        }, 3000)
+      },
+      // onError: (error) => {
+      //   console.error(error)
+      // },
+    }
+  )
+
+  const { data } = useFirstMandateQuery('/tenants', {
+    enabled: !!token && !!tenantId,
+    onSuccess: (data) => {
+      const tenant = data?.data?.data?.find(
+        (tenant) => tenant.uuid === tenantId
+      )
+      console.log('single tenants', tenant)
+      handleTenantUpdate('name', tenant?.name)
+      handleTenantUpdate('email', tenant?.email)
+      handleTenantUpdate('phone', tenant?.phone)
+      handleTenantUpdate('lease_start', tenant?.lease_start)
+      handleTenantUpdate('lease_end', tenant?.lease_end)
+      handleTenantUpdate('payment_type', tenant?.payment_type)
+      handleTenantUpdate('no_of_installments', tenant?.no_of_installments)
+      handleTenantUpdate('rent_payment_status', tenant?.rent_payment_status)
+      handleTenantUpdate('rent_terms', tenant?.rent_terms)
+      handleTenantUpdate('rent_due_date', tenant?.rent_due_date)
+    },
+    onError: (error) => {
+      console.log('error', error)
+    },
+  })
+
+  const { data: propertiesData } = useFirstMandateQuery('/properties', {
+    enabled: !!token,
+    select: (data) => findUnit(unitId, data?.data?.data),
+    onSuccess: (data) => {
+      console.log(data)
+    },
+  })
+
+  const handleTenant = async (e) => {
+    e.preventDefault()
+    const payload = {
+      name: addTenant.name,
+      email: addTenant.email,
+      phone: addTenant.phone,
+      lease_start: addTenant.lease_start,
+      lease_end: addTenant.lease_end,
+      payment_type: addTenant.payment_type,
+      no_of_installments: addTenant.no_of_installments,
+      rent_amount: addTenant.rent_amount,
+      rent_payment_status: addTenant.rent_payment_status,
+      rent_terms: addTenant.rent_terms,
+      rent_due_date: addTenant.rent_due_date,
+    }
+    try {
+      await postTenant(payload)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
     <>
       <MANTenant>
         <section>
-          <main className='l-section'>
-            <h3>Add New Tenant</h3>
-            <label>Select Unit</label>
-            <div className='select'>
-              <select>
-                <option value='option1'>Unit 1</option>
-                <option value='option2'>Unit 2</option>
-                <option value='option3'>Unit 3</option>
-              </select>
+          <form onSubmit={handleTenant} className='l-section'>
+            {error && <p className='error'>{error?.message}</p>}
+            {isSuccess && (
+              <p className='error success'>
+                {isEdit
+                  ? 'Tenant edited successfully'
+                  : 'Tenant was added successfully'}
+              </p>
+            )}
+            <h3>{isEdit ? 'Edit Tenant' : 'Add New Tenant'}</h3>
+            <div className='input'>
+              <label>Unit Name</label>
+              <p className='unit'>{propertiesData?.unit_name || ''}</p>
             </div>
-
             <div className='input'>
               <label>Name</label>
               <input
                 type='text'
+                name='name'
+                required
+                value={addTenant.name}
+                onChange={handleChangeAddTenant}
+                autoComplete='off'
                 placeholder="Enter tenant's name"
                 className='t-name-input'
               />
@@ -29,52 +191,145 @@ const ManagerAddNewTenant = () => {
               <label>Email</label>
               <input
                 type='email'
+                name='email'
+                required
+                value={addTenant.email}
+                onChange={handleChangeAddTenant}
+                autoComplete='off'
                 placeholder='Enter email address'
                 className='t-name-input'
               />
             </div>
             <div className='input'>
               <label>Phone</label>
-              <input type='text' placeholder='+234' className='t-name-input' />
+              <input
+                type='text'
+                name='phone'
+                required
+                value={addTenant.phone}
+                onChange={handleChangeAddTenant}
+                autoComplete='off'
+                placeholder='+234'
+                className='t-name-input'
+              />
             </div>
-            <div className='input'>
-              <label>Phone</label>
-              <input type='text' placeholder='+234' className='t-name-input' />
-            </div>
+            {!unitId && (
+              <div className='input'>
+                <label>Phone</label>
+                <input
+                  type='text'
+                  name='phone_two'
+                  value={addTenant.phone_two}
+                  onChange={handleChangeAddTenant}
+                  autoComplete='off'
+                  placeholder='+234'
+                  className='t-name-input'
+                />
+              </div>
+            )}
             <div className='rent-date'>
               <div className='start-date'>
-                <label>Rent Start Date</label>
+                <label>Lease Start Date</label>
                 <input
                   type='date'
+                  name='lease_start'
+                  required
+                  value={addTenant.lease_start}
+                  onChange={handleChangeAddTenant}
+                  autoComplete='off'
                   placeholder='dd/mm/yyyy'
                   className='r-date-input'
                 />
               </div>
               <div className='end-date'>
-                <label>Rent End Date</label>
+                <label>Lease End Date</label>
                 <input
                   type='date'
+                  name='lease_end'
+                  required
+                  value={addTenant.lease_end}
+                  onChange={handleChangeAddTenant}
+                  autoComplete='off'
                   placeholder='dd/mm/yyyy'
                   className='r-date-input'
                 />
               </div>
             </div>
-            <div className='rent-status'>
-              <label>Rent Payment Status</label>
-              <div className='tenants-name'>
-                <p className='not-p'>Not Paid</p>
+            <div className='rent-date'>
+              <ManagerInstallmentDropdown
+                addTenant={addTenant}
+                handleInstallmentChange={handleInstallmentChange}
+                handlePaymentTypeChange={handlePaymentTypeChange}
+                handleChangeAddTenant={handleChangeAddTenant}
+              />
+            </div>
+            <div className='select'>
+              <label>Rent Payment Status*</label>
+              <div className='user-select'>
+                <select
+                  id='rent_payment_status'
+                  name='rent_payment_status'
+                  required
+                  value={addTenant.rent_payment_status}
+                  onChange={handleChangeAddTenant}
+                >
+                  <option value=''>Select</option>
+                  <option value='Paid in part'>Paid in part</option>
+                  <option value='Paid in full'>Paid in full</option>
+                  <option value='Not Paid'>Not Paid</option>
+                </select>
+              </div>
+            </div>
+            <div className='select'>
+              <label>Rent Terms*</label>
+              <div className='user-select'>
+                <select
+                  id='rent_terms'
+                  name='rent_terms'
+                  value={addTenant.rent_terms}
+                  required
+                  onChange={handleChangeAddTenant}
+                >
+                  <option value=''>Select</option>
+                  {rentTerms.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
             <div className='due-date'>
               <label>Rent Payment Due Date</label>
               <input
                 type='date'
+                name='rent_due_date'
+                required
+                value={addTenant.rent_due_date}
+                onChange={handleChangeAddTenant}
+                autoComplete='off'
                 placeholder='dd/mm/yyyy'
                 className='due-date-input'
               />
             </div>
-            <button className='add-tenant'>Add Tenant</button>
-          </main>
+            <button
+              disabled={isLoading}
+              className={
+                isLoading ? 'btn-disabled add-tenant' : 'btn add-tenant'
+              }
+            >
+              {isLoading ? (
+                <div className='login-spinner'>
+                  <div className='spinner'></div>
+                  <p>{isEdit ? 'Edit Tenant' : 'Add Tenant'}</p>
+                </div>
+              ) : (
+                <p className='login-btn'>
+                  {isEdit ? 'Edit Tenant' : 'Add Tenant'}
+                </p>
+              )}
+            </button>
+          </form>
         </section>
       </MANTenant>
     </>
@@ -82,32 +337,27 @@ const ManagerAddNewTenant = () => {
 }
 const MANTenant = styled.section`
   .l-section {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
   }
-  h3 {
-    margin: 15px 0;
+  .error {
+    color: #ff0000;
+    text-align: left;
+    margin: 10px 0;
   }
-  .select {
-    display: flex;
-    flex-direction: column;
-    width: 160px;
-    padding: 0 10px;
-    height: 40px;
+  .success {
+    color: green;
+  }
+  .add-t {
+    margin: 20px 0;
+  }
+  .unit {
+    padding: 13px 20px;
     border: 1px solid black;
     border-radius: 4px;
-  }
-  select {
-    border: none;
-    background: transparent;
-    color: #000;
-    outline: none;
-    height: 100%;
-    width: 100%;
+    text-align: center;
   }
   .input {
     display: flex;
@@ -168,14 +418,79 @@ const MANTenant = styled.section`
   .add-tenant {
     width: 220px;
     text-align: center;
-    background-color: #fedf7e;
     height: 50px;
     border-radius: 4px;
     border: transparent;
     margin: 10px 0;
     font-size: 16px;
     cursor: pointer;
+  }
+  .btn {
+    background-color: #fedf7e;
     color: #000;
+  }
+  .btn-disabled {
+    background: #00000080;
+    color: #fff;
+    cursor: not-allowed;
+  }
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .login-spinner {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .spinner {
+    border: 3px solid #fff;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+  }
+  .select {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .user-select {
+    width: 200px;
+    height: 48px;
+    border: 1px solid black;
+    padding: 0 10px;
+    border-radius: 4px;
+  }
+  select {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    outline: none;
+    background: transparent;
+    border: transparent;
+    color: #000;
+    font-family: inherit;
+  }
+  option {
+    flex-shrink: 0;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
   @media screen and (max-width: 600px) {
     .rent-date {

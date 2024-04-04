@@ -3,25 +3,25 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import icon from '../../assets/empty-house-01 (2).png'
-const LandlordEmptyProperty = () => {
+const ManagerEmptyProperty = () => {
   return (
     <>
-      <LandlordEP>
+      <ManagerEP>
         <section>
           <div className='e-section'>
             <img src={icon} alt='House' />
             <p>Please upload new property to see a list of your properties</p>
-            <Link to='/landlord/add-property' className='add-r'>
+            <Link to='/manager/add-property' className='add-r'>
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
           </div>
         </section>
-      </LandlordEP>
+      </ManagerEP>
     </>
   )
 }
-const LandlordEP = styled.section`
+const ManagerEP = styled.section`
   .e-section {
     display: flex;
     flex-direction: column;
@@ -56,4 +56,4 @@ const LandlordEP = styled.section`
     }
   }
 `
-export default LandlordEmptyProperty
+export default ManagerEmptyProperty

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
@@ -9,19 +9,14 @@ const token = localStorage.getItem('token')
 const LandlordTenants = () => {
   // Fetch Tenants
   const navigate = useNavigate()
-  const [tenants, setTenants] = useState()
   const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenants', {
     enabled: !!token,
-    onSuccess: (data) => {
-      setTenants(data.data?.data || [])
-    },
+    onSuccess: (data) => {},
   })
-  console.log(tenants)
 
-
-    if (pageLoading) {
-      return <div className='page-loading'>Loading...</div>
-    }
+  if (pageLoading) {
+    return <div className='page-loading'>Loading...</div>
+  }
   return (
     <>
       <LTenants>
@@ -46,8 +41,11 @@ const LandlordTenants = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {tenants && tenants.length > 0
-                    ? tenants.map((list) => (
+                  {data &&
+                  data.data &&
+                  data.data.data &&
+                  data.data.data.length > 0
+                    ? data.data.data.map((list) => (
                         <tr key={list.uuid} className='m-list'>
                           <td>1</td>
                           <td>{list.name}</td>
@@ -67,7 +65,7 @@ const LandlordTenants = () => {
                     : null}
                 </tbody>
               </table>
-              {!tenants?.length && (
+              {!pageLoading && !data.data.data?.length && (
                 <div>
                   <LandlordEmptyTenant />
                 </div>

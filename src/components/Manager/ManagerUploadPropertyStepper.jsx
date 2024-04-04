@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { IoMdArrowBack } from 'react-icons/io'
 import Reload from '../../hooks/Reload'
-import CongratsModal from '../modal/CongratsModal'
 import { useFirstMandateMutation } from '../../data-layer/utils'
 import { useNavigate } from 'react-router-dom'
-import UploadPropertyOne from '../UploadProperty/UploadPropertyOne'
-import UploadPropertyTwo from '../UploadProperty/UploadPropertyTwo'
+import ManagerUploadPropertyOne from './ManagerUploadPropertyOne'
+import ManagerUploadPropertyTwo from './ManagerUploadPropertyTwo'
+import ManagerCongratsModal from '../modal/ManagerCongratsModal'
+
 
 const totalSteps = 2
-const UploadPropertyStepper = () => {
+const ManagerUploadPropertyStepper = () => {
   const navigate = useNavigate()
   const [uploadError, setUploadError] = useState(null)
   const [step, setStep] = useState(1)
@@ -36,7 +37,7 @@ const UploadPropertyStepper = () => {
     onSuccess: (data) => {
       // console.log(data)
       setTimeout(() => {
-        navigate('/landlord/properties')
+        navigate('/manager/properties')
       }, 3000)
     },
     onError: (error) => {
@@ -94,7 +95,7 @@ const UploadPropertyStepper = () => {
   }
   const prevStep = () => {
     if (step === 1) {
-      navigate('/landlord/properties')
+      navigate('/manager/properties')
     }
     setStep(step - 1)
   }
@@ -103,7 +104,7 @@ const UploadPropertyStepper = () => {
 
   return (
     <>
-      <UploadPS>
+      <MUploadPS>
         <section>
           <div className='multi-step-form'>
             {!!(propertiesError || uploadError) && (
@@ -177,9 +178,9 @@ const UploadPropertyStepper = () => {
             </div>
           </div>
         </section>
-      </UploadPS>
+      </MUploadPS>
       {/* Congratulations Conponent */}
-      <div>{isSuccess && <CongratsModal />}</div>
+      <div>{isSuccess && <ManagerCongratsModal />}</div>
     </>
   )
 }
@@ -188,7 +189,7 @@ const Step1 = ({ addProperty, handleChangeAddProperty, setAddProperty }) => {
   return (
     <div>
       <Reload />
-      <UploadPropertyOne
+      <ManagerUploadPropertyOne
         addProperty={addProperty}
         handleChangeAddProperty={handleChangeAddProperty}
         setAddProperty={setAddProperty}
@@ -201,7 +202,7 @@ const Step2 = ({ addProperty, handleChangeAddProperty, setAddProperty }) => {
   return (
     <div>
       <Reload />
-      <UploadPropertyTwo
+      <ManagerUploadPropertyTwo
         addProperty={addProperty}
         handleChangeAddProperty={handleChangeAddProperty}
         setAddProperty={setAddProperty}
@@ -210,7 +211,7 @@ const Step2 = ({ addProperty, handleChangeAddProperty, setAddProperty }) => {
   )
 }
 
-const UploadPS = styled.section`
+const MUploadPS = styled.section`
   /* Multi stepper */
   .multi-step-form {
     display: flex;
@@ -353,4 +354,4 @@ const UploadPS = styled.section`
   }
 `
 
-export default UploadPropertyStepper
+export default ManagerUploadPropertyStepper

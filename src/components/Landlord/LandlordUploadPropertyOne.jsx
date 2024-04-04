@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import CountryDropdown from '../Dropdowns/CountryDropdown'
+import LandlordCountryDropdown from '../Dropdowns/LandlordCountryDropdown'
 
-const UploadPropertyOne = ({
+const LandlordUploadPropertyOne = ({
   handleChangeAddProperty,
   setAddProperty,
   addProperty,
 }) => {
   return (
     <>
-      <UploadPO>
+      <LUploadPO>
         <section>
           <div className='section'>
             <div className='input'>
@@ -40,7 +40,7 @@ const UploadPropertyOne = ({
             </div>
             <div className='location'>
               <label>Location</label>
-              <CountryDropdown
+              <LandlordCountryDropdown
                 addProperty={addProperty}
                 handleChangeAddProperty={handleChangeAddProperty}
                 setAddProperty={setAddProperty}
@@ -87,11 +87,11 @@ const UploadPropertyOne = ({
             </div>
           </div>
         </section>
-      </UploadPO>
+      </LUploadPO>
     </>
   )
 }
-const UploadPO = styled.section`
+const LUploadPO = styled.section`
   .section {
     display: flex;
     flex-direction: column;
@@ -130,4 +130,4 @@ const UploadPO = styled.section`
     }
   }
 `
-export default UploadPropertyOne
+export default LandlordUploadPropertyOne

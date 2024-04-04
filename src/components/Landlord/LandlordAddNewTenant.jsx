@@ -5,7 +5,7 @@ import {
   useFirstMandateMutation,
   useFirstMandateQuery,
 } from '../../data-layer/utils'
-import InstallmentDropdown from '../Dropdowns/InstallmentDropdown'
+import LandlordInstallmentDropdown from '../Dropdowns/LandlordInstallmentDropdown'
 
 const token = localStorage.getItem('token')
 const rentTerms = [
@@ -24,7 +24,6 @@ const rentTerms = [
 ]
 
 // Do not Touch
-
 const findUnit = (unitId, items) => {
   /**
    * Filters through the 'items' data structure to find and return the unit object
@@ -259,7 +258,7 @@ const LandlordAddNewTenant = () => {
               </div>
             </div>
             <div className='rent-date'>
-              <InstallmentDropdown
+              <LandlordInstallmentDropdown
                 addTenant={addTenant}
                 handleInstallmentChange={handleInstallmentChange}
                 handlePaymentTypeChange={handlePaymentTypeChange}

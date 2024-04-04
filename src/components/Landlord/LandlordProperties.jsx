@@ -25,47 +25,49 @@ const LandlordProperties = () => {
       <LandlordP>
         <section>
           <div className='m-section'>
-            <Link to='/landlord/upload-property' className='add-r'>
+            <Link to='/landlord/add-property' className='add-r'>
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
-            {data?.data?.data && data?.data?.data?.length > 0
-              ? data?.data?.data?.map((property) => (
-                  <div key={property.uuid} className='manager-p'>
-                    <div className='apart-det'>
-                      <div className='apartment'>
-                        <p className='p-icon'>
-                          <RiRadioButtonLine />
-                        </p>
-                        <div className='apart-loc'>
-                          <h3>{property.title}</h3>
-                          <h1>{property.address}</h1>
-                          <div className='status-active'>
-                            <p>
-                              Status:
-                              <span> Active</span>
-                            </p>
+            {data &&
+            data.data &&
+            data.data.data &&
+            data.data.data.length > 0 ? (
+              data.data.data.map((property) => (
+                <div key={property.uuid} className='manager-p'>
+                  <div className='apart-det'>
+                    <div className='apartment'>
+                      <p className='p-icon'>
+                        <RiRadioButtonLine />
+                      </p>
+                      <div className='apart-loc'>
+                        <h3>{property.title}</h3>
+                        <h1>{property.address}</h1>
+                        <div className='status-active'>
+                          <p>
+                            Status:
+                            <span> Active</span>
+                          </p>
 
-                            <p>
-                              Unit:
-                              <span> 4 Units</span>
-                            </p>
-                            <p>
-                              Building Type:
-                              <span> {property.property_type}</span>
-                            </p>
-                          </div>
+                          <p>
+                            Unit:
+                            <span> 4 Units</span>
+                          </p>
+                          <p>
+                            Building Type:
+                            <span> {property.property_type}</span>
+                          </p>
                         </div>
                       </div>
-                      <div>
-                        <LandlordPropertiesDropdown property={property} />
-                      </div>
                     </div>
-                    <LandlordPropertyUnit property={property} />
+                    <div>
+                      <LandlordPropertiesDropdown property={property} />
+                    </div>
                   </div>
-                ))
-              : null}
-            {!pageLoading && !data.data?.data?.length && (
+                  <LandlordPropertyUnit property={property} />
+                </div>
+              ))
+            ) : (
               <div>
                 <LandlordEmptyProperty />
               </div>

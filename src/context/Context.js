@@ -7,43 +7,35 @@ const Context = ({ children }) => {
     !!localStorage.getItem('token')
   )
 
-  const logOut = ()=>{
+  // Function to log the user out
+  const logOut = () => {
     setIsAuthenticated(false)
     localStorage.removeItem('token')
   }
 
-  // Authentification Timer
   // useEffect(() => {
-  //   let logoutTimer
-
-  //   const clearInactiveUser = () => {
-  //     localStorage.removeItem('token')
-  //     setIsAuthenticated(false)
-  //   }
-
-  //   const resetLogoutTimer = () => {
+  //   // Event listener for user activity
+  //   const handleActivity = () => {
+  //     // Reset the timer when user is active
   //     clearTimeout(logoutTimer)
-  //     logoutTimer = setTimeout(clearInactiveUser, 5 * 60 * 1000) // 5 minutes
+  //     // Set new timer for logout after 5 minutes of inactivity
+  //     logoutTimer = setTimeout(logOut, 5 * 60 * 1000) // 5 minutes
   //   }
-  //   const clearLogoutTimer = () => {
-  //     clearTimeout(logoutTimer)
-  //   }
-  //   const handleUserActivity = () => {
-  //     resetLogoutTimer()
-  //   }
-  //   const userActivityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart']
-  //   userActivityEvents.forEach((event) => {
-  //     window.addEventListener(event, handleUserActivity)
-  //   })
-  //   resetLogoutTimer()
+
+  //   // Initialize logout timer
+  //   let logoutTimer = setTimeout(logOut, 5 * 60 * 1000) // 5 minutes
+
+  //   // Set up event listeners for user activity
+  //   document.addEventListener('mousemove', handleActivity)
+  //   document.addEventListener('keydown', handleActivity)
+
+  //   // Cleanup function
   //   return () => {
-  //     userActivityEvents.forEach((event) => {
-  //       window.removeEventListener(event, handleUserActivity)
-  //     })
-  //     clearLogoutTimer()
+  //     clearTimeout(logoutTimer)
+  //     document.removeEventListener('mousemove', handleActivity)
+  //     document.removeEventListener('keydown', handleActivity)
   //   }
   // }, [])
-
 
   return (
     <>
@@ -52,7 +44,6 @@ const Context = ({ children }) => {
           isAuthenticated,
           setIsAuthenticated,
           logOut,
-
         }}
       >
         {children}

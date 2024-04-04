@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import UploadPropertyStepper from '../Steppers/UploadPropertyStepper'
-const UploadPropertyPage = () => {
-
+import ManagerUploadPropertyStepper from './ManagerUploadPropertyStepper'
+const ManagerUploadPropertyPage = () => {
   return (
     <>
       <UploadPP>
         <section>
           <main className='upload-section'>
-            <UploadPropertyStepper />
+            <ManagerUploadPropertyStepper />
           </main>
         </section>
       </UploadPP>
@@ -24,4 +23,4 @@ const UploadPP = styled.section`
     padding: 20px;
   }
 `
-export default UploadPropertyPage
+export default ManagerUploadPropertyPage

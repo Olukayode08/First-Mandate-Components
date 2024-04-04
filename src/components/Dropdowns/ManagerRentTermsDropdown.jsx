@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const RentTermsDropdown = () => {
+const ManagerRentTermsDropdown = () => {
   return (
     <>
-      <RentTermsDD>
+      <MRentTermsDD>
         <div className='rent-terms'>
           <div className='input'>
             <label>Rent term</label>
@@ -17,11 +17,11 @@ const RentTermsDropdown = () => {
             </div>
           </div>
         </div>
-      </RentTermsDD>
+      </MRentTermsDD>
     </>
   )
 }
-const RentTermsDD = styled.section`
+const MRentTermsDD = styled.section`
   .rent-terms {
     display: flex;
     gap: 30px;
@@ -53,4 +53,4 @@ const RentTermsDD = styled.section`
     }
   }
 `
-export default RentTermsDropdown
+export default ManagerRentTermsDropdown

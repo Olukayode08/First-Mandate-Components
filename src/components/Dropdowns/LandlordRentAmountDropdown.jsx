@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const RentAmountDropdown = () => {
+const LandlordRentAmountDropdown = () => {
   const [selectedOption, setSelectedOption] = useState('')
   const [startDate, setStartDate] = useState('')
   const [startDateDisabled, setStartDateDisabled] = useState(true)
@@ -17,7 +17,7 @@ const RentAmountDropdown = () => {
 
   return (
     <>
-      <RentAmtDD>
+      <LRentAmtD>
         <div className='rent-amt'>
           <div className='input'>
             <label>Rent Amount*</label>
@@ -41,11 +41,11 @@ const RentAmountDropdown = () => {
             />
           </div>
         </div>
-      </RentAmtDD>
+      </LRentAmtD>
     </>
   )
 }
-const RentAmtDD = styled.section`
+const LRentAmtD = styled.section`
   .rent-amt {
     display: flex;
     gap: 15px;
@@ -94,4 +94,4 @@ const RentAmtDD = styled.section`
     }
   }
 `
-export default RentAmountDropdown
+export default LandlordRentAmountDropdown

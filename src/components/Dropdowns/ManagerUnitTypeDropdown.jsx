@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const UnitTypeDropdown = ({ addUnit, handleChangeAddUnit }) => {
+const ManagerUnitTypeDropdown = ({ addUnit, handleChangeAddUnit }) => {
   return (
     <>
-      <UnitTypeD>
+      <MUnitTypeD>
         <div className='unit-type'>
           <div className='select'>
             <select
@@ -35,11 +35,11 @@ const UnitTypeDropdown = ({ addUnit, handleChangeAddUnit }) => {
             </select>
           </div>
         </div>
-      </UnitTypeD>
+      </MUnitTypeD>
     </>
   )
 }
-const UnitTypeD = styled.section`
+const MUnitTypeD = styled.section`
   .unit-type {
     display: flex;
     gap: 30px;
@@ -75,4 +75,4 @@ const UnitTypeD = styled.section`
     }
   }
 `
-export default UnitTypeDropdown
+export default ManagerUnitTypeDropdown

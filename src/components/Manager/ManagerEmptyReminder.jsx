@@ -2,26 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import icon from '../../assets/empty-house-01 (2).png'
-const LandlordEmptyProperty = () => {
+import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
+const ManagerEmptyReminder = () => {
   return (
     <>
-      <LandlordEP>
+      <ManagerER>
         <section>
           <div className='e-section'>
             <img src={icon} alt='House' />
-            <p>Please upload new property to see a list of your properties</p>
-            <Link to='/landlord/add-property' className='add-r'>
-              <h4>Upload New Property</h4>
+            <p>Please add a reminder to see a list of your reminders here.</p>
+            <Link to='/manager/add-reminder' className='add-r'>
+              <h4>Add Reminder</h4>
               <FaRegPlusSquare size={20} />
             </Link>
           </div>
         </section>
-      </LandlordEP>
+      </ManagerER>
     </>
   )
 }
-const LandlordEP = styled.section`
+const ManagerER = styled.section`
   .e-section {
     display: flex;
     flex-direction: column;
@@ -52,8 +52,8 @@ const LandlordEP = styled.section`
   }
   @media screen and (max-width: 900px) {
     img {
-      width: 20%;
+      width: 25%;
     }
   }
 `
-export default LandlordEmptyProperty
+export default ManagerEmptyReminder

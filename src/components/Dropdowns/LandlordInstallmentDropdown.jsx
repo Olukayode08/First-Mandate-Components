@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const paymentTypes = ['Cash', 'Credit Card', 'Bank Transfer']
 const paymentInstallment = ['1', '2', '3', '4', '5']
 
-const InstallmentDropdown = ({
+const LandlordInstallmentDropdown = ({
   handleChangeAddTenant,
   addTenant,
   handlePaymentTypeChange,
@@ -11,7 +11,7 @@ const InstallmentDropdown = ({
 }) => {
   return (
     <>
-      <InstallmentDD>
+      <LInstallmentD>
         <section className='select-section'>
           <div className='select'>
             <label>Rent Payment Type*</label>
@@ -54,22 +54,22 @@ const InstallmentDropdown = ({
 
           <div className='select'>
             <label>Amount for each Installment*</label>
-              <input
-                type='text'
-                id='rent_amount'
-                name='rent_amount'
-                placeholder='#100,000.00'
-                value={addTenant.rent_amount}
-                onChange={handleChangeAddTenant}
-                disabled={!addTenant.no_of_installments}
-              />
-            </div>
+            <input
+              type='text'
+              id='rent_amount'
+              name='rent_amount'
+              placeholder='#100,000.00'
+              value={addTenant.rent_amount}
+              onChange={handleChangeAddTenant}
+              disabled={!addTenant.no_of_installments}
+            />
+          </div>
         </section>
-      </InstallmentDD>
+      </LInstallmentD>
     </>
   )
 }
-const InstallmentDD = styled.section`
+const LInstallmentD = styled.section`
   .select-section {
     display: flex;
     flex-wrap: wrap;
@@ -106,4 +106,4 @@ const InstallmentDD = styled.section`
     flex-shrink: 0;
   }
 `
-export default InstallmentDropdown
+export default LandlordInstallmentDropdown

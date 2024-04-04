@@ -20,6 +20,7 @@ import LandlordTenants from './components/Landlord/LandlordTenants'
 import ManagerTenantList from './components/Manager/ManagerTenantList'
 import LandlordAddNewManager from './components/Landlord/LandlordAddNewManager'
 import LandlordManagers from './components/Landlord/LandlordManagers'
+import LandlordUploadPropertyPage from './components/Landlord/LandlordUploadPropertyPage'
 import LandlordAddNewTenant from './components/Landlord/LandlordAddNewTenant'
 import ManagerAddNewTenant from './components/Manager/ManagerAddNewTenant'
 import ManagerAddLandlord from './components/Manager/ManagerAddLandlord'
@@ -51,9 +52,7 @@ import TenantProfileSettings from './components/Tenant/TenantProfileSettings'
 import TenantPaymentPage from './components/Tenant/TenantPaymentPage'
 import TenantPaymentReview from './components/Tenant/TenantPaymentReview'
 import LandlordSendReminder from './components/Landlord/LandlordSendReminder'
-import UploadPropertyPage from './components/UploadProperty/UploadPropertyPage'
 import LandlordSelectProperty from './components/Landlord/LandlordSelectProperty'
-import ManagerSendReminder from './components/Manager/ManagerSendReminder'
 import ManagerEditProfilePage from './components/Manager/ManagerEditProfilePage'
 import ManagerProfileSettings from './components/Manager/ManagerProfileSettings'
 import ManagerDocuments from './components/Manager/ManagerDocuments'
@@ -81,6 +80,7 @@ import TenantHistory from './components/Tenant/TenantHistory'
 import TenantCalendar from './components/Tenant/TenantCalendar'
 import ProtectedRoute from './hooks/ProtectedRoute'
 import LandlordSingleProperty from './components/Landlord/LandlordSingleProperty'
+import ManagerUploadPropertyPage from './components/Manager/ManagerUploadPropertyPage'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -127,7 +127,10 @@ function App() {
                 path='properties/:singlePropertyId'
                 element={<LandlordSingleProperty />}
               />
-              <Route path='upload-property' element={<UploadPropertyPage />} />
+              <Route
+                path='add-property'
+                element={<LandlordUploadPropertyPage />}
+              />
               <Route
                 path='add-unit/:propertyId/units'
                 element={<LandlordAddUnit />}
@@ -180,15 +183,20 @@ function App() {
             <Route path='/manager' element={<PropertyManager />}>
               <Route path='' element={<ManagerHomePage />} />
               <Route path='notifications' element={<ManagerNotifications />} />
+
               <Route path='properties' element={<ManagerPropertyPageOne />} />
+
               <Route path='property' element={<ManagerPropertyPageTwo />} />
+              <Route
+                path='add-property'
+                element={<ManagerUploadPropertyPage />}
+              />
               <Route path='tenants' element={<ManagerTenantList />} />
               <Route path='add-tenant' element={<ManagerAddNewTenant />} />
               <Route path='landlords' element={<ManagerAddLandlord />} />
               <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
               <Route path='reminders' element={<ManagerReminders />} />
               <Route path='due-date' element={<ManagerDueDates />} />
-              <Route path='send-reminder' element={<ManagerSendReminder />} />
               <Route path='add-reminder' element={<ManagerAddReminder />} />
               <Route path='edit-profile' element={<ManagerEditProfilePage />} />
               <Route path='profile' element={<ManagerProfileSettings />} />

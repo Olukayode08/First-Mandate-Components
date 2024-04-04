@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import ManagerUnitTypeDropdown from '../Dropdowns/ManagerUnitTypeDropdown'
 import { IoMdArrowBack } from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
-import LandlordUnitTypeDropdown from '../Dropdowns/LandlordUnitTypeDropdown'
 
-const LandlordAddUnit = () => {
+const ManagerAddUnit = () => {
   const navigate = useNavigate()
   const { propertyId } = useParams()
   const [buttonType, setButtonType] = useState()
@@ -95,7 +95,7 @@ const LandlordAddUnit = () => {
 
   return (
     <>
-      <LAUnit>
+      <MAUnit>
         <section>
           <div className='upload-unit'>
             {!!(addUnitError || unitError) && (
@@ -119,7 +119,7 @@ const LandlordAddUnit = () => {
             </div>
             <div className='unit-type'>
               <label>Unit Type*</label>
-              <LandlordUnitTypeDropdown
+              <ManagerUnitTypeDropdown
                 addUnit={addUnit}
                 handleChangeAddUnit={handleChangeAddUnit}
               />
@@ -179,7 +179,6 @@ const LandlordAddUnit = () => {
                 onClick={() => handleAddUnit('continue')}
                 disabled={isLoading}
                 type='submit'
-
                 className={`next-btn next-button ${
                   isLoading && buttonType === 'continue' && 'next-btn-disabled'
                 }`}
@@ -196,11 +195,11 @@ const LandlordAddUnit = () => {
             </div>
           </div>
         </section>
-      </LAUnit>
+      </MAUnit>
     </>
   )
 }
-const LAUnit = styled.section`
+const MAUnit = styled.section`
   .upload-unit {
     width: 100%;
     background-color: #fff;
@@ -384,4 +383,4 @@ const LAUnit = styled.section`
   }
 `
 
-export default LandlordAddUnit
+export default ManagerAddUnit

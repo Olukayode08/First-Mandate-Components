@@ -159,8 +159,11 @@ const LandlordReminders = () => {
               </div>
               <div className='table'>
                 <table>
-                  {data.data?.data && data.data?.data.length > 0
-                    ? data.data?.data.map((reminder) => (
+                  {data &&
+                  data.data &&
+                  data.data.data &&
+                  data.data.data.length > 0
+                    ? data.data.data.map((reminder) => (
                         <tbody key={reminder.uuid}>
                           <RemainderCard
                             reminder={reminder}
@@ -174,12 +177,12 @@ const LandlordReminders = () => {
                       ))
                     : null}
                 </table>
-                {!pageLoading && !data.data?.data?.length && (
-                  <div>
-                    <LandlordEmptyReminder />
-                  </div>
-                )}
               </div>
+              {!pageLoading && !data.data.data?.length && (
+                <div>
+                  <LandlordEmptyReminder />
+                </div>
+              )}
             </div>
           </main>
         </section>

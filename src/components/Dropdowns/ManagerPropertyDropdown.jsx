@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import editIcon from '../../assets/pencil-edit-01.png'
 import { useNavigate } from 'react-router-dom'
-const ManagerPropertiesDropdown = () => {
+
+const ManagerPropertyDropdown = ({ property }) => {
   const navigate = useNavigate()
   const dropdownRef = useRef(null)
 
@@ -21,18 +22,38 @@ const ManagerPropertiesDropdown = () => {
     }
 
     window.addEventListener('click', handleClickOutside)
-
     return () => {
       window.removeEventListener('click', handleClickOutside)
     }
   }, [])
 
-  const navigateTenant = () => {
-    navigate('/manager/add-tenant')
+  const navigateUnit = () => {
+    navigate(`/manager/add-unit/${property.uuid}/units`)
     setTimeout(() => {
       setShowDropdown(false)
     }, 1000)
   }
+  const navigateProperty = () => {
+    navigate(`/manager/properties/${property.uuid}`)
+    setTimeout(() => {
+      setShowDropdown(false)
+    }, 1000)
+  }
+
+  const navigateTenant = () => {
+    navigate(`/manager/select-unit`)
+    setTimeout(() => {
+      setShowDropdown(false)
+    }, 1000)
+  }
+
+  const navigateManager = () => {
+    navigate(`/manager/add-manager/${property.uuid}`)
+    setTimeout(() => {
+      setShowDropdown(false)
+    }, 1000)
+  }
+
   return (
     <>
       <ManagerPD ref={dropdownRef}>
@@ -47,10 +68,15 @@ const ManagerPropertiesDropdown = () => {
             <p onClick={navigateTenant} className='nav'>
               Add Tenants
             </p>
-            <p className='nav'>Add Units</p>
-            <p className='nav'>Edit Units</p>
-            <p className='nav'>Edit Property</p>
-            <p className='nav'>Delete</p>
+            <p onClick={navigateUnit} className='nav'>
+              Add Units
+            </p>
+            <p onClick={navigateProperty} className='nav'>
+              View Property
+            </p>
+            <p onClick={navigateManager} className='nav'>
+              Add Manager
+            </p>
           </div>
         )}
       </ManagerPD>
@@ -88,4 +114,4 @@ const ManagerPD = styled.section`
     }
   }
 `
-export default ManagerPropertiesDropdown
+export default ManagerPropertyDropdown

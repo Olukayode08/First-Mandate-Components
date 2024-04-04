@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
@@ -9,15 +9,11 @@ const token = localStorage.getItem('token')
 const LandlordManagers = () => {
   const navigate = useNavigate()
 
-  const [propertyManagers, setPropertyManagers] = useState([])
-
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/property-managers',
     {
       enabled: !!token,
-      onSuccess: (data) => {
-        setPropertyManagers(data?.data?.data || [])
-      },
+      onSuccess: (data) => {},
     }
   )
   if (pageLoading) {
@@ -48,8 +44,11 @@ const LandlordManagers = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {propertyManagers && propertyManagers.length > 0
-                    ? propertyManagers.map((list) => (
+                  {data &&
+                  data.data &&
+                  data.data.data &&
+                  data.data.data.length > 0
+                    ? data.data.data.map((list) => (
                         <tr key={list.uuid} className='m-list'>
                           <td>1</td>
                           <td>{list.name}</td>
@@ -76,7 +75,7 @@ const LandlordManagers = () => {
                     : null}
                 </tbody>
               </table>
-              {!pageLoading && !propertyManagers?.length && (
+              {!pageLoading && !data.data.data?.length && (
                 <div>
                   <LandlordEmptyManager />
                 </div>

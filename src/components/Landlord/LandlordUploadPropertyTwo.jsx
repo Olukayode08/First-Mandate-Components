@@ -1,22 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-import RentTermsDropdown from '../Dropdowns/RentTermsDropdown'
-import RentAmountDropdown from '../Dropdowns/RentAmountDropdown'
+import LandlordRentTermsDropdown from '../Dropdowns/LandlordRentTermsDropdown'
+import LandlordRentAmountDropdown from '../Dropdowns/LandlordRentAmountDropdown'
 
-const UploadPropertyTwo = ({
+const LandlordUploadPropertyTwo = ({
   handleChangeAddProperty,
   setAddProperty,
   addProperty,
 }) => {
   return (
     <>
-      <UploadPTwo>
+      <LUploadPTwo>
         <section>
           <div>
-            <RentTermsDropdown />
+            <LandlordRentTermsDropdown />
           </div>
           <div>
-            <RentAmountDropdown />
+            <LandlordRentAmountDropdown />
           </div>
           <div className='utilities'>
             <label>Payments to be managed apart from Rent</label>
@@ -36,11 +36,11 @@ const UploadPropertyTwo = ({
             </div>
           </div>
         </section>
-      </UploadPTwo>
+      </LUploadPTwo>
     </>
   )
 }
-const UploadPTwo = styled.section`
+const LUploadPTwo = styled.section`
   .section {
     display: flex;
     flex-direction: column;
@@ -127,4 +127,4 @@ const UploadPTwo = styled.section`
     }
   }
 `
-export default UploadPropertyTwo
+export default LandlordUploadPropertyTwo

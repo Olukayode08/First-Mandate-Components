@@ -12,7 +12,7 @@ const ManagerPropertyPageOne = () => {
           <main className='l-section'>
               <div className='a-ppt'>
                 <h3>Properties</h3>
-                <Link className='add-r'>
+                <Link to='/manager/add-property' className='add-r'>
                   <h4>Add New Property</h4>
                   <FaRegPlusSquare size={20} />
                 </Link>

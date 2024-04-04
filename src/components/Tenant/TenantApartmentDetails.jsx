@@ -23,90 +23,97 @@ const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenant/apartment
       <TenantAD>
         <section>
           <div className='a-section'>
-            {data?.data?.data && data?.data?.data?.length > 0
-              ? data?.data?.data?.map((property) => (
-                  <div key={property.uuid} className='rent-sec'>
-                    <h3 className='rent-det'>My Rent Details</h3>
-                    <div className='apart-det'>
-                      <div className='apartment'>
-                        <p className='p-icon'>
-                          <RiRadioButtonLine />
-                        </p>
-                        <div className='apart-loc'>
-                          <h3>{property.name}</h3>
-                          <h1>Ikeja Road, Lagos State</h1>
-                          <div className='status-active'>
-                            <p>
-                              Status:
-                              <span> Active</span>
-                            </p>
+            {data &&
+            data.data &&
+            data.data.data &&
+            data.data.data.length > 0 ? (
+              data.data.data.map((property) => (
+                <div key={property.uuid} className='rent-sec'>
+                  <h3 className='rent-det'>My Rent Details</h3>
+                  <div className='apart-det'>
+                    <div className='apartment'>
+                      <p className='p-icon'>
+                        <RiRadioButtonLine />
+                      </p>
+                      <div className='apart-loc'>
+                        <h3>{property.name}</h3>
+                        <h1>Ikeja Road, Lagos State</h1>
+                        <div className='status-active'>
+                          <p>
+                            Status:
+                            <span> Active</span>
+                          </p>
 
-                            <p>
-                              Unit:
-                              <span> 4 Units</span>
-                            </p>
-                            <p>
-                              Building Type:
-                              <span> Flat</span>
-                            </p>
-                          </div>
+                          <p>
+                            Unit:
+                            <span> 4 Units</span>
+                          </p>
+                          <p>
+                            Building Type:
+                            <span> Flat</span>
+                          </p>
                         </div>
                       </div>
                     </div>
-                    <div className='apartment-details'>
-                      <h3 className='rent-det'>Apartment Details</h3>
-                      <div className='t-details'>
-                        <div className='input'>
-                          <h1>Lanlord's Name</h1>
-                          <input
-                            type='text'
-                            disabled
-                            placeholder={property.landlord_name}
-                          />
-                        </div>
-                        <div className='input'>
-                          <h1>Manager's Name</h1>
-                          <input
-                            type='text'
-                            disabled
-                            placeholder={property.manager_name}
-                          />
-                        </div>
+                  </div>
+                  <div className='apartment-details'>
+                    <h3 className='rent-det'>Apartment Details</h3>
+                    <div className='t-details'>
+                      <div className='input'>
+                        <h1>Lanlord's Name</h1>
+                        <input
+                          type='text'
+                          disabled
+                          placeholder={property.landlord_name}
+                        />
                       </div>
-                      <div className='t-details'>
-                        <div className='input'>
-                          <h1>Lanlord's Phone</h1>
-                          <input
-                            type='text'
-                            disabled
-                            placeholder={property.landlord_phone}
-                          />
-                        </div>
-                        <div className='input'>
-                          <h1>Managers's Phone</h1>
-                          <input
-                            type='text'
-                            disabled
-                            placeholder={property.manager_phone}
-                          />
-                        </div>
-                      </div>
-                      <div className='t-details'>
-                        <div className='input'>
-                          <h1>Rent Amount per year</h1>
-                          <input
-                            type='text'
-                            disabled
-                            placeholder={property.rent_amount}
-                          />
-                        </div>
-                        <div className='input'>
-                          <h1>Current Rent Status</h1>
-                          <input type='text' disabled placeholder={property.occupation_status} />
-                        </div>
+                      <div className='input'>
+                        <h1>Manager's Name</h1>
+                        <input
+                          type='text'
+                          disabled
+                          placeholder={property.manager_name}
+                        />
                       </div>
                     </div>
-                    {/* <div className='t-plan'>
+                    <div className='t-details'>
+                      <div className='input'>
+                        <h1>Lanlord's Phone</h1>
+                        <input
+                          type='text'
+                          disabled
+                          placeholder={property.landlord_phone}
+                        />
+                      </div>
+                      <div className='input'>
+                        <h1>Managers's Phone</h1>
+                        <input
+                          type='text'
+                          disabled
+                          placeholder={property.manager_phone}
+                        />
+                      </div>
+                    </div>
+                    <div className='t-details'>
+                      <div className='input'>
+                        <h1>Rent Amount per year</h1>
+                        <input
+                          type='text'
+                          disabled
+                          placeholder={property.rent_amount}
+                        />
+                      </div>
+                      <div className='input'>
+                        <h1>Current Rent Status</h1>
+                        <input
+                          type='text'
+                          disabled
+                          placeholder={property.occupation_status}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div className='t-plan'>
                       <p className='plan-text'>
                         What do you plan to do after your rent has ended?
                       </p>
@@ -123,10 +130,9 @@ const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenant/apartment
                         </div>
                       </div>
                     </div> */}
-                  </div>
-                ))
-              : null}
-            {!pageLoading && !data.data?.data?.length && (
+                </div>
+              ))
+            ) : (
               <div>
                 <TenantEmptyApartment />
               </div>

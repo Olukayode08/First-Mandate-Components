@@ -25,7 +25,7 @@ const mockData = {
   },
 }
 
-const CountryDropdown = ({
+const ManagerCountryDropdown = ({
   handleChangeAddProperty,
   addProperty,
   setAddProperty,
@@ -51,7 +51,7 @@ const CountryDropdown = ({
 
   return (
     <>
-      <CountryDD>
+      <MCountryD>
         <section className='select-section'>
           <div className='select'>
             <select
@@ -105,11 +105,11 @@ const CountryDropdown = ({
             </select>
           </div>
         </section>
-      </CountryDD>
+      </MCountryD>
     </>
   )
 }
-const CountryDD = styled.section`
+const MCountryD = styled.section`
   .select-section {
     display: flex;
     gap: 20px;
@@ -142,4 +142,4 @@ const CountryDD = styled.section`
     }
   }
 `
-export default CountryDropdown
+export default ManagerCountryDropdown

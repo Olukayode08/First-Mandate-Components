@@ -28,15 +28,12 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-
     if (!(email || password)) {
       return
     }
-
     try {
       await postLogin({ email, password })
     } catch (e) {
-      console.error(e.message)
     }
   }
 

@@ -1,24 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const CongratsModal = () => {
-
+const ManagerCongratsModal = () => {
   return (
     <>
-      <CModal>
+      <MCModal>
         <section>
           <div className='modal'>
             <div className='overlay'></div>
             <div className='modal-content'>
-              <p className='modal-text'>Congratulations, your property has been uploaded successfully</p>
+              <p className='modal-text'>
+                Congratulations, your property has been uploaded successfully
+              </p>
             </div>
           </div>
         </section>
-      </CModal>
+      </MCModal>
     </>
   )
 }
-const CModal = styled.section`
+const MCModal = styled.section`
   /* TOAST NOTIFICATION */
   body.active-modal {
     overflow-y: hidden;
@@ -65,4 +66,4 @@ const CModal = styled.section`
     color: #000;
   }
 `
-export default CongratsModal
+export default ManagerCongratsModal
