@@ -134,9 +134,10 @@ const LandlordReminders = () => {
   } = useFirstMandateQuery('/reminders', {
     enabled: !!token,
     onSuccess: (data) => {
-      console.log(data)
     },
   })
+  console.log(data)
+
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }
