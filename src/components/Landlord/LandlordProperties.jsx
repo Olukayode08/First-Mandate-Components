@@ -12,9 +12,13 @@ const token = localStorage.getItem('token')
 
 const LandlordProperties = () => {
 
-  const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
+  const {
+    data,
+    isLoading: pageLoading,
+  } = useFirstMandateQuery('/properties', {
     enabled: !!token,
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+    },
   })
 
   if (pageLoading) {

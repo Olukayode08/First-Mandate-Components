@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { RiRadioButtonLine } from 'react-icons/ri'
-// import LandlordPropertyUnit from './LandlordPropertyUnit'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import { useParams } from 'react-router-dom'
+import LandlordSinglePropertyUnit from './LandlordSiglePropertyUnit'
 
 const token = localStorage.getItem('token')
 
@@ -17,8 +17,6 @@ const LandlordSingleProperty = () => {
       onSuccess: (data) => {},
     }
   )
-
-  // console.log(data?.data.address)
   return (
     <>
       <LandlordSP>
@@ -52,7 +50,7 @@ const LandlordSingleProperty = () => {
                     </div>
                   </div>
                 </div>
-                {/* <LandlordPropertyUnit data={data} /> */}
+                <LandlordSinglePropertyUnit data={data} />
               </div>
             )}
           </div>

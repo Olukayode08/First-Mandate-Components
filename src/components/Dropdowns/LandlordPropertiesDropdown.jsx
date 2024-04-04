@@ -40,12 +40,12 @@ const LandlordPropertiesDropdown = ({ property }) => {
     }, 1000)
   }
 
-  const navigateTenant = () => {
-    navigate(`/landlord/select-unit`)
-    setTimeout(() => {
-      setShowDropdown(false)
-    }, 1000)
-  }
+  // const navigateTenant = () => {
+  //   navigate(`/landlord/select-unit`)
+  //   setTimeout(() => {
+  //     setShowDropdown(false)
+  //   }, 1000)
+  // }
 
     const navigateManager = () => {
     navigate(`/landlord/add-manager/${property.uuid}`)
@@ -65,9 +65,9 @@ const LandlordPropertiesDropdown = ({ property }) => {
         />
         {showDropdown && (
           <div className='navigate-dropdown'>
-            <p onClick={navigateTenant} className='nav'>
+            {/* <p onClick={navigateTenant} className='nav'>
               Add Tenants
-            </p>
+            </p> */}
             <p onClick={navigateUnit} className='nav'>
               Add Units
             </p>

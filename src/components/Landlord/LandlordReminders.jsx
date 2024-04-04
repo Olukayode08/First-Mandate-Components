@@ -29,7 +29,6 @@ const DeleteModal = ({
         refetchReminders()
       },
       onError: (error) => {
-        console.error(error)
       },
     }
   )
@@ -39,7 +38,6 @@ const DeleteModal = ({
       await deleteReminder()
       setShowModal(false)
     } catch (e) {
-      console.log(error)
     }
   }
   return (

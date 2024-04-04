@@ -14,6 +14,7 @@ const LandlordTenants = () => {
     onSuccess: (data) => {},
   })
 
+
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }

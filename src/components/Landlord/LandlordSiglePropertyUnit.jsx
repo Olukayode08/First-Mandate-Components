@@ -2,13 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
-const LandlordPropertyUnit = ({ property }) => {
-
+const LandlordSinglePropertyUnit = ({ data }) => {
   const navigate = useNavigate()
 
   return (
     <>
-      <LandlordPU>
+      <LandlordSPU>
         <div className='table'>
           <table>
             <thead>
@@ -21,7 +20,7 @@ const LandlordPropertyUnit = ({ property }) => {
               </tr>
             </thead>
             <tbody>
-              {property.units.map((table) => {
+              {data?.data?.units.map((table) => {
                 return (
                   <tr key={table.uuid} className='t-list'>
                     <td>{table.unit_name}</td>
@@ -35,19 +34,17 @@ const LandlordPropertyUnit = ({ property }) => {
                     >
                       Add Tenant
                     </td>
-
-                    {/* <td>{table.uuid}</td> */}
                   </tr>
                 )
               })}
             </tbody>
           </table>
         </div>
-      </LandlordPU>
+      </LandlordSPU>
     </>
   )
 }
-const LandlordPU = styled.section`
+const LandlordSPU = styled.section`
   .table {
     overflow-x: scroll;
     width: 100%;
@@ -72,4 +69,4 @@ const LandlordPU = styled.section`
     height: 40px;
   }
 `
-export default LandlordPropertyUnit
+export default LandlordSinglePropertyUnit

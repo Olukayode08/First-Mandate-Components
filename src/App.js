@@ -52,7 +52,7 @@ import TenantProfileSettings from './components/Tenant/TenantProfileSettings'
 import TenantPaymentPage from './components/Tenant/TenantPaymentPage'
 import TenantPaymentReview from './components/Tenant/TenantPaymentReview'
 import LandlordSendReminder from './components/Landlord/LandlordSendReminder'
-import LandlordSelectProperty from './components/Landlord/LandlordSelectProperty'
+import LandlordSelectUnit from './components/Landlord/LandlordSelectUnit'
 import ManagerEditProfilePage from './components/Manager/ManagerEditProfilePage'
 import ManagerProfileSettings from './components/Manager/ManagerProfileSettings'
 import ManagerDocuments from './components/Manager/ManagerDocuments'
@@ -136,10 +136,10 @@ function App() {
                 element={<LandlordAddUnit />}
               />
               <Route path='tenants' element={<LandlordTenants />} />
-              <Route path='select-unit' element={<LandlordSelectProperty />} />
+              <Route path='select-unit' element={<LandlordSelectUnit />} />
               <Route
                 path='select-unit/:tenantId/edit'
-                element={<LandlordSelectProperty />}
+                element={<LandlordSelectUnit />}
               />
               <Route
                 path='add-tenant/:unitId/tenants'

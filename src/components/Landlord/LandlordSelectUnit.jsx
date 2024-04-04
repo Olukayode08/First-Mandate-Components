@@ -7,7 +7,7 @@ import LandlordEmptyProperty from './LandlordEmptyProperty'
 import { useNavigate, useParams } from 'react-router'
 const token = localStorage.getItem('token')
 
-const LandlordSelectProperty = () => {
+const LandlordSelectUnit = () => {
   const navigate = useNavigate()
   const [occupiedError, setOccupiedError] = useState('')
   const unitOccupied = () => {
@@ -18,7 +18,6 @@ const LandlordSelectProperty = () => {
       setOccupiedError('This unit has been Occupied')
     }, 200)
   }
-
   const { tenantId } = useParams()
   const pageUrl = window.location.href
   const isEdit = pageUrl.includes('edit')
@@ -64,7 +63,6 @@ const LandlordSelectProperty = () => {
                         {property.units.map((unit) => {
                           return (
                             <div
-  
                               onClick={() => {
                                 if (isEdit) {
                                   navigate(
@@ -80,7 +78,6 @@ const LandlordSelectProperty = () => {
                                   )
                                 }
                               }}
-
                               key={unit.uuid}
                               className={
                                 unit.occupation_status === 'occupied'
@@ -195,4 +192,4 @@ const LandlordSP = styled.section`
     }
   }
 `
-export default LandlordSelectProperty
+export default LandlordSelectUnit
