@@ -40,11 +40,16 @@ const LandlordAddUnit = () => {
     error: addUnitError,
   } = useFirstMandateMutation(`/properties/${propertyId}/units`, {
     onSuccess: (data) => {
-      console.log(data)
+      const unitUuid = data?.data?.uuid
+      if (addUnit.occupation_status === 'occupied') {
+        setTimeout(() => {
+          navigate(`/landlord/add-tenant/${unitUuid}/tenants`, {
+            state: { unitName: addUnit.unit_name },
+          })
+        }, 5000)
+      }
     },
-    onError: (error) => {
-      console.error(error)
-    },
+    onError: (error) => {},
   })
 
   const payload = {
@@ -56,7 +61,6 @@ const LandlordAddUnit = () => {
 
   const handleAddUnit = async (_buttonType) => {
     setButtonType(_buttonType)
-
     if (
       !addUnit.unit_name ||
       !addUnit.unit_type ||
@@ -68,25 +72,33 @@ const LandlordAddUnit = () => {
     }
     try {
       await postUnit(payload)
-
       setTimeout(() => {
-        setSuccessError(
-          'Congratulations, your unit has been added successfully'
-        )
+        if (addUnit.occupation_status === 'occupied') {
+          setSuccessError(
+            'Congratulations, your unit has been added successfully. You are required to add a tenant to the already occupied unit'
+          )
+        } else {
+          setSuccessError(
+            'Congratulations, your unit has been added successfully.'
+          )
+        }
+        setAddUnit({
+          unit_name: '',
+          unit_type: '',
+          no_of_bedrooms: '',
+          occupation_status: '',
+        })
         setTimeout(() => {
-          setAddUnit({
-            unit_name: '',
-            unit_type: '',
-            no_of_bedrooms: '',
-            occupation_status: '',
-          })
           setSuccessError('')
-          if (_buttonType === 'continue') {
+          if (
+            _buttonType === 'continue' &&
+            addUnit.occupation_status !== 'occupied'
+          ) {
             navigate('/landlord/properties')
           } else if (_buttonType === 'addNew') {
             setSuccessError('')
           }
-        }, 3000)
+        }, 5000)
       }, 200)
     } catch (e) {
       console.error(e.message)
@@ -179,7 +191,6 @@ const LandlordAddUnit = () => {
                 onClick={() => handleAddUnit('continue')}
                 disabled={isLoading}
                 type='submit'
-
                 className={`next-btn next-button ${
                   isLoading && buttonType === 'continue' && 'next-btn-disabled'
                 }`}

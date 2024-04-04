@@ -27,7 +27,6 @@ const LandlordSelectUnit = () => {
     enabled: !!token,
     onSuccess: (data) => {},
   })
-  console.log(data)
   if (pageLoading) {
     return <div className='page-loading'>Loading</div>
   }
@@ -62,7 +61,7 @@ const LandlordSelectUnit = () => {
                       <p>{property.title}</p>
                       <div className='house'>
                         {property.units.map((unit) => {
-                          return (
+                          return ( 
                             <div
                               onClick={() => {
                                 if (isEdit) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import {
   useFirstMandateMutation,
   useFirstMandateQuery,
@@ -46,6 +46,8 @@ const findUnit = (unitId, items) => {
 
 const LandlordAddNewTenant = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const unitName = location.state && location.state.unitName
   const { unitId, tenantId } = useParams()
   const pageUrl = window.location.href
   const isEdit = pageUrl.includes('edit')
@@ -97,20 +99,15 @@ const LandlordAddNewTenant = () => {
           navigate('/landlord/tenants')
         }, 3000)
       },
-      // onError: (error) => {
-      //   console.error(error)
-      // },
     }
   )
 
   const { data } = useFirstMandateQuery('/tenants', {
     enabled: !!token && !!tenantId,
     onSuccess: (data) => {
-
       const tenant = data?.data?.data?.find(
         (tenant) => tenant.uuid === tenantId
       )
-      console.log('single tenants', tenant)
       handleTenantUpdate('name', tenant?.name)
       handleTenantUpdate('email', tenant?.email)
       handleTenantUpdate('phone', tenant?.phone)
@@ -135,7 +132,6 @@ const LandlordAddNewTenant = () => {
     },
   })
 
-
   const handleTenant = async (e) => {
     e.preventDefault()
     const payload = {
@@ -154,7 +150,6 @@ const LandlordAddNewTenant = () => {
     try {
       await postTenant(payload)
     } catch (e) {
-      console.error(e)
     }
   }
 
@@ -174,7 +169,9 @@ const LandlordAddNewTenant = () => {
             <h3>{isEdit ? 'Edit Tenant' : 'Add New Tenant'}</h3>
             <div className='input'>
               <label>Unit Name</label>
-              <p className='unit'>{propertiesData?.unit_name || ''}</p>
+              <p className='unit'>
+                {propertiesData?.unit_name || unitName || ''}
+              </p>
             </div>
             <div className='input'>
               <label>Name</label>

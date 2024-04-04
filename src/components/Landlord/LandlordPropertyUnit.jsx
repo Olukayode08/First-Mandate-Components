@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
 const LandlordPropertyUnit = ({ property }) => {
-
   const navigate = useNavigate()
 
   return (
@@ -29,11 +28,17 @@ const LandlordPropertyUnit = ({ property }) => {
                     <td>{table.no_of_bedrooms}</td>
                     <td>{table.occupation_status}</td>
                     <td
-                      onClick={() =>
-                        navigate(`/landlord/add-tenant/${table.uuid}/tenants`)
-                      }
+                      onClick={() => {
+                        if (table.occupation_status !== 'occupied') {
+                          navigate(`/landlord/add-tenant/${table.uuid}/tenants`)
+                        }
+                      }}
                     >
-                      Add Tenant
+                      <div className='margin-r'>
+                        {table.occupation_status === 'occupied'
+                          ? 'Occupied'
+                          : 'Add Tenant'}
+                      </div>
                     </td>
 
                     {/* <td>{table.uuid}</td> */}
@@ -70,6 +75,13 @@ const LandlordPU = styled.section`
   }
   .t-list {
     height: 40px;
+  }
+  .margin-r {
+    margin: 5px 0;
+    padding: 10px 5px;
+    border-radius: 4px;
+    background-color: #f6f6f8;
+    cursor: pointer;
   }
 `
 export default LandlordPropertyUnit

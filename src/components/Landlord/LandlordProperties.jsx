@@ -41,9 +41,9 @@ const LandlordProperties = () => {
                 <div key={property.uuid} className='manager-p'>
                   <div className='apart-det'>
                     <div className='apartment'>
-                      <p className='p-icon'>
-                        <RiRadioButtonLine />
-                      </p>
+                      {/* <p className='p-icon'>
+                        {property === 'occupied' ? <RiRadioButtonLine /> : <RiRadioButtonLine />}
+                      </p> */}
                       <div className='apart-loc'>
                         <h3>{property.title}</h3>
                         <h1>{property.address}</h1>
