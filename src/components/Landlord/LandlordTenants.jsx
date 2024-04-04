@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import LandlordEmptyTenant from './LandlordEmptyTenant'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 
@@ -9,11 +9,12 @@ const token = localStorage.getItem('token')
 const LandlordTenants = () => {
   // Fetch Tenants
   const navigate = useNavigate()
+  const { tenantId } = useParams()
+
   const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenants', {
     enabled: !!token,
     onSuccess: (data) => {},
   })
-
 
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>

@@ -9,6 +9,8 @@ const token = localStorage.getItem('token')
 
 const LandlordSelectUnit = () => {
   const navigate = useNavigate()
+  const { tenantId } = useParams()
+
   const [occupiedError, setOccupiedError] = useState('')
   const unitOccupied = () => {
     setTimeout(() => {
@@ -18,7 +20,6 @@ const LandlordSelectUnit = () => {
       setOccupiedError('This unit has been Occupied')
     }, 200)
   }
-  const { tenantId } = useParams()
   const pageUrl = window.location.href
   const isEdit = pageUrl.includes('edit')
 

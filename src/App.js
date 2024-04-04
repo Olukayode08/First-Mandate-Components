@@ -149,6 +149,7 @@ function App() {
                 path='add-tenant/:tenantId/:unitId/edit'
                 element={<LandlordAddNewTenant />}
               />
+
               <Route path='add-tenant' element={<LandlordAddNewTenant />} />
               <Route path='managers' element={<LandlordManagers />} />
               <Route path='add-manager' element={<LandlordAddNewManager />} />
