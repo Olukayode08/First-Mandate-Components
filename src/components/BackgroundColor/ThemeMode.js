@@ -8,7 +8,7 @@ const ThemeMode = () => {
 
   const closeSidebar = () => {
     toggleTheme()
-    if (window.innerWidth <= 1200) {
+    if (window.innerWidth <= 1250) {
       setTimeout(() => {
         setActive(false)
       }, 500)

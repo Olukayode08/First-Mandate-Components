@@ -10,7 +10,7 @@ export const managerOptions = [
     icon: managerIcon,
     heading: 'Add Tenants',
     text: 'Welcome Residents: Expand Your Community with New Tenants.',
-    navigate: '/manager/add-tenant',
+    navigate: '/manager/select-unit',
   },
   {
     id: 1112,
@@ -24,7 +24,7 @@ export const managerOptions = [
     icon: uploadIcon,
     heading: 'Upload New Property',
     text: 'Expand Your Portfolio: Integrate New Properties with Ease.',
-    navigate: '#',
+    navigate: '/landlord/add-property',
   },
   {
     id: 1114,

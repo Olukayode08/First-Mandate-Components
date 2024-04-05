@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import styled from 'styled-components'
 import { Squash as Hamburger } from 'hamburger-react'
 import { IoHomeOutline } from 'react-icons/io5'
@@ -13,8 +13,26 @@ import ThemeMode from '../BackgroundColor/ThemeMode'
 import { ThemeContext } from '../../context/Darkmode'
 
 const LandlordSidebar = () => {
+  const location = useLocation()
   const { active, setActive } = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
+  const activeRef = useRef(null)
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        activeRef.current &&
+        !activeRef.current.contains(event.target) &&
+        screenSize <= 1250
+      ) {
+        setActive(false)
+      }
+    }
+    document.addEventListener('mousedown', handleOutsideClick)
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [setActive, screenSize])
 
   useEffect(() => {
     const handleSize = () => setScreenSize(window.innerWidth)
@@ -37,11 +55,9 @@ const LandlordSidebar = () => {
     }
   }
 
-  const location = useLocation()
-
   return (
     <>
-      <LandlordS>
+      <LandlordS ref={activeRef}>
         <section>
           {/* Sidebar Btn */}
           <div className='sidebar-btn'>

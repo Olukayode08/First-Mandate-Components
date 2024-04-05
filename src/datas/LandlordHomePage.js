@@ -10,7 +10,7 @@ export const landlordOptions = [
     icon: managerIcon,
     heading: 'Add Tenants',
     text: 'Welcome Residents: Expand Your Community with New Tenants.',
-    navigate: '/landlord/add-tenant',
+    navigate: '/landlord/select-unit',
   },
   {
     id: 1002,
@@ -24,7 +24,7 @@ export const landlordOptions = [
     icon: uploadIcon,
     heading: 'Upload New Property',
     text: 'Expand Your Portfolio: Integrate New Properties with Ease.',
-    navigate: '/landlord/upload-property',
+    navigate: '/landlord/add-property',
   },
   {
     id: 1004,

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import styled from 'styled-components'
 import { Squash as Hamburger } from 'hamburger-react'
 import { IoHomeOutline } from 'react-icons/io5'
 import { FaFileImport } from 'react-icons/fa'
-// import { HiOutlineSquare3Stack3D } from 'react-icons/hi2'
 import { LuWalletCards } from 'react-icons/lu'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { IoNotifications } from 'react-icons/io5'
@@ -14,6 +13,24 @@ import { ThemeContext } from '../../context/Darkmode'
 const TenantSidebar = () => {
   const { active, setActive } = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
+  const location = useLocation()
+  const activeRef = useRef(null)
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        activeRef.current &&
+        !activeRef.current.contains(event.target) &&
+        screenSize <= 1250
+      ) {
+        setActive(false)
+      }
+    }
+    document.addEventListener('mousedown', handleOutsideClick)
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [setActive, screenSize])
 
   useEffect(() => {
     const handleSize = () => setScreenSize(window.innerWidth)
@@ -36,11 +53,9 @@ const TenantSidebar = () => {
     }
   }
 
-  const location = useLocation()
-
   return (
     <>
-      <TenantS>
+      <TenantS ref={activeRef}>
         <section>
           {/* Sidebar Btn */}
           <div className='sidebar-btn'>

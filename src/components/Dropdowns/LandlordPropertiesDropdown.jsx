@@ -8,6 +8,7 @@ const LandlordPropertiesDropdown = ({ property }) => {
   const dropdownRef = useRef(null)
 
   const [showDropdown, setShowDropdown] = useState(false)
+  
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown)
   }
