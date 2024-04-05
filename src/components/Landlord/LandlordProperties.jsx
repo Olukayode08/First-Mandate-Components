@@ -20,8 +20,7 @@ const LandlordProperties = () => {
     onSuccess: (data) => {
     },
   })
-  console.log(data);
-
+console.log(data);
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }

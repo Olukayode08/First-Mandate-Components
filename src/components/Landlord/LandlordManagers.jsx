@@ -19,6 +19,8 @@ const LandlordManagers = () => {
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }
+  console.log(data)
+
 
   return (
     <>
@@ -36,10 +38,11 @@ const LandlordManagers = () => {
               <table>
                 <thead>
                   <tr className='l-m-heading'>
-                    <th>SN</th>
                     <th>Managers's Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
+                    <th>Property Title</th>
+                    <th>Property Address</th>
                     <th>Edit Manager</th>
                   </tr>
                 </thead>
@@ -50,10 +53,12 @@ const LandlordManagers = () => {
                   data.data.data.length > 0
                     ? data.data.data.map((list) => (
                         <tr key={list.uuid} className='m-list'>
-                          <td>1</td>
                           <td>{list.name}</td>
                           <td>{list.email}</td>
                           <td>{list.phone}</td>
+                          <td>{list.property.title}</td>
+                          <td>{list.property.address}</td>
+
                           {/* <td
                             onClick={() =>
                               navigate(`/landlord/managers/${list.uuid}`)
@@ -68,7 +73,7 @@ const LandlordManagers = () => {
                               )
                             }
                           >
-                            Edit Manager
+                            <div className='margin-r'>Edit Manager</div>
                           </td>
                         </tr>
                       ))
@@ -127,7 +132,7 @@ const LManager = styled.section`
   td {
     white-space: nowrap;
     padding: 0 20px;
-    text-align: center;
+    text-align: left;
   }
   .l-m-heading {
     text-align: center;
@@ -135,7 +140,15 @@ const LManager = styled.section`
     background: #f6f6f8;
   }
   .m-list {
-    height: 50px;
+    height: 60px;
+  }
+  .margin-r {
+    margin: 5px 0;
+    padding: 10px 5px;
+    border-radius: 4px;
+    background-color: #f6f6f8;
+    cursor: pointer;
+    text-align: center;
   }
   @media screen and (max-width: 900px) {
     .a-tenant {

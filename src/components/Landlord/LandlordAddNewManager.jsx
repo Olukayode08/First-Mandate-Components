@@ -46,7 +46,6 @@ const LandlordAddNewManager = () => {
         }, 3000)
       },
       onError: (error) => {
-        console.error(error)
       },
     }
   )
@@ -55,7 +54,6 @@ const LandlordAddNewManager = () => {
     {
       enabled: !!token && !!managerId,
       onSuccess: (data) => {
-        console.log(data)
         handleManagerUpdate('name', data?.data?.name)
         handleManagerUpdate('email', data?.data?.email)
         handleManagerUpdate('phone', data?.data?.phone)

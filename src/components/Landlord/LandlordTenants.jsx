@@ -14,7 +14,6 @@ const LandlordTenants = () => {
     enabled: !!token,
     onSuccess: (data) => {},
   })
-console.log(data);
 
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
