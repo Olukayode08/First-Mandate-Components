@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-const ManagerPropertyUnit = ({ property }) => {
+const ManagerPropertyUnit = ({ selectedProperty }) => {
+  const navigate = useNavigate()
   return (
     <>
       <ManagerPU>
@@ -13,17 +15,30 @@ const ManagerPropertyUnit = ({ property }) => {
                 <th>Unit Type</th>
                 <th>Bedrooms</th>
                 <th>Occupation Status</th>
+                <th>Add Tenant</th>
               </tr>
             </thead>
             <tbody>
-              {property.units.map((table) => {
+              {selectedProperty.units.map((table) => {
                 return (
                   <tr key={table.uuid} className='t-list'>
                     <td>{table.unit_name}</td>
                     <td>{table.unit_type}</td>
                     <td>{table.no_of_bedrooms}</td>
                     <td>{table.occupation_status}</td>
-                    {/* <td>{table.uuid}</td> */}
+                    <td
+                      onClick={() => {
+                        if (table.occupation_status !== 'occupied') {
+                          navigate(`/manager/add-tenant/${table.uuid}/tenants`)
+                        }
+                      }}
+                    >
+                      <div className='margin-r'>
+                        {table.occupation_status === 'occupied'
+                          ? 'Occupied'
+                          : 'Add Tenant'}
+                      </div>
+                    </td>
                   </tr>
                 )
               })}
@@ -57,6 +72,13 @@ const ManagerPU = styled.section`
   }
   .t-list {
     height: 40px;
+  }
+  .margin-r {
+    margin: 5px 0;
+    padding: 10px 5px;
+    border-radius: 4px;
+    background-color: #f6f6f8;
+    cursor: pointer;
   }
 `
 export default ManagerPropertyUnit

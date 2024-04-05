@@ -20,6 +20,7 @@ const LandlordProperties = () => {
     onSuccess: (data) => {
     },
   })
+  console.log(data);
 
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
@@ -55,10 +56,10 @@ const LandlordProperties = () => {
 
                           <p>
                             Unit:
-                            <span> 4 Units</span>
+                            <span> {property.units.length} Units</span>
                           </p>
                           <p>
-                            Building Type:
+                            Property Type:
                             <span> {property.property_type}</span>
                           </p>
                         </div>

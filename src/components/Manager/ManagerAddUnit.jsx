@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import ManagerUnitTypeDropdown from '../Dropdowns/ManagerUnitTypeDropdown'
 import { IoMdArrowBack } from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
+import LandlordUnitTypeDropdown from '../Dropdowns/LandlordUnitTypeDropdown'
 
 const ManagerAddUnit = () => {
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ const ManagerAddUnit = () => {
     occupation_status: '',
   })
   const backProperties = () => {
-    navigate('/landlord/properties')
+    navigate(`/manager/property/${propertyId}`)
   }
   const handleChangeAddUnit = (e) => {
     setAddUnit({ ...addUnit, [e.target.name]: e.target.value })
@@ -38,14 +38,22 @@ const ManagerAddUnit = () => {
     mutateAsync: postUnit,
     isLoading,
     error: addUnitError,
-  } = useFirstMandateMutation(`/properties/${propertyId}/units`, {
-    onSuccess: (data) => {
-      console.log(data)
-    },
-    onError: (error) => {
-      console.error(error)
-    },
-  })
+  } = useFirstMandateMutation(
+    `/property-manager/properties/${propertyId}/units`,
+    {
+      onSuccess: (data) => {
+        const unitUuid = data?.data?.uuid
+        if (addUnit.occupation_status === 'occupied') {
+          setTimeout(() => {
+            navigate(`/manager/add-tenant/${unitUuid}/tenants`, {
+              state: { unitName: addUnit.unit_name },
+            })
+          }, 5000)
+        }
+      },
+      onError: (error) => {},
+    }
+  )
 
   const payload = {
     unit_name: addUnit.unit_name,
@@ -56,7 +64,6 @@ const ManagerAddUnit = () => {
 
   const handleAddUnit = async (_buttonType) => {
     setButtonType(_buttonType)
-
     if (
       !addUnit.unit_name ||
       !addUnit.unit_type ||
@@ -68,25 +75,33 @@ const ManagerAddUnit = () => {
     }
     try {
       await postUnit(payload)
-
       setTimeout(() => {
-        setSuccessError(
-          'Congratulations, your unit has been added successfully'
-        )
+        if (addUnit.occupation_status === 'occupied') {
+          setSuccessError(
+            'Congratulations, your unit has been added successfully. You are required to add a tenant to the already occupied unit'
+          )
+        } else {
+          setSuccessError(
+            'Congratulations, your unit has been added successfully.'
+          )
+        }
+        setAddUnit({
+          unit_name: '',
+          unit_type: '',
+          no_of_bedrooms: '',
+          occupation_status: '',
+        })
         setTimeout(() => {
-          setAddUnit({
-            unit_name: '',
-            unit_type: '',
-            no_of_bedrooms: '',
-            occupation_status: '',
-          })
           setSuccessError('')
-          if (_buttonType === 'continue') {
-            navigate('/landlord/properties')
+          if (
+            _buttonType === 'continue' &&
+            addUnit.occupation_status !== 'occupied'
+          ) {
+            navigate(`/manager/property/${propertyId}`)
           } else if (_buttonType === 'addNew') {
             setSuccessError('')
           }
-        }, 3000)
+        }, 5000)
       }, 200)
     } catch (e) {
       console.error(e.message)
@@ -119,7 +134,7 @@ const ManagerAddUnit = () => {
             </div>
             <div className='unit-type'>
               <label>Unit Type*</label>
-              <ManagerUnitTypeDropdown
+              <LandlordUnitTypeDropdown
                 addUnit={addUnit}
                 handleChangeAddUnit={handleChangeAddUnit}
               />

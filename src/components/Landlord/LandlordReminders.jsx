@@ -21,7 +21,7 @@ const DeleteModal = ({
   refetchReminders,
   showModal,
 }) => {
-  const { mutateAsync: deleteReminder, error } = useFirstMandateMutation(
+  const { mutateAsync: deleteReminder } = useFirstMandateMutation(
     `/reminders/${reminder.uuid}  `,
     {
       method: 'DELETE',

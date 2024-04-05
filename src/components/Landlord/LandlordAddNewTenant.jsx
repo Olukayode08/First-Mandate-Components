@@ -23,7 +23,6 @@ const rentTerms = [
   '12 month',
 ]
 
-// Do not Touch
 const findUnit = (unitId, items) => {
   /**
    * Filters through the 'items' data structure to find and return the unit object
@@ -115,6 +114,7 @@ const LandlordAddNewTenant = () => {
       handleTenantUpdate('lease_end', tenant?.lease_end)
       handleTenantUpdate('payment_type', tenant?.payment_type)
       handleTenantUpdate('no_of_installments', tenant?.no_of_installments)
+      handleTenantUpdate('rent_amount', tenant?.rent_amount)
       handleTenantUpdate('rent_payment_status', tenant?.rent_payment_status)
       handleTenantUpdate('rent_terms', tenant?.rent_terms)
       handleTenantUpdate('rent_due_date', tenant?.rent_due_date)

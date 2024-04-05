@@ -17,7 +17,7 @@ import TenantNotifications from './components/Tenant/TenantNotifications'
 import ManagerNotifications from './components/Manager/ManagerNotifications'
 import ManagerPropertyPageOne from './components/Manager/ManagerPropertyPageOne'
 import LandlordTenants from './components/Landlord/LandlordTenants'
-import ManagerTenantList from './components/Manager/ManagerTenantList'
+import ManagerTenants from './components/Manager/ManagerTenants'
 import LandlordAddNewManager from './components/Landlord/LandlordAddNewManager'
 import LandlordManagers from './components/Landlord/LandlordManagers'
 import LandlordUploadPropertyPage from './components/Landlord/LandlordUploadPropertyPage'
@@ -81,6 +81,8 @@ import TenantCalendar from './components/Tenant/TenantCalendar'
 import ProtectedRoute from './hooks/ProtectedRoute'
 import LandlordSingleProperty from './components/Landlord/LandlordSingleProperty'
 import ManagerUploadPropertyPage from './components/Manager/ManagerUploadPropertyPage'
+import ManagerAddUnit from './components/Manager/ManagerAddUnit'
+import ManagerSelectUnit from './components/Manager/ManagerSelectUnit'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -124,7 +126,7 @@ function App() {
               <Route path='notifications' element={<LandlordNotifications />} />
               <Route path='properties' element={<LandlordProperties />} />
               <Route
-                path='properties/:singlePropertyId'
+                path='property/:singlePropertyId'
                 element={<LandlordSingleProperty />}
               />
               <Route
@@ -137,10 +139,10 @@ function App() {
               />
               <Route path='tenants' element={<LandlordTenants />} />
               <Route path='select-unit' element={<LandlordSelectUnit />} />
-              <Route
+              {/* <Route
                 path='select-unit/:tenantId/edit'
                 element={<LandlordSelectUnit />}
-              />
+              /> */}
               <Route
                 path='add-tenant/:unitId/tenants'
                 element={<LandlordAddNewTenant />}
@@ -149,8 +151,7 @@ function App() {
                 path='add-tenant/:tenantId/:unitId/edit'
                 element={<LandlordAddNewTenant />}
               />
-
-              <Route path='add-tenant' element={<LandlordAddNewTenant />} />
+              {/* <Route path='add-tenant' element={<LandlordAddNewTenant />} /> */}
               <Route path='managers' element={<LandlordManagers />} />
               <Route path='add-manager' element={<LandlordAddNewManager />} />
               <Route
@@ -187,13 +188,31 @@ function App() {
 
               <Route path='properties' element={<ManagerPropertyPageOne />} />
 
-              <Route path='property' element={<ManagerPropertyPageTwo />} />
+              {/* <Route path='property' element={<ManagerPropertyPageTwo />} /> */}
+              <Route
+                path='property/:singlePropertyId'
+                element={<ManagerPropertyPageTwo />}
+              />
+
               <Route
                 path='add-property'
                 element={<ManagerUploadPropertyPage />}
               />
-              <Route path='tenants' element={<ManagerTenantList />} />
-              <Route path='add-tenant' element={<ManagerAddNewTenant />} />
+              <Route
+                path='add-unit/:propertyId/units'
+                element={<ManagerAddUnit />}
+              />
+              <Route path='tenants' element={<ManagerTenants />} />
+              <Route path='select-unit' element={<ManagerSelectUnit />} />
+
+              <Route
+                path='add-tenant/:unitId/tenants'
+                element={<ManagerAddNewTenant />}
+              />
+              <Route
+                path='add-tenant/:unitId/tenants/edit'
+                element={<ManagerAddNewTenant />}
+              />
               <Route path='landlords' element={<ManagerAddLandlord />} />
               <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
               <Route path='reminders' element={<ManagerReminders />} />

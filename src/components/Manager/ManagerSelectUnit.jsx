@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { ImSearch } from 'react-icons/im'
 import { IoMdCheckmark } from 'react-icons/io'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import LandlordEmptyProperty from './LandlordEmptyProperty'
 import { useNavigate, useParams } from 'react-router'
+import ManagerEmptyProperty from './ManagerEmptyProperty'
 const token = localStorage.getItem('token')
 
-const LandlordSelectUnit = () => {
+const ManagerSelectUnit = () => {
   const navigate = useNavigate()
   const { tenantId } = useParams()
 
@@ -23,16 +23,19 @@ const LandlordSelectUnit = () => {
   const pageUrl = window.location.href
   const isEdit = pageUrl.includes('edit')
 
-  const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
-    enabled: !!token,
-    onSuccess: (data) => {},
-  })
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/property-manager/properties',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
   if (pageLoading) {
     return <div className='page-loading'>Loading</div>
   }
   return (
     <>
-      <LandlordSU>
+      <ManagerSU>
         <section>
           <main className='s-property'>
             {isEdit ? <h3>Edit Tenant</h3> : <h3>Add New Tenant</h3>}
@@ -66,7 +69,7 @@ const LandlordSelectUnit = () => {
                               onClick={() => {
                                 if (isEdit) {
                                   navigate(
-                                    `/landlord/add-tenant/${tenantId}/${unit.uuid}/edit`
+                                    `/manager/add-tenant/${tenantId}/${unit.uuid}/edit`
                                   )
                                 } else if (
                                   unit.occupation_status === 'occupied'
@@ -74,7 +77,7 @@ const LandlordSelectUnit = () => {
                                   unitOccupied()
                                 } else {
                                   navigate(
-                                    `/landlord/add-tenant/${unit.uuid}/tenants`
+                                    `/manager/add-tenant/${unit.uuid}/tenants`
                                   )
                                 }
                               }}
@@ -97,16 +100,16 @@ const LandlordSelectUnit = () => {
               : null}
             {!pageLoading && !data.data?.data?.length && (
               <div>
-                <LandlordEmptyProperty />
+                <ManagerEmptyProperty />
               </div>
             )}
           </main>
         </section>
-      </LandlordSU>
+      </ManagerSU>
     </>
   )
 }
-const LandlordSU = styled.section`
+const ManagerSU = styled.section`
   .s-property {
     width: 100%;
     background-color: #fff;
@@ -192,4 +195,4 @@ const LandlordSU = styled.section`
     }
   }
 `
-export default LandlordSelectUnit
+export default ManagerSelectUnit

@@ -3,22 +3,41 @@ import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { RiRadioButtonLine } from 'react-icons/ri'
+import { useParams } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerPropertyDropdown from '../Dropdowns/ManagerPropertyDropdown'
-import ManagerEmptyProperty from './ManagerEmptyProperty'
 import ManagerPropertyUnit from './ManagerPropertyUnit'
 
 const token = localStorage.getItem('token')
 
 const ManagerPropertyPageTwo = () => {
-  const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
-    enabled: !!token,
-    onSuccess: (data) => {},
-  })
+
+  const { singlePropertyId } = useParams()
+
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    `/property-manager/properties`,
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
 
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }
+
+  if (pageLoading || !data || !data.data || !data.data.data) {
+    return <div className='page-loading'>Loading...</div>
+  }
+
+  const selectedProperty = data?.data?.data.find(
+    (property) => property.uuid === singlePropertyId
+  )
+
+  if (!selectedProperty) {
+    return <div className='page-loading'>Property not found</div>
+  }
+
   return (
     <>
       <ManagerPPT>
@@ -28,49 +47,40 @@ const ManagerPropertyPageTwo = () => {
               <h4>Upload New Property</h4>
               <FaRegPlusSquare size={20} />
             </Link>
-            {data &&
-            data.data &&
-            data.data.data &&
-            data.data.data.length > 0 ? (
-              data.data.data.map((property) => (
-                <div key={property.uuid} className='manager-p'>
-                  <div className='apart-det'>
-                    <div className='apartment'>
-                      <p className='p-icon'>
-                        <RiRadioButtonLine />
+            <div key={selectedProperty.uuid} className='manager-p'>
+              <div className='apart-det'>
+                <div className='apartment'>
+                  <p className='p-icon'>
+                    <RiRadioButtonLine />
+                  </p>
+                  <div className='apart-loc'>
+                    <h3>{selectedProperty.title}</h3>
+                    <h1>{selectedProperty.address}</h1>
+                    <div className='status-active'>
+                      <p>
+                        Status:
+                        <span> Active</span>
                       </p>
-                      <div className='apart-loc'>
-                        <h3>{property.title}</h3>
-                        <h1>{property.address}</h1>
-                        <div className='status-active'>
-                          <p>
-                            Status:
-                            <span> Active</span>
-                          </p>
 
-                          <p>
-                            Unit:
-                            <span> 4 Units</span>
-                          </p>
-                          <p>
-                            Building Type:
-                            <span> {property.property_type}</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <ManagerPropertyDropdown property={property} />
+                      <p>
+                        Unit:
+                        <span> {selectedProperty.units.length} Units</span>
+                      </p>
+                      <p>
+                        Property Type:
+                        <span> {selectedProperty.property_type}</span>
+                      </p>
                     </div>
                   </div>
-                  <ManagerPropertyUnit property={property} />
                 </div>
-              ))
-            ) : (
-              <div>
-                <ManagerEmptyProperty />
+                <div>
+                  <ManagerPropertyDropdown
+                    selectedProperty={selectedProperty}
+                  />
+                </div>
               </div>
-            )}
+              <ManagerPropertyUnit selectedProperty={selectedProperty} />
+            </div>
           </div>
         </section>
       </ManagerPPT>

@@ -88,13 +88,17 @@ const ManagerAddNewTenant = () => {
     error,
     isSuccess,
   } = useFirstMandateMutation(
-    `/${isEdit ? `tenants/${tenantId}` : `property-units/${unitId}/tenants`}`,
+    `/${
+      isEdit
+        ? `property-manager/tenants/${tenantId}`
+        : `property-manager/property-units/${unitId}/tenants`
+    }`,
     {
       method: isEdit ? 'PUT' : 'POST',
       onSuccess: (data) => {
         console.log(data)
         setTimeout(() => {
-          navigate('/landlord/tenants')
+          navigate('/manager/tenants')
         }, 3000)
       },
       // onError: (error) => {
@@ -103,7 +107,7 @@ const ManagerAddNewTenant = () => {
     }
   )
 
-  const { data } = useFirstMandateQuery('/tenants', {
+  const { data } = useFirstMandateQuery('/property-manager/tenants', {
     enabled: !!token && !!tenantId,
     onSuccess: (data) => {
       const tenant = data?.data?.data?.find(

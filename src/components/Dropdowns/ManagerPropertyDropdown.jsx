@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import editIcon from '../../assets/pencil-edit-01.png'
 import { useNavigate } from 'react-router-dom'
 
-const ManagerPropertyDropdown = ({ property }) => {
+const ManagerPropertyDropdown = ({ selectedProperty }) => {
   const navigate = useNavigate()
   const dropdownRef = useRef(null)
 
   const [showDropdown, setShowDropdown] = useState(false)
+
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown)
   }
@@ -28,31 +29,18 @@ const ManagerPropertyDropdown = ({ property }) => {
   }, [])
 
   const navigateUnit = () => {
-    navigate(`/manager/add-unit/${property.uuid}/units`)
-    setTimeout(() => {
-      setShowDropdown(false)
-    }, 1000)
-  }
-  const navigateProperty = () => {
-    navigate(`/manager/properties/${property.uuid}`)
+    navigate(`/manager/add-unit/${selectedProperty.uuid}/units`)
     setTimeout(() => {
       setShowDropdown(false)
     }, 1000)
   }
 
-  const navigateTenant = () => {
-    navigate(`/manager/select-unit`)
-    setTimeout(() => {
-      setShowDropdown(false)
-    }, 1000)
-  }
-
-  const navigateManager = () => {
-    navigate(`/manager/add-manager/${property.uuid}`)
-    setTimeout(() => {
-      setShowDropdown(false)
-    }, 1000)
-  }
+  // const navigateLandlord = () => {
+  //   navigate(`/manager/add-landlord/${selectedProperty.uuid}`)
+  //   setTimeout(() => {
+  //     setShowDropdown(false)
+  //   }, 1000)
+  // }
 
   return (
     <>
@@ -65,18 +53,12 @@ const ManagerPropertyDropdown = ({ property }) => {
         />
         {showDropdown && (
           <div className='navigate-dropdown'>
-            <p onClick={navigateTenant} className='nav'>
-              Add Tenants
-            </p>
             <p onClick={navigateUnit} className='nav'>
               Add Units
             </p>
-            <p onClick={navigateProperty} className='nav'>
-              View Property
-            </p>
-            <p onClick={navigateManager} className='nav'>
-              Add Manager
-            </p>
+            {/* <p onClick={navigateLandlord} className='nav'>
+              Add Landlord
+            </p> */}
           </div>
         )}
       </ManagerPD>

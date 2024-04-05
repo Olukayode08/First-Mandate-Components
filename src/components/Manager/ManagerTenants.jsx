@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
-import LandlordEmptyTenant from './LandlordEmptyTenant'
 import { useFirstMandateQuery } from '../../data-layer/utils'
+import ManagerEmptyTenant from './ManagerEmptyTenant'
 
 const token = localStorage.getItem('token')
-const LandlordTenants = () => {
+const ManagerTenants = () => {
   // Fetch Tenants
   const navigate = useNavigate()
 
@@ -14,7 +14,7 @@ const LandlordTenants = () => {
     enabled: !!token,
     onSuccess: (data) => {},
   })
-console.log(data);
+  console.log(data)
 
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
@@ -26,7 +26,7 @@ console.log(data);
           <main className='a-t-section'>
             <div className='a-tenant'>
               <h3>My Tenants</h3>
-              <Link to='/landlord/select-unit' className='add-r'>
+              <Link to='/manager/select-unit' className='add-r'>
                 <h4>Add New Tenant</h4>
                 <FaRegPlusSquare size={20} />
               </Link>
@@ -104,7 +104,7 @@ console.log(data);
               </table>
               {!pageLoading && !data.data.data?.length && (
                 <div>
-                  <LandlordEmptyTenant />
+                  <ManagerEmptyTenant />
                 </div>
               )}
             </div>
@@ -200,4 +200,4 @@ const LTenants = styled.section`
     }
   }
 `
-export default LandlordTenants
+export default ManagerTenants

@@ -40,8 +40,6 @@ const LandlordPropertyUnit = ({ property }) => {
                           : 'Add Tenant'}
                       </div>
                     </td>
-
-                    {/* <td>{table.uuid}</td> */}
                   </tr>
                 )
               })}

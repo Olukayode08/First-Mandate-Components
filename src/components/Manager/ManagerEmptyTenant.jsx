@@ -14,7 +14,7 @@ const ManagerEmptyTenant = () => {
               <p>Yoy have not added a tenant yet.</p>
               <p>Please add tenants to see the list of your tenants.</p>
             </div>
-            <Link to='/manager/add-tenant' className='add-r'>
+            <Link to='/manager/select-unit' className='add-r'>
               <h4>Add New Tenant</h4>
               <FaRegPlusSquare size={20} />
             </Link>

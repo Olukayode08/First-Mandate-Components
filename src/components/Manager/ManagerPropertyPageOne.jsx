@@ -1,36 +1,71 @@
 import React from 'react'
 import styled from 'styled-components'
-import { managerProperty } from '../../datas/ManagerPropertyPageOne'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useFirstMandateQuery } from '../../data-layer/utils'
+import ManagerEmptyProperty from './ManagerEmptyProperty'
+import houseIcon from '../../assets/Frame-2007.png'
+
+const token = localStorage.getItem('token')
 
 const ManagerPropertyPageOne = () => {
+  const navigate = useNavigate()
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/property-manager/properties',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
+
+  if (pageLoading) {
+    return <div className='page-loading'>Loading...</div>
+  }
   return (
     <>
       <ManagerPPO>
         <section>
           <main className='l-section'>
-              <div className='a-ppt'>
-                <h3>Properties</h3>
-                <Link to='/manager/add-property' className='add-r'>
-                  <h4>Add New Property</h4>
-                  <FaRegPlusSquare size={20} />
-                </Link>
-              </div>
-              <div className='l-options'>
-                {managerProperty.map((property) => {
-                  return (
-                    <div className='options' key={property.id}>
-                      <img src={property.icon} alt='Icon' />
-                      <h1 className='option-h'>{property.heading}</h1>
-                      <p className='option-text'>{property.street}</p>
-                      <p className='option-text'>{property.type}</p>
-                      <p className='option-text'>{property.unit}</p>
-                      <p className='option-text'>{property.status}</p>
-                    </div>
-                  )
-                })}
-              </div>
+            <div className='a-ppt'>
+              <h3>Properties</h3>
+              <Link to='/manager/add-property' className='add-r'>
+                <h4>Add New Property</h4>
+                <FaRegPlusSquare size={20} />
+              </Link>
+            </div>
+            <div className='l-options'>
+              {data &&
+              data.data &&
+              data.data.data &&
+              data.data.data.length > 0 ? (
+                data.data.data.map((property) => (
+                  <div
+                    className='options'
+                    onClick={() =>
+                      navigate(`/manager/property/${property.uuid}`)
+                    }
+                    key={property.uuid}
+                  >
+                    <img src={houseIcon} alt='Icon' />
+                    <h1 className='option-h'>{property.title}</h1>
+                    <p className='option-text'>{property.address}</p>
+                    <p className='option-text'>
+                      Landlord's Name: {property.landlord.name}
+                    </p>
+                    <p className='option-text'>
+                      Property Type: {property.property_type}
+                    </p>
+                    <p className='option-text'>
+                      Number of Unit: {property.units.length}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <div>
+                  <ManagerEmptyProperty />
+                </div>
+              )}
+            </div>
           </main>
         </section>
       </ManagerPPO>
@@ -80,7 +115,6 @@ const ManagerPPO = styled.section`
     padding: 15px;
     background-color: #fff;
     flex: 1 1 320px;
-    /* width: 330px; */
     height: 370px;
     border-radius: 4px;
     cursor: pointer;
