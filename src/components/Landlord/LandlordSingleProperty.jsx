@@ -10,13 +10,13 @@ const token = localStorage.getItem('token')
 const LandlordSingleProperty = () => {
   const { singlePropertyId } = useParams()
 
-  const { data } = useFirstMandateQuery(
-    `/properties/${singlePropertyId}`,
-    {
-      enabled: !!token,
-      onSuccess: (data) => {},
-    }
-  )
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(`/properties/${singlePropertyId}`, {
+    enabled: !!token,
+    onSuccess: (data) => {},
+  })
+  if (pageLoading) {
+    return <div className='page-loading'>Loading...</div>
+  }
   return (
     <>
       <LandlordSP>
@@ -26,9 +26,9 @@ const LandlordSingleProperty = () => {
               <div className='manager-p'>
                 <div className='apart-det'>
                   <div className='apartment'>
-                    <p className='p-icon'>
+                    {/* <p className='p-icon'>
                       <RiRadioButtonLine />
-                    </p>
+                    </p> */}
                     <div className='apart-loc'>
                       <h3>{data?.data.title}</h3>
                       <h1>{data?.data.address}</h1>

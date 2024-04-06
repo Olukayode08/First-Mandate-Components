@@ -43,7 +43,7 @@ const ManagerAddUnit = () => {
     {
       onSuccess: (data) => {
         const unitUuid = data?.data?.uuid
-        if (addUnit.occupation_status === 'occupied') {
+        if (addUnit.occupation_status === 'Occupied') {
           setTimeout(() => {
             navigate(`/manager/add-tenant/${unitUuid}/tenants`, {
               state: { unitName: addUnit.unit_name },
@@ -76,7 +76,7 @@ const ManagerAddUnit = () => {
     try {
       await postUnit(payload)
       setTimeout(() => {
-        if (addUnit.occupation_status === 'occupied') {
+        if (addUnit.occupation_status === 'Occupied') {
           setSuccessError(
             'Congratulations, your unit has been added successfully. You are required to add a tenant to the already occupied unit'
           )
@@ -95,7 +95,7 @@ const ManagerAddUnit = () => {
           setSuccessError('')
           if (
             _buttonType === 'continue' &&
-            addUnit.occupation_status !== 'occupied'
+            addUnit.occupation_status !== 'Occupied'
           ) {
             navigate(`/manager/property/${propertyId}`)
           } else if (_buttonType === 'addNew') {
@@ -147,10 +147,10 @@ const ManagerAddUnit = () => {
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='occupied'
+                    value='Occupied'
                     name='occupation_status'
                     onChange={handleChangeAddUnit}
-                    checked={addUnit.occupation_status === 'occupied'}
+                    checked={addUnit.occupation_status === 'Occupied'}
                     className='btn-input'
                   />
                   <p className='ppt-details'>Occupied</p>

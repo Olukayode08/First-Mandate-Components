@@ -41,7 +41,7 @@ const LandlordAddUnit = () => {
   } = useFirstMandateMutation(`/properties/${propertyId}/units`, {
     onSuccess: (data) => {
       const unitUuid = data?.data?.uuid
-      if (addUnit.occupation_status === 'occupied') {
+      if (addUnit.occupation_status === 'Occupied') {
         setTimeout(() => {
           navigate(`/landlord/add-tenant/${unitUuid}/tenants`, {
             state: { unitName: addUnit.unit_name },
@@ -73,9 +73,9 @@ const LandlordAddUnit = () => {
     try {
       await postUnit(payload)
       setTimeout(() => {
-        if (addUnit.occupation_status === 'occupied') {
+        if (addUnit.occupation_status === 'Occupied') {
           setSuccessError(
-            'Congratulations, your unit has been added successfully. You are required to add a tenant to the already occupied unit'
+            'Congratulations, your unit has been added successfully. You are required to add a tenant to the already Occupied unit'
           )
         } else {
           setSuccessError(
@@ -92,7 +92,7 @@ const LandlordAddUnit = () => {
           setSuccessError('')
           if (
             _buttonType === 'continue' &&
-            addUnit.occupation_status !== 'occupied'
+            addUnit.occupation_status !== '0ccupied'
           ) {
             navigate('/landlord/properties')
           } else if (_buttonType === 'addNew') {
@@ -144,10 +144,10 @@ const LandlordAddUnit = () => {
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='occupied'
+                    value='Occupied'
                     name='occupation_status'
                     onChange={handleChangeAddUnit}
-                    checked={addUnit.occupation_status === 'occupied'}
+                    checked={addUnit.occupation_status === 'Occupied'}
                     className='btn-input'
                   />
                   <p className='ppt-details'>Occupied</p>
@@ -156,8 +156,8 @@ const LandlordAddUnit = () => {
                   <input
                     type='radio'
                     name='occupation_status'
-                    value='vacant'
-                    checked={addUnit.occupation_status === 'vacant'}
+                    value='Vacant'
+                    checked={addUnit.occupation_status === 'Vacant'}
                     onChange={handleChangeAddUnit}
                     className='btn-input'
                   />

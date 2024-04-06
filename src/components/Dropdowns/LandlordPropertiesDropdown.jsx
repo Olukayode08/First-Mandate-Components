@@ -35,7 +35,7 @@ const LandlordPropertiesDropdown = ({ property }) => {
     }, 1000)
   }
   const navigateProperty = () => {
-    navigate(`/landlord/properties/${property.uuid}`)
+    navigate(`/landlord/property/${property.uuid}`)
     setTimeout(() => {
       setShowDropdown(false)
     }, 1000)

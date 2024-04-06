@@ -69,7 +69,7 @@ const LandlordSelectUnit = () => {
                                     `/landlord/add-tenant/${tenantId}/${unit.uuid}/edit`
                                   )
                                 } else if (
-                                  unit.occupation_status === 'occupied'
+                                  unit.occupation_status === 'Occupied'
                                 ) {
                                   unitOccupied()
                                 } else {
@@ -80,7 +80,7 @@ const LandlordSelectUnit = () => {
                               }}
                               key={unit.uuid}
                               className={
-                                unit.occupation_status === 'occupied'
+                                unit.occupation_status === 'Occupied'
                                   ? 'unit-a not-allowed'
                                   : 'unit-a'
                               }

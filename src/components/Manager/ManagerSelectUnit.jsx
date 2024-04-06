@@ -72,7 +72,7 @@ const ManagerSelectUnit = () => {
                                     `/manager/add-tenant/${tenantId}/${unit.uuid}/edit`
                                   )
                                 } else if (
-                                  unit.occupation_status === 'occupied'
+                                  unit.occupation_status === 'Occupied'
                                 ) {
                                   unitOccupied()
                                 } else {

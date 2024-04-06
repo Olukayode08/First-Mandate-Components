@@ -29,13 +29,13 @@ const LandlordPropertyUnit = ({ property }) => {
                     <td>{table.occupation_status}</td>
                     <td
                       onClick={() => {
-                        if (table.occupation_status !== 'occupied') {
+                        if (table.occupation_status !== 'Occupied') {
                           navigate(`/landlord/add-tenant/${table.uuid}/tenants`)
                         }
                       }}
                     >
                       <div className='margin-r'>
-                        {table.occupation_status === 'occupied'
+                        {table.occupation_status === 'Occupied'
                           ? 'Occupied'
                           : 'Add Tenant'}
                       </div>

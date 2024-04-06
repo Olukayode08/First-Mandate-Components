@@ -34,13 +34,11 @@ const LandlordUploadPropertyStepper = () => {
     isSuccess,
   } = useFirstMandateMutation(`/properties`, {
     onSuccess: (data) => {
-      // console.log(data)
       setTimeout(() => {
         navigate('/landlord/properties')
       }, 3000)
     },
     onError: (error) => {
-      // console.error(error)
     },
   })
 

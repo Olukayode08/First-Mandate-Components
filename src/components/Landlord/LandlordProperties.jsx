@@ -20,7 +20,7 @@ const LandlordProperties = () => {
     onSuccess: (data) => {
     },
   })
-console.log(data);
+  console.log(data);
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }
@@ -42,7 +42,7 @@ console.log(data);
                   <div className='apart-det'>
                     <div className='apartment'>
                       {/* <p className='p-icon'>
-                        {property === 'occupied' ? <RiRadioButtonLine /> : <RiRadioButtonLine />}
+                        {property === 'Occupied' ? <RiRadioButtonLine /> : <RiRadioButtonLine />}
                       </p> */}
                       <div className='apart-loc'>
                         <h3>{property.title}</h3>

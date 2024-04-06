@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap'); */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,13 +7,16 @@
 
 body {
   font-family: 'Varela Round', sans-serif;
-  /* font-family: 'Nunito Sans', sans-serif; */
   font-optical-sizing: auto;
   overflow-x: hidden;
 }
 h3,
 h1 {
   font-size: 18px;
+}
+button{
+  font-family: inherit;
+  font-weight: 100;
 }
 .dark-mode {
   background-color: #fedf7e;
