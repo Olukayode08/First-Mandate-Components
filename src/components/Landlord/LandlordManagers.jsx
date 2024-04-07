@@ -13,7 +13,7 @@ const LandlordManagers = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/property-managers?page=${currentPage}`,
     {
-      enabled: !!token,
+      // enabled: !!token,
       onSuccess: (data) => {},
     }
   )
@@ -28,8 +28,7 @@ const LandlordManagers = () => {
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }
-  console.log(data.data.current_page)
-  console.log(data)
+  // console.log(data.data.current_page)
 
   return (
     <>
@@ -67,7 +66,6 @@ const LandlordManagers = () => {
                           <td>{list.phone}</td>
                           <td>{list.property.title}</td>
                           <td>{list.property.address}</td>
-
                           {/* <td
                             onClick={() =>
                               navigate(`/landlord/managers/${list.uuid}`)
@@ -95,30 +93,24 @@ const LandlordManagers = () => {
                 </div>
               )}
             </div>
-            {/* <div>
-              {currentPage < data.data.last_page && (
+            {data.data.last_page > 1 && (
+              <div className='pagination'>
                 <button
+                  className='pag-text'
+                  disabled={currentPage === 1}
+                  onClick={handlePrevPage}
+                >
+                  Previous Page
+                </button>
+                <button
+                  className='pag-text'
                   disabled={currentPage === data.data.last_page}
                   onClick={handleNextPage}
                 >
-                  Next
-                </button>
-              )}
-              {currentPage > 1 && (
-                <button onClick={handlePrevPage}>Previous</button>
-              )}
-            </div> */}
-              <div>
-                <button disabled={currentPage === 1} onClick={handlePrevPage}>
-                  Previous
-                </button>
-                <button
-                  disabled={currentPage === data.data.last_page}
-                  onClick={handleNextPage}
-                >
-                  Next
+                  Next Page
                 </button>
               </div>
+            )}
           </main>
         </section>
       </LManager>
@@ -182,6 +174,24 @@ const LManager = styled.section`
     background-color: #f6f6f8;
     cursor: pointer;
     text-align: center;
+  }
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 20px 0;
+  }
+  .pag-text {
+    background: transparent;
+    border: 1px solid black;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
   }
   @media screen and (max-width: 900px) {
     .a-tenant {
