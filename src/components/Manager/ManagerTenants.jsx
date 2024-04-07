@@ -10,10 +10,14 @@ const ManagerTenants = () => {
   // Fetch Tenants
   const navigate = useNavigate()
 
-  const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenants', {
-    enabled: !!token,
-    onSuccess: (data) => {},
-  })
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/property-manager/property-tenants',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
+  
   console.log(data)
 
   if (pageLoading) {
@@ -97,7 +101,7 @@ const ManagerTenants = () => {
                             <div className='margin-t'>Edit Tenant</div>
                           </td>
                           <td
-                            onClick={() => navigate(`/landlord/add-reminder`)}
+                            onClick={() => navigate(`/manager/add-reminder`)}
                           >
                             <div className='margin-t'>Send Reminder</div>
                           </td>

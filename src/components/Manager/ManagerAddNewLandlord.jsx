@@ -9,7 +9,7 @@ import {
 const token = localStorage.getItem('token')
 
 const ManagerAddNewLandlord = () => {
-  const { propertyId, managerId } = useParams()
+  const { propertyId, landlordId } = useParams()
   const [selectedPropertyuuid, setSelectedPropertyUuid] = useState(null)
   const navigate = useNavigate()
 
@@ -36,9 +36,9 @@ const ManagerAddNewLandlord = () => {
     error,
     isSuccess,
   } = useFirstMandateMutation(
-    `/property-managers${managerId ? `/${managerId}` : ''}`,
+    `/property-manager/landlords${landlordId ? `/${landlordId}` : ''}`,
     {
-      method: managerId ? 'PUT' : 'POST',
+      method: landlordId ? 'PUT' : 'POST',
       onSuccess: (data) => {
         console.log(data)
         setTimeout(() => {
@@ -50,17 +50,20 @@ const ManagerAddNewLandlord = () => {
       },
     }
   )
-  const { data } = useFirstMandateQuery(`/property-managers/${managerId}`, {
-    enabled: !!token && !!managerId,
-    onSuccess: (data) => {
-      console.log(data)
-      handleManagerUpdate('name', data?.data?.name)
-      handleManagerUpdate('email', data?.data?.email)
-      handleManagerUpdate('phone', data?.data?.phone)
-    },
-  })
+  const { data } = useFirstMandateQuery(
+    `/property-manager/landlords/${landlordId}`,
+    {
+      enabled: !!token && !!landlordId,
+      onSuccess: (data) => {
+        console.log(data)
+        handleManagerUpdate('name', data?.data?.name)
+        handleManagerUpdate('email', data?.data?.email)
+        handleManagerUpdate('phone', data?.data?.phone)
+      },
+    }
+  )
 
-  const { data: propertiesData } = useFirstMandateQuery('/properties', {
+  const { data: propertiesData } = useFirstMandateQuery('/property-manager/properties', {
     enabled: !!token && !propertyId,
     select: (data) => data?.data?.data,
   })
@@ -90,13 +93,13 @@ const ManagerAddNewLandlord = () => {
             {error && <p className='error'>{error?.message}</p>}
             {isSuccess && (
               <p className='error success'>
-                {managerId
+                {landlordId
                   ? 'Landlord edited successfully'
                   : 'Landlord was added successfully'}
               </p>
             )}
             <h3>
-              {managerId ? 'Edit Landlord Details' : 'Add Landlord Details'}
+              {landlordId ? 'Edit Landlord Details' : 'Add Landlord Details'}
             </h3>
             <div>
               {!propertyId && (
@@ -167,7 +170,7 @@ const ManagerAddNewLandlord = () => {
                 className='t-name-input'
               />
             </div>
-            {!managerId && (
+            {!landlordId && (
               <>
                 <div className='input'>
                   <label>Phone</label>
@@ -204,11 +207,11 @@ const ManagerAddNewLandlord = () => {
               {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
-                  <p>{managerId ? 'Edit Landlord' : 'Add Landlord'}</p>
+                  <p>{landlordId ? 'Edit Landlord' : 'Add Landlord'}</p>
                 </div>
               ) : (
                 <p className='login-btn'>
-                  {managerId ? 'Edit Landlord' : 'Add Landlord'}
+                  {landlordId ? 'Edit Landlord' : 'Add Landlord'}
                 </p>
               )}
             </button>

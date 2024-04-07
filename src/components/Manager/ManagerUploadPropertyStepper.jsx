@@ -20,9 +20,9 @@ const ManagerUploadPropertyStepper = () => {
     country: '',
     city: '',
     state: '',
-    manager_name: '',
-    manager_email: '',
-    manager_phone: '',
+    landlord_name: '',
+    landlord_email: '',
+    landlord_phone: '',
   })
   const handleChangeAddProperty = (e) => {
     setAddProperty({ ...addProperty, [e.target.name]: e.target.value })
@@ -33,7 +33,7 @@ const ManagerUploadPropertyStepper = () => {
     isLoading,
     error: propertiesError,
     isSuccess,
-  } = useFirstMandateMutation(`/properties`, {
+  } = useFirstMandateMutation(`/property-manager/properties`, {
     onSuccess: (data) => {
       // console.log(data)
       setTimeout(() => {
@@ -52,9 +52,9 @@ const ManagerUploadPropertyStepper = () => {
       country: addProperty.country,
       city: addProperty.city,
       state: addProperty.state,
-      manager_name: addProperty.manager_name,
-      manager_email: addProperty.manager_email,
-      manager_phone: addProperty.manager_phone,
+      landlord_name: addProperty.landlord_name,
+      landlord_email: addProperty.landlord_email,
+      landlord_phone: addProperty.landlord_phone,
     }
 
     try {
@@ -72,9 +72,9 @@ const ManagerUploadPropertyStepper = () => {
     addProperty.country,
     addProperty.city,
     addProperty.state,
-    addProperty.manager_name,
-    addProperty.manager_email,
-    addProperty.manager_phone,
+    addProperty.landlord_name,
+    addProperty.landlord_email,
+    addProperty.landlord_phone,
   ])
 
   const nextStep = () => {
@@ -84,9 +84,9 @@ const ManagerUploadPropertyStepper = () => {
       addProperty.country &&
       addProperty.city &&
       addProperty.state &&
-      addProperty.manager_phone &&
-      addProperty.manager_name &&
-      addProperty.manager_email
+      addProperty.landlord_name &&
+      addProperty.landlord_email &&
+      addProperty.landlord_phone
     ) {
       setStep(step + 1)
     } else {

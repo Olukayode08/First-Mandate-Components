@@ -14,7 +14,7 @@ const LandlordProperties = () => {
     enabled: !!token,
     onSuccess: (data) => {},
   })
-  // console.log(data)
+  console.log(data)
   if (pageLoading) {
     return <div className='page-spinner'>
       <div className="l-spinner"></div>

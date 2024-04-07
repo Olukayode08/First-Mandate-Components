@@ -23,7 +23,7 @@ import LandlordManagers from './components/Landlord/LandlordManagers'
 import LandlordUploadPropertyPage from './components/Landlord/LandlordUploadPropertyPage'
 import LandlordAddNewTenant from './components/Landlord/LandlordAddNewTenant'
 import ManagerAddNewTenant from './components/Manager/ManagerAddNewTenant'
-import ManagerAddLandlord from './components/Manager/ManagerAddLandlord'
+import ManagerLandlords from './components/Manager/ManagerLandlords'
 import LandlordReminders from './components/Landlord/LandlordReminders'
 import ManagerReminders from './components/Manager/ManagerReminders'
 import TenantApartmentDetails from './components/Tenant/TenantApartmentDetails'
@@ -207,8 +207,17 @@ function App() {
                 path='add-tenant/:unitId/tenants/edit'
                 element={<ManagerAddNewTenant />}
               />
-              <Route path='landlords' element={<ManagerAddLandlord />} />
+              <Route path='landlords' element={<ManagerLandlords />} />
               <Route path='add-landlord' element={<ManagerAddNewLandlord />} />
+              <Route
+                path='add-landlord/:propertyId'
+                element={<ManagerAddNewLandlord />}
+              />
+              <Route
+                path='add-landlord/:propertyId/:landlordId/edit'
+                element={<ManagerAddNewLandlord />}
+              />
+
               <Route path='reminders' element={<ManagerReminders />} />
               <Route path='due-date' element={<ManagerDueDates />} />
               <Route path='add-reminder' element={<ManagerAddReminder />} />

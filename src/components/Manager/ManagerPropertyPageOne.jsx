@@ -18,6 +18,7 @@ const ManagerPropertyPageOne = () => {
     }
   )
 
+console.log(data);
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -54,7 +55,7 @@ const ManagerPropertyPageOne = () => {
                     <h1 className='option-h'>{property.title}</h1>
                     <p className='option-text'>{property.address}</p>
                     <p className='option-text'>
-                      Landlord's Name: {property.landlord.name}
+                      Landlord's Name: {property.landlord?.name}
                     </p>
                     <p className='option-text'>
                       Property Type: {property.property_type}

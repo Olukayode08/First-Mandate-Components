@@ -4,7 +4,7 @@ import { FaRegPlusSquare } from 'react-icons/fa'
 import { managerLandlordList } from '../../datas/ManagerLandlordList'
 import { Link } from 'react-router-dom'
 
-const ManagerAddLandlord = () => {
+const ManagerLandlords = () => {
   return (
     <>
       <ManagerAL>
@@ -113,4 +113,4 @@ const ManagerAL = styled.section`
     }
   }
 `
-export default ManagerAddLandlord
+export default ManagerLandlords

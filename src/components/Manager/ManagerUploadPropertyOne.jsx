@@ -47,39 +47,39 @@ const ManagerUploadPropertyOne = ({
               />
             </div>
             <div className='input'>
-              <label>Manager's Name</label>
+              <label>Landlord's Name</label>
               <input
                 type='text'
                 placeholder='Enter Full name'
                 required
-                name='manager_name'
-                value={addProperty.manager_name}
+                name='landlord_name'
+                value={addProperty.landlord_name}
                 onChange={handleChangeAddProperty}
                 autoComplete='off'
                 className='name-input-field'
               />
             </div>
             <div className='input'>
-              <label>Manager's Email</label>
+              <label>Landlord's Email</label>
               <input
                 type='email'
                 placeholder='Enter Email'
                 required
-                name='manager_email'
-                value={addProperty.manager_email}
+                name='landlord_email'
+                value={addProperty.landlord_email}
                 onChange={handleChangeAddProperty}
                 autoComplete='off'
                 className='name-input-field'
               />
             </div>
             <div className='input'>
-              <label>Manager's Phone</label>
+              <label>Landlord's Phone</label>
               <input
                 type='text'
                 placeholder='+234'
                 required
-                name='manager_phone'
-                value={addProperty.manager_phone}
+                name='landlord_phone'
+                value={addProperty.landlord_phone}
                 onChange={handleChangeAddProperty}
                 autoComplete='off'
                 className='name-input-field'

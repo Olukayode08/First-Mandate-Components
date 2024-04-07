@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { IoMdArrowBack } from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
-import LandlordUnitTypeDropdown from '../Dropdowns/LandlordUnitTypeDropdown'
+import ManagerUnitTypeDropdown from '../Dropdowns/ManagerUnitTypeDropdown'
 
 const ManagerAddUnit = () => {
   const navigate = useNavigate()
@@ -134,7 +134,7 @@ const ManagerAddUnit = () => {
             </div>
             <div className='unit-type'>
               <label>Unit Type*</label>
-              <LandlordUnitTypeDropdown
+              <ManagerUnitTypeDropdown
                 addUnit={addUnit}
                 handleChangeAddUnit={handleChangeAddUnit}
               />
@@ -159,8 +159,8 @@ const ManagerAddUnit = () => {
                   <input
                     type='radio'
                     name='occupation_status'
-                    value='vacant'
-                    checked={addUnit.occupation_status === 'vacant'}
+                    value='Vacant'
+                    checked={addUnit.occupation_status === 'Vacant'}
                     onChange={handleChangeAddUnit}
                     className='btn-input'
                   />

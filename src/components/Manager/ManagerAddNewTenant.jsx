@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import {
   useFirstMandateMutation,
   useFirstMandateQuery,
@@ -11,13 +11,13 @@ const token = localStorage.getItem('token')
 const rentTerms = [
   '1 month',
   '2 month',
-  '3 month,',
+  '3 month',
   '4 month',
   '5 month',
   '6 month',
   '7 month',
   '8 month',
-  '9 month,',
+  '9 month',
   '10 month',
   '11 month',
   '12 month',
@@ -46,6 +46,8 @@ const findUnit = (unitId, items) => {
 
 const ManagerAddNewTenant = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const unitName = location.state && location.state.unitName
   const { unitId, tenantId } = useParams()
   const pageUrl = window.location.href
   const isEdit = pageUrl.includes('edit')
@@ -90,7 +92,7 @@ const ManagerAddNewTenant = () => {
   } = useFirstMandateMutation(
     `/${
       isEdit
-        ? `property-manager/tenants/${tenantId}`
+        ? `property-manager/property-tenants/${tenantId}`
         : `property-manager/property-units/${unitId}/tenants`
     }`,
     {
@@ -107,7 +109,7 @@ const ManagerAddNewTenant = () => {
     }
   )
 
-  const { data } = useFirstMandateQuery('/property-manager/tenants', {
+  const { data } = useFirstMandateQuery('/property-manager/property-tenants', {
     enabled: !!token && !!tenantId,
     onSuccess: (data) => {
       const tenant = data?.data?.data?.find(
@@ -130,13 +132,16 @@ const ManagerAddNewTenant = () => {
     },
   })
 
-  const { data: propertiesData } = useFirstMandateQuery('/properties', {
-    enabled: !!token,
-    select: (data) => findUnit(unitId, data?.data?.data),
-    onSuccess: (data) => {
-      console.log(data)
-    },
-  })
+  const { data: propertiesData } = useFirstMandateQuery(
+    '/property-manager/properties',
+    {
+      enabled: !!token,
+      select: (data) => findUnit(unitId, data?.data?.data),
+      onSuccess: (data) => {
+        console.log(data)
+      },
+    }
+  )
 
   const handleTenant = async (e) => {
     e.preventDefault()
@@ -176,7 +181,9 @@ const ManagerAddNewTenant = () => {
             <h3>{isEdit ? 'Edit Tenant' : 'Add New Tenant'}</h3>
             <div className='input'>
               <label>Unit Name</label>
-              <p className='unit'>{propertiesData?.unit_name || ''}</p>
+              <p className='unit'>
+                {propertiesData?.unit_name || unitName || ''}
+              </p>
             </div>
             <div className='input'>
               <label>Name</label>

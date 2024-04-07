@@ -31,7 +31,11 @@ const ManagerSelectUnit = () => {
     }
   )
   if (pageLoading) {
-    return <div className='page-loading'>Loading</div>
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
   }
   return (
     <>
