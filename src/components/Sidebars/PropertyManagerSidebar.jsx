@@ -8,7 +8,7 @@ import { LuWalletCards } from 'react-icons/lu'
 import { TbReportSearch } from 'react-icons/tb'
 import { IoNotifications } from 'react-icons/io5'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { ThemeContext } from '../../context/Darkmode'
 
@@ -16,6 +16,8 @@ const PropertyManagerSidebar = () => {
   const { active, setActive } = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
   const location = useLocation()
+  const { singlePropertyId, propertyId, unitId } =
+    useParams()
   const activeRef = useRef(null)
 
   useEffect(() => {
@@ -84,8 +86,12 @@ const PropertyManagerSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/manager/property' ||
-                    location.pathname === '/manager/properties'
+                    location.pathname === '/manager/properties' ||
+                    location.pathname ===
+                      `/manager/property/${singlePropertyId}` ||
+                    location.pathname === '/manager/add-property' ||
+                    location.pathname ===
+                      `/manager/add-unit/${propertyId}/units`
                       ? 'active links'
                       : 'links'
                   }
@@ -98,7 +104,11 @@ const PropertyManagerSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/manager/tenants' ||
-                    location.pathname === '/manager/add-tenant'
+                    location.pathname === '/manager/select-unit' ||
+                    location.pathname ===
+                      `/manager/add-tenant/${unitId}/tenants` ||
+                    location.pathname ===
+                      `/manager/add-tenant/${unitId}/tenants/edit`
                       ? 'active links'
                       : 'links'
                   }
@@ -124,7 +134,6 @@ const PropertyManagerSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/manager/reminders' ||
-                    location.pathname === '/manager/send-reminder' ||
                     location.pathname === '/manager/add-reminder'
                       ? 'active links'
                       : 'links'

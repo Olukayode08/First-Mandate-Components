@@ -8,12 +8,20 @@ import { LuWalletCards } from 'react-icons/lu'
 import { TbReportSearch } from 'react-icons/tb'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { IoNotifications } from 'react-icons/io5'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { ThemeContext } from '../../context/Darkmode'
 
 const LandlordSidebar = () => {
   const location = useLocation()
+  const {
+    singlePropertyId,
+    propertyId,
+    unitId,
+    tenantId,
+    managerId,
+    reminderId,
+  } = useParams()
   const { active, setActive } = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
   const activeRef = useRef(null)
@@ -86,9 +94,11 @@ const LandlordSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/properties' ||
-                    location.pathname === '/landlord/upload-property' ||
-                    location.pathname === '/landlord/add-unit' ||
-                    location.pathname === '/landlord/select-property'
+                    location.pathname ===
+                      `/landlord/property/${singlePropertyId}` ||
+                    location.pathname === '/landlord/add-property' ||
+                    location.pathname ===
+                      `/landlord/add-unit/${propertyId}/units`
                       ? 'active links'
                       : 'links'
                   }
@@ -101,8 +111,11 @@ const LandlordSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/tenants' ||
-                    location.pathname === '/landlord/add-tenant' ||
-                    location.pathname === '/landlord/select-unit'
+                    location.pathname === '/landlord/select-unit' ||
+                    location.pathname ===
+                      `/landlord/add-tenant/${unitId}/tenants` ||
+                    location.pathname ===
+                      `/landlord/add-tenant/${tenantId}/${unitId}/edit`
                       ? 'active links'
                       : 'links'
                   }
@@ -115,7 +128,11 @@ const LandlordSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/managers' ||
-                    location.pathname === '/landlord/add-manager'
+                    location.pathname === '/landlord/add-manager' ||
+                    location.pathname ===
+                      `/landlord/add-manager/${propertyId}` ||
+                    location.pathname ===
+                      `/landlord/add-manager/${propertyId}/${managerId}/edit`
                       ? 'active links'
                       : 'links'
                   }
@@ -128,8 +145,9 @@ const LandlordSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/landlord/reminders' ||
-                    location.pathname === '/landlord/send-reminder' ||
-                    location.pathname === '/landlord/add-reminder'
+                    location.pathname === '/landlord/add-reminder' ||
+                    location.pathname ===
+                      `/landlord/add-reminder/${reminderId}/edit`
                       ? 'active links'
                       : 'links'
                   }
@@ -138,6 +156,7 @@ const LandlordSidebar = () => {
                   <LuWalletCards size={23} className='icon' />
                   <p className='desc'>Reminders</p>
                 </Link>
+
                 <Link
                   onClick={closeSidebar}
                   className={

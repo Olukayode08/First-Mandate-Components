@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { RiRadioButtonLine } from 'react-icons/ri'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import TenantEmptyApartment from './TenantEmptyApartment'
-
+import iconHouse from '../../assets/Frame-2007.png'
 
 const token = localStorage.getItem('token')
 
@@ -30,30 +29,13 @@ const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenant/apartment
               data.data.data.map((property) => (
                 <div key={property.uuid} className='rent-sec'>
                   <h3 className='rent-det'>My Rent Details</h3>
-                  <div className='apart-det'>
-                    <div className='apartment'>
-                      <p className='p-icon'>
-                        <RiRadioButtonLine />
-                      </p>
-                      <div className='apart-loc'>
-                        <h3>{property.name}</h3>
-                        <h1>Ikeja Road, Lagos State</h1>
-                        <div className='status-active'>
-                          <p>
-                            Status:
-                            <span> Active</span>
-                          </p>
-
-                          <p>
-                            Unit:
-                            <span> 4 Units</span>
-                          </p>
-                          <p>
-                            Building Type:
-                            <span> Flat</span>
-                          </p>
-                        </div>
-                      </div>
+                  <div className='apartment'>
+                    <img src={iconHouse} alt={property.property_title} />
+                    <div className='apart-loc'>
+                      <h3>{property.property_title}</h3>
+                      <h1>
+                        Location: <span>{property.property_address}</span>
+                      </h1>
                     </div>
                   </div>
                   <div className='apartment-details'>
@@ -78,7 +60,7 @@ const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenant/apartment
                     </div>
                     <div className='t-details'>
                       <div className='input'>
-                        <h1>Lanlord's Phone</h1>
+                        <h1>Landlord's Phone</h1>
                         <input
                           type='text'
                           disabled
@@ -108,7 +90,7 @@ const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenant/apartment
                         <input
                           type='text'
                           disabled
-                          placeholder={property.occupation_status}
+                          placeholder={property.rent_payment_status}
                         />
                       </div>
                     </div>
@@ -161,20 +143,14 @@ const TenantAD = styled.section`
   .rent-det {
     font-size: 18px;
   }
-  .apart-det {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 20px 0;
-    width: 100%;
-  }
   .apartment {
     display: flex;
     align-items: center;
+    margin: 20px 0;
     gap: 30px;
   }
-  .p-icon {
-    font-size: 40px;
+  span{
+    font-weight: 100;
   }
   .input,
   .apart-loc {
@@ -184,17 +160,9 @@ const TenantAD = styled.section`
   .apart-loc {
     gap: 17px;
   }
-  .status-active {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
   p {
     font-weight: 200;
     text-align: left;
-  }
-  span {
-    font-weight: 800;
   }
   .apartment-details {
     display: flex;
@@ -257,10 +225,9 @@ const TenantAD = styled.section`
     cursor: pointer;
     border-radius: 4px;
     font-family: inherit;
-    /* flex-shrink: 0; */
   }
   @media screen and (max-width: 900px) {
-    .apart-det {
+    .apartment {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -303,7 +270,7 @@ const TenantAD = styled.section`
     .rent-sec {
       padding: 15px;
     }
-    .apart-det {
+    .apartment {
       gap: 15px;
     }
     .input {

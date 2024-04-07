@@ -51,7 +51,6 @@ import TenantEditProfilePage from './components/Tenant/TenantEditProfilePage'
 import TenantProfileSettings from './components/Tenant/TenantProfileSettings'
 import TenantPaymentPage from './components/Tenant/TenantPaymentPage'
 import TenantPaymentReview from './components/Tenant/TenantPaymentReview'
-import LandlordSendReminder from './components/Landlord/LandlordSendReminder'
 import LandlordSelectUnit from './components/Landlord/LandlordSelectUnit'
 import ManagerEditProfilePage from './components/Manager/ManagerEditProfilePage'
 import ManagerProfileSettings from './components/Manager/ManagerProfileSettings'
@@ -137,6 +136,7 @@ function App() {
                 path='add-unit/:propertyId/units'
                 element={<LandlordAddUnit />}
               />
+
               <Route path='tenants' element={<LandlordTenants />} />
               <Route path='select-unit' element={<LandlordSelectUnit />} />
               {/* <Route
@@ -168,8 +168,6 @@ function App() {
                 path='add-reminder/:reminderId/edit'
                 element={<LandlordAddReminder />}
               />
-
-              <Route path='send-reminder' element={<LandlordSendReminder />} />
               <Route path='due-date' element={<LandlordDueDates />} />
 
               <Route
@@ -185,10 +183,7 @@ function App() {
             <Route path='/manager' element={<PropertyManager />}>
               <Route path='' element={<ManagerHomePage />} />
               <Route path='notifications' element={<ManagerNotifications />} />
-
               <Route path='properties' element={<ManagerPropertyPageOne />} />
-
-              {/* <Route path='property' element={<ManagerPropertyPageTwo />} /> */}
               <Route
                 path='property/:singlePropertyId'
                 element={<ManagerPropertyPageTwo />}
@@ -233,21 +228,21 @@ function App() {
                 path='apartment-details'
                 element={<TenantApartmentDetails />}
               />
-              <Route
+              {/* <Route
                 path='apartment-details-two'
                 element={<TenantApartmentDetailsTwo />}
-              />
+              /> */}
               <Route
                 path='add-apartment-details'
                 element={<TenantAddApartmentDetails />}
               />
               <Route path='reminders' element={<TenantReminders />} />
-              <Route path='due-date' element={<TenantDueDates />} />
               <Route path='add-reminder' element={<TenantAddReminder />} />
               <Route
                 path='add-reminder/:reminderId/edit'
                 element={<TenantAddReminder />}
               />
+              <Route path='due-date' element={<TenantDueDates />} />
               <Route path='edit-profile' element={<TenantEditProfilePage />} />
               <Route path='profile' element={<TenantProfileSettings />} />
               <Route path='payment' element={<TenantPaymentPage />} />
