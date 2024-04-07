@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { RiRadioButtonLine } from 'react-icons/ri'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import { useParams } from 'react-router-dom'
+import iconHouse from '../../assets/Frame-2007.png'
 import LandlordSinglePropertyUnit from './LandlordSiglePropertyUnit'
 
 const token = localStorage.getItem('token')
@@ -26,9 +26,11 @@ const LandlordSingleProperty = () => {
               <div className='manager-p'>
                 <div className='apart-det'>
                   <div className='apartment'>
-                    {/* <p className='p-icon'>
-                      <RiRadioButtonLine />
-                    </p> */}
+                    <img
+                      className='h-img'
+                      src={iconHouse}
+                      alt={data?.data.title}
+                    />
                     <div className='apart-loc'>
                       <h3>{data?.data.title}</h3>
                       <h1>{data?.data.address}</h1>
@@ -86,9 +88,7 @@ const LandlordSP = styled.section`
     align-items: center;
     gap: 30px;
   }
-  .p-icon {
-    font-size: 40px;
-  }
+
   .p-img {
     width: 100px;
     height: 90px;
@@ -122,9 +122,9 @@ const LandlordSP = styled.section`
       justify-content: left;
     }
     .status-active {
-      margin: 10px 0;
+      margin-bottom: 15px;
     }
-    .p-icon {
+    .h-img {
       display: none;
     }
   }

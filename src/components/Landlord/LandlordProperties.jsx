@@ -4,23 +4,17 @@ import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import LandlordPropertiesDropdown from '../Dropdowns/LandlordPropertiesDropdown'
 import LandlordEmptyProperty from './LandlordEmptyProperty'
-import { RiRadioButtonLine } from 'react-icons/ri'
 import LandlordPropertyUnit from './LandlordPropertyUnit'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-
+import iconHouse from '../../assets/Frame-2007.png'
 const token = localStorage.getItem('token')
 
 const LandlordProperties = () => {
-
-  const {
-    data,
-    isLoading: pageLoading,
-  } = useFirstMandateQuery('/properties', {
+  const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
     enabled: !!token,
-    onSuccess: (data) => {
-    },
+    onSuccess: (data) => {},
   })
-  console.log(data);
+  console.log(data)
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }
@@ -41,9 +35,11 @@ const LandlordProperties = () => {
                 <div key={property.uuid} className='manager-p'>
                   <div className='apart-det'>
                     <div className='apartment'>
-                      {/* <p className='p-icon'>
-                        {property === 'Occupied' ? <RiRadioButtonLine /> : <RiRadioButtonLine />}
-                      </p> */}
+                      <img
+                        className='h-img'
+                        src={iconHouse}
+                        alt={property.title}
+                      />
                       <div className='apart-loc'>
                         <h3>{property.title}</h3>
                         <h1>{property.address}</h1>
@@ -119,10 +115,7 @@ const LandlordP = styled.section`
   .apartment {
     display: flex;
     align-items: center;
-    gap: 30px;
-  }
-  .p-icon {
-    font-size: 40px;
+    gap: 20px;
   }
   .p-img {
     width: 100px;
@@ -132,12 +125,12 @@ const LandlordP = styled.section`
   .apart-loc {
     display: flex;
     flex-direction: column;
-    gap: 17px;
+    gap: 10px;
   }
   .status-active {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
   }
   p {
     font-weight: 200;
@@ -156,10 +149,10 @@ const LandlordP = styled.section`
       align-items: flex-start;
       justify-content: left;
     }
-    .status-active {
-      margin: 10px 0;
+    .status-active{
+      margin-bottom: 15px;
     }
-    .p-icon {
+    .h-img {
       display: none;
     }
   }

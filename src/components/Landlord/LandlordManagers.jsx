@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,19 +8,28 @@ const token = localStorage.getItem('token')
 
 const LandlordManagers = () => {
   const navigate = useNavigate()
+  const [currentPage, setCurrentPage] = useState(1)
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
-    '/property-managers',
+    `/property-managers?page=${currentPage}`,
     {
       enabled: !!token,
       onSuccess: (data) => {},
     }
   )
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1)
+  }
+
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1)
+  }
+
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }
+  console.log(data.data.current_page)
   console.log(data)
-
 
   return (
     <>
@@ -86,6 +95,30 @@ const LandlordManagers = () => {
                 </div>
               )}
             </div>
+            {/* <div>
+              {currentPage < data.data.last_page && (
+                <button
+                  disabled={currentPage === data.data.last_page}
+                  onClick={handleNextPage}
+                >
+                  Next
+                </button>
+              )}
+              {currentPage > 1 && (
+                <button onClick={handlePrevPage}>Previous</button>
+              )}
+            </div> */}
+              <div>
+                <button disabled={currentPage === 1} onClick={handlePrevPage}>
+                  Previous
+                </button>
+                <button
+                  disabled={currentPage === data.data.last_page}
+                  onClick={handleNextPage}
+                >
+                  Next
+                </button>
+              </div>
           </main>
         </section>
       </LManager>

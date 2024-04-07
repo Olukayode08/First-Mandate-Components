@@ -7,13 +7,15 @@ import iconHouse from '../../assets/Frame-2007.png'
 const token = localStorage.getItem('token')
 
 const TenantApartmentDetails = () => {
-
-const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenant/apartments', {
-  enabled: !!token,
-  onSuccess: (data) => {
-    console.log(data);
-  },
-})
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/tenant/apartments',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {
+        console.log(data)
+      },
+    }
+  )
   if (pageLoading) {
     return <div className='page-loading'>Loading...</div>
   }
@@ -30,7 +32,11 @@ const { data, isLoading: pageLoading } = useFirstMandateQuery('/tenant/apartment
                 <div key={property.uuid} className='rent-sec'>
                   <h3 className='rent-det'>My Rent Details</h3>
                   <div className='apartment'>
-                    <img src={iconHouse} alt={property.property_title} />
+                    <img
+                      className='h-img'
+                      src={iconHouse}
+                      alt={property.property_title}
+                    />
                     <div className='apart-loc'>
                       <h3>{property.property_title}</h3>
                       <h1>
@@ -149,7 +155,7 @@ const TenantAD = styled.section`
     margin: 20px 0;
     gap: 30px;
   }
-  span{
+  span {
     font-weight: 100;
   }
   .input,
@@ -231,13 +237,12 @@ const TenantAD = styled.section`
       flex-direction: column;
       align-items: flex-start;
     }
-    .status-active,
     .apart-loc {
       align-items: flex-start;
       justify-content: left;
     }
-    .status-active {
-      margin: 10px 0;
+    .h-img {
+      display: none;
     }
     h1,
     h3 {
