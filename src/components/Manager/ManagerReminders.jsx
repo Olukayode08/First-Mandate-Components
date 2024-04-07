@@ -140,7 +140,11 @@ const ManagerReminders = () => {
     },
   })
   if (pageLoading) {
-    return <div className='page-loading'>Loading...</div>
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
   }
   return (
     <>
@@ -190,6 +194,7 @@ const ManagerReminders = () => {
     </>
   )
 }
+
 const ManagerR = styled.section`
   .r-section {
     width: 100%;

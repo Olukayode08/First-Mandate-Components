@@ -13,7 +13,7 @@ const LandlordManagers = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/property-managers?page=${currentPage}`,
     {
-      // enabled: !!token,
+      enabled: !!token,
       onSuccess: (data) => {},
     }
   )
@@ -26,7 +26,11 @@ const LandlordManagers = () => {
   }
 
   if (pageLoading) {
-    return <div className='page-loading'>Loading...</div>
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
   }
   // console.log(data.data.current_page)
 

@@ -11,7 +11,6 @@ import ManagerPropertyUnit from './ManagerPropertyUnit'
 const token = localStorage.getItem('token')
 
 const ManagerPropertyPageTwo = () => {
-
   const { singlePropertyId } = useParams()
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
@@ -22,22 +21,18 @@ const ManagerPropertyPageTwo = () => {
     }
   )
 
-  if (pageLoading) {
-    return <div className='page-loading'>Loading...</div>
-  }
-
-  if (pageLoading || !data || !data.data || !data.data.data) {
-    return <div className='page-loading'>Loading...</div>
-  }
-
   const selectedProperty = data?.data?.data.find(
     (property) => property.uuid === singlePropertyId
   )
 
-  if (!selectedProperty) {
-    return <div className='page-loading'>Property not found</div>
-  }
 
+  if (pageLoading) {
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
+  }
   return (
     <>
       <ManagerPPT>

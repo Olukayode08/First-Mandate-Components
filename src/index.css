@@ -14,7 +14,7 @@ h3,
 h1 {
   font-size: 18px;
 }
-button{
+button {
   font-family: inherit;
   font-weight: 100;
 }
@@ -45,13 +45,7 @@ button{
 button {
   font-family: inherit;
 }
-.page-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  height: 100vh;
-}
+
 /* Temporary */
 td {
   font-size: 13px;
@@ -60,6 +54,38 @@ select,
 input {
   background-color: transparent;
   outline: none;
+}
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 100vh;
+}
+.page-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 100vh;
+  width: 100%;
+}
+.l-spinner {
+  border: 3px solid #fff;
+  border-top: 3px solid #fedf7e;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 @media screen and (min-width: 2000px) {
   .app {

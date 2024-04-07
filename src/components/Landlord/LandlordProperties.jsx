@@ -11,12 +11,14 @@ const token = localStorage.getItem('token')
 
 const LandlordProperties = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
-    // enabled: !!token,
+    enabled: !!token,
     onSuccess: (data) => {},
   })
   // console.log(data)
   if (pageLoading) {
-    return <div className='page-loading'>Loading...</div>
+    return <div className='page-spinner'>
+      <div className="l-spinner"></div>
+    </div>
   }
   return (
     <>

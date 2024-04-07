@@ -13,29 +13,29 @@ const Context = ({ children }) => {
     localStorage.removeItem('token')
   }
 
-  useEffect(() => {
-    // Event listener for user activity
-    const handleActivity = () => {
-      // Reset the timer when user is active
-      clearTimeout(logoutTimer)
-      // Set new timer for logout after 5 minutes of inactivity
-      logoutTimer = setTimeout(logOut, 5 * 60 * 1000) // 5 minutes
-    }
+  // useEffect(() => {
+  //   // Event listener for user activity
+  //   const handleActivity = () => {
+  //     // Reset the timer when user is active
+  //     clearTimeout(logoutTimer)
+  //     // Set new timer for logout after 5 minutes of inactivity
+  //     logoutTimer = setTimeout(logOut, 5 * 60 * 1000) // 5 minutes
+  //   }
 
-    // Initialize logout timer
-    let logoutTimer = setTimeout(logOut, 5 * 60 * 1000) // 5 minutes
+  //   // Initialize logout timer
+  //   let logoutTimer = setTimeout(logOut, 5 * 60 * 1000) // 5 minutes
 
-    // Set up event listeners for user activity
-    document.addEventListener('mousemove', handleActivity)
-    document.addEventListener('keydown', handleActivity)
+  //   // Set up event listeners for user activity
+  //   document.addEventListener('mousemove', handleActivity)
+  //   document.addEventListener('keydown', handleActivity)
 
-    // Cleanup function
-    return () => {
-      clearTimeout(logoutTimer)
-      document.removeEventListener('mousemove', handleActivity)
-      document.removeEventListener('keydown', handleActivity)
-    }
-  }, [])
+  //   // Cleanup function
+  //   return () => {
+  //     clearTimeout(logoutTimer)
+  //     document.removeEventListener('mousemove', handleActivity)
+  //     document.removeEventListener('keydown', handleActivity)
+  //   }
+  // }, [])
 
   return (
     <>
