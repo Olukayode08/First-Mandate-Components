@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
@@ -17,6 +17,11 @@ const LandlordManagers = () => {
       onSuccess: (data) => {},
     }
   )
+
+  useEffect(() => {
+    navigate(`/landlord/managers?page=${currentPage}`, { replace: true })
+  }, [currentPage, navigate])
+
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1)
   }

@@ -24,7 +24,7 @@ export const managerOptions = [
     icon: uploadIcon,
     heading: 'Upload New Property',
     text: 'Expand Your Portfolio: Integrate New Properties with Ease.',
-    navigate: '/landlord/add-property',
+    navigate: '/manager/add-property',
   },
   {
     id: 1114,
