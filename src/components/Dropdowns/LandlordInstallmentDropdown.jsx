@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-const paymentTypes = ['Cash', 'Credit Card', 'Bank Transfer']
-const paymentInstallment = ['1', '2', '3', '4', '5']
+const paymentTypes = ['One Time', 'Installment']
+const paymentInstallment = {
+  'One Time': ['1'],
+  Installment: ['1', '2', '3', '4', '5'],
+}
 
 const LandlordInstallmentDropdown = ({
   handleChangeAddTenant,
@@ -9,72 +12,106 @@ const LandlordInstallmentDropdown = ({
   handlePaymentTypeChange,
   handleInstallmentChange,
 }) => {
+  const [amountPerInstallment, setAmountPerInstallment] = useState('')
+
+  useEffect(() => {
+    if (addTenant.payment_type === 'One Time') {
+      handleInstallmentChange({ target: { value: '1' } })
+      setAmountPerInstallment(addTenant.rent_amount)
+    } else if (
+      addTenant.no_of_installments !== '' &&
+      addTenant.rent_amount !== ''
+    ) {
+      const amountPerInstallment =
+        parseFloat(addTenant.rent_amount) /
+        parseFloat(addTenant.no_of_installments)
+      setAmountPerInstallment(amountPerInstallment.toFixed(2))
+    }
+  }, [
+    addTenant.payment_type,
+    addTenant.no_of_installments,
+    addTenant.rent_amount,
+    handleInstallmentChange,
+  ])
+
+  const installmentOptions = paymentInstallment[addTenant.payment_type] || []
+
   return (
     <>
-      <LInstallmentD>
-        <section className='select-section'>
-          <div className='select'>
-            <label>Rent Payment Type*</label>
-            <div className='user-select'>
-              <select
-                id='payment_type'
-                name='payment_type'
-                value={addTenant.payment_type}
-                onChange={handlePaymentTypeChange}
-              >
-                <option value=''>Select</option>
-                {paymentTypes.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className='select'>
-            <label>Number of Installments*</label>
-            <div className='user-select'>
-              <select
-                id='no_of_installments'
-                name='no_of_installments'
-                value={addTenant.no_of_installments}
-                onChange={handleInstallmentChange}
-                disabled={!addTenant.payment_type}
-              >
-                <option value=''>Select Installment</option>
-                {paymentInstallment.map((installment) => (
-                  <option key={installment} value={installment}>
-                    {installment}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className='select'>
-            <label>Amount for each Installment*</label>
+      <MInstallmentD>
+        <div className='installment-amount'>
+          <div className='due-date'>
+            <label>Rent Amount</label>
             <input
               type='text'
-              id='rent_amount'
               name='rent_amount'
-              placeholder='#100,000.00'
+              required
               value={addTenant.rent_amount}
               onChange={handleChangeAddTenant}
-              disabled={!addTenant.no_of_installments}
+              autoComplete='off'
+              placeholder='100,000'
+              className='due-date-input'
             />
           </div>
-        </section>
-      </LInstallmentD>
+          <section className='select-section'>
+            <div className='select'>
+              <label>Rent Payment Type*</label>
+              <div className='user-select'>
+                <select
+                  id='payment_type'
+                  name='payment_type'
+                  value={addTenant.payment_type}
+                  onChange={handlePaymentTypeChange}
+                >
+                  <option value=''>Select</option>
+                  {paymentTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className='select'>
+              <label>Number of Installments*</label>
+              <div className='user-select'>
+                <select
+                  id='no_of_installments'
+                  name='no_of_installments'
+                  value={addTenant.no_of_installments}
+                  onChange={handleInstallmentChange}
+                  disabled={!addTenant.payment_type}
+                >
+                  <option value=''>Select Installment</option>
+                  {installmentOptions.map((installment) => (
+                    <option key={installment} value={installment}>
+                      {installment}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className='select'>
+              <label>Amount for each Installment*</label>
+              <input type='text' value={amountPerInstallment} disabled />
+            </div>
+          </section>
+        </div>
+      </MInstallmentD>
     </>
   )
 }
-const LInstallmentD = styled.section`
+const MInstallmentD = styled.section`
+  .install-ment-amount {
+    display: flex;
+    flex-direction: column;
+  }
   .select-section {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    margin: 10px 0;
   }
   .select {
     display: flex;

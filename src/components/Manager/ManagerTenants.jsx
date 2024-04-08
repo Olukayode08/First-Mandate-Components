@@ -18,8 +18,6 @@ const ManagerTenants = () => {
     }
   )
   
-  console.log(data)
-
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -94,7 +92,7 @@ const ManagerTenants = () => {
                               //   `/landlord/select-unit/${list.uuid}/edit`
                               // )
                               navigate(
-                                `/landlord/add-tenant/${list.uuid}/${list.property_unit.uuid}/edit`
+                                `/manager/add-tenant/${list.uuid}/${list.property_unit.uuid}/edit`
                               )
                             }
                           >

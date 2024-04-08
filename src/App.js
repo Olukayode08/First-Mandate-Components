@@ -204,7 +204,7 @@ function App() {
                 element={<ManagerAddNewTenant />}
               />
               <Route
-                path='add-tenant/:unitId/tenants/edit'
+                path='add-tenant/:tenantId/:unitId/edit'
                 element={<ManagerAddNewTenant />}
               />
               <Route path='landlords' element={<ManagerLandlords />} />
@@ -217,10 +217,10 @@ function App() {
                 path='add-landlord/:propertyId/:landlordId/edit'
                 element={<ManagerAddNewLandlord />}
               />
-
               <Route path='reminders' element={<ManagerReminders />} />
-              <Route path='due-date' element={<ManagerDueDates />} />
               <Route path='add-reminder' element={<ManagerAddReminder />} />
+              <Route path='add-reminder/:reminderId/edit' element={<ManagerAddReminder />} />
+              <Route path='due-date' element={<ManagerDueDates />} />
               <Route path='edit-profile' element={<ManagerEditProfilePage />} />
               <Route path='profile' element={<ManagerProfileSettings />} />
               <Route path='documents' element={<ManagerDocuments />} />

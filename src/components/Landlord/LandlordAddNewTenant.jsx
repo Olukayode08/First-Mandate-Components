@@ -120,7 +120,6 @@ const LandlordAddNewTenant = () => {
       handleTenantUpdate('rent_due_date', tenant?.rent_due_date)
     },
     onError: (error) => {
-      console.log('error', error)
     },
   })
 

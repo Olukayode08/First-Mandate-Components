@@ -51,7 +51,6 @@ const ManagerUploadPropertyOne = ({
               <input
                 type='text'
                 placeholder='Enter Full name'
-                required
                 name='landlord_name'
                 value={addProperty.landlord_name}
                 onChange={handleChangeAddProperty}
@@ -64,7 +63,6 @@ const ManagerUploadPropertyOne = ({
               <input
                 type='email'
                 placeholder='Enter Email'
-                required
                 name='landlord_email'
                 value={addProperty.landlord_email}
                 onChange={handleChangeAddProperty}
@@ -77,7 +75,6 @@ const ManagerUploadPropertyOne = ({
               <input
                 type='text'
                 placeholder='+234'
-                required
                 name='landlord_phone'
                 value={addProperty.landlord_phone}
                 onChange={handleChangeAddProperty}

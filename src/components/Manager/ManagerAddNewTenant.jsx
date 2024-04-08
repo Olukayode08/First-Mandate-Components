@@ -115,7 +115,6 @@ const ManagerAddNewTenant = () => {
       const tenant = data?.data?.data?.find(
         (tenant) => tenant.uuid === tenantId
       )
-      console.log('single tenants', tenant)
       handleTenantUpdate('name', tenant?.name)
       handleTenantUpdate('email', tenant?.email)
       handleTenantUpdate('phone', tenant?.phone)
@@ -123,12 +122,12 @@ const ManagerAddNewTenant = () => {
       handleTenantUpdate('lease_end', tenant?.lease_end)
       handleTenantUpdate('payment_type', tenant?.payment_type)
       handleTenantUpdate('no_of_installments', tenant?.no_of_installments)
+      handleTenantUpdate('rent_amount', tenant?.rent_amount)
       handleTenantUpdate('rent_payment_status', tenant?.rent_payment_status)
       handleTenantUpdate('rent_terms', tenant?.rent_terms)
       handleTenantUpdate('rent_due_date', tenant?.rent_due_date)
     },
     onError: (error) => {
-      console.log('error', error)
     },
   })
 
@@ -266,6 +265,7 @@ const ManagerAddNewTenant = () => {
                 />
               </div>
             </div>
+          
             <div className='rent-date'>
               <ManagerInstallmentDropdown
                 addTenant={addTenant}
@@ -274,6 +274,7 @@ const ManagerAddNewTenant = () => {
                 handleChangeAddTenant={handleChangeAddTenant}
               />
             </div>
+
             <div className='select'>
               <label>Rent Payment Status*</label>
               <div className='user-select'>
@@ -472,7 +473,6 @@ const MANTenant = styled.section`
   .select {
     display: flex;
     flex-direction: column;
-    gap: 10px;
   }
   .user-select {
     width: 200px;
@@ -484,7 +484,6 @@ const MANTenant = styled.section`
   select {
     width: 100%;
     height: 100%;
-    margin: 0 auto;
     outline: none;
     background: transparent;
     border: transparent;

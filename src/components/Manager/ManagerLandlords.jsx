@@ -1,10 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { managerLandlordList } from '../../datas/ManagerLandlordList'
 import { Link } from 'react-router-dom'
+import { useFirstMandateQuery } from '../../data-layer/utils'
+import ManagerEmptyLandlord from './ManagerEmptyLandlord'
+const token = localStorage.getItem('token')
 
 const ManagerLandlords = () => {
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/property-manager/properties',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
+
+  if (pageLoading) {
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
+  }
   return (
     <>
       <ManagerAL>
@@ -21,31 +38,37 @@ const ManagerLandlords = () => {
               <table>
                 <thead>
                   <tr className='l-m-heading'>
-                    <th>SN</th>
-                    <th>Managers's Name</th>
+                    <th>Landlord's Name</th>
                     <th>Property Name</th>
                     <th>Property Location</th>
                     <th>Email</th>
                     <th>Phone Number</th>
-                    <th>WhatsApp Number</th>
+                    <th>No. Of Units</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {managerLandlordList.map((list) => {
-                    return (
-                      <tr key={list.id} className='m-list'>
-                        <td>{list.no}</td>
-                        <td>{list.name}</td>
-                        <td>Nike House</td>
-                        <td>{list.location}</td>
-                        <td>{list.email}</td>
-                        <td>{list.phoneNo}</td>
-                        <td>{list.phoneNo}</td>
-                      </tr>
-                    )
-                  })}
+                  {data &&
+                  data.data &&
+                  data.data.data &&
+                  data.data.data.length > 0
+                    ? data.data.data.map((property) => (
+                        <tr key={property.uuid} className='m-list'>
+                          <td>{property.landlord?.name}</td>
+                          <td>{property.title}</td>
+                          <td>{property.address}</td>
+                          <td>{property.landlord?.email}</td>
+                          <td>{property.landlord?.phone}</td>
+                          <td>{property.units.length}</td>
+                        </tr>
+                      ))
+                    : null}
                 </tbody>
               </table>
+              {!pageLoading && !data.data.data?.length && (
+                <div>
+                  <ManagerEmptyLandlord />
+                </div>
+              )}
             </div>
           </main>
         </section>
@@ -94,7 +117,7 @@ const ManagerAL = styled.section`
   td {
     white-space: nowrap;
     padding: 0 20px;
-    text-align: center;
+    text-align: left;
   }
   .l-m-heading {
     text-align: center;

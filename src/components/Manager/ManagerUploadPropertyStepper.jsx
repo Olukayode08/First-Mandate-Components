@@ -8,7 +8,6 @@ import ManagerUploadPropertyOne from './ManagerUploadPropertyOne'
 import ManagerUploadPropertyTwo from './ManagerUploadPropertyTwo'
 import ManagerCongratsModal from '../modal/ManagerCongratsModal'
 
-
 const totalSteps = 2
 const ManagerUploadPropertyStepper = () => {
   const navigate = useNavigate()
@@ -35,33 +34,56 @@ const ManagerUploadPropertyStepper = () => {
     isSuccess,
   } = useFirstMandateMutation(`/property-manager/properties`, {
     onSuccess: (data) => {
-      // console.log(data)
       setTimeout(() => {
         navigate('/manager/properties')
       }, 3000)
     },
-    onError: (error) => {
-      // console.error(error)
-    },
+    onError: (error) => {},
   })
 
   const handleAddProperty = async (e) => {
+    // const payload = {
+    //   title: addProperty.title,
+    //   address: addProperty.address,
+    //   country: addProperty.country,
+    //   city: addProperty.city,
+    //   state: addProperty.state,
+    //   landlord_name: addProperty.landlord_name,
+    //   landlord_email: addProperty.landlord_email,
+    //   landlord_phone: addProperty.landlord_phone,
+    // }
+    const {
+      title,
+      address,
+      country,
+      city,
+      state,
+      landlord_name,
+      landlord_email,
+      landlord_phone,
+    } = addProperty
     const payload = {
-      title: addProperty.title,
-      address: addProperty.address,
-      country: addProperty.country,
-      city: addProperty.city,
-      state: addProperty.state,
-      landlord_name: addProperty.landlord_name,
-      landlord_email: addProperty.landlord_email,
-      landlord_phone: addProperty.landlord_phone,
+      title,
+      address,
+      country,
+      city,
+      state,
     }
-
+    // Only include landlord details if they are filled
+    if (landlord_name.trim() !== '') {
+      payload.landlord_name = landlord_name
+    }
+    if (landlord_email.trim() !== '') {
+      payload.landlord_email = landlord_email
+    }
+    if (landlord_phone.trim() !== '') {
+      payload.landlord_phone = landlord_phone
+    }
     try {
       await postProperties(payload)
-    } catch (e) {
-      console.error(e.message)
-    }
+      console.log(payload)
+      console.log(payload)
+    } catch (e) {}
   }
   // Clear Error
   useEffect(() => {
@@ -83,16 +105,17 @@ const ManagerUploadPropertyStepper = () => {
       addProperty.address &&
       addProperty.country &&
       addProperty.city &&
-      addProperty.state &&
-      addProperty.landlord_name &&
-      addProperty.landlord_email &&
-      addProperty.landlord_phone
+      addProperty.state
+      // addProperty.landlord_name &&
+      // addProperty.landlord_email &&
+      // addProperty.landlord_phone
     ) {
       setStep(step + 1)
     } else {
       setUploadError('Please fill in all required fields.')
     }
   }
+
   const prevStep = () => {
     if (step === 1) {
       navigate('/manager/properties')

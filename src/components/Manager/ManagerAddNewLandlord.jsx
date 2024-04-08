@@ -17,8 +17,6 @@ const ManagerAddNewLandlord = () => {
     name: '',
     email: '',
     phone: '',
-    phone_two: '',
-    property_name: '',
     property_uuid: propertyId,
   })
 
@@ -63,10 +61,13 @@ const ManagerAddNewLandlord = () => {
     }
   )
 
-  const { data: propertiesData } = useFirstMandateQuery('/property-manager/properties', {
-    enabled: !!token && !propertyId,
-    select: (data) => data?.data?.data,
-  })
+  const { data: propertiesData } = useFirstMandateQuery(
+    '/property-manager/properties',
+    {
+      enabled: !!token && !propertyId,
+      select: (data) => data?.data?.data,
+    }
+  )
 
   const handleManager = async (e) => {
     e.preventDefault()
@@ -170,33 +171,6 @@ const ManagerAddNewLandlord = () => {
                 className='t-name-input'
               />
             </div>
-            {!landlordId && (
-              <>
-                <div className='input'>
-                  <label>Phone</label>
-                  <input
-                    type='text'
-                    name='phone_two'
-                    value={addManager.phone_two}
-                    onChange={handleChangeAddManager}
-                    autoComplete='off'
-                    placeholder='+234'
-                    className='t-name-input'
-                  />
-                </div>
-                <div className='input'>
-                  <label>Property Name</label>
-                  <input
-                    type='text'
-                    name='property_name'
-                    value={addManager.property_name}
-                    onChange={handleChangeAddManager}
-                    autoComplete='off'
-                    className='t-name-input'
-                  />
-                </div>
-              </>
-            )}
             <button
               disabled={isLoading}
               type={'submit'}

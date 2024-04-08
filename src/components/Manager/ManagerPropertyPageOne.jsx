@@ -18,7 +18,7 @@ const ManagerPropertyPageOne = () => {
     }
   )
 
-console.log(data);
+
   if (pageLoading) {
     return (
       <div className='page-spinner'>

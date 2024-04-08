@@ -57,7 +57,6 @@ const LandlordUploadPropertyStepper = () => {
     try {
       await postProperties(payload)
     } catch (e) {
-      console.error(e.message)
     }
   }
   // Clear Error

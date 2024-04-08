@@ -35,13 +35,11 @@ const ManagerAddReminder = () => {
     {
       method: reminderId ? 'PUT' : 'POST',
       onSuccess: (data) => {
-        console.log(data)
         setTimeout(() => {
           navigate('/manager/reminders')
         }, 3000)
       },
       onError: (error) => {
-        console.error(error)
       },
     }
   )
