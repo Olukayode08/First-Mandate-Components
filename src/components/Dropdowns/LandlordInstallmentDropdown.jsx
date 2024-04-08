@@ -31,7 +31,6 @@ const LandlordInstallmentDropdown = ({
     addTenant.payment_type,
     addTenant.no_of_installments,
     addTenant.rent_amount,
-    handleInstallmentChange,
   ])
 
   const installmentOptions = paymentInstallment[addTenant.payment_type] || []
