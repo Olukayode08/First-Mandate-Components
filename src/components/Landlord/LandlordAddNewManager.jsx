@@ -40,7 +40,6 @@ const LandlordAddNewManager = () => {
     {
       method: managerId ? 'PUT' : 'POST',
       onSuccess: (data) => {
-        console.log(data)
         setTimeout(() => {
           navigate('/landlord/managers')
         }, 3000)

@@ -4,6 +4,8 @@ import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import LandlordEmptyManager from './LandlordEmptyManager'
 import { useFirstMandateQuery } from '../../data-layer/utils'
+import Pagination from './Pagination'
+
 const token = localStorage.getItem('token')
 
 const LandlordManagers = () => {
@@ -101,24 +103,12 @@ const LandlordManagers = () => {
                 </div>
               )}
             </div>
-            {data.data.last_page > 1 && (
-              <div className='pagination'>
-                <button
-                  className='pag-text'
-                  disabled={currentPage === 1}
-                  onClick={handlePrevPage}
-                >
-                  Previous Page
-                </button>
-                <button
-                  className='pag-text'
-                  disabled={currentPage === data.data.last_page}
-                  onClick={handleNextPage}
-                >
-                  Next Page
-                </button>
-              </div>
-            )}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={data?.data.last_page || 1}
+              handlePrevPage={handlePrevPage}
+              handleNextPage={handleNextPage}
+            />
           </main>
         </section>
       </LManager>
