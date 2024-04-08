@@ -37,7 +37,6 @@ const LandlordManagers = () => {
       </div>
     )
   }
-  // console.log(data.data.current_page)
 
   return (
     <>
