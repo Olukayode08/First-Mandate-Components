@@ -81,6 +81,7 @@ import LandlordSingleProperty from './components/Landlord/LandlordSingleProperty
 import ManagerUploadPropertyPage from './components/Manager/ManagerUploadPropertyPage'
 import ManagerAddUnit from './components/Manager/ManagerAddUnit'
 import ManagerSelectUnit from './components/Manager/ManagerSelectUnit'
+import LandlordSendNotification from './components/Landlord/LandlordSendNotification'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -122,6 +123,10 @@ function App() {
             <Route path='/landlord' element={<LandLord />}>
               <Route path='' element={<LandlordHomePage />} />
               <Route path='notifications' element={<LandlordNotifications />} />
+              <Route
+                path='send-notification'
+                element={<LandlordSendNotification />}
+              />
               <Route path='properties' element={<LandlordProperties />} />
               <Route
                 path='property/:singlePropertyId'
@@ -219,7 +224,10 @@ function App() {
               />
               <Route path='reminders' element={<ManagerReminders />} />
               <Route path='add-reminder' element={<ManagerAddReminder />} />
-              <Route path='add-reminder/:reminderId/edit' element={<ManagerAddReminder />} />
+              <Route
+                path='add-reminder/:reminderId/edit'
+                element={<ManagerAddReminder />}
+              />
               <Route path='due-date' element={<ManagerDueDates />} />
               <Route path='edit-profile' element={<ManagerEditProfilePage />} />
               <Route path='profile' element={<ManagerProfileSettings />} />

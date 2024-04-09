@@ -136,7 +136,6 @@ const LandlordReminders = () => {
     onSuccess: (data) => {
     },
   })
-  console.log(data)
 
   if (pageLoading) {
     return (

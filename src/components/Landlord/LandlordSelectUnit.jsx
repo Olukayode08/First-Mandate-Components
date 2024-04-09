@@ -34,6 +34,7 @@ const LandlordSelectUnit = () => {
       </div>
     )
   }
+  console.log(data)
   return (
     <>
       <LandlordSU>
@@ -64,8 +65,12 @@ const LandlordSelectUnit = () => {
                     <div className='unit'>
                       <p>{property.title}</p>
                       <div className='house'>
-                        {property.units.map((unit) => {
-                          return (
+                        {property.units.length === 0 ? (
+                          <div className='error'>
+                            This Property has no unit
+                          </div>
+                        ) : (
+                          property.units.map((unit) => (
                             <div
                               onClick={() => {
                                 if (isEdit) {
@@ -92,8 +97,8 @@ const LandlordSelectUnit = () => {
                               <IoMdCheckmark />
                               <p>{unit.unit_name}</p>
                             </div>
-                          )
-                        })}
+                          ))
+                        )}
                       </div>
                     </div>
                   </div>
@@ -119,6 +124,9 @@ const LandlordSU = styled.section`
   }
   h3 {
     width: 100%;
+  }
+  .error {
+    color: red;
   }
   .occupied-error {
     color: red;

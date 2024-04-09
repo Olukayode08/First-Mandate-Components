@@ -11,7 +11,7 @@ const LandlordNotifications = () => {
           <main className='l-notify'>
             <div className='a-tenant'>
               <h3>Notifications</h3>
-              <Link className='add-r'>
+              <Link to='/landlord/send-notification' className='add-r'>
                 <h4>Send Notifications</h4>
                 <FaRegPlusSquare size={20} />
               </Link>
