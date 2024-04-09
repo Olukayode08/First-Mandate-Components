@@ -4,7 +4,6 @@ import ManagerCountryDropdown from '../Dropdowns/ManagerCountryDropdown'
 
 const ManagerUploadPropertyOne = ({
   handleChangeAddProperty,
-  setAddProperty,
   addProperty,
 }) => {
   return (
@@ -43,7 +42,6 @@ const ManagerUploadPropertyOne = ({
               <ManagerCountryDropdown
                 addProperty={addProperty}
                 handleChangeAddProperty={handleChangeAddProperty}
-                setAddProperty={setAddProperty}
               />
             </div>
             <div className='input'>

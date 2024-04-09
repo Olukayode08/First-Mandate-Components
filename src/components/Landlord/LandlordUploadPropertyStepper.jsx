@@ -38,26 +38,50 @@ const LandlordUploadPropertyStepper = () => {
         navigate('/landlord/properties')
       }, 3000)
     },
-    onError: (error) => {
-    },
+    onError: (error) => {},
   })
 
   const handleAddProperty = async (e) => {
+    // const payload = {
+    //   title: addProperty.title,
+    //   address: addProperty.address,
+    //   country: addProperty.country,
+    //   city: addProperty.city,
+    //   state: addProperty.state,
+    //   manager_name: addProperty.manager_name,
+    //   manager_email: addProperty.manager_email,
+    //   manager_phone: addProperty.manager_phone,
+    // }
+    const {
+      title,
+      address,
+      country,
+      city,
+      state,
+      manager_name,
+      manager_email,
+      manager_phone,
+    } = addProperty
     const payload = {
-      title: addProperty.title,
-      address: addProperty.address,
-      country: addProperty.country,
-      city: addProperty.city,
-      state: addProperty.state,
-      manager_name: addProperty.manager_name,
-      manager_email: addProperty.manager_email,
-      manager_phone: addProperty.manager_phone,
+      title,
+      address,
+      country,
+      city,
+      state,
     }
-
+    // Only include landlord details if they are filled
+    if (manager_name.trim() !== '') {
+      payload.manager_name = manager_name
+    }
+    if (manager_email.trim() !== '') {
+      payload.manager_email = manager_email
+    }
+    if (manager_phone.trim() !== '') {
+      payload.manager_phone = manager_phone
+    }
     try {
       await postProperties(payload)
-    } catch (e) {
-    }
+    } catch (e) {}
   }
   // Clear Error
   useEffect(() => {
@@ -79,10 +103,10 @@ const LandlordUploadPropertyStepper = () => {
       addProperty.address &&
       addProperty.country &&
       addProperty.city &&
-      addProperty.state &&
-      addProperty.manager_phone &&
-      addProperty.manager_name &&
-      addProperty.manager_email
+      addProperty.state
+      // addProperty.manager_phone &&
+      // addProperty.manager_name &&
+      // addProperty.manager_email
     ) {
       setStep(step + 1)
     } else {
@@ -127,14 +151,12 @@ const LandlordUploadPropertyStepper = () => {
                 <Step1
                   addProperty={addProperty}
                   handleChangeAddProperty={handleChangeAddProperty}
-                  setAddProperty={setAddProperty}
                 />
               )}
               {step === 2 && (
                 <Step2
                   addProperty={addProperty}
                   handleChangeAddProperty={handleChangeAddProperty}
-                  setAddProperty={setAddProperty}
                 />
               )}
             </div>
@@ -188,7 +210,6 @@ const Step1 = ({ addProperty, handleChangeAddProperty, setAddProperty }) => {
       <LandlordUploadPropertyOne
         addProperty={addProperty}
         handleChangeAddProperty={handleChangeAddProperty}
-        setAddProperty={setAddProperty}
       />
     </div>
   )
@@ -201,7 +222,6 @@ const Step2 = ({ addProperty, handleChangeAddProperty, setAddProperty }) => {
       <LandlordUploadPropertyTwo
         addProperty={addProperty}
         handleChangeAddProperty={handleChangeAddProperty}
-        setAddProperty={setAddProperty}
       />
     </div>
   )

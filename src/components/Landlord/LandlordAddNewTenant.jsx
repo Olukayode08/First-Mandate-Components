@@ -127,7 +127,6 @@ const LandlordAddNewTenant = () => {
     enabled: !!token,
     select: (data) => findUnit(unitId, data?.data?.data),
     onSuccess: (data) => {
-      console.log(data)
     },
   })
 

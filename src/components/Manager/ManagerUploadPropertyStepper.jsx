@@ -81,8 +81,6 @@ const ManagerUploadPropertyStepper = () => {
     }
     try {
       await postProperties(payload)
-      console.log(payload)
-      console.log(payload)
     } catch (e) {}
   }
   // Clear Error

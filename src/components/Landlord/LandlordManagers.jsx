@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import LandlordEmptyManager from './LandlordEmptyManager'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import Pagination from './Pagination'
+import LandlordManagerPagination from './LandlordManagerPagination'
 
 const token = localStorage.getItem('token')
 
 const LandlordManagers = () => {
   const navigate = useNavigate()
-  const [currentPage, setCurrentPage] = useState(1)
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const currentPageParam = parseInt(searchParams.get('page')) || 1
+  const [currentPage, setCurrentPage] = useState(currentPageParam)
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/property-managers?page=${currentPage}`,
@@ -103,7 +106,7 @@ const LandlordManagers = () => {
                 </div>
               )}
             </div>
-            <Pagination
+            <LandlordManagerPagination
               currentPage={currentPage}
               totalPages={data?.data.last_page || 1}
               handlePrevPage={handlePrevPage}

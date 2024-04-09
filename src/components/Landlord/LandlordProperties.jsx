@@ -1,23 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import LandlordPropertiesDropdown from '../Dropdowns/LandlordPropertiesDropdown'
 import LandlordEmptyProperty from './LandlordEmptyProperty'
 import LandlordPropertyUnit from './LandlordPropertyUnit'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import iconHouse from '../../assets/Frame-2007.png'
+import LandlordPropertiesPagination from './LandlordPropertiesPagination'
 const token = localStorage.getItem('token')
 
 const LandlordProperties = () => {
-  const { data, isLoading: pageLoading } = useFirstMandateQuery('/properties', {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const currentPageParam = parseInt(searchParams.get('page')) || 1
+  const [currentPage, setCurrentPage] = useState(currentPageParam)
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(`/properties?page=${currentPage}`, {
     enabled: !!token,
     onSuccess: (data) => {},
   })
+
+
+  useEffect(() => {
+    navigate(`/landlord/properties?page=${currentPage}`, { replace: true })
+  }, [currentPage, navigate])
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1)
+  }
+
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1)
+  }
   if (pageLoading) {
-    return <div className='page-spinner'>
-      <div className="l-spinner"></div>
-    </div>
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
   }
   return (
     <>
@@ -74,6 +95,13 @@ const LandlordProperties = () => {
               </div>
             )}
           </div>
+          <LandlordPropertiesPagination
+            currentPage={currentPage}
+            totalPages={data?.data.last_page || 1}
+            handlePrevPage={handlePrevPage}
+            handleNextPage={handleNextPage}
+            handlePageChange={setCurrentPage}
+          />
         </section>
       </LandlordP>
     </>
@@ -150,7 +178,7 @@ const LandlordP = styled.section`
       align-items: flex-start;
       justify-content: left;
     }
-    .status-active{
+    .status-active {
       margin-bottom: 15px;
     }
     .h-img {

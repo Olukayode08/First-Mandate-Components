@@ -4,7 +4,6 @@ import LandlordCountryDropdown from '../Dropdowns/LandlordCountryDropdown'
 
 const LandlordUploadPropertyOne = ({
   handleChangeAddProperty,
-  setAddProperty,
   addProperty,
 }) => {
   return (
@@ -43,7 +42,6 @@ const LandlordUploadPropertyOne = ({
               <LandlordCountryDropdown
                 addProperty={addProperty}
                 handleChangeAddProperty={handleChangeAddProperty}
-                setAddProperty={setAddProperty}
               />
             </div>
             <div className='input'>
