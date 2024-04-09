@@ -81,6 +81,9 @@ import LandlordSingleProperty from './components/Landlord/LandlordSingleProperty
 import ManagerUploadPropertyPage from './components/Manager/ManagerUploadPropertyPage'
 import ManagerAddUnit from './components/Manager/ManagerAddUnit'
 import ManagerSelectUnit from './components/Manager/ManagerSelectUnit'
+import LandlordSendReminder from './components/Landlord/LandlordSendReminder'
+import ManagerSendReminder from './components/Manager/ManagerSendReminder'
+import ManagerSendNotification from './components/Manager/ManagerSendNotification'
 import LandlordSendNotification from './components/Landlord/LandlordSendNotification'
 
 function App() {
@@ -122,11 +125,6 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path='/landlord' element={<LandLord />}>
               <Route path='' element={<LandlordHomePage />} />
-              <Route path='notifications' element={<LandlordNotifications />} />
-              <Route
-                path='send-notification'
-                element={<LandlordSendNotification />}
-              />
               <Route path='properties' element={<LandlordProperties />} />
               <Route
                 path='property/:singlePropertyId'
@@ -172,6 +170,15 @@ function App() {
                 path='add-reminder/:reminderId/edit'
                 element={<LandlordAddReminder />}
               />
+              <Route
+                path='tenants/:tenantId/send-reminder'
+                element={<LandlordSendReminder />}
+              />
+              <Route path='notifications' element={<LandlordNotifications />} />
+              <Route
+                path='send-notification'
+                element={<LandlordSendNotification />}
+              />
               <Route path='due-date' element={<LandlordDueDates />} />
 
               <Route
@@ -186,7 +193,6 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path='/manager' element={<PropertyManager />}>
               <Route path='' element={<ManagerHomePage />} />
-              <Route path='notifications' element={<ManagerNotifications />} />
               <Route path='properties' element={<ManagerPropertyPageOne />} />
               <Route
                 path='property/:singlePropertyId'
@@ -227,6 +233,15 @@ function App() {
               <Route
                 path='add-reminder/:reminderId/edit'
                 element={<ManagerAddReminder />}
+              />
+              <Route
+                path='tenants/:tenantId/send-reminder'
+                element={<ManagerSendReminder />}
+              />
+              <Route path='notifications' element={<ManagerNotifications />} />
+              <Route
+                path='send-notification'
+                element={<ManagerSendNotification />}
               />
               <Route path='due-date' element={<ManagerDueDates />} />
               <Route path='edit-profile' element={<ManagerEditProfilePage />} />

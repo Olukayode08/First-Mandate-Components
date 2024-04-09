@@ -96,7 +96,9 @@ const LandlordTenants = () => {
                             <div className='margin-t'>Edit Tenant</div>
                           </td>
                           <td
-                            onClick={() => navigate(`/landlord/add-reminder`)}
+                            onClick={() =>
+                              navigate(`/landlord/tenants/${list.uuid}/send-reminder`)
+                            }
                           >
                             <div className='margin-t'>Send Reminder</div>
                           </td>

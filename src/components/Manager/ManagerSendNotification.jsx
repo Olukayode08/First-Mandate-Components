@@ -8,7 +8,7 @@ import {
 
 const token = localStorage.getItem('token')
 
-const LandlordSendNotification = () => {
+const ManagerSendNotification = () => {
   const navigate = useNavigate()
   const { tenantId } = useParams()
   const [selectedTenantUuid, setSelectedTenantUuid] = useState(null)
@@ -41,7 +41,7 @@ const LandlordSendNotification = () => {
   })
 
   const { data: tenantsData } = useFirstMandateQuery(
-    '/tenants',
+    '/property-manager/property-tenants',
     {
       enabled: !!token && !tenantId,
       select: (data) => data?.data?.data,
@@ -65,7 +65,7 @@ const LandlordSendNotification = () => {
 
   return (
     <>
-      <LSNotification>
+      <MSNotification>
         <section>
           <form onSubmit={handleNotification} className='n-section'>
             {error && <p className='error'>{error?.message}</p>}
@@ -209,11 +209,11 @@ const LandlordSendNotification = () => {
             </button>
           </form>
         </section>
-      </LSNotification>
+      </MSNotification>
     </>
   )
 }
-const LSNotification = styled.section`
+const MSNotification = styled.section`
   .n-section {
     width: 100%;
     background-color: #fff;
@@ -383,4 +383,4 @@ const LSNotification = styled.section`
     }
   }
 `
-export default LandlordSendNotification
+export default ManagerSendNotification

@@ -1,24 +1,16 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useParams, useNavigate } from 'react-router-dom'
-import {
-  useFirstMandateMutation,
-  useFirstMandateQuery,
-} from '../../data-layer/utils'
+import { useFirstMandateMutation } from '../../data-layer/utils'
 
-const token = localStorage.getItem('token')
-
-const LandlordSendNotification = () => {
+const ManagerSendReminder = () => {
   const navigate = useNavigate()
   const { tenantId } = useParams()
-  const [selectedTenantUuid, setSelectedTenantUuid] = useState(null)
-
   const [addReminder, setAddReminder] = useState({
-    type: '',
-    description: '',
-    notice_date: '',
-    notice_time: '',
-    tenant_uuid: tenantId,
+    reminder_type: '',
+    short_description: '',
+    next_reminder_date: '',
+    reminder_time: '',
   })
 
   const handleChangeAddReminder = (e) => {
@@ -30,63 +22,53 @@ const LandlordSendNotification = () => {
     isLoading,
     error,
     isSuccess,
-  } = useFirstMandateMutation(`/property-manager/notices`, {
+  } = useFirstMandateMutation(`/property-manager/tenants/${tenantId}/send-reminder`, {
     method: 'POST',
     onSuccess: (data) => {
       setTimeout(() => {
-        navigate('/manager/notifications')
+        navigate('/landlord/reminders')
       }, 3000)
     },
     onError: (error) => {},
   })
 
-  const { data: tenantsData } = useFirstMandateQuery(
-    '/tenants',
-    {
-      enabled: !!token && !tenantId,
-      select: (data) => data?.data?.data,
-    }
-  )
-
-  const handleNotification = async (e) => {
+  const handleReminder = async (e) => {
     e.preventDefault()
     const payload = {
-      type: addReminder.type,
-      description: addReminder.description,
-      notice_date: addReminder.notice_date,
-      notice_time: addReminder.notice_time,
-      tenant_uuid: tenantId || selectedTenantUuid,
+      reminder_type: addReminder.reminder_type,
+      short_description: addReminder.short_description,
+      next_reminder_date: addReminder.next_reminder_date,
+      reminder_time: addReminder.reminder_time,
     }
 
     try {
       await postReminder(payload)
-    } catch (e) {}
+    } catch (e) {
+      console.error(e)
+    }
   }
-
   return (
     <>
-      <LSNotification>
+      <LSReminder>
         <section>
-          <form onSubmit={handleNotification} className='n-section'>
+          <form onSubmit={handleReminder} className='n-section'>
             {error && <p className='error'>{error?.message}</p>}
             {isSuccess && (
-              <p className='error success'>
-                Notification was sent successfully
-              </p>
+              <p className='error success'>Reminder was send successfully</p>
             )}
             <div className='input'>
-              <label className='reminder-h'>Send Notification</label>
+              <label className='reminder-h'>Send Reminder</label>
             </div>
             <div className='n-status'>
-              <label>Notification Type</label>
+              <label>Reminder Type</label>
               <div className='radio-btns'>
                 <div className='radio-btn'>
                   <input
                     type='radio'
                     value='Rent due date'
-                    name='type'
+                    name='reminder_type'
                     onChange={handleChangeAddReminder}
-                    checked={addReminder.type === 'Rent due date'}
+                    checked={addReminder.reminder_type === 'Rent due date'}
                     className='btn-input'
                   />
                   <p className='n-details'>Rent due date</p>
@@ -95,9 +77,11 @@ const LandlordSendNotification = () => {
                   <input
                     type='radio'
                     value='Electricity Payment'
-                    name='type'
+                    name='reminder_type'
                     onChange={handleChangeAddReminder}
-                    checked={addReminder.type === 'Electricity Payment'}
+                    checked={
+                      addReminder.reminder_type === 'Electricity Payment'
+                    }
                     className='btn-input'
                   />
                   <p className='n-details'>Electricity Payment</p>
@@ -106,9 +90,9 @@ const LandlordSendNotification = () => {
                   <input
                     type='radio'
                     value='Water bill'
-                    name='type'
+                    name='reminder_type'
                     onChange={handleChangeAddReminder}
-                    checked={addReminder.type === 'Water bill'}
+                    checked={addReminder.reminder_type === 'Water bill'}
                     className='btn-input'
                   />
                   <p className='n-details'>Water bill</p>
@@ -117,9 +101,9 @@ const LandlordSendNotification = () => {
                   <input
                     type='radio'
                     value='Security fee'
-                    name='type'
+                    name='reminder_type'
                     onChange={handleChangeAddReminder}
-                    checked={addReminder.type === 'Security fee'}
+                    checked={addReminder.reminder_type === 'Security fee'}
                     className='btn-input'
                   />
                   <p className='n-details'>Security fee</p>
@@ -132,42 +116,12 @@ const LandlordSendNotification = () => {
               <input
                 type='text'
                 required
-                name='description'
-                value={addReminder.description}
+                name='short_description'
+                value={addReminder.short_description}
                 onChange={handleChangeAddReminder}
                 autoComplete='off'
                 className='r-desc-input'
               />
-            </div>
-
-            <div>
-              {!tenantId && (
-                <div className='input'>
-                  <label>Select Tenant</label>
-                  {tenantsData?.length > 0 ? (
-                    <div className='select'>
-                      <select
-                        name='property-select'
-                        id='property-select'
-                        required
-                        onChange={(e) => {
-                          const _selectedTenantUuid = e.target.value
-                          setSelectedTenantUuid(_selectedTenantUuid)
-                        }}
-                      >
-                        <option value=''>Select</option>
-                        {tenantsData?.map((tenant) => (
-                          <option key={tenant.uuid} value={tenant.uuid}>
-                            {tenant.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  ) : (
-                    <p>No Tenant</p>
-                  )}
-                </div>
-              )}
             </div>
             <div className='input'>
               <label>Date</label>
@@ -175,8 +129,8 @@ const LandlordSendNotification = () => {
                 type='date'
                 required
                 placeholder='dd/mm/yyy'
-                name='notice_date'
-                value={addReminder.notice_date}
+                name='next_reminder_date'
+                value={addReminder.next_reminder_date}
                 onChange={handleChangeAddReminder}
                 autoComplete='off'
                 className='r-date-input'
@@ -188,8 +142,8 @@ const LandlordSendNotification = () => {
                 className='r-date-input'
                 type='time'
                 required
-                name='notice_time'
-                value={addReminder.notice_time}
+                name='reminder_time'
+                value={addReminder.reminder_time}
                 onChange={handleChangeAddReminder}
                 autoComplete='off'
               />
@@ -201,19 +155,19 @@ const LandlordSendNotification = () => {
               {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
-                  <p>Send Notification</p>
+                  <p>Send Reminder</p>
                 </div>
               ) : (
-                <p>Send Notification</p>
+                <p>Send Reminder</p>
               )}
             </button>
           </form>
         </section>
-      </LSNotification>
+      </LSReminder>
     </>
   )
 }
-const LSNotification = styled.section`
+const LSReminder = styled.section`
   .n-section {
     width: 100%;
     background-color: #fff;
@@ -275,24 +229,7 @@ const LSNotification = styled.section`
     flex-direction: column;
     margin: 10px 0;
   }
-  .select {
-    width: 180px;
-    height: 48px;
-    border: 1px solid black;
-    border-radius: 4px;
-    padding: 0 15px;
-  }
-  select {
-    width: 100%;
-    height: 100%;
-    outline: none;
-    font-family: inherit;
-    font-size: 16px;
-    color: #000;
-    outline: none;
-    background: transparent;
-    border: none;
-  }
+
   input {
     outline: none;
     border: 1px solid black;
@@ -383,4 +320,4 @@ const LSNotification = styled.section`
     }
   }
 `
-export default LandlordSendNotification
+export default ManagerSendReminder

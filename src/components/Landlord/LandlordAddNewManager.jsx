@@ -17,8 +17,6 @@ const LandlordAddNewManager = () => {
     name: '',
     email: '',
     phone: '',
-    // phone_two: '',
-    // property_name: '',
     property_uuid: propertyId,
   })
 
@@ -68,14 +66,12 @@ const LandlordAddNewManager = () => {
 
   const handleManager = async (e) => {
     e.preventDefault()
-
     const payload = {
       email: addManager.email,
       phone: addManager.phone,
       name: addManager.name,
       property_uuid: propertyId || selectedPropertyuuid,
     }
-
     try {
       await postManager(payload)
     } catch (e) {

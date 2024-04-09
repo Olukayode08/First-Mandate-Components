@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { managerNotififcations } from '../../datas/ManagerNotifications'
+import { Link } from 'react-router-dom'
+import { FaRegPlusSquare } from 'react-icons/fa'
 
 const ManagerNotifications = () => {
   return (
@@ -8,7 +10,13 @@ const ManagerNotifications = () => {
       <ManagerN>
         <section>
           <main className='l-notify'>
-            <h1>Notifications</h1>
+            <div className='a-tenant'>
+              <h3>Notifications</h3>
+              <Link to='/manager/send-notification' className='add-r'>
+                <h4>Send Notifications</h4>
+                <FaRegPlusSquare size={20} />
+              </Link>
+            </div>
             <div className='table'>
               <table>
                 <thead>
@@ -51,9 +59,24 @@ const ManagerN = styled.section`
     width: 100%;
     padding: 20px;
   }
-  h1 {
-    padding: 0 20px;
+  .a-tenant {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     margin: 20px 0;
+  }
+  .add-r {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #ffe48e;
+    padding: 15px;
+    border-radius: 4px;
+    width: 250px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
   }
   .table {
     overflow-x: scroll;
@@ -83,6 +106,14 @@ const ManagerN = styled.section`
     margin: 15px 0;
     padding: 7px 10px;
     border-radius: 4px;
+  }
+  @media screen and (max-width: 900px) {
+    .a-tenant {
+      flex-direction: column;
+    }
+    .add-r {
+      margin: 20px 0 10px 0;
+    }
   }
 `
 export default ManagerNotifications

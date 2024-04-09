@@ -99,7 +99,7 @@ const ManagerTenants = () => {
                             <div className='margin-t'>Edit Tenant</div>
                           </td>
                           <td
-                            onClick={() => navigate(`/manager/add-reminder`)}
+                            onClick={() => navigate(`/manager/tenants/${list.uuid}/send-reminder`)}
                           >
                             <div className='margin-t'>Send Reminder</div>
                           </td>
