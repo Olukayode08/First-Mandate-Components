@@ -1,8 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
-import { tenantNotififcations } from '../../datas/TenantNotifications'
+import { useFirstMandateQuery } from '../../data-layer/utils'
+import TenantEmptyNotification from './TenantEmptyNotification'
+const token = localStorage.getItem('token')
 
 const TenantNotifications = () => {
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/tenant/all-notices',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
+
+  console.log(data);
+
+  if (pageLoading) {
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
+  }
   return (
     <>
       <TenantN>
@@ -15,27 +34,40 @@ const TenantNotifications = () => {
                   <tr className='t-heading'>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Message</th>
+                    <th>Description</th>
+                    <th>Landlord's Name</th>
                     <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {tenantNotififcations.map((notifications) => {
-                    return (
-                      <tr key={notifications.id} className='t-notifications'>
-                        <td>{notifications.date}</td>
-                        <td>{notifications.time}</td>
-                        <td>{notifications.desc}</td>
-                        <td>
-                          <div style={notifications.style} className='n-margin'>
-                            {notifications.status}
-                          </div>
-                        </td>
-                      </tr>
-                    )
-                  })}
+                  {data &&
+                  data.data &&
+                  data.data.data &&
+                  data.data.data.length > 0
+                    ? data.data.data.map((notifications) => (
+                        <tr
+                          key={notifications.uuid}
+                          className='t-notifications'
+                        >
+                          <td>{notifications.notice_date}</td>
+                          <td>{notifications.notice_time}</td>
+                          <td>{notifications.description}</td>
+                          <td>{notifications?.apartment?.landlord_name}</td>
+                          <td>
+                            <div className='n-margin'>
+                              {notifications.acknowledged_status}
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    : null}
                 </tbody>
               </table>
+              {!pageLoading && !data.data.data?.length && (
+                <div>
+                  <TenantEmptyNotification />
+                </div>
+              )}
             </div>
           </main>
         </section>

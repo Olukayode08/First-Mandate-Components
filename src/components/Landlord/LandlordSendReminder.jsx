@@ -26,7 +26,7 @@ const LandlordSendReminder = () => {
     method: 'POST',
     onSuccess: (data) => {
       setTimeout(() => {
-        navigate('/landlord/reminders')
+        navigate('/landlord/tenants')
       }, 3000)
     },
     onError: (error) => {},
@@ -54,7 +54,7 @@ const LandlordSendReminder = () => {
           <form onSubmit={handleReminder} className='n-section'>
             {error && <p className='error'>{error?.message}</p>}
             {isSuccess && (
-              <p className='error success'>Reminder was send successfully</p>
+              <p className='error success'>Reminder was sent successfully</p>
             )}
             <div className='input'>
               <label className='reminder-h'>Send Reminder</label>

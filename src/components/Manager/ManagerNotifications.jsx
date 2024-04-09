@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { managerNotififcations } from '../../datas/ManagerNotifications'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { useFirstMandateQuery } from '../../data-layer/utils'
+import ManagerEmptyNotification from './ManagerEmptyNotification'
 const token = localStorage.getItem('token')
 
 const ManagerNotifications = () => {
@@ -41,26 +41,39 @@ const ManagerNotifications = () => {
                     <th>Date</th>
                     <th>Time</th>
                     <th>Description</th>
+                    <th>Tenant's Name</th>
                     <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {managerNotififcations.map((notifications) => {
-                    return (
-                      <tr key={notifications.id} className='t-notifications'>
-                        <td>{notifications.date}</td>
-                        <td>{notifications.time}</td>
-                        <td>{notifications.desc}</td>
-                        <td>
-                          <div style={notifications.style} className='status-m'>
-                            {notifications.status}
-                          </div>
-                        </td>
-                      </tr>
-                    )
-                  })}
+                  {data &&
+                  data.data &&
+                  data.data.data &&
+                  data.data.data.length > 0
+                    ? data.data.data.map((notifications) => (
+                        <tr
+                          key={notifications.uuid}
+                          className='t-notifications'
+                        >
+                          <td>{notifications.notice_date}</td>
+                          <td>{notifications.notice_time}</td>
+                          <td>{notifications.description}</td>
+                          <td>{notifications?.tenant?.name}</td>
+                          <td>
+                            <div className='n-margin'>
+                              {notifications.acknowledged_status}
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    : null}
                 </tbody>
               </table>
+              {!pageLoading && !data.data.data?.length && (
+                <div>
+                  <ManagerEmptyNotification/>
+                </div>
+              )}
             </div>
           </main>
         </section>

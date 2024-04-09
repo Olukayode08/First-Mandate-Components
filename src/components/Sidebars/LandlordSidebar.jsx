@@ -147,7 +147,9 @@ const LandlordSidebar = () => {
                     location.pathname === '/landlord/reminders' ||
                     location.pathname === '/landlord/add-reminder' ||
                     location.pathname ===
-                      `/landlord/add-reminder/${reminderId}/edit`
+                      `/landlord/add-reminder/${reminderId}/edit` ||
+                    location.pathname ===
+                      `/landlord/tenants/${tenantId}/send-reminder`
                       ? 'active links'
                       : 'links'
                   }
@@ -160,7 +162,8 @@ const LandlordSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/landlord/notifications'
+                    location.pathname === '/landlord/notifications' ||
+                    location.pathname === '/manager/send-notification'
                       ? 'active links'
                       : 'links'
                   }

@@ -16,8 +16,7 @@ const PropertyManagerSidebar = () => {
   const { active, setActive } = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
   const location = useLocation()
-  const { singlePropertyId, propertyId, unitId } =
-    useParams()
+  const { singlePropertyId, propertyId, unitId, tenantId } = useParams()
   const activeRef = useRef(null)
 
   useEffect(() => {
@@ -134,7 +133,9 @@ const PropertyManagerSidebar = () => {
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/manager/reminders' ||
-                    location.pathname === '/manager/add-reminder'
+                    location.pathname === '/manager/add-reminder' ||
+                    location.pathname ===
+                      `/manager/tenants/${tenantId}/send-reminder`
                       ? 'active links'
                       : 'links'
                   }
@@ -146,7 +147,8 @@ const PropertyManagerSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/manager/notifications'
+                    location.pathname === '/manager/notifications' ||
+                    location.pathname === '/manager/send-notification'
                       ? 'active links'
                       : 'links'
                   }
