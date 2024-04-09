@@ -7,7 +7,6 @@ import {
 } from '../../data-layer/utils'
 
 const token = localStorage.getItem('token')
-
 const LandlordSendNotification = () => {
   const navigate = useNavigate()
   const { tenantId } = useParams()

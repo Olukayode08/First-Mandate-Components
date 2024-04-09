@@ -3,7 +3,26 @@ import styled from 'styled-components'
 import { landlordNotififcations } from '../../datas/LandlordNotifications'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useFirstMandateQuery } from '../../data-layer/utils'
+
+const token = localStorage.getItem('token')
+
 const LandlordNotifications = () => {
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/notices',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
+
+  if (pageLoading) {
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
+  }
   return (
     <>
       <LNotify>

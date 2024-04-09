@@ -3,8 +3,25 @@ import styled from 'styled-components'
 import { managerNotififcations } from '../../datas/ManagerNotifications'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
+import { useFirstMandateQuery } from '../../data-layer/utils'
+const token = localStorage.getItem('token')
 
 const ManagerNotifications = () => {
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/property-manager/notices',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
+
+  if (pageLoading) {
+    return (
+      <div className='page-spinner'>
+        <div className='l-spinner'></div>
+      </div>
+    )
+  }
   return (
     <>
       <ManagerN>
