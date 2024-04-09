@@ -30,7 +30,7 @@ const ManagerSendNotification = () => {
     isLoading,
     error,
     isSuccess,
-  } = useFirstMandateMutation(`/notices`, {
+  } = useFirstMandateMutation(`/property-manager/notices`, {
     method: 'POST',
     onSuccess: (data) => {
       setTimeout(() => {

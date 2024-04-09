@@ -29,11 +29,11 @@ const LandlordSendNotification = () => {
     isLoading,
     error,
     isSuccess,
-  } = useFirstMandateMutation(`/property-manager/notices`, {
+  } = useFirstMandateMutation(`/notices`, {
     method: 'POST',
     onSuccess: (data) => {
       setTimeout(() => {
-        navigate('/manager/notifications')
+        navigate('/landlord/notifications')
       }, 3000)
     },
     onError: (error) => {},
