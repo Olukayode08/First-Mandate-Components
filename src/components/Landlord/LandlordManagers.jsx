@@ -108,6 +108,7 @@ const LandlordManagers = () => {
               totalPages={data?.data.last_page || 1}
               handlePrevPage={handlePrevPage}
               handleNextPage={handleNextPage}
+              handlePageChange={setCurrentPage}
             />
           </main>
         </section>

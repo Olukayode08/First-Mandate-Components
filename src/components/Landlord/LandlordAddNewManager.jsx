@@ -17,8 +17,8 @@ const LandlordAddNewManager = () => {
     name: '',
     email: '',
     phone: '',
-    phone_two: '',
-    property_name: '',
+    // phone_two: '',
+    // property_name: '',
     property_uuid: propertyId,
   })
 
@@ -166,7 +166,7 @@ const LandlordAddNewManager = () => {
                 className='t-name-input'
               />
             </div>
-            {!managerId && (
+            {/* {!managerId && (
               <>
                 <div className='input'>
                   <label>Phone</label>
@@ -192,7 +192,7 @@ const LandlordAddNewManager = () => {
                   />
                 </div>
               </>
-            )}
+            )} */}
             <button
               disabled={isLoading}
               type={'submit'}

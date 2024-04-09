@@ -6,7 +6,11 @@ const Pagination = ({
   totalPages,
   handlePrevPage,
   handleNextPage,
+  handlePageChange,
 }) => {
+  const goToPage = (pageNumber) => {
+    handlePageChange(pageNumber)
+  }
   return (
     <PManager>
       <section>
@@ -24,7 +28,7 @@ const Pagination = ({
                 <button
                   key={page}
                   className={currentPage === page ? 'active' : 'pag-text'}
-                //   onClick={() => handleNextPage(page)}
+                  onClick={() => goToPage(page)} 
                 >
                   {page}
                 </button>
@@ -63,6 +67,7 @@ const PManager = styled.section`
   }
 
   .pag-text:disabled {
+    border: none;
     background-color: #f6f6f8;
     cursor: not-allowed;
   }
@@ -74,7 +79,7 @@ const PManager = styled.section`
   .page-numbers button {
     background-color: transparent;
     border: none;
-    color: #ffe48e;
+    color: #000;
     padding: 7px 10px;
     margin: 0 2px;
     cursor: pointer;
