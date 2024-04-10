@@ -78,12 +78,9 @@ const ManagerAddNewLandlord = () => {
       name: addManager.name,
       property_uuid: propertyId || selectedPropertyuuid,
     }
-
     try {
       await postManager(payload)
-    } catch (e) {
-      console.error(e)
-    }
+    } catch (e) {}
   }
 
   return (

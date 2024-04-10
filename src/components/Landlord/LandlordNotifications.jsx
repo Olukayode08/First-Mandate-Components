@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import LandlordEmptyNotification from './LandlordEmptyNotification'
+import LandlordEmptyNotification from './LandlordEmptyNotice'
 
 const token = localStorage.getItem('token')
 
 const LandlordNotifications = () => {
-  const { data, isLoading: pageLoading } = useFirstMandateQuery('/notices', {
-    enabled: !!token,
-    onSuccess: (data) => {},
-  })
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    '/notifications',
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
   console.log(data)
   if (pageLoading) {
     return (
@@ -25,13 +26,6 @@ const LandlordNotifications = () => {
       <LNotify>
         <section>
           <main className='l-notify'>
-            <div className='a-tenant'>
-              <h3>Notifications</h3>
-              <Link to='/landlord/send-notification' className='add-r'>
-                <h4>Send Notifications</h4>
-                <FaRegPlusSquare size={20} />
-              </Link>
-            </div>
             <div className='table'>
               <table>
                 <thead>
@@ -49,10 +43,7 @@ const LandlordNotifications = () => {
                   data.data.data &&
                   data.data.data.length > 0
                     ? data.data.data.map((notifications) => (
-                        <tr
-                          key={notifications.uuid}
-                          className='t-notifications'
-                        >
+                        <tr key={notifications.id} className='t-notifications'>
                           <td>{notifications.notice_date}</td>
                           <td>{notifications.notice_time}</td>
                           <td>{notifications.description}</td>
@@ -86,25 +77,6 @@ const LNotify = styled.section`
     border-radius: 4px;
     padding: 20px;
   }
-  .a-tenant {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin: 20px 0;
-  }
-  .add-r {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    background-color: #ffe48e;
-    padding: 15px;
-    border-radius: 4px;
-    width: 250px;
-    color: #000;
-    cursor: pointer;
-    text-decoration: none;
-  }
   .table {
     overflow-x: scroll;
     width: 100%;
@@ -133,14 +105,6 @@ const LNotify = styled.section`
     margin: 15px 0;
     padding: 7px 10px;
     border-radius: 4px;
-  }
-  @media screen and (max-width: 900px) {
-    .a-tenant {
-      flex-direction: column;
-    }
-    .add-r {
-      margin: 20px 0 10px 0;
-    }
   }
 `
 export default LandlordNotifications

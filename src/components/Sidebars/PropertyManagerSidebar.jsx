@@ -147,15 +147,15 @@ const PropertyManagerSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/manager/notifications' ||
-                    location.pathname === '/manager/send-notification'
+                    location.pathname === '/manager/notices' ||
+                    location.pathname === '/manager/send-notice'
                       ? 'active links'
                       : 'links'
                   }
-                  to='/manager/notifications'
+                  to='/manager/notices'
                 >
                   <IoNotifications size={23} className='icon' />
-                  <p className='desc'>Notifications</p>
+                  <p className='desc'>Notices</p>
                 </Link>
                 <Link
                   onClick={closeSidebar}

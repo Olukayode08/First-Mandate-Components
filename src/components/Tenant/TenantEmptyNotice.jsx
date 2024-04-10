@@ -1,23 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
-const TenantEmptyNotification = () => {
+const TenantEmptyNotice = () => {
   return (
     <>
-      <ManagerEN>
+      <TenantEN>
         <section>
           <div className='e-section'>
             <img src={icon} alt='House' />
-            <p>
-             No notification has been sent.
-            </p>
+            <p>No notice has been sent.</p>
           </div>
         </section>
-      </ManagerEN>
+      </TenantEN>
     </>
   )
 }
-const ManagerEN = styled.section`
+const TenantEN = styled.section`
   .e-section {
     display: flex;
     flex-direction: column;
@@ -39,4 +37,4 @@ const ManagerEN = styled.section`
     }
   }
 `
-export default TenantEmptyNotification
+export default TenantEmptyNotice

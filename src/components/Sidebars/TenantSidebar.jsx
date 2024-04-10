@@ -110,7 +110,8 @@ const TenantSidebar = () => {
                   className={
                     location.pathname === '/tenant/reminders' ||
                     location.pathname === '/tenant/add-reminder' ||
-                    location.pathname === `/tenant/add-reminder/${reminderId}/edit`
+                    location.pathname ===
+                      `/tenant/add-reminder/${reminderId}/edit`
                       ? 'active links'
                       : 'links'
                   }
@@ -122,14 +123,14 @@ const TenantSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/tenant/notifications'
+                    location.pathname === '/tenant/notices'
                       ? 'active links'
                       : 'links'
                   }
-                  to='/tenant/notifications'
+                  to='/tenant/notices'
                 >
                   <IoNotifications size={23} className='icon' />
-                  <p className='desc'>Notifications</p>
+                  <p className='desc'>Notices</p>
                 </Link>
                 <Link
                   onClick={closeSidebar}

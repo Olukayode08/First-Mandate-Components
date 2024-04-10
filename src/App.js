@@ -83,8 +83,11 @@ import ManagerAddUnit from './components/Manager/ManagerAddUnit'
 import ManagerSelectUnit from './components/Manager/ManagerSelectUnit'
 import LandlordSendReminder from './components/Landlord/LandlordSendReminder'
 import ManagerSendReminder from './components/Manager/ManagerSendReminder'
-import ManagerSendNotification from './components/Manager/ManagerSendNotification'
-import LandlordSendNotification from './components/Landlord/LandlordSendNotification'
+import ManagerSendNotices from './components/Manager/ManagerSendNotice'
+import LandlordSendNotice from './components/Landlord/LandlordSendNotice'
+import LandlordNotices from './components/Landlord/LandlordNotices'
+import ManagerNotices from './components/Manager/ManagerNotices'
+import TenantNotices from './components/Tenant/TenantNotices'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -175,12 +178,9 @@ function App() {
                 element={<LandlordSendReminder />}
               />
               <Route path='notifications' element={<LandlordNotifications />} />
-              <Route
-                path='send-notification'
-                element={<LandlordSendNotification />}
-              />
+              <Route path='notices' element={<LandlordNotices />} />
+              <Route path='send-notice' element={<LandlordSendNotice />} />
               <Route path='due-date' element={<LandlordDueDates />} />
-
               <Route
                 path='edit-profile'
                 element={<LandlordEditProfilePage />}
@@ -239,10 +239,8 @@ function App() {
                 element={<ManagerSendReminder />}
               />
               <Route path='notifications' element={<ManagerNotifications />} />
-              <Route
-                path='send-notification'
-                element={<ManagerSendNotification />}
-              />
+              <Route path='notices' element={<ManagerNotices />} />
+              <Route path='send-notice' element={<ManagerSendNotices />} />
               <Route path='due-date' element={<ManagerDueDates />} />
               <Route path='edit-profile' element={<ManagerEditProfilePage />} />
               <Route path='profile' element={<ManagerProfileSettings />} />
@@ -254,7 +252,6 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path='/tenant' element={<Tenant />}>
               <Route path='' element={<TenantHomePage />} />
-              <Route path='notifications' element={<TenantNotifications />} />
               <Route
                 path='apartment-details'
                 element={<TenantApartmentDetails />}
@@ -273,6 +270,8 @@ function App() {
                 path='add-reminder/:reminderId/edit'
                 element={<TenantAddReminder />}
               />
+              <Route path='notifications' element={<TenantNotifications />} />
+              <Route path='notices' element={<TenantNotices />} />
               <Route path='due-date' element={<TenantDueDates />} />
               <Route path='edit-profile' element={<TenantEditProfilePage />} />
               <Route path='profile' element={<TenantProfileSettings />} />

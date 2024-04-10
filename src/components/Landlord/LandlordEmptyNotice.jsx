@@ -3,18 +3,15 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
-const LandlordEmptyNotification = () => {
+const LandlordEmptyNotice = () => {
   return (
     <>
       <LandlordEN>
         <section>
           <div className='e-section'>
             <img src={icon} alt='House' />
-            <p>
-              Please send a notification to see a list of your notification
-              here.
-            </p>
-            <Link to='/landlord/send-notification' className='add-r'>
+            <p>Please send a notice to see a list of your notice here.</p>
+            <Link to='/landlord/send-notice' className='add-r'>
               <h4>Send Notification</h4>
               <FaRegPlusSquare size={20} />
             </Link>
@@ -59,4 +56,4 @@ const LandlordEN = styled.section`
     }
   }
 `
-export default LandlordEmptyNotification
+export default LandlordEmptyNotice

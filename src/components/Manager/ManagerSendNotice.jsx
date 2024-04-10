@@ -8,7 +8,7 @@ import {
 
 const token = localStorage.getItem('token')
 
-const ManagerSendNotification = () => {
+const ManagerSendNotice = () => {
   const navigate = useNavigate()
   const { tenantId } = useParams()
   const [selectedTenantUuid, setSelectedTenantUuid] = useState(null)
@@ -34,7 +34,7 @@ const ManagerSendNotification = () => {
     method: 'POST',
     onSuccess: (data) => {
       setTimeout(() => {
-        navigate('/manager/notifications')
+        navigate('/manager/notices')
       }, 3000)
     },
     onError: (error) => {},
@@ -65,20 +65,18 @@ const ManagerSendNotification = () => {
 
   return (
     <>
-      <MSNotification>
+      <MSNotice>
         <section>
           <form onSubmit={handleNotification} className='n-section'>
             {error && <p className='error'>{error?.message}</p>}
             {isSuccess && (
-              <p className='error success'>
-                Notification was sent successfully
-              </p>
+              <p className='error success'>Notice was sent successfully</p>
             )}
             <div className='input'>
-              <label className='reminder-h'>Send Notification</label>
+              <label className='reminder-h'>Send Notice</label>
             </div>
             <div className='n-status'>
-              <label>Notification Type</label>
+              <label>Notices Type</label>
               <div className='radio-btns'>
                 <div className='radio-btn'>
                   <input
@@ -201,19 +199,19 @@ const ManagerSendNotification = () => {
               {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
-                  <p>Send Notification</p>
+                  <p>Send Notice</p>
                 </div>
               ) : (
-                <p>Send Notification</p>
+                <p>Send Notice</p>
               )}
             </button>
           </form>
         </section>
-      </MSNotification>
+      </MSNotice>
     </>
   )
 }
-const MSNotification = styled.section`
+const MSNotice = styled.section`
   .n-section {
     width: 100%;
     background-color: #fff;
@@ -383,4 +381,4 @@ const MSNotification = styled.section`
     }
   }
 `
-export default ManagerSendNotification
+export default ManagerSendNotice

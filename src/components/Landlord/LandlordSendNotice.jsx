@@ -7,7 +7,7 @@ import {
 } from '../../data-layer/utils'
 
 const token = localStorage.getItem('token')
-const LandlordSendNotification = () => {
+const LandlordSendNotice = () => {
   const navigate = useNavigate()
   const { tenantId } = useParams()
   const [selectedTenantUuid, setSelectedTenantUuid] = useState(null)
@@ -33,19 +33,16 @@ const LandlordSendNotification = () => {
     method: 'POST',
     onSuccess: (data) => {
       setTimeout(() => {
-        navigate('/landlord/notifications')
+        navigate('/landlord/notices')
       }, 3000)
     },
     onError: (error) => {},
   })
 
-  const { data: tenantsData } = useFirstMandateQuery(
-    '/tenants',
-    {
-      enabled: !!token && !tenantId,
-      select: (data) => data?.data?.data,
-    }
-  )
+  const { data: tenantsData } = useFirstMandateQuery('/tenants', {
+    enabled: !!token && !tenantId,
+    select: (data) => data?.data?.data,
+  })
 
   const handleNotification = async (e) => {
     e.preventDefault()
@@ -64,20 +61,18 @@ const LandlordSendNotification = () => {
 
   return (
     <>
-      <LSNotification>
+      <LSNotice>
         <section>
           <form onSubmit={handleNotification} className='n-section'>
             {error && <p className='error'>{error?.message}</p>}
             {isSuccess && (
-              <p className='error success'>
-                Notification was sent successfully
-              </p>
+              <p className='error success'>Notice was sent successfully</p>
             )}
             <div className='input'>
-              <label className='reminder-h'>Send Notification</label>
+              <label className='reminder-h'>Send Notice</label>
             </div>
             <div className='n-status'>
-              <label>Notification Type</label>
+              <label>Notices Type</label>
               <div className='radio-btns'>
                 <div className='radio-btn'>
                   <input
@@ -200,19 +195,19 @@ const LandlordSendNotification = () => {
               {isLoading ? (
                 <div className='login-spinner'>
                   <div className='spinner'></div>
-                  <p>Send Notification</p>
+                  <p>Send Notice</p>
                 </div>
               ) : (
-                <p>Send Notification</p>
+                <p>Send Notice</p>
               )}
             </button>
           </form>
         </section>
-      </LSNotification>
+      </LSNotice>
     </>
   )
 }
-const LSNotification = styled.section`
+const LSNotice = styled.section`
   .n-section {
     width: 100%;
     background-color: #fff;
@@ -230,7 +225,7 @@ const LSNotification = styled.section`
   h3 {
     margin: 10px 0 25px 0;
   }
-  /* Notification Status */
+  /* Notice Status */
   .n-status {
     display: flex;
     flex-direction: column;
@@ -382,4 +377,4 @@ const LSNotification = styled.section`
     }
   }
 `
-export default LandlordSendNotification
+export default LandlordSendNotice

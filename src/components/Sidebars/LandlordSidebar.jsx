@@ -162,15 +162,15 @@ const LandlordSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
-                    location.pathname === '/landlord/notifications' ||
-                    location.pathname === '/manager/send-notification'
+                    location.pathname === '/landlord/notices' ||
+                    location.pathname === '/landlord/send-notice'
                       ? 'active links'
                       : 'links'
                   }
-                  to='/landlord/notifications'
+                  to='/landlord/notices'
                 >
                   <IoNotifications size={23} className='icon' />
-                  <p className='desc'>Notifications</p>
+                  <p className='desc'>Notices</p>
                 </Link>
                 <Link
                   onClick={closeSidebar}
