@@ -93,7 +93,6 @@ const LandlordAddNewTenant = () => {
     {
       method: isEdit ? 'PUT' : 'POST',
       onSuccess: (data) => {
-        console.log(data)
         setTimeout(() => {
           navigate('/landlord/tenants')
         }, 3000)
