@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 const paymentTypes = ['One Time', 'Installment']
-const paymentInstallment = {
-  'One Time': ['1'],
-  Installment: ['1', '2', '3', '4', '5'],
-}
+
 
 const ManagerInstallmentDropdown = ({
   handleChangeAddTenant,
@@ -33,7 +30,6 @@ const ManagerInstallmentDropdown = ({
     addTenant.rent_amount,
   ])
 
-  const installmentOptions = paymentInstallment[addTenant.payment_type] || []
 
   return (
     <>
@@ -71,27 +67,18 @@ const ManagerInstallmentDropdown = ({
                 </select>
               </div>
             </div>
-
             <div className='select'>
               <label>Number of Installments*</label>
-              <div className='user-select'>
-                <select
-                  id='no_of_installments'
-                  name='no_of_installments'
-                  value={addTenant.no_of_installments}
-                  onChange={handleInstallmentChange}
-                  disabled={!addTenant.payment_type}
-                >
-                  <option value=''>Select Installment</option>
-                  {installmentOptions.map((installment) => (
-                    <option key={installment} value={installment}>
-                      {installment}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <input
+                type='text'
+                id='no_of_installments'
+                name='no_of_installments'
+                value={addTenant.no_of_installments}
+                onChange={handleInstallmentChange}
+                disabled={!addTenant.payment_type}
+                placeholder='Enter number of installments'
+              />
             </div>
-
             <div className='select'>
               <label>Amount for each Installment*</label>
               <input type='text' value={amountPerInstallment} disabled />
