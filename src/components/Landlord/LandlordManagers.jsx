@@ -4,7 +4,6 @@ import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import LandlordEmptyManager from './LandlordEmptyManager'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import LandlordManagerPagination from './LandlordManagerPagination'
 
 const token = localStorage.getItem('token')
 
@@ -33,6 +32,25 @@ const LandlordManagers = () => {
 
   const handlePrevPage = () => {
     setCurrentPage(currentPage - 1)
+  }
+  const totalPages = data?.data?.last_page || 1
+
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
+  // Calculate the starting and ending page numbers to display
+  let startPage = Math.max(1, currentPage - 2)
+  let endPage = Math.min(totalPages, startPage + 4)
+
+  // If we are near the start, adjust the endPage
+  if (currentPage <= 3) {
+    endPage = Math.min(5, totalPages)
+  }
+
+  // If we are near the end, adjust the startPage
+  if (currentPage >= totalPages - 2) {
+    startPage = Math.max(1, totalPages - 4)
   }
 
   if (pageLoading) {
@@ -69,9 +87,9 @@ const LandlordManagers = () => {
                 </thead>
                 <tbody>
                   {data &&
-                  data.data &&
-                  data.data.data &&
-                  data.data.data.length > 0
+                  data?.data &&
+                  data?.data?.data &&
+                  data?.data?.data.length > 0
                     ? data.data.data.map((list) => (
                         <tr key={list.uuid} className='m-list'>
                           <td>{list.name}</td>
@@ -106,13 +124,62 @@ const LandlordManagers = () => {
                 </div>
               )}
             </div>
-            <LandlordManagerPagination
-              currentPage={currentPage}
-              totalPages={data?.data.last_page || 1}
-              handlePrevPage={handlePrevPage}
-              handleNextPage={handleNextPage}
-              handlePageChange={setCurrentPage}
-            />
+            <section>
+              <div className='pagination'>
+                <button
+                  className='pag-text'
+                  disabled={currentPage <= 1}
+                  onClick={handlePrevPage}
+                >
+                  Previous Page
+                </button>
+                <div className='page-numbers'>
+                  {/* Display first page */}
+                  {startPage > 1 && (
+                    <button className='pag-text' onClick={() => goToPage(1)}>
+                      1
+                    </button>
+                  )}
+                  {/* Display ellipsis if needed */}
+                  {startPage > 2 && <span>...</span>}
+                  {/* Display page numbers */}
+                  {Array.from(
+                    { length: endPage - startPage + 1 },
+                    (_, index) => (
+                      <button
+                        key={startPage + index}
+                        className={
+                          currentPage === startPage + index
+                            ? 'active pag-text'
+                            : 'pag-text'
+                        }
+                        onClick={() => goToPage(startPage + index)}
+                      >
+                        {startPage + index}
+                      </button>
+                    )
+                  )}
+                  {/* Display ellipsis if needed */}
+                  {endPage < totalPages - 1 && <span>...</span>}
+                  {/* Display last page */}
+                  {endPage < totalPages && (
+                    <button
+                      className='pag-text'
+                      onClick={() => goToPage(totalPages)}
+                    >
+                      {totalPages}
+                    </button>
+                  )}
+                </div>
+                <button
+                  className='pag-text'
+                  disabled={currentPage >= totalPages}
+                  onClick={handleNextPage}
+                >
+                  Next Page
+                </button>
+              </div>
+            </section>
           </main>
         </section>
       </LManager>
@@ -176,24 +243,6 @@ const LManager = styled.section`
     background-color: #f6f6f8;
     cursor: pointer;
     text-align: center;
-  }
-  .pagination {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: flex-end;
-    width: 100%;
-    margin: 20px 0;
-  }
-  .pag-text {
-    background: transparent;
-    border: 1px solid black;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  button:disabled {
-    cursor: not-allowed;
   }
   @media screen and (max-width: 900px) {
     .a-tenant {
