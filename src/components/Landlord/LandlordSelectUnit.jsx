@@ -27,38 +27,42 @@ const LandlordSelectUnit = () => {
   const pageUrl = window.location.href
   const isEdit = pageUrl.includes('edit')
 
-  const { data, isLoading: pageLoading } = useFirstMandateQuery(`/properties?page=${currentPage}`, {
-    enabled: !!token,
-    onSuccess: (data) => {},
-  })
-
-    useEffect(() => {
-      navigate(`/landlord/select-unit?page=${currentPage}`, { replace: true })
-    }, [currentPage, navigate])
-
-    const handleNextPage = () => {
-      setCurrentPage(currentPage + 1)
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    `/properties?page=${currentPage}`,
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
     }
+  )
 
-    const handlePrevPage = () => {
-      setCurrentPage(currentPage - 1)
-    }
-    const totalPages = data?.data?.last_page || 1
+  useEffect(() => {
+    navigate(`/landlord/select-unit?page=${currentPage}`, { replace: true })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentPage, navigate])
 
-    const goToPage = (pageNumber) => {
-      setCurrentPage(pageNumber)
-    }
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1)
+  }
 
-    let startPage = Math.max(1, currentPage - 2)
-    let endPage = Math.min(totalPages, startPage + 4)
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1)
+  }
+  const totalPages = data?.data?.last_page || 1
 
-    if (currentPage <= 3) {
-      endPage = Math.min(5, totalPages)
-    }
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
 
-    if (currentPage >= totalPages - 2) {
-      startPage = Math.max(1, totalPages - 4)
-    }
+  let startPage = Math.max(1, currentPage - 2)
+  let endPage = Math.min(totalPages, startPage + 4)
+
+  if (currentPage <= 3) {
+    endPage = Math.min(5, totalPages)
+  }
+
+  if (currentPage >= totalPages - 2) {
+    startPage = Math.max(1, totalPages - 4)
+  }
   if (pageLoading) {
     return (
       <div className='page-spinner'>

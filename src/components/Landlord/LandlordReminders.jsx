@@ -139,6 +139,7 @@ const LandlordReminders = () => {
   }
   useEffect(() => {
     navigate(`/landlord/reminders?page=${currentPage}`, { replace: true })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentPage, navigate])
 
   const handleNextPage = () => {

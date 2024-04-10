@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
@@ -14,13 +14,17 @@ const LandlordTenants = () => {
   const currentPageParam = parseInt(searchParams.get('page')) || 1
   const [currentPage, setCurrentPage] = useState(currentPageParam)
 
-  const { data, isLoading: pageLoading } = useFirstMandateQuery(`/tenants?page=${currentPage}`, {
-    enabled: !!token,
-    onSuccess: (data) => {},
-  })
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    `/tenants?page=${currentPage}`,
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
 
   useEffect(() => {
     navigate(`/landlord/tenants?page=${currentPage}`, { replace: true })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentPage, navigate])
 
   const handleNextPage = () => {

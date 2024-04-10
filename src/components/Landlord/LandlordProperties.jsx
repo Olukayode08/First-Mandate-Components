@@ -25,6 +25,7 @@ const LandlordProperties = () => {
 
   useEffect(() => {
     navigate(`/landlord/properties?page=${currentPage}`, { replace: true })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentPage, navigate])
 
   const handleNextPage = () => {
