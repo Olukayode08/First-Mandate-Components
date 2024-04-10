@@ -35,13 +35,11 @@ const LandlordAddReminder = () => {
     {
       method: reminderId ? 'PUT' : 'POST',
       onSuccess: (data) => {
-        console.log(data)
         setTimeout(() => {
           navigate('/landlord/reminders')
         }, 3000)
       },
       onError: (error) => {
-        console.error(error)
       },
     }
   )

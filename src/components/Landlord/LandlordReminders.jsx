@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import LandlordEmptyReminder from './LandlordEmptyReminder'
 import {
@@ -28,8 +28,7 @@ const DeleteModal = ({
       onSuccess: (data) => {
         refetchReminders()
       },
-      onError: (error) => {
-      },
+      onError: (error) => {},
     }
   )
 
@@ -37,8 +36,7 @@ const DeleteModal = ({
     try {
       await deleteReminder()
       setShowModal(false)
-    } catch (e) {
-    }
+    } catch (e) {}
   }
   return (
     <>
@@ -119,24 +117,53 @@ const RemainderCard = ({
 
 const LandlordReminders = () => {
   const [showModal, setShowModal] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const currentPageParam = parseInt(searchParams.get('page')) || 1
+  const [currentPage, setCurrentPage] = useState(currentPageParam)
 
+  const {
+    isLoading: pageLoading,
+    data,
+    refetch: refetchReminders,
+  } = useFirstMandateQuery(`/reminders?page=${currentPage}`, {
+    enabled: !!token,
+    onSuccess: (data) => {},
+  })
   const handleDeleteReminder = async () => {
     setShowModal(true)
   }
   const cancelDelete = () => {
     setShowModal(false)
   }
+  useEffect(() => {
+    navigate(`/landlord/reminders?page=${currentPage}`, { replace: true })
+  }, [currentPage, navigate])
 
-  const {
-    isLoading: pageLoading,
-    data,
-    refetch: refetchReminders,
-  } = useFirstMandateQuery('/reminders', {
-    enabled: !!token,
-    onSuccess: (data) => {
-    },
-  })
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1)
+  }
 
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1)
+  }
+  const totalPages = data?.data?.last_page || 1
+
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
+  let startPage = Math.max(1, currentPage - 2)
+  let endPage = Math.min(totalPages, startPage + 4)
+
+  if (currentPage <= 3) {
+    endPage = Math.min(5, totalPages)
+  }
+
+  if (currentPage >= totalPages - 2) {
+    startPage = Math.max(1, totalPages - 4)
+  }
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -187,6 +214,64 @@ const LandlordReminders = () => {
               )}
             </div>
           </main>
+          {data?.data?.total > 10 && (
+            <section>
+              <div className='pagination'>
+                <button
+                  className='pag-text'
+                  disabled={currentPage <= 1}
+                  onClick={handlePrevPage}
+                >
+                  Previous Page
+                </button>
+                <div className='page-numbers'>
+                  {/* Display first page */}
+                  {startPage > 1 && (
+                    <button className='pag-text' onClick={() => goToPage(1)}>
+                      1
+                    </button>
+                  )}
+                  {/* Display ellipsis if needed */}
+                  {startPage > 2 && <span>...</span>}
+                  {/* Display page numbers */}
+                  {Array.from(
+                    { length: endPage - startPage + 1 },
+                    (_, index) => (
+                      <button
+                        key={startPage + index}
+                        className={
+                          currentPage === startPage + index
+                            ? 'active pag-text'
+                            : 'pag-text'
+                        }
+                        onClick={() => goToPage(startPage + index)}
+                      >
+                        {startPage + index}
+                      </button>
+                    )
+                  )}
+                  {/* Display ellipsis if needed */}
+                  {endPage < totalPages - 1 && <span>...</span>}
+                  {/* Display last page */}
+                  {endPage < totalPages && (
+                    <button
+                      className='pag-text'
+                      onClick={() => goToPage(totalPages)}
+                    >
+                      {totalPages}
+                    </button>
+                  )}
+                </div>
+                <button
+                  className='pag-text'
+                  disabled={currentPage >= totalPages}
+                  onClick={handleNextPage}
+                >
+                  Next Page
+                </button>
+              </div>
+            </section>
+          )}
         </section>
       </LandlordR>
     </>
