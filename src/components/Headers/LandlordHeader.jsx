@@ -4,8 +4,17 @@ import { FaRegUser } from 'react-icons/fa'
 import logo from '../../assets/1st mandate logo 1.png'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { useFirstMandateQuery } from '../../data-layer/utils'
+
 
 const LandlordHeader = () => {
+    const { data} = useFirstMandateQuery(
+      '/notification-count',
+      {
+        onSuccess: (data) => {},
+      }
+    )
+
   return (
     <>
       <LandlordH>
@@ -16,8 +25,9 @@ const LandlordHeader = () => {
           <div className='user'>
             <p>Landlord</p>
             <div className='icons'>
-              <Link className='link' to='/landlord/notifications'>
+              <Link className='link notification' to='/landlord/notifications'>
                 <FaRegBell className='icon' />
+                <p className='notification-count'>{data?.data?.count}</p>
               </Link>
               <Link className='link' to='/landlord/profile'>
                 <FaRegUser className='icon' />
@@ -64,6 +74,21 @@ const LandlordH = styled.section`
   .link {
     text-decoration: none;
     color: #000;
+  }
+  .notification {
+    position: relative;
+  }
+  .notification-count {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    font-size: 13px;
+    margin: 0 auto;
+    text-align: center;
+    color: #000;
+    padding: 5px 8px;
+    background-color: #fedf7e;
+    border-radius: 50%;
   }
   .icon {
     margin: 0 10px;

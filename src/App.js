@@ -270,8 +270,8 @@ function App() {
                 path='add-reminder/:reminderId/edit'
                 element={<TenantAddReminder />}
               />
-              <Route path='notifications' element={<TenantNotifications />} />
               <Route path='notices' element={<TenantNotices />} />
+              <Route path='notifications' element={<TenantNotifications />} />
               <Route path='due-date' element={<TenantDueDates />} />
               <Route path='edit-profile' element={<TenantEditProfilePage />} />
               <Route path='profile' element={<TenantProfileSettings />} />

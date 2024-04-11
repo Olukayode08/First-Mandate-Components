@@ -6,7 +6,9 @@ import { FaFileImport } from 'react-icons/fa'
 import { LuWalletCards } from 'react-icons/lu'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { IoNotifications } from 'react-icons/io5'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { IoIosArrowUp } from 'react-icons/io'
+import { IoIosArrowDown } from 'react-icons/io'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
 import { ThemeContext } from '../../context/Darkmode'
 
@@ -14,9 +16,8 @@ const TenantSidebar = () => {
   const { active, setActive } = useContext(ThemeContext)
   const [screenSize, setScreenSize] = useState(undefined)
   const location = useLocation()
-    const {
-      reminderId,
-    } = useParams()
+  const navigate = useNavigate()
+  const { reminderId } = useParams()
   const activeRef = useRef(null)
 
   useEffect(() => {
@@ -56,6 +57,19 @@ const TenantSidebar = () => {
     }
   }
 
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!dropdownOpen)
+    closeSidebar()
+  }
+
+  const handleAddApartmentClick = () => {
+    closeSidebar()
+    navigate('/tenant/add-apartment-details')
+    setDropdownOpen(false)
+  }
+
   return (
     <>
       <TenantS ref={activeRef}>
@@ -83,28 +97,34 @@ const TenantSidebar = () => {
                   <IoHomeOutline size={23} className='icon' />
                   <p className='desc'>Home</p>
                 </Link>
-                <Link
-                  onClick={closeSidebar}
-                  className={
-                    location.pathname === '/tenant/apartment-details' ||
-                    location.pathname === '/tenant/add-apartment-details'
-                      ? 'active links'
-                      : 'links'
-                  }
-                  to='/tenant/apartment-details'
-                >
-                  <FaFileImport size={23} className='icon' />
-                  <p className='desc'>My Apartment</p>
-                </Link>
-                {/* <Link onClick={closeSidebar} className='links' to='#'>
-                  <HiOutlineSquare3Stack3D size={23} className='icon' />
-                  <p className='desc'>Landlord</p>
-                </Link>
-                <Link onClick={closeSidebar} className='links' to='#'>
-                  <MdOutlineOnDeviceTraining size={23} className='icon' />
-                  <p className='desc'>Manager</p>
-                </Link> */}
-
+                <div className='dropdown-container'>
+                  <Link
+                    to='/tenant/apartment-details'
+                    className={
+                      location.pathname === '/tenant/apartment-details' ||
+                      location.pathname === '/tenant/add-apartment-details'
+                        ? 'active links'
+                        : 'links'
+                    }
+                    onClick={handleDropdownToggle}
+                  >
+                    <FaFileImport size={23} className='icon' />
+                    <p className='desc'>My Apartment</p>
+                    {dropdownOpen ? (
+                      <IoIosArrowDown size={15} />
+                    ) : (
+                      <IoIosArrowUp size={15} />
+                    )}
+                  </Link>
+                  {dropdownOpen && (
+                    <div className='dropdown-text'>
+                      {/* <IoHomeOutline size={18} className='icon' /> */}
+                      <p className='desc' onClick={handleAddApartmentClick}>
+                        Add Apartment
+                      </p>
+                    </div>
+                  )}
+                </div>
                 <Link
                   onClick={closeSidebar}
                   className={
@@ -227,6 +247,7 @@ const TenantS = styled.section`
   p {
     flex-shrink: 0;
     font-size: 14px;
+    margin-right: 10px;
   }
   .active {
     background-color: #f6f6f8;
@@ -253,6 +274,17 @@ const TenantS = styled.section`
   .theme {
     width: 165px;
   }
+  .dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dropdown-text{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
   @media screen and (max-width: 1250px) {
     .sidebar-btn {
       display: block;

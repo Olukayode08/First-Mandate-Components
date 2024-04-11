@@ -11,9 +11,9 @@ import electricity from '../../assets/Frame 2007 (3).png'
 import water from '../../assets/Frame 2007 (2).png'
 import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
+import Pagination from '../Pagination/Pagination'
 
 const token = localStorage.getItem('token')
-
 const DeleteModal = ({
   setShowModal,
   cancelDelete,
@@ -149,22 +149,7 @@ const LandlordReminders = () => {
   const handlePrevPage = () => {
     setCurrentPage(currentPage - 1)
   }
-  const totalPages = data?.data?.last_page || 1
 
-  const goToPage = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
-
-  let startPage = Math.max(1, currentPage - 2)
-  let endPage = Math.min(totalPages, startPage + 4)
-
-  if (currentPage <= 3) {
-    endPage = Math.min(5, totalPages)
-  }
-
-  if (currentPage >= totalPages - 2) {
-    startPage = Math.max(1, totalPages - 4)
-  }
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -216,62 +201,13 @@ const LandlordReminders = () => {
             </div>
           </main>
           {data?.data?.total > 10 && (
-            <section>
-              <div className='pagination'>
-                <button
-                  className='pag-text'
-                  disabled={currentPage <= 1}
-                  onClick={handlePrevPage}
-                >
-                  Previous Page
-                </button>
-                <div className='page-numbers'>
-                  {/* Display first page */}
-                  {startPage > 1 && (
-                    <button className='pag-text' onClick={() => goToPage(1)}>
-                      1
-                    </button>
-                  )}
-                  {/* Display ellipsis if needed */}
-                  {startPage > 2 && <span>...</span>}
-                  {/* Display page numbers */}
-                  {Array.from(
-                    { length: endPage - startPage + 1 },
-                    (_, index) => (
-                      <button
-                        key={startPage + index}
-                        className={
-                          currentPage === startPage + index
-                            ? 'active pag-text'
-                            : 'pag-text'
-                        }
-                        onClick={() => goToPage(startPage + index)}
-                      >
-                        {startPage + index}
-                      </button>
-                    )
-                  )}
-                  {/* Display ellipsis if needed */}
-                  {endPage < totalPages - 1 && <span>...</span>}
-                  {/* Display last page */}
-                  {endPage < totalPages && (
-                    <button
-                      className='pag-text'
-                      onClick={() => goToPage(totalPages)}
-                    >
-                      {totalPages}
-                    </button>
-                  )}
-                </div>
-                <button
-                  className='pag-text'
-                  disabled={currentPage >= totalPages}
-                  onClick={handleNextPage}
-                >
-                  Next Page
-                </button>
-              </div>
-            </section>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={data?.data.last_page || 1}
+              handlePrevPage={handlePrevPage}
+              handleNextPage={handleNextPage}
+              setCurrentPage={setCurrentPage}
+            />
           )}
         </section>
       </LandlordR>

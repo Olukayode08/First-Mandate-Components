@@ -4,8 +4,12 @@ import { FaRegUser } from 'react-icons/fa'
 import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
 import { Link } from 'react-router-dom'
+import { useFirstMandateQuery } from '../../data-layer/utils'
 
 const TenantHeader = () => {
+      const { data } = useFirstMandateQuery('/notification-count', {
+        onSuccess: (data) => {},
+      })
   return (
     <>
       <THeader>
@@ -21,8 +25,9 @@ const TenantHeader = () => {
             </select> */}
             <p>Tenant</p>
             <div className='icons'>
-              <Link className='link' to='/tenant/notifications'>
+              <Link className='link notification' to='/tenant/notifications'>
                 <FaRegBell className='icon' />
+                <p className='notification-count'>{data?.data?.count}</p>
               </Link>
               <Link className='link' to='/tenant/profile'>
                 <FaRegUser className='icon' />
@@ -81,6 +86,21 @@ const THeader = styled.section`
     text-decoration: none;
     color: #000;
   }
+  .notification {
+    position: relative;
+  }
+  .notification-count {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    font-size: 13px;
+    margin: 0 auto;
+    text-align: center;
+    color: #000;
+    padding: 5px 8px;
+    background-color: #fedf7e;
+    border-radius: 50%;
+  }
   .icon {
     margin: 0 10px;
     font-size: 20px;
@@ -99,7 +119,7 @@ const THeader = styled.section`
       right: 0;
       gap: 5px;
     }
-    p{
+    p {
       font-size: 14px;
     }
     /* select {

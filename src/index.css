@@ -45,47 +45,11 @@ button {
 button {
   font-family: inherit;
 }
-/* PAGINATION */
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: 20px;
-  }
-  .pag-text {
-    background-color: #ffe48e;
-    color: #000;
-    border: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .pag-text:disabled {
-    border: none;
-    background-color: #f6f6f8;
-    cursor: not-allowed;
-  }
-  .page-numbers {
-    display: flex;
-  }
-  .page-numbers button {
-    background-color: transparent;
-    border: none;
-    color: #000;
-    padding: 7px 10px;
-    margin: 0 2px;
-    cursor: pointer;
-  }
-  .page-numbers button.active {
-    background-color: #ffe48e;
-    color: #000;
-    border-radius: 50px;
-  }
 
 /* Temporary */
 td {
   font-size: 13px;
+  text-transform: capitalize;
 }
 select,
 input {

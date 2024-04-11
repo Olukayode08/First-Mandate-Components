@@ -34,11 +34,7 @@ const AcknowledgeModal = ({
                   </p>
                 )}
                 <div className='select'>
-                  <select
-                    id='uuid'
-                    name='uuid'
-                    disabled
-                  >
+                  <select id='uuid' name='uuid' disabled>
                     <option value={notification.uuid}>
                       {notification.notice_date}
                     </option>
@@ -120,7 +116,7 @@ const TenantNotices = () => {
     onSuccess: (data) => {
       setTimeout(() => {
         setModal(false)
-      }, 1000)
+      }, 3000)
     },
   })
 
@@ -151,7 +147,7 @@ const TenantNotices = () => {
     }
   )
 
-  console.log(data)
+  console.log(data);
 
   if (pageLoading) {
     return (
@@ -174,6 +170,8 @@ const TenantNotices = () => {
                     <th>Time</th>
                     <th>Description</th>
                     <th>Landlord's Name</th>
+                    <th>Sender</th>
+                    <th>Notice Type</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -188,8 +186,25 @@ const TenantNotices = () => {
                           <td>{notification.notice_time}</td>
                           <td>{notification.description}</td>
                           <td>{notification?.apartment?.landlord_name}</td>
-                          <td onClick={() => showModal(notification.uuid)}>
-                            <div className='n-margin'>
+                          <td>{notification.sender_type}</td>
+                          <td>{notification.type}</td>
+                          <td
+                            onClick={() =>
+                              notification.acknowledged_status === 'pending'
+                                ? showModal(notification.uuid)
+                                : null
+                            }
+                          >
+                            <div
+                              className={
+                                notification.acknowledged_status === 'pending'
+                                  ? 'red-n n-margin'
+                                  : notification.acknowledged_status ===
+                                    'Accept'
+                                  ? 'green-n n-margin'
+                                  : 'neutral-n n-margin'
+                              }
+                            >
                               {notification.acknowledged_status}
                             </div>
                           </td>
@@ -260,12 +275,23 @@ const TenantN = styled.section`
     height: 50px;
   }
   .n-margin {
-    border: 1px solid black;
     text-align: center;
     margin: 15px 0;
-    padding: 7px 10px;
+    padding: 7px 0;
+    width: 75px;
+    text-transform: capitalize;
+    color: #fff;
     cursor: pointer;
     border-radius: 4px;
+  }
+  .red-n {
+    background-color: red;
+  }
+  .green-n {
+    background-color: #159e23;
+  }
+  .neutral-n {
+    background-color: #ff7a00;
   }
 `
 

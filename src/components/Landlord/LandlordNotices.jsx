@@ -40,6 +40,7 @@ const LandlordNotices = () => {
                     <th>Time</th>
                     <th>Description</th>
                     <th>Tenant's Name</th>
+                    <th>Tenant's Remark</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -48,18 +49,26 @@ const LandlordNotices = () => {
                   data.data &&
                   data.data.data &&
                   data.data.data.length > 0
-                    ? data.data.data.map((notifications) => (
-                        <tr
-                          key={notifications.uuid}
-                          className='t-notifications'
-                        >
-                          <td>{notifications.notice_date}</td>
-                          <td>{notifications.notice_time}</td>
-                          <td>{notifications.description}</td>
-                          <td>{notifications?.tenant?.name}</td>
+                    ? data.data.data.map((notification) => (
+                        <tr key={notification.uuid} className='t-notifications'>
+                          <td>{notification.notice_date}</td>
+                          <td>{notification.notice_time}</td>
+                          <td>{notification.description}</td>
+                          <td>{notification?.tenant?.name}</td>
+                          <td>{notification.remarks}</td>
+
                           <td>
-                            <div className='n-margin'>
-                              {notifications.acknowledged_status}
+                            <div
+                              className={
+                                notification.acknowledged_status === 'pending'
+                                  ? 'red-n n-margin'
+                                  : notification.acknowledged_status ===
+                                    'Accept'
+                                  ? 'green-n n-margin'
+                                  : 'neutral-n n-margin'
+                              }
+                            >
+                              {notification.acknowledged_status}
                             </div>
                           </td>
                         </tr>
@@ -128,11 +137,23 @@ const LNotices = styled.section`
     height: 60px;
   }
   .n-margin {
-    border: 1px solid black;
     text-align: center;
     margin: 15px 0;
-    padding: 7px 10px;
+    width: 75px;
+    padding: 7px 0;
+    text-transform: capitalize;
+    color: #fff;
+    cursor: pointer;
     border-radius: 4px;
+  }
+  .red-n {
+    background-color: red;
+  }
+  .green-n {
+    background-color: #159e23;
+  }
+  .neutral-n {
+    background-color: #ff7a00;
   }
   @media screen and (max-width: 900px) {
     .a-tenant {

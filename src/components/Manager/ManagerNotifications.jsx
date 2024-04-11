@@ -12,6 +12,12 @@ const ManagerNotifications = () => {
       onSuccess: (data) => {},
     }
   )
+  const separateDateTime = (dateTimeString) => {
+    const dateTime = new Date(dateTimeString)
+    const date = dateTime.toLocaleDateString()
+    const time = dateTime.toLocaleTimeString()
+    return { date, time }
+  }
 
   if (pageLoading) {
     return (
@@ -25,15 +31,15 @@ const ManagerNotifications = () => {
       <ManagerN>
         <section>
           <main className='l-notify'>
+            <h1>Notifications</h1>
             <div className='table'>
               <table>
                 <thead>
                   <tr className='t-heading'>
                     <th>Date</th>
-                    <th>Time</th>
+                    <th>Time</th> <th>Title</th>
+                    <th>Section</th>
                     <th>Description</th>
-                    <th>Tenant's Name</th>
-                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -41,17 +47,22 @@ const ManagerNotifications = () => {
                   data.data &&
                   data.data.data &&
                   data.data.data.length > 0
-                    ? data.data.data.map((notifications) => (
-                        <tr key={notifications.id} className='t-notifications'>
-                          <td>{notifications.notice_date}</td>
-                          <td>{notifications.notice_time}</td>
-                          <td>{notifications.description}</td>
-                          <td>{notifications?.tenant?.name}</td>
+                    ? data.data.data.map((notification) => (
+                        <tr key={notification.id} className='t-notifications'>
                           <td>
-                            <div className='n-margin'>
-                              {notifications.acknowledged_status}
-                            </div>
+                            {separateDateTime(notification.created_at).date}
                           </td>
+                          <td>
+                            {separateDateTime(notification.created_at).time}
+                          </td>
+                          <td>{notification.title}</td>
+                          <td>{notification.section}</td>
+                          <td>{notification.notification}</td>
+                          {/* <td>
+                            <div className='n-margin'>
+                              {notification.acknowledged_status}
+                            </div>
+                          </td> */}
                         </tr>
                       ))
                     : null}
@@ -76,6 +87,10 @@ const ManagerN = styled.section`
     background-color: #fff;
     width: 100%;
     padding: 20px;
+  }
+  h1 {
+    font-size: 18px;
+    margin: 20px 0;
   }
   .table {
     overflow-x: scroll;

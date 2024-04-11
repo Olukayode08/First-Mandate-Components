@@ -13,8 +13,12 @@ const TenantNotifications = () => {
     }
   )
 
-  console.log(data)
-
+  const separateDateTime = (dateTimeString) => {
+    const dateTime = new Date(dateTimeString)
+    const date = dateTime.toLocaleDateString()
+    const time = dateTime.toLocaleTimeString()
+    return { date, time }
+  }
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -34,9 +38,9 @@ const TenantNotifications = () => {
                   <tr className='t-heading'>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Title</th>
+                    <th>Section</th>
                     <th>Description</th>
-                    <th>Landlord's Name</th>
-                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -44,20 +48,22 @@ const TenantNotifications = () => {
                   data.data &&
                   data.data.data &&
                   data.data.data.length > 0
-                    ? data.data.data.map((notifications) => (
-                        <tr
-                          key={notifications.id}
-                          className='t-notifications'
-                        >
-                          <td>{notifications.notice_date}</td>
-                          <td>{notifications.notice_time}</td>
-                          <td>{notifications.description}</td>
-                          <td>{notifications?.apartment?.landlord_name}</td>
+                    ? data.data.data.map((notification) => (
+                        <tr key={notification.id} className='t-notifications'>
                           <td>
-                            <div className='n-margin'>
-                              {notifications.acknowledged_status}
-                            </div>
+                            {separateDateTime(notification.created_at).date}
                           </td>
+                          <td>
+                            {separateDateTime(notification.created_at).time}
+                          </td>
+                          <td>{notification.title}</td>
+                          <td>{notification.section}</td>
+                          <td>{notification.notification}</td>
+                          {/* <td>
+                            <div className='n-margin'>
+                              {notification.acknowledged_status}
+                            </div>
+                          </td> */}
                         </tr>
                       ))
                     : null}
@@ -86,7 +92,6 @@ const TenantN = styled.section`
   }
   h1 {
     font-size: 18px;
-    padding: 0 20px;
     margin: 20px 0;
   }
   .table {

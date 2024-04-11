@@ -4,8 +4,12 @@ import { FaRegUser } from 'react-icons/fa'
 import logo from '../../assets/1st mandate logo 1.png'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { useFirstMandateQuery } from '../../data-layer/utils'
 
 const PropertyManagerHeader = () => {
+      const { data } = useFirstMandateQuery('/notification-count', {
+        onSuccess: (data) => {},
+      })
   return (
     <>
       <Wrapper>
@@ -16,8 +20,9 @@ const PropertyManagerHeader = () => {
           <div className='user'>
             <p>Property Manager</p>
             <div className='icons'>
-              <Link className='link' to='/manager/notifications'>
+              <Link className='link notification' to='/manager/notifications'>
                 <FaRegBell className='icon' />
+                <p className='notification-count'>{data?.data?.count}</p>
               </Link>
               <Link className='link' to='/manager/profile'>
                 <FaRegUser className='icon' />
@@ -51,6 +56,7 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 10px;
   }
+
   p {
     margin-right: 10px;
     font-size: 15px;
@@ -63,6 +69,21 @@ const Wrapper = styled.section`
   .link {
     text-decoration: none;
     color: #000;
+  }
+  .notification {
+    position: relative;
+  }
+  .notification-count {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    font-size: 13px;
+    margin: 0 auto;
+    text-align: center;
+    color: #000;
+    padding: 5px 8px;
+    background-color: #fedf7e;
+    border-radius: 50%;
   }
   .icon {
     margin: 0 10px;
