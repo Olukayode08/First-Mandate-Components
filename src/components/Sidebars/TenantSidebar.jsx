@@ -61,7 +61,6 @@ const TenantSidebar = () => {
 
   const handleDropdownToggle = () => {
     setDropdownOpen(!dropdownOpen)
-    closeSidebar()
   }
 
   const handleAddApartmentClick = () => {
