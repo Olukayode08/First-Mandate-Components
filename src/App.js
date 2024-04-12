@@ -177,9 +177,9 @@ function App() {
                 path='tenants/:tenantId/send-reminder'
                 element={<LandlordSendReminder />}
               />
-              <Route path='notifications' element={<LandlordNotifications />} />
               <Route path='notices' element={<LandlordNotices />} />
               <Route path='send-notice' element={<LandlordSendNotice />} />
+              <Route path='notifications' element={<LandlordNotifications />} />
               <Route path='due-date' element={<LandlordDueDates />} />
               <Route
                 path='edit-profile'

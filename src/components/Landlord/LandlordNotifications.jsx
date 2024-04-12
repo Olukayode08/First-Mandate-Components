@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import LandlordEmptyNotification from './LandlordEmptyNotice'
+import Pagination from '../Pagination/Pagination'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const token = localStorage.getItem('token')
 
 const LandlordNotifications = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const currentPageParam = parseInt(searchParams.get('page')) || 1
+  const [currentPage, setCurrentPage] = useState(currentPageParam)
+
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
-    '/notifications',
+    `/notifications?page=${currentPage}`,
     {
       enabled: !!token,
       onSuccess: (data) => {},
@@ -15,9 +23,22 @@ const LandlordNotifications = () => {
   )
   const separateDateTime = (dateTimeString) => {
     const dateTime = new Date(dateTimeString)
-    const date = dateTime.toLocaleDateString() 
+    const date = dateTime.toLocaleDateString()
     const time = dateTime.toLocaleTimeString()
     return { date, time }
+  }
+
+  useEffect(() => {
+    navigate(`/landlord/notifications?page=${currentPage}`, { replace: true })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentPage, navigate])
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1)
+  }
+
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1)
   }
 
   if (pageLoading) {
@@ -76,6 +97,15 @@ const LandlordNotifications = () => {
                 </div>
               )}
             </div>
+            {data?.data?.total > 10 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={data?.data.last_page || 1}
+                handlePrevPage={handlePrevPage}
+                handleNextPage={handleNextPage}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
           </main>
         </section>
       </LNotifications>

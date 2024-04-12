@@ -1,18 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import LandlordEmptyNotice from './LandlordEmptyNotice'
-
+import Pagination from '../Pagination/Pagination'
 const token = localStorage.getItem('token')
 
 const LandlordNotices = () => {
-  const { data, isLoading: pageLoading } = useFirstMandateQuery('/notices', {
-    enabled: !!token,
-    onSuccess: (data) => {},
-  })
-  console.log(data)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const currentPageParam = parseInt(searchParams.get('page')) || 1
+  const [currentPage, setCurrentPage] = useState(currentPageParam)
+  const { data, isLoading: pageLoading } = useFirstMandateQuery(
+    `/notices?page=${currentPage}`,
+    {
+      enabled: !!token,
+      onSuccess: (data) => {},
+    }
+  )
+  useEffect(() => {
+    navigate(`/landlord/notices?page=${currentPage}`, { replace: true })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentPage, navigate])
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1)
+  }
+
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1)
+  }
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -82,6 +101,15 @@ const LandlordNotices = () => {
                 </div>
               )}
             </div>
+            {data?.data?.total > 10 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={data?.data.last_page || 1}
+                handlePrevPage={handlePrevPage}
+                handleNextPage={handleNextPage}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
           </main>
         </section>
       </LNotices>

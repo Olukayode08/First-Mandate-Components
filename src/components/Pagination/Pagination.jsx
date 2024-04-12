@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 const Pagination = ({
   currentPage,
   totalPages,
@@ -32,7 +33,7 @@ const Pagination = ({
               disabled={currentPage <= 1}
               onClick={handlePrevPage}
             >
-              Previous Page
+             Previous
             </button>
             <div className='page-numbers'>
               {/* Display first page */}
@@ -74,7 +75,7 @@ const Pagination = ({
               disabled={currentPage >= totalPages}
               onClick={handleNextPage}
             >
-              Next Page
+              Next
             </button>
           </div>
         </section>
