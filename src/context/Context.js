@@ -45,7 +45,6 @@ const Context = ({ children }) => {
     }
   }, [])
 
-
   // useEffect(() => {
   //   const handleActivity = () => {
   //     clearTimeout(logoutTimer)
