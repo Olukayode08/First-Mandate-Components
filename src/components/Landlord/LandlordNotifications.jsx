@@ -41,6 +41,14 @@ const LandlordNotifications = () => {
     setCurrentPage(currentPage - 1)
   }
 
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <LandlordEmptyNotification />
+      </div>
+    )
+  }
+
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -81,21 +89,11 @@ const LandlordNotifications = () => {
                           <td>{notification.title}</td>
                           <td>{notification.section}</td>
                           <td>{notification.notification}</td>
-                          {/* <td>
-                            <div className='n-margin'>
-                              {notification.acknowledged_status}
-                            </div>
-                          </td> */}
                         </tr>
                       ))
                     : null}
                 </tbody>
               </table>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <LandlordEmptyNotification />
-                </div>
-              )}
             </div>
             {data?.data?.total > 10 && (
               <Pagination

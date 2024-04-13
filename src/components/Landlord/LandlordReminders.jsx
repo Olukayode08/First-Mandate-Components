@@ -150,6 +150,14 @@ const LandlordReminders = () => {
     setCurrentPage(currentPage - 1)
   }
 
+   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+     return (
+       <div>
+         <LandlordEmptyReminder />
+       </div>
+     )
+   }
+
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -193,11 +201,6 @@ const LandlordReminders = () => {
                     : null}
                 </table>
               </div>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <LandlordEmptyReminder />
-                </div>
-              )}
             </div>
           </main>
           {data?.data?.total > 10 && (

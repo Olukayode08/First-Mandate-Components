@@ -139,6 +139,14 @@ const ManagerReminders = () => {
       console.log(data)
     },
   })
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <ManagerEmptyReminder />
+      </div>
+    )
+  }
+
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -182,11 +190,6 @@ const ManagerReminders = () => {
                     : null}
                 </table>
               </div>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <ManagerEmptyReminder/>
-                </div>
-              )}
             </div>
           </main>
         </section>

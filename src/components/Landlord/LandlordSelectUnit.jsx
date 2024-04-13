@@ -49,6 +49,14 @@ const LandlordSelectUnit = () => {
     setCurrentPage(currentPage - 1)
   }
 
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <LandlordEmptyProperty />
+      </div>
+    )
+  }
+
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -123,11 +131,6 @@ const LandlordSelectUnit = () => {
                   </div>
                 ))
               : null}
-            {!pageLoading && !data.data?.data?.length && (
-              <div>
-                <LandlordEmptyProperty />
-              </div>
-            )}
             {data?.data?.total > 10 && (
               <Pagination
                 currentPage={currentPage}

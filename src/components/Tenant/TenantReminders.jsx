@@ -139,6 +139,14 @@ const LandlordReminders = () => {
       console.log(data)
     },
   })
+
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <TenantEmptyReminder />
+      </div>
+    )
+  }
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -182,11 +190,6 @@ const LandlordReminders = () => {
                     : null}
                 </table>
               </div>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <TenantEmptyReminder />
-                </div>
-              )}
             </div>
           </main>
         </section>

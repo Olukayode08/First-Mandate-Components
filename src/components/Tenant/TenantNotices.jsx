@@ -147,8 +147,13 @@ const TenantNotices = () => {
     }
   )
 
-  console.log(data);
-
+ if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+   return (
+     <div>
+       <TenantEmptyNotice />
+     </div>
+   )
+ }
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -226,11 +231,7 @@ const TenantNotices = () => {
                     : null}
                 </tbody>
               </table>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <TenantEmptyNotice />
-                </div>
-              )}
+
             </div>
           </main>
         </section>

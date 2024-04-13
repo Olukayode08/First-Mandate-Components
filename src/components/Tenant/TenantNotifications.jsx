@@ -19,6 +19,14 @@ const TenantNotifications = () => {
     const time = dateTime.toLocaleTimeString()
     return { date, time }
   }
+
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <TenantEmptyNotification />
+      </div>
+    )
+  }
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -59,21 +67,11 @@ const TenantNotifications = () => {
                           <td>{notification.title}</td>
                           <td>{notification.section}</td>
                           <td>{notification.notification}</td>
-                          {/* <td>
-                            <div className='n-margin'>
-                              {notification.acknowledged_status}
-                            </div>
-                          </td> */}
                         </tr>
                       ))
                     : null}
                 </tbody>
               </table>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <TenantEmptyNotification />
-                </div>
-              )}
             </div>
           </main>
         </section>

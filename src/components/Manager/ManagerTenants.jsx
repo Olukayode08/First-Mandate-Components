@@ -17,6 +17,14 @@ const ManagerTenants = () => {
       onSuccess: (data) => {},
     }
   )
+
+   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+     return (
+       <div>
+         <ManagerEmptyTenant/>
+       </div>
+     )
+   }
   
   if (pageLoading) {
     return (
@@ -108,11 +116,6 @@ const ManagerTenants = () => {
                     : null}
                 </tbody>
               </table>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <ManagerEmptyTenant />
-                </div>
-              )}
             </div>
           </main>
         </section>

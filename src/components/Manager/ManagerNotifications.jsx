@@ -19,6 +19,14 @@ const ManagerNotifications = () => {
     return { date, time }
   }
 
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <ManagerEmptyNotification />
+      </div>
+    )
+  }
+
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -68,11 +76,6 @@ const ManagerNotifications = () => {
                     : null}
                 </tbody>
               </table>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <ManagerEmptyNotification />
-                </div>
-              )}
             </div>
           </main>
         </section>

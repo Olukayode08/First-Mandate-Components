@@ -13,23 +13,56 @@ const Context = ({ children }) => {
     localStorage.removeItem('token')
   }
 
+  // Authentification Timer
   useEffect(() => {
-    const handleActivity = () => {
-      clearTimeout(logoutTimer)
-      logoutTimer = setTimeout(logOut, 5 * 60 * 1000)
+    let logoutTimer
+
+    const clearInactiveUser = () => {
+      localStorage.removeItem('token')
+      setIsAuthenticated(false)
     }
 
-    let logoutTimer = setTimeout(logOut, 5 * 60 * 1000)
-
-    document.addEventListener('mousemove', handleActivity)
-    document.addEventListener('keydown', handleActivity)
-
-    return () => {
+    const resetLogoutTimer = () => {
       clearTimeout(logoutTimer)
-      document.removeEventListener('mousemove', handleActivity)
-      document.removeEventListener('keydown', handleActivity)
+      logoutTimer = setTimeout(clearInactiveUser, 5 * 60 * 1000) // 5 minutes
+    }
+    const clearLogoutTimer = () => {
+      clearTimeout(logoutTimer)
+    }
+    const handleUserActivity = () => {
+      resetLogoutTimer()
+    }
+    const userActivityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart']
+    userActivityEvents.forEach((event) => {
+      window.addEventListener(event, handleUserActivity)
+    })
+    resetLogoutTimer()
+    return () => {
+      userActivityEvents.forEach((event) => {
+        window.removeEventListener(event, handleUserActivity)
+      })
+      clearLogoutTimer()
     }
   }, [])
+
+
+  // useEffect(() => {
+  //   const handleActivity = () => {
+  //     clearTimeout(logoutTimer)
+  //     logoutTimer = setTimeout(logOut, 5 * 60 * 1000)
+  //   }
+
+  //   let logoutTimer = setTimeout(logOut, 5 * 60 * 1000)
+
+  //   document.addEventListener('mousemove', handleActivity)
+  //   document.addEventListener('keydown', handleActivity)
+
+  //   return () => {
+  //     clearTimeout(logoutTimer)
+  //     document.removeEventListener('mousemove', handleActivity)
+  //     document.removeEventListener('keydown', handleActivity)
+  //   }
+  // }, [])
 
   return (
     <>

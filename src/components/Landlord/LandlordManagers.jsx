@@ -35,6 +35,14 @@ const LandlordManagers = () => {
     setCurrentPage(currentPage - 1)
   }
 
+ if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+   return (
+     <div>
+       <LandlordEmptyManager />
+     </div>
+   )
+ }
+
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -100,11 +108,6 @@ const LandlordManagers = () => {
                     : null}
                 </tbody>
               </table>
-              {!pageLoading && !data.data.data?.length && (
-                <div>
-                  <LandlordEmptyManager />
-                </div>
-              )}
             </div>
             {data?.data?.total > 10 && (
               <Pagination

@@ -30,6 +30,13 @@ const ManagerSelectUnit = () => {
       onSuccess: (data) => {},
     }
   )
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <ManagerEmptyProperty />
+      </div>
+    )
+  }
   if (pageLoading) {
     return (
       <div className='page-spinner'>
@@ -104,11 +111,6 @@ const ManagerSelectUnit = () => {
                   </div>
                 ))
               : null}
-            {!pageLoading && !data.data?.data?.length && (
-              <div>
-                <ManagerEmptyProperty />
-              </div>
-            )}
           </main>
         </section>
       </ManagerSU>

@@ -16,6 +16,7 @@ const TenantApartmentDetails = () => {
       },
     }
   )
+
   if (pageLoading) {
     return (
       <div className='page-spinner'>
