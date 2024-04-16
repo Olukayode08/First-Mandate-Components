@@ -7,7 +7,6 @@ import LandlordEmptyProperty from './LandlordEmptyProperty'
 import { useNavigate, useParams, useLocation } from 'react-router'
 import Pagination from '../Pagination/Pagination'
 
-const token = localStorage.getItem('token')
 const LandlordSelectUnit = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -31,7 +30,6 @@ const LandlordSelectUnit = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/properties?page=${currentPage}`,
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )
@@ -110,8 +108,12 @@ const LandlordSelectUnit = () => {
                                   unitOccupied()
                                 } else {
                                   navigate(
-                                    `/landlord/add-tenant/${unit.uuid}/tenants`
+                                    `/landlord/add-tenant/${unit.uuid}/tenants`,
+                                    { state: { unitName: unit.unit_name } }
                                   )
+                                  // navigate(
+                                  //   `/landlord/add-tenant/${unit.uuid}/tenants`
+                                  // )
                                 }
                               }}
                               key={unit.uuid}

@@ -27,7 +27,7 @@ const ResetPassword = () => {
     try {
       await postResetPassword({ email })
     } catch (e) {
-      console.error(e.message)
+      // console.error(e.message)
     }
   }
   return (

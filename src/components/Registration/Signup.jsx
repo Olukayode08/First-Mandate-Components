@@ -5,11 +5,12 @@ import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
+import { useUpdateToken } from '../../hooks/useUpdateToken'
 
 const Signup = () => {
   const { setIsAuthenticated } = useContext(FirstMandate)
   const navigate = useNavigate()
-
+  const updateToken = useUpdateToken()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -21,8 +22,6 @@ const Signup = () => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/])[A-Za-z\d@$!%*?&/]{8,}$/
     return passwordRegex.test(password)
   }
-
-
 
   // Validate Email
   const validateEmail = (email) => {
@@ -40,8 +39,8 @@ const Signup = () => {
     error: userError
   } = useFirstMandateMutation('/signup', {
     onSuccess: (data) => {
+      updateToken(data)
       setIsAuthenticated(true)
-      localStorage.setItem('token', data.data.authorization.token)
       setTimeout(() => {
         navigate('/landlord')
       }, 3000)

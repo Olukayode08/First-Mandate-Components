@@ -3,12 +3,15 @@ import styled from 'styled-components'
 import ResetPasswordCongrats from '../modal/ResetPasswordCongrats'
 import logo from '../../assets/1st mandate logo 1.png'
 import { useFirstMandateMutation } from '../../data-layer/utils'
+import { useUpdateToken } from '../../hooks/useUpdateToken'
+import { useCookies } from 'react-cookie'
 
-const token = localStorage.getItem('token')
 const EnterNewPassword = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [passwordError, setPasswordError] = useState('')
+  const updateToken = useUpdateToken()
+  const [cookies] = useCookies(['token'])
 
   // Validate Password
   const validatePassword = (password) => {
@@ -26,7 +29,9 @@ const EnterNewPassword = () => {
     error,
     isSuccess,
   } = useFirstMandateMutation('/reset-password', {
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+      updateToken(data)
+    },
     onError: (error) => {},
   })
 
@@ -42,12 +47,12 @@ const EnterNewPassword = () => {
       setPasswordError('Passwords do not match!')
       return
     }
-    if (!(password || token)) {
+    if (!(password || cookies?.token)) {
       return
     }
 
     try {
-      await postNewPassword({ password, token })
+      await postNewPassword({ password })
     } catch (e) {
       console.error(e.message)
     }

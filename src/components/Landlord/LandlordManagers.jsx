@@ -6,7 +6,6 @@ import LandlordEmptyManager from './LandlordEmptyManager'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import Pagination from '../Pagination/Pagination'
 
-const token = localStorage.getItem('token')
 const LandlordManagers = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -17,7 +16,6 @@ const LandlordManagers = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/property-managers?page=${currentPage}`,
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

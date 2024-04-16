@@ -5,8 +5,6 @@ import LandlordEmptyNotification from './LandlordEmptyNotice'
 import Pagination from '../Pagination/Pagination'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const token = localStorage.getItem('token')
-
 const LandlordNotifications = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -17,7 +15,6 @@ const LandlordNotifications = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/notifications?page=${currentPage}`,
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

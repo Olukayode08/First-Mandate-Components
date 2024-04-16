@@ -13,7 +13,6 @@ import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
 import Pagination from '../Pagination/Pagination'
 
-const token = localStorage.getItem('token')
 const DeleteModal = ({
   setShowModal,
   cancelDelete,
@@ -128,7 +127,6 @@ const LandlordReminders = () => {
     data,
     refetch: refetchReminders,
   } = useFirstMandateQuery(`/reminders?page=${currentPage}`, {
-    enabled: !!token,
     onSuccess: (data) => {},
   })
   const handleDeleteReminder = async () => {

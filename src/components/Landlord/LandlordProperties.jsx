@@ -9,18 +9,15 @@ import { useFirstMandateQuery } from '../../data-layer/utils'
 import iconHouse from '../../assets/Frame-2007.png'
 import Pagination from '../Pagination/Pagination'
 
-const token = localStorage.getItem('token')
 const LandlordProperties = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const currentPageParam = parseInt(searchParams.get('page')) || 1
   const [currentPage, setCurrentPage] = useState(currentPageParam)
-
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/properties?page=${currentPage}`,
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

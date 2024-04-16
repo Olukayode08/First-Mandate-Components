@@ -1,9 +1,9 @@
-
 import { useMutation, useQuery } from 'react-query';
 import { stripLeadingSlash } from '../utils/string';
+import { useCookies } from 'react-cookie';
 
 export const API_URL = process.env.REACT_APP_BACKEND_BASE_URL
-const token = localStorage.getItem('token')
+// const token = localStorage.getItem('token')
 
 /**
  * Returns the queryKey for a react-query request. The key is obtained by splitting the url into fragments (hence creating a unique key for each request). The params is only helpful when we want to cache data
@@ -24,7 +24,7 @@ export const getReactQueryKey = (url, params) => {
  * @param method
  * @returns {function(*): Promise<Response>}
  */
-export const getQueryFn = ({ path, params, headers, method }) => {
+export const getQueryFn = ({ path, params,token, headers, method }) => {
   // The returned function takes the data because that often needs to be set at calling time.
   return async (data) => {
     const urlObj = new URL(`${API_URL}/${stripLeadingSlash(path)}`);
@@ -73,10 +73,10 @@ export const useFirstMandateQuery = (
     ...reactQueryOptions
   } = {}
 ) => {
-
+const [cookies] = useCookies(['token'])
 
   const _queryFn = () =>
-    getQueryFn({ path, params, headers, method })(data);
+    getQueryFn({ path, params, token: cookies?.token, headers, method })(data);
 
   const enabled = reactQueryOptions?.enabled === undefined || Boolean(reactQueryOptions?.enabled);
 
@@ -84,7 +84,7 @@ export const useFirstMandateQuery = (
     queryKey: queryKey || getReactQueryKey(path, params || data),
     queryFn: queryFn || _queryFn,
     ...(reactQueryOptions || {}),
-    enabled: (requireAuth ? !!token : true) && enabled
+    enabled: (requireAuth ? !!cookies?.token : true) && enabled
   });
 };
 
@@ -99,7 +99,9 @@ export const useFirstMandateMutation = (
     ...reactQueryOptions
   } = {}
 ) => {
-  const _queryFn = getQueryFn({ path, params, headers, method});
+  const [cookies] = useCookies(['token'])
+
+  const _queryFn = getQueryFn({ path, params, token: cookies?.token, headers, method});
 
   return useMutation({
     mutationKey: mutationKey || getReactQueryKey(path, params),

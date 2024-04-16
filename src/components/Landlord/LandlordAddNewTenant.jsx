@@ -7,7 +7,6 @@ import {
 } from '../../data-layer/utils'
 import LandlordInstallmentDropdown from '../Dropdowns/LandlordInstallmentDropdown'
 
-const token = localStorage.getItem('token')
 const rentTerms = [
   '1 month',
   '2 month',
@@ -47,6 +46,7 @@ const LandlordAddNewTenant = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const unitName = location.state && location.state.unitName
+
   const { unitId, tenantId } = useParams()
   const pageUrl = window.location.href
   const isEdit = pageUrl.includes('edit')
@@ -101,7 +101,7 @@ const LandlordAddNewTenant = () => {
   )
 
   const { data } = useFirstMandateQuery('/tenants', {
-    enabled: !!token && !!tenantId,
+    enabled: !!tenantId,
     onSuccess: (data) => {
       const tenant = data?.data?.data?.find(
         (tenant) => tenant.uuid === tenantId
@@ -118,16 +118,17 @@ const LandlordAddNewTenant = () => {
       handleTenantUpdate('rent_terms', tenant?.rent_terms)
       handleTenantUpdate('rent_due_date', tenant?.rent_due_date)
     },
-    onError: (error) => {
-    },
+    onError: (error) => {},
   })
 
-  const { data: propertiesData } = useFirstMandateQuery('/properties', {
-    enabled: !!token,
-    select: (data) => findUnit(unitId, data?.data?.data),
-    onSuccess: (data) => {
-    },
-  })
+  const { data: propertiesData } = useFirstMandateQuery(
+    `/properties`,
+    {
+      select: (data) => findUnit(unitId, data?.data?.data),
+      onSuccess: (data) => {
+      },
+    }
+  )
 
   const handleTenant = async (e) => {
     e.preventDefault()
@@ -146,8 +147,7 @@ const LandlordAddNewTenant = () => {
     }
     try {
       await postTenant(payload)
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 
   return (

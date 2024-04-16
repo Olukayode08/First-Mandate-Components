@@ -1,16 +1,19 @@
 import React, { createContext, useEffect, useState } from 'react'
+import { useLogout } from '../hooks/useLogout'
+import { useCookies } from 'react-cookie'
 const FirstMandate = createContext()
 
 const Context = ({ children }) => {
+  const [cookies] = useCookies(['token'])
+  const logout = useLogout()
+
   // Signup and Login Validation States
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem('token')
-  )
+  const [isAuthenticated, setIsAuthenticated] = useState(!!cookies?.token)
 
   // Function to log the user out if inactive
   const logOut = () => {
     setIsAuthenticated(false)
-    localStorage.removeItem('token')
+    logout()
   }
 
   // Authentification Timer
@@ -18,7 +21,7 @@ const Context = ({ children }) => {
     let logoutTimer
 
     const clearInactiveUser = () => {
-      localStorage.removeItem('token')
+      logout()
       setIsAuthenticated(false)
     }
 

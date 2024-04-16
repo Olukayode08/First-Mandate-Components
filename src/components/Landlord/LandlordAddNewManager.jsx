@@ -6,8 +6,6 @@ import {
   useFirstMandateQuery,
 } from '../../data-layer/utils'
 
-const token = localStorage.getItem('token')
-
 const LandlordAddNewManager = () => {
   const { propertyId, managerId } = useParams()
   const [selectedPropertyuuid, setSelectedPropertyUuid] = useState(null)
@@ -49,7 +47,7 @@ const LandlordAddNewManager = () => {
   const { data } = useFirstMandateQuery(
     `/property-managers/${managerId}`,
     {
-      enabled: !!token && !!managerId,
+      enabled: !!managerId,
       onSuccess: (data) => {
         handleManagerUpdate('name', data?.data?.name)
         handleManagerUpdate('email', data?.data?.email)
@@ -59,7 +57,7 @@ const LandlordAddNewManager = () => {
   )
 
   const { data: propertiesData } = useFirstMandateQuery('/properties', {
-    enabled: !!token && !propertyId,
+    enabled: !propertyId,
     select: (data) => data?.data?.data
   })
 

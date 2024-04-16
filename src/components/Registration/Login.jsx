@@ -4,6 +4,7 @@ import logo from '../../assets/1st mandate logo 1.png'
 import { FirstMandate } from '../../context/Context'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
+import { useUpdateToken } from '../../hooks/useUpdateToken'
 
 const Login = () => {
   const { setIsAuthenticated } = useContext(FirstMandate)
@@ -11,6 +12,7 @@ const Login = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const updateToken = useUpdateToken()
 
   const {
     mutateAsync: postLogin,
@@ -18,7 +20,7 @@ const Login = () => {
     error,
   } = useFirstMandateMutation('/login', {
     onSuccess: (data) => {
-      localStorage.setItem('token', data.data.authorization.token)
+      updateToken(data)
       setIsAuthenticated(true)
       navigate('/landlord')
     },
