@@ -27,7 +27,7 @@ const Context = ({ children }) => {
 
     const resetLogoutTimer = () => {
       clearTimeout(logoutTimer)
-      logoutTimer = setTimeout(clearInactiveUser, 5 * 60 * 1000) // 5 minutes
+      logoutTimer = setTimeout(clearInactiveUser, 10 * 60 * 1000) // 10 minutes
     }
     const clearLogoutTimer = () => {
       clearTimeout(logoutTimer)

@@ -4,13 +4,11 @@ import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyLandlord from './ManagerEmptyLandlord'
-const token = localStorage.getItem('token')
 
 const ManagerLandlords = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/property-manager/properties',
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

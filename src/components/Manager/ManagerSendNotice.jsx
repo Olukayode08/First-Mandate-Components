@@ -6,7 +6,6 @@ import {
   useFirstMandateQuery,
 } from '../../data-layer/utils'
 
-const token = localStorage.getItem('token')
 
 const ManagerSendNotice = () => {
   const navigate = useNavigate()
@@ -43,7 +42,7 @@ const ManagerSendNotice = () => {
   const { data: tenantsData } = useFirstMandateQuery(
     '/property-manager/property-tenants',
     {
-      enabled: !!token && !tenantId,
+      enabled: !tenantId,
       select: (data) => data?.data?.data,
     }
   )

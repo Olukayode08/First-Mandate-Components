@@ -4,13 +4,10 @@ import { useFirstMandateQuery } from '../../data-layer/utils'
 import TenantEmptyApartment from './TenantEmptyApartment'
 import iconHouse from '../../assets/Frame-2007.png'
 
-const token = localStorage.getItem('token')
-
 const TenantApartmentDetails = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/tenant/apartments',
     {
-      enabled: !!token,
       onSuccess: (data) => {
         console.log(data)
       },

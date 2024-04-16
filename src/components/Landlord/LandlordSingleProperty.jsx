@@ -5,13 +5,11 @@ import { useParams } from 'react-router-dom'
 import iconHouse from '../../assets/Frame-2007.png'
 import LandlordSinglePropertyUnit from './LandlordSiglePropertyUnit'
 
-const token = localStorage.getItem('token')
 
 const LandlordSingleProperty = () => {
   const { singlePropertyId } = useParams()
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(`/properties/${singlePropertyId}`, {
-    enabled: !!token,
     onSuccess: (data) => {},
   })
   if (pageLoading) {

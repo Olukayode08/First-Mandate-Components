@@ -12,8 +12,6 @@ import water from '../../assets/Frame 2007 (2).png'
 import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
 
-const token = localStorage.getItem('token')
-
 const DeleteModal = ({
   setShowModal,
   cancelDelete,
@@ -39,7 +37,6 @@ const DeleteModal = ({
       await deleteReminder()
       setShowModal(false)
     } catch (e) {
-      console.log(error)
     }
   }
   return (
@@ -134,7 +131,6 @@ const LandlordReminders = () => {
     data,
     refetch: refetchReminders,
   } = useFirstMandateQuery('/tenant/reminders', {
-    enabled: !!token,
     onSuccess: (data) => {
       console.log(data)
     },

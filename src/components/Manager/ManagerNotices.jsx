@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyNotice from './ManagerEmptyNotice'
-const token = localStorage.getItem('token')
 
 const ManagerNotices = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/property-manager/notices',
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

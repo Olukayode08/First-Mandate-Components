@@ -2,13 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import TenantEmptyNotification from './TenantEmptyNotice'
-const token = localStorage.getItem('token')
 
 const TenantNotifications = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/notifications',
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

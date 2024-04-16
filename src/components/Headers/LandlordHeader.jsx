@@ -6,14 +6,10 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 
-
 const LandlordHeader = () => {
-    const { data} = useFirstMandateQuery(
-      '/notification-count',
-      {
-        onSuccess: (data) => {},
-      }
-    )
+  const { data } = useFirstMandateQuery('/notification-count', {
+    onSuccess: (data) => {},
+  })
 
   return (
     <>

@@ -3,13 +3,11 @@ import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 
-const token = localStorage.getItem('token')
 
 const LandlordSingleManager = () => {
   const { managerId } = useParams()
 
   const { data } = useFirstMandateQuery(`/property-managers/${managerId}`, {
-    enabled: !!token,
     onSuccess: (data) => {},
   })
   console.log(data)

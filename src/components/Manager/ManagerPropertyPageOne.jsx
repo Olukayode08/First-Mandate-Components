@@ -6,14 +6,12 @@ import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyProperty from './ManagerEmptyProperty'
 import houseIcon from '../../assets/Frame-2007.png'
 
-const token = localStorage.getItem('token')
 
 const ManagerPropertyPageOne = () => {
   const navigate = useNavigate()
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/property-manager/properties',
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

@@ -8,15 +8,12 @@ import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerPropertyDropdown from '../Dropdowns/ManagerPropertyDropdown'
 import ManagerPropertyUnit from './ManagerPropertyUnit'
 
-const token = localStorage.getItem('token')
-
 const ManagerPropertyPageTwo = () => {
   const { singlePropertyId } = useParams()
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/property-manager/properties`,
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

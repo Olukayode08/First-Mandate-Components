@@ -6,8 +6,6 @@ import {
   useFirstMandateQuery,
 } from '../../data-layer/utils'
 
-const token = localStorage.getItem('token')
-
 const LandlordAddReminder = () => {
   const navigate = useNavigate()
   const { reminderId } = useParams()
@@ -39,27 +37,20 @@ const LandlordAddReminder = () => {
           navigate('/landlord/reminders')
         }, 3000)
       },
-      onError: (error) => {
-      },
+      onError: (error) => {},
     }
   )
 
-  const { data } = useFirstMandateQuery(
-    `/reminders/${reminderId}`,
-    {
-      enabled: !!token && !!reminderId,
-      onSuccess: (data) => {
-        console.log(data)
-        handleReminderUpdate('reminder_type', data?.data?.reminder_type)
-        handleReminderUpdate('short_description', data?.data?.short_description)
-        handleReminderUpdate(
-          'next_reminder_date',
-          data?.data?.next_reminder_date
-        )
-        handleReminderUpdate('reminder_time', data?.data?.reminder_time)
-      },
-    }
-  )
+  const { data } = useFirstMandateQuery(`/reminders/${reminderId}`, {
+    enabled: !!reminderId,
+    onSuccess: (data) => {
+      console.log(data)
+      handleReminderUpdate('reminder_type', data?.data?.reminder_type)
+      handleReminderUpdate('short_description', data?.data?.short_description)
+      handleReminderUpdate('next_reminder_date', data?.data?.next_reminder_date)
+      handleReminderUpdate('reminder_time', data?.data?.reminder_time)
+    },
+  })
 
   const handleReminder = async (e) => {
     e.preventDefault()

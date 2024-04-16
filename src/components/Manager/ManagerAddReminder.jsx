@@ -6,7 +6,6 @@ import {
   useFirstMandateQuery,
 } from '../../data-layer/utils'
 
-const token = localStorage.getItem('token')
 
 const ManagerAddReminder = () => {
   const navigate = useNavigate()
@@ -45,7 +44,7 @@ const ManagerAddReminder = () => {
   )
 
   const { data } = useFirstMandateQuery(`/reminders/${reminderId}`, {
-    enabled: !!token && !!reminderId,
+    enabled: !!reminderId,
     onSuccess: (data) => {
       console.log(data)
       handleReminderUpdate('reminder_type', data?.data?.reminder_type)

@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyTenant from './ManagerEmptyTenant'
 
-const token = localStorage.getItem('token')
 const ManagerTenants = () => {
   // Fetch Tenants
   const navigate = useNavigate()
@@ -13,7 +12,6 @@ const ManagerTenants = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/property-manager/property-tenants',
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

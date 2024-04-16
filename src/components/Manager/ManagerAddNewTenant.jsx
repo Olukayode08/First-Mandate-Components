@@ -7,7 +7,6 @@ import {
 } from '../../data-layer/utils'
 import ManagerInstallmentDropdown from '../Dropdowns/ManagerInstallmentDropdown'
 
-const token = localStorage.getItem('token')
 const rentTerms = [
   '1 month',
   '2 month',
@@ -110,7 +109,7 @@ const ManagerAddNewTenant = () => {
   )
 
   const { data } = useFirstMandateQuery('/property-manager/property-tenants', {
-    enabled: !!token && !!tenantId,
+    enabled: !!tenantId,
     onSuccess: (data) => {
       const tenant = data?.data?.data?.find(
         (tenant) => tenant.uuid === tenantId
@@ -134,7 +133,6 @@ const ManagerAddNewTenant = () => {
   const { data: propertiesData } = useFirstMandateQuery(
     '/property-manager/properties',
     {
-      enabled: !!token,
       select: (data) => findUnit(unitId, data?.data?.data),
       onSuccess: (data) => {
       },

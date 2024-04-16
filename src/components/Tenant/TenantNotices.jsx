@@ -5,7 +5,6 @@ import {
   useFirstMandateQuery,
 } from '../../data-layer/utils'
 import TenantEmptyNotice from './TenantEmptyNotice'
-const token = localStorage.getItem('token')
 
 const AcknowledgeModal = ({
   modal,
@@ -142,7 +141,6 @@ const TenantNotices = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/tenant/all-notices',
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )

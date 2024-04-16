@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 
 const PropertyManagerHeader = () => {
-      const { data } = useFirstMandateQuery('/notification-count', {
-        onSuccess: (data) => {},
-      })
+  const { data } = useFirstMandateQuery('/notification-count', {
+    onSuccess: (data) => {},
+  })
   return (
     <>
       <Wrapper>

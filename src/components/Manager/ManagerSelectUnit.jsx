@@ -5,7 +5,6 @@ import { IoMdCheckmark } from 'react-icons/io'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import { useNavigate, useParams } from 'react-router'
 import ManagerEmptyProperty from './ManagerEmptyProperty'
-const token = localStorage.getItem('token')
 
 const ManagerSelectUnit = () => {
   const navigate = useNavigate()
@@ -26,7 +25,6 @@ const ManagerSelectUnit = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     '/property-manager/properties',
     {
-      enabled: !!token,
       onSuccess: (data) => {},
     }
   )
@@ -89,9 +87,13 @@ const ManagerSelectUnit = () => {
                                 ) {
                                   unitOccupied()
                                 } else {
-                                  navigate(
-                                    `/manager/add-tenant/${unit.uuid}/tenants`
-                                  )
+                                   navigate(
+                                     `/manager/add-tenant/${unit.uuid}/tenants`,
+                                     { state: { unitName: unit.unit_name } }
+                                   )
+                                  // navigate(
+                                  //   `/manager/add-tenant/${unit.uuid}/tenants`
+                                  // )
                                 }
                               }}
                               key={unit.uuid}

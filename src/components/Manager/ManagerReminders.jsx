@@ -12,7 +12,6 @@ import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
 import ManagerEmptyReminder from './ManagerEmptyReminder'
 
-const token = localStorage.getItem('token')
 
 const DeleteModal = ({
   setShowModal,
@@ -134,7 +133,6 @@ const ManagerReminders = () => {
     data,
     refetch: refetchReminders,
   } = useFirstMandateQuery('/reminders', {
-    enabled: !!token,
     onSuccess: (data) => {
       console.log(data)
     },
