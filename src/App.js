@@ -113,7 +113,8 @@ function App() {
           <Route path='/' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
-          <Route path='/new-password' element={<EnterNewPassword />} />
+          <Route path='/new-password/:tokenId' element={<EnterNewPassword />} />
+          {/* <Route path='/new-password' element={<EnterNewPassword />} /> */}
           <Route path='/reset-password' element={<ForgotPassword />} />
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />

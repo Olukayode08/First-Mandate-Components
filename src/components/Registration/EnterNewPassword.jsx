@@ -5,6 +5,7 @@ import logo from '../../assets/1st mandate logo 1.png'
 import { useFirstMandateMutation } from '../../data-layer/utils'
 import { useUpdateToken } from '../../hooks/useUpdateToken'
 import { useCookies } from 'react-cookie'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const EnterNewPassword = () => {
   const [password, setPassword] = useState('')
@@ -12,11 +13,13 @@ const EnterNewPassword = () => {
   const [passwordError, setPasswordError] = useState('')
   const updateToken = useUpdateToken()
   const [cookies] = useCookies(['token'])
+  const { tokenId } = useParams()
+  const navigate = useNavigate()
 
   // Validate Password
   const validatePassword = (password) => {
     const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/])[A-Za-z\d@$!%*?&/]{8,}$/
     return passwordRegex.test(password)
   }
 
@@ -31,6 +34,9 @@ const EnterNewPassword = () => {
   } = useFirstMandateMutation('/reset-password', {
     onSuccess: (data) => {
       updateToken(data)
+      setTimeout(() => {
+        navigate('/login')
+      }, 2000)
     },
     onError: (error) => {},
   })
@@ -52,7 +58,7 @@ const EnterNewPassword = () => {
     }
 
     try {
-      await postNewPassword({ password })
+      await postNewPassword({ password, tokenId })
     } catch (e) {
       console.error(e.message)
     }
