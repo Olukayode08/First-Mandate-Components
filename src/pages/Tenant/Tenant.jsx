@@ -1,6 +1,6 @@
 import React from 'react'
 import TenantSidebar from '../../components/Sidebars/TenantSidebar'
-import TenantHeader from '../../components/Headers/TenantHeader'
+import Header from '../../components/Headers/Header'
 import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -10,7 +10,7 @@ const Tenant = () => {
       <TenantMP>
         <section className='tenant-page'>
           <div className='tenant-header'>
-            <TenantHeader />
+            <Header />
           </div>
           <div className='tenant-sidebar'>
             <TenantSidebar />

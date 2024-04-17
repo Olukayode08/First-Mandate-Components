@@ -1,70 +1,96 @@
 import React, { useState } from 'react'
 import { FaRegBell } from 'react-icons/fa6'
 import { FaRegUser } from 'react-icons/fa'
-import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
-import { Link, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
+import { IoIosArrowUp } from 'react-icons/io'
+import { IoIosArrowDown } from 'react-icons/io'
 
-const TenantHeader = () => {
+const Header = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+
   const { data } = useFirstMandateQuery('/notification-count', {
     onSuccess: (data) => {},
   })
 
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
+  const getUserRoleText = () => {
+    if (location.pathname === '/tenant') {
+      return 'Tenant'
+    } else if (location.pathname === '/manager') {
+      return 'Manager'
+    } else {
+      return 'Landlord'
+    }
+  }
   const handleDropdownToggle = () => {
     setDropdownOpen(!dropdownOpen)
   }
-  const handleTenant = () => {
-    navigate('/tenant')
-    setDropdownOpen(false)
-  }
+
   return (
     <>
-      <THeader>
+      <PageH>
         <div className='header'>
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
-          <div className='user'>
+          <div className='users'>
             <div>
-              <Link
-                className='user-role'
-                to='#'
-                // onClick={handleDropdownToggle}
-              >
-                Tenant
-              </Link>
-              {/* {dropdownOpen && (
-                <div>
-                  <Link to='/manager' className='user-role'>
-                    Manager
-                  </Link>
-                  <Link to='/tenant' className='user-role'>
-                    Tenant
-                  </Link>
+              <div className='user'>
+                {dropdownOpen ? (
+                  <div className='user-role'>{getUserRoleText()}</div>
+                ) : (
+                  <p className='user-role'>{getUserRoleText()}</p>
+                )}
+                <div onClick={handleDropdownToggle}>
+                  {dropdownOpen ? (
+                    <IoIosArrowDown size={15} />
+                  ) : (
+                    <IoIosArrowUp size={15} />
+                  )}
                 </div>
-              )} */}
+              </div>
+              {dropdownOpen && (
+                <div className='select-user'>
+                  {location.pathname !== '/landlord' && (
+                    <Link to='/landlord' className='user-role'>
+                      Landlord
+                    </Link>
+                  )}
+                  {location.pathname !== '/manager' && (
+                    <Link to='/manager' className='user-role'>
+                      Manager
+                    </Link>
+                  )}
+                  {location.pathname !== '/tenant' && (
+                    <Link to='/tenant' className='user-role'>
+                      Tenant
+                    </Link>
+                  )}
+                </div>
+              )}
             </div>
             <div className='icons'>
-              <Link className='link notification' to='/tenant/notifications'>
+              <Link className='link notification' to='/landlord/notifications'>
                 <FaRegBell size={18} className='icon' />
                 <p className='notification-count'>{data?.data?.count}</p>
               </Link>
-              <Link className='link' to='/tenant/profile'>
+              <Link className='link' to='/landlord/profile'>
                 <FaRegUser size={18} className='icon' />
               </Link>
             </div>
           </div>
         </div>
-      </THeader>
+      </PageH>
     </>
   )
 }
 
-const THeader = styled.section`
+const PageH = styled.section`
   .header {
     display: flex;
     justify-content: space-between;
@@ -82,15 +108,24 @@ const THeader = styled.section`
   img {
     width: 60%;
   }
-  .user {
+  .users {
     position: absolute;
     right: 50px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .select-user {
+    display: flex;
+    flex-direction: column;
+  }
   .user-role {
-    margin: 5px 0;
+    margin: 3px 0;
     text-decoration: none;
     color: #000;
   }
@@ -98,17 +133,6 @@ const THeader = styled.section`
     margin-right: 10px;
     font-size: 15px;
   }
-  /* select {
-    border: none;
-    background: transparent;
-    color: #000;
-    outline: none;
-    font-weight: inherit;
-    font-size: 15px;
-    margin-right: 5px;
-    cursor: pointer;
-    padding: 10px;
-  } */
   .icons {
     display: flex;
     gap: 10px;
@@ -142,21 +166,18 @@ const THeader = styled.section`
     .header {
       padding: 0 10px;
     }
-    .user {
+    .users {
       right: 10px;
     }
   }
   @media screen and (max-width: 380px) {
-    .user {
+    .users {
       right: 0;
       gap: 5px;
     }
     p {
       font-size: 14px;
     }
-    /* select {
-      font-size: 13px;
-    } */
     .logo {
       left: 40px;
     }
@@ -168,4 +189,4 @@ const THeader = styled.section`
     }
   }
 `
-export default TenantHeader
+export default Header

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import LandlordSidebar from '../../components/Sidebars/LandlordSidebar'
-import LandlordHeader from '../../components/Headers/LandlordHeader'
+import Header from '../../components/Headers/Header'
 import { Outlet } from 'react-router-dom'
 
 const LandLord = () => {
@@ -10,7 +10,7 @@ const LandLord = () => {
       <LandlordMP>
         <section className='landlord-page'>
           <div className='landlord-header'>
-            <LandlordHeader />
+            <Header />
           </div>
           <div className='landlord-sidebar'>
             <LandlordSidebar />

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropertyManagerSidebar from '../../components/Sidebars/PropertyManagerSidebar'
-import PropertyManagerHeader from '../../components/Headers/PropertyManagerHeader'
+import Header from '../../components/Headers/Header'
 import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -10,7 +10,7 @@ const PropertyManager = () => {
       <PManagerMP>
         <section className='p-manager-page'>
           <div className='p-manager-h'>
-            <PropertyManagerHeader />
+            <Header />
           </div>
           <div className='p-manager-sidebar'>
             <PropertyManagerSidebar />

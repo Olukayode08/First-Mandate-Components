@@ -217,6 +217,7 @@ const TenantS = styled.section`
     top: 88px;
     left: 0;
     width: 230px;
+    height: 87vh;
     flex: 0 0 auto;
     background-color: #ffffff;
     z-index: 50;
@@ -234,7 +235,7 @@ const TenantS = styled.section`
     display: flex;
     align-items: center;
     justify-content: baseline;
-    margin: 15px 0;
+    margin: 7px 0;
     width: 165px;
     text-decoration: none;
     color: #000000;

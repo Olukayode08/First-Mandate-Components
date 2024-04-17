@@ -21,11 +21,11 @@ const PropertyManagerHeader = () => {
             <p>Property Manager</p>
             <div className='icons'>
               <Link className='link notification' to='/manager/notifications'>
-                <FaRegBell className='icon' />
+                <FaRegBell size={18} className='icon' />
                 <p className='notification-count'>{data?.data?.count}</p>
               </Link>
               <Link className='link' to='/manager/profile'>
-                <FaRegUser className='icon' />
+                <FaRegUser size={18} className='icon' />
               </Link>
             </div>
           </div>
@@ -48,6 +48,9 @@ const Wrapper = styled.section`
   .logo {
     position: absolute;
     left: 50px;
+  }
+  img {
+    width: 60%;
   }
   .user {
     position: absolute;
