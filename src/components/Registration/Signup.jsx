@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { FirstMandate } from '../../context/Context'
+// import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
-import { useUpdateToken } from '../../hooks/useUpdateToken'
+// import { useUpdateToken } from '../../hooks/useUpdateToken'
 
 const Signup = () => {
-  const { setIsAuthenticated } = useContext(FirstMandate)
-  const navigate = useNavigate()
-  const updateToken = useUpdateToken()
+  // const { setIsAuthenticated } = useContext(FirstMandate)
+  // const navigate = useNavigate()
+  // const updateToken = useUpdateToken()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -39,11 +39,11 @@ const Signup = () => {
     error: userError
   } = useFirstMandateMutation('/signup', {
     onSuccess: (data) => {
-      updateToken(data)
-      setIsAuthenticated(true)
-      setTimeout(() => {
-        navigate('/landlord')
-      }, 3000)
+      // updateToken(data)
+      // setIsAuthenticated(true)
+      // setTimeout(() => {
+      //   navigate('/landlord')
+      // }, 3000)
     },
     onError: (error) => {
       console.log(error)
@@ -69,7 +69,7 @@ const Signup = () => {
     try {
       await postSignup({ email, name, password })
     } catch (e) {
-      console.error(e.message)
+      // console.error(e.message)
     }
   }
   return (

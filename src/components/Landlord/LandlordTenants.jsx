@@ -34,18 +34,17 @@ const LandlordTenants = () => {
     setCurrentPage(currentPage - 1)
   }
 
-  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
-    return (
-      <div>
-        <LandlordEmptyTenant />
-      </div>
-    )
-  }
-
   if (pageLoading) {
     return (
       <div className='page-spinner'>
         <div className='l-spinner'></div>
+      </div>
+    )
+  }
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <LandlordEmptyTenant />
       </div>
     )
   }

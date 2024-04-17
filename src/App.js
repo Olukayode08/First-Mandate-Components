@@ -88,6 +88,7 @@ import LandlordSendNotice from './components/Landlord/LandlordSendNotice'
 import LandlordNotices from './components/Landlord/LandlordNotices'
 import ManagerNotices from './components/Manager/ManagerNotices'
 import TenantNotices from './components/Tenant/TenantNotices'
+import ActivateEmailModal from './components/modal/ActivateEmailModal'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -116,6 +117,11 @@ function App() {
           <Route path='/new-password/:tokenId' element={<EnterNewPassword />} />
           {/* <Route path='/new-password' element={<EnterNewPassword />} /> */}
           <Route path='/reset-password' element={<ForgotPassword />} />
+          <Route
+            path='/activate-email/:emailTokenId'
+            element={<ActivateEmailModal />}
+          />
+          {/* <Route path='/activate-email' element={<ActivateEmailModal />} /> */}
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
           <Route path='/calendar' element={<Calendar />} />

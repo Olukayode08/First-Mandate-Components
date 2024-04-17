@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ResetPasswordCongrats from '../modal/ResetPasswordCongrats'
 import logo from '../../assets/1st mandate logo 1.png'
 import { useFirstMandateMutation } from '../../data-layer/utils'
-import { useUpdateToken } from '../../hooks/useUpdateToken'
+// import { useUpdateToken } from '../../hooks/useUpdateToken'
 import { useCookies } from 'react-cookie'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ const EnterNewPassword = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [passwordError, setPasswordError] = useState('')
-  const updateToken = useUpdateToken()
+  // const updateToken = useUpdateToken()
   const [cookies] = useCookies(['token'])
   const { tokenId } = useParams()
   const navigate = useNavigate()
@@ -33,7 +33,7 @@ const EnterNewPassword = () => {
     isSuccess,
   } = useFirstMandateMutation('/reset-password', {
     onSuccess: (data) => {
-      updateToken(data)
+      // updateToken(data)
       setTimeout(() => {
         navigate('/login')
       }, 2000)
@@ -60,7 +60,7 @@ const EnterNewPassword = () => {
     try {
       await postNewPassword({ password, tokenId })
     } catch (e) {
-      console.error(e.message)
+      // console.error(e.message)
     }
   }
 
