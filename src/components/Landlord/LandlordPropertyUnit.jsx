@@ -15,6 +15,7 @@ const LandlordPropertyUnit = ({ property }) => {
                 <th>Unit Name</th>
                 <th>Unit Type</th>
                 <th>Bedrooms</th>
+                <th>Tenant's Name</th>
                 <th>Occupation Status</th>
                 <th>Add Tenant</th>
               </tr>
@@ -26,6 +27,7 @@ const LandlordPropertyUnit = ({ property }) => {
                     <td>{table.unit_name}</td>
                     <td>{table.unit_type}</td>
                     <td>{table.no_of_bedrooms}</td>
+                    <td>{table.tenant_name}</td>
                     <td>{table.occupation_status}</td>
                     <td
                       onClick={() => {

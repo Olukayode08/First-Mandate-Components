@@ -129,6 +129,8 @@ const LandlordReminders = () => {
   } = useFirstMandateQuery(`/reminders?page=${currentPage}`, {
     onSuccess: (data) => {},
   })
+  console.log(data)
+
   const handleDeleteReminder = async () => {
     setShowModal(true)
   }
@@ -148,13 +150,13 @@ const LandlordReminders = () => {
     setCurrentPage(currentPage - 1)
   }
 
-   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
-     return (
-       <div>
-         <LandlordEmptyReminder />
-       </div>
-     )
-   }
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <LandlordEmptyReminder />
+      </div>
+    )
+  }
 
   if (pageLoading) {
     return (

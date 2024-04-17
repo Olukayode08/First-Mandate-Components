@@ -21,6 +21,7 @@ const LandlordProperties = () => {
       onSuccess: (data) => {},
     }
   )
+console.log(data);
 
   useEffect(() => {
     navigate(`/landlord/properties?page=${currentPage}`, { replace: true })

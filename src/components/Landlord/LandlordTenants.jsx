@@ -73,10 +73,10 @@ const LandlordTenants = () => {
                     <th>Amount</th>
                     <th>Payment Status</th>
                     <th>Rent Due Date</th>
-                    <th>Lease Start</th>
-                    <th>Lease End</th>
-                    <th>Edit Tenant</th>
-                    <th>Send Reminder</th>
+                    <th>Lease Start Date</th>
+                    <th>Lease End Date</th>
+                    {/* <th>Edit Tenant</th>
+                    <th>Send Reminder</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -109,7 +109,7 @@ const LandlordTenants = () => {
                           <th>{list.rent_due_date}</th>
                           <td>{list.lease_start}</td>
                           <td>{list.lease_end}</td>
-                          <td
+                          {/* <td
                             onClick={() =>
                               // navigate(
                               //   `/landlord/select-unit/${list.uuid}/edit`
@@ -129,7 +129,7 @@ const LandlordTenants = () => {
                             }
                           >
                             <div className='margin-t'>Send Reminder</div>
-                          </td>
+                          </td> */}
                         </tr>
                       ))
                     : null}

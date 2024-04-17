@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaRegBell } from 'react-icons/fa6'
 import { FaRegUser } from 'react-icons/fa'
 import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 
 const TenantHeader = () => {
+  const navigate = useNavigate()
   const { data } = useFirstMandateQuery('/notification-count', {
     onSuccess: (data) => {},
   })
+
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!dropdownOpen)
+  }
+  const handleTenant = () => {
+    navigate('/tenant')
+    setDropdownOpen(false)
+  }
   return (
     <>
       <THeader>
@@ -18,12 +29,25 @@ const TenantHeader = () => {
             <img src={logo} alt='1st Mandate' />
           </div>
           <div className='user'>
-            {/* <select name='user' id='user'>
-              <option value='Landlord'>Landlord</option>
-              <option value='Manager'>Property Manager</option>
-              <option value='Tenant'>Tenant</option>
-            </select> */}
-            <p>Tenant</p>
+            <div>
+              <Link
+                className='user-role'
+                to='#'
+                // onClick={handleDropdownToggle}
+              >
+                Tenant
+              </Link>
+              {/* {dropdownOpen && (
+                <div>
+                  <Link to='/manager' className='user-role'>
+                    Manager
+                  </Link>
+                  <Link to='/tenant' className='user-role'>
+                    Tenant
+                  </Link>
+                </div>
+              )} */}
+            </div>
             <div className='icons'>
               <Link className='link notification' to='/tenant/notifications'>
                 <FaRegBell className='icon' />
@@ -61,6 +85,11 @@ const THeader = styled.section`
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+  .user-role {
+    margin: 5px 0;
+    text-decoration: none;
+    color: #000;
   }
   p {
     margin-right: 10px;
