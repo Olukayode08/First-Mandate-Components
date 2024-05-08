@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import TenantEmptyNotification from './TenantEmptyNotice'
+import TenantEmptyNotification from './TenantEmptyNotification'
 
 const TenantNotifications = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(

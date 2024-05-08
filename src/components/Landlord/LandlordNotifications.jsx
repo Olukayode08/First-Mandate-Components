@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import LandlordEmptyNotification from './LandlordEmptyNotice'
+import LandlordEmptyNotification from './LandlordEmptyNotification'
 import Pagination from '../Pagination/Pagination'
 import { useNavigate, useLocation } from 'react-router-dom'
 

@@ -12,7 +12,7 @@ const LandlordEmptyNotice = () => {
             <img src={icon} alt='House' />
             <p>Please send a notice to see a list of your notice here.</p>
             <Link to='/landlord/send-notice' className='add-r'>
-              <h4>Send Notification</h4>
+              <h4>Send Notice</h4>
               <FaRegPlusSquare size={20} />
             </Link>
           </div>

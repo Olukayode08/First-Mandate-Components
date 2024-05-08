@@ -6,7 +6,6 @@ import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyProperty from './ManagerEmptyProperty'
 import houseIcon from '../../assets/Frame-2007.png'
 
-
 const ManagerPropertyPageOne = () => {
   const navigate = useNavigate()
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
@@ -16,6 +15,13 @@ const ManagerPropertyPageOne = () => {
     }
   )
 
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
+    return (
+      <div>
+        <ManagerEmptyProperty />
+      </div>
+    )
+  }
 
   if (pageLoading) {
     return (
@@ -38,9 +44,9 @@ const ManagerPropertyPageOne = () => {
             </div>
             <div className='l-options'>
               {data &&
-              data.data &&
-              data.data.data &&
-              data.data.data.length > 0 ? (
+                data.data &&
+                data.data.data &&
+                data.data.data.length > 0 &&
                 data.data.data.map((property) => (
                   <div
                     className='options'
@@ -62,12 +68,7 @@ const ManagerPropertyPageOne = () => {
                       Number of Unit: {property.units.length}
                     </p>
                   </div>
-                ))
-              ) : (
-                <div>
-                  <ManagerEmptyProperty />
-                </div>
-              )}
+                ))}
             </div>
           </main>
         </section>

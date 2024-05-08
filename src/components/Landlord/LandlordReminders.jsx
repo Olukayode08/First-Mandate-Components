@@ -12,6 +12,7 @@ import water from '../../assets/Frame 2007 (2).png'
 import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
 import Pagination from '../Pagination/Pagination'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const DeleteModal = ({
   setShowModal,
@@ -150,18 +151,18 @@ const LandlordReminders = () => {
     setCurrentPage(currentPage - 1)
   }
 
+  if (pageLoading) {
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i}/>
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
+  }
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
         <LandlordEmptyReminder />
-      </div>
-    )
-  }
-
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
       </div>
     )
   }

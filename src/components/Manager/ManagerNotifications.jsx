@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import ManagerEmptyNotification from './ManagerEmptyNotice'
+import ManagerEmptyNotification from './ManagerEmptyNotification'
 
 const ManagerNotifications = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(

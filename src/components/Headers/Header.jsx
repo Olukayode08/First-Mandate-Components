@@ -1,51 +1,77 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { FaRegBell } from 'react-icons/fa6'
 import { FaRegUser } from 'react-icons/fa'
 import logo from '../../assets/1st mandate logo 1.png'
 import styled from 'styled-components'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import { IoIosArrowUp } from 'react-icons/io'
 import { IoIosArrowDown } from 'react-icons/io'
 
 const Header = () => {
-  const navigate = useNavigate()
   const location = useLocation()
+  const dropdownRef = useRef(null)
 
   const { data } = useFirstMandateQuery('/notification-count', {
     onSuccess: (data) => {},
   })
-
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
-  const getUserRoleText = () => {
-    if (location.pathname === '/tenant') {
-      return 'Tenant'
-    } else if (location.pathname === '/manager') {
-      return 'Manager'
-    } else {
-      return 'Landlord'
-    }
-  }
   const handleDropdownToggle = () => {
     setDropdownOpen(!dropdownOpen)
   }
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setTimeout(() => {
+          setDropdownOpen(false)
+        }, 200)
+      }
+    }
+
+    window.addEventListener('click', handleClickOutside)
+    return () => {
+      window.removeEventListener('click', handleClickOutside)
+    }
+  }, [])
+
+  const getUserRoleText = () => {
+    if (location.pathname.startsWith('/landlord')) {
+      return 'Landlord'
+    } else if (location.pathname.startsWith('/manager')) {
+      return 'Manager'
+    } else if (location.pathname.startsWith('/tenant')) {
+      return 'Tenant'
+    } else {
+      return 'Unknown Role'
+    }
+  }
+
+  const handleDropdownClick = (event) => {
+    event.stopPropagation()
+  }
+
+  // Define profile and notification paths based on the user role
+  const profilePath = `/${getUserRoleText().toLowerCase()}/profile`
+  const notificationPath = `/${getUserRoleText().toLowerCase()}/notifications`
+
   return (
     <>
-      <PageH>
+      <PageH ref={dropdownRef}>
         <div className='header'>
           <div className='logo'>
             <img src={logo} alt='1st Mandate' />
           </div>
           <div className='users'>
             <div>
-              <div className='user'>
-                {dropdownOpen ? (
+              <div className='user' onClick={handleDropdownClick}>
+                <div className='user-role'>{getUserRoleText()}</div>
+                {/* {dropdownOpen ? (
                   <div className='user-role'>{getUserRoleText()}</div>
                 ) : (
                   <p className='user-role'>{getUserRoleText()}</p>
-                )}
+                )} */}
                 <div onClick={handleDropdownToggle}>
                   {dropdownOpen ? (
                     <IoIosArrowDown size={15} />
@@ -56,17 +82,17 @@ const Header = () => {
               </div>
               {dropdownOpen && (
                 <div className='select-user'>
-                  {location.pathname !== '/landlord' && (
+                  {location.pathname.startsWith('/landlord') === false && (
                     <Link to='/landlord' className='user-role'>
                       Landlord
                     </Link>
                   )}
-                  {location.pathname !== '/manager' && (
+                  {location.pathname.startsWith('/manager') === false && (
                     <Link to='/manager' className='user-role'>
                       Manager
                     </Link>
                   )}
-                  {location.pathname !== '/tenant' && (
+                  {location.pathname.startsWith('/tenant') === false && (
                     <Link to='/tenant' className='user-role'>
                       Tenant
                     </Link>
@@ -75,11 +101,11 @@ const Header = () => {
               )}
             </div>
             <div className='icons'>
-              <Link className='link notification' to='/landlord/notifications'>
+              <Link className='link notification' to={notificationPath}>
                 <FaRegBell size={18} className='icon' />
                 <p className='notification-count'>{data?.data?.count}</p>
               </Link>
-              <Link className='link' to='/landlord/profile'>
+              <Link className='link' to={profilePath}>
                 <FaRegUser size={18} className='icon' />
               </Link>
             </div>

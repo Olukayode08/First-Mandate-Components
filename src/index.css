@@ -47,6 +47,10 @@ button {
 }
 
 /* Temporary */
+p,
+span {
+  text-transform: capitalize;
+}
 td {
   font-size: 13px;
   text-transform: capitalize;
@@ -56,6 +60,8 @@ input {
   background-color: transparent;
   outline: none;
 }
+
+/* Page Loading */
 .page-loading {
   display: flex;
   align-items: center;
@@ -88,6 +94,19 @@ input {
     transform: rotate(360deg);
   }
 }
+
+/* || STYLES FOR SKELETON LOADING */
+
+.post {
+  padding: 7px;
+  margin: 7px;
+  border-radius: 1rem;
+}
+
+.post p:nth-child(5) {
+  font-style: italic;
+}
+
 @media screen and (min-width: 2000px) {
   .app {
     max-width: 1900px;

@@ -8,6 +8,7 @@ import LandlordPropertyUnit from './LandlordPropertyUnit'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import iconHouse from '../../assets/Frame-2007.png'
 import Pagination from '../Pagination/Pagination'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const LandlordProperties = () => {
   const navigate = useNavigate()
@@ -37,12 +38,14 @@ console.log(data);
   }
 
   if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i}/>
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
   }
+
   return (
     <>
       <LandlordP>
