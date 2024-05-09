@@ -18,8 +18,8 @@ const Signup = () => {
 
   // Validate Password
   const validatePassword = (password) => {
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/])[A-Za-z\d@$!%*?&/]{8,}$/
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/])[A-Za-z\d@$!%*?&/]{8,}$/
     return passwordRegex.test(password)
   }
 
@@ -36,7 +36,7 @@ const Signup = () => {
     mutateAsync: postSignup,
     isLoading,
     isSuccess,
-    error: userError
+    error: userError,
   } = useFirstMandateMutation('/signup', {
     onSuccess: (data) => {
       // updateToken(data)
@@ -65,7 +65,6 @@ const Signup = () => {
     if (!(email || password || name)) {
       return
     }
-
     try {
       await postSignup({ email, name, password })
     } catch (e) {

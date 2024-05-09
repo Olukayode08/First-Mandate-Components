@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import TenantEmptyNotification from './TenantEmptyNotification'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const TenantNotifications = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
@@ -18,17 +19,19 @@ const TenantNotifications = () => {
     return { date, time }
   }
 
+    if (pageLoading) {
+      return [...Array(10).keys()].map((i) => {
+        return <SkeletonPost key={i} />
+      })
+      // <div className='page-spinner'>
+      //   <div className='l-spinner'></div>
+      // </div>
+    }
+
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
         <TenantEmptyNotification />
-      </div>
-    )
-  }
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
       </div>
     )
   }

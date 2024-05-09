@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyNotice from './ManagerEmptyNotice'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const ManagerNotices = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
@@ -12,6 +13,15 @@ const ManagerNotices = () => {
       onSuccess: (data) => {},
     }
   )
+
+    if (pageLoading) {
+      return [...Array(10).keys()].map((i) => {
+        return <SkeletonPost key={i} />
+      })
+      // <div className='page-spinner'>
+      //   <div className='l-spinner'></div>
+      // </div>
+    }
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
@@ -20,13 +30,6 @@ const ManagerNotices = () => {
     )
   }
 
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
-  }
   return (
     <>
       <MNotice>

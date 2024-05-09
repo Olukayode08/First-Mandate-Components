@@ -5,6 +5,7 @@ import {
   useFirstMandateQuery,
 } from '../../data-layer/utils'
 import TenantEmptyNotice from './TenantEmptyNotice'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const AcknowledgeModal = ({
   modal,
@@ -145,6 +146,15 @@ const TenantNotices = () => {
     }
   )
 
+    if (pageLoading) {
+      return [...Array(10).keys()].map((i) => {
+        return <SkeletonPost key={i} />
+      })
+      // <div className='page-spinner'>
+      //   <div className='l-spinner'></div>
+      // </div>
+    }
+
  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
    return (
      <div>
@@ -152,13 +162,13 @@ const TenantNotices = () => {
      </div>
    )
  }
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
-  }
+  // if (pageLoading) {
+  //   return (
+  //     <div className='page-spinner'>
+  //       <div className='l-spinner'></div>
+  //     </div>
+  //   )
+  // }
   return (
     <>
       <TenantN>

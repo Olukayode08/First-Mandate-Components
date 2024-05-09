@@ -4,6 +4,7 @@ import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyTenant from './ManagerEmptyTenant'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const ManagerTenants = () => {
   // Fetch Tenants
@@ -16,21 +17,22 @@ const ManagerTenants = () => {
     }
   )
 
-   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
-     return (
-       <div>
-         <ManagerEmptyTenant/>
-       </div>
-     )
-   }
-  
   if (pageLoading) {
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
+  }
+  if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
+      <div>
+        <ManagerEmptyTenant />
       </div>
     )
   }
+
   return (
     <>
       <LTenants>
@@ -105,7 +107,11 @@ const ManagerTenants = () => {
                             <div className='margin-t'>Edit Tenant</div>
                           </td>
                           <td
-                            onClick={() => navigate(`/manager/tenants/${list.uuid}/send-reminder`)}
+                            onClick={() =>
+                              navigate(
+                                `/manager/tenants/${list.uuid}/send-reminder`
+                              )
+                            }
                           >
                             <div className='margin-t'>Send Reminder</div>
                           </td>

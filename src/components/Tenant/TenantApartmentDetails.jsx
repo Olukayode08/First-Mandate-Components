@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import TenantEmptyApartment from './TenantEmptyApartment'
 import iconHouse from '../../assets/Frame-2007.png'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const TenantApartmentDetails = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
@@ -15,11 +16,12 @@ const TenantApartmentDetails = () => {
   )
 
   if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
   }
   return (
     <>

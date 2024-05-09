@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import LandlordEmptyNotice from './LandlordEmptyNotice'
 import Pagination from '../Pagination/Pagination'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const LandlordNotices = () => {
   const navigate = useNavigate()
@@ -30,17 +31,19 @@ const LandlordNotices = () => {
   const handlePrevPage = () => {
     setCurrentPage(currentPage - 1)
   }
+
+  if (pageLoading) {
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
+  }
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
         <LandlordEmptyNotice />
-      </div>
-    )
-  }
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
       </div>
     )
   }

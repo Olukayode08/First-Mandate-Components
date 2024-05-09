@@ -5,6 +5,7 @@ import { IoMdCheckmark } from 'react-icons/io'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import { useNavigate, useParams } from 'react-router'
 import ManagerEmptyProperty from './ManagerEmptyProperty'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const ManagerSelectUnit = () => {
   const navigate = useNavigate()
@@ -28,17 +29,19 @@ const ManagerSelectUnit = () => {
       onSuccess: (data) => {},
     }
   )
+
+  if (pageLoading) {
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
+  }
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
         <ManagerEmptyProperty />
-      </div>
-    )
-  }
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
       </div>
     )
   }
@@ -87,10 +90,10 @@ const ManagerSelectUnit = () => {
                                 ) {
                                   unitOccupied()
                                 } else {
-                                   navigate(
-                                     `/manager/add-tenant/${unit.uuid}/tenants`,
-                                     { state: { unitName: unit.unit_name } }
-                                   )
+                                  navigate(
+                                    `/manager/add-tenant/${unit.uuid}/tenants`,
+                                    { state: { unitName: unit.unit_name } }
+                                  )
                                   // navigate(
                                   //   `/manager/add-tenant/${unit.uuid}/tenants`
                                   // )

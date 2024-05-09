@@ -15,8 +15,9 @@ const Header = () => {
   const { data } = useFirstMandateQuery('/notification-count', {
     onSuccess: (data) => {},
   })
-  const [dropdownOpen, setDropdownOpen] = useState(false)
 
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  
   const handleDropdownToggle = () => {
     setDropdownOpen(!dropdownOpen)
   }

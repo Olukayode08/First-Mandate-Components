@@ -4,7 +4,6 @@
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: 'Varela Round', sans-serif;
   font-optical-sizing: auto;
@@ -45,15 +44,14 @@ button {
 button {
   font-family: inherit;
 }
-
 /* Temporary */
+td,
 p,
 span {
   text-transform: capitalize;
 }
 td {
   font-size: 13px;
-  text-transform: capitalize;
 }
 select,
 input {
@@ -85,7 +83,6 @@ input {
   height: 70px;
   animation: spinner 1s linear infinite;
 }
-
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
@@ -94,19 +91,15 @@ input {
     transform: rotate(360deg);
   }
 }
-
-/* || STYLES FOR SKELETON LOADING */
-
+/* STYLES FOR SKELETON LOADING */
 .post {
   padding: 7px;
   margin: 7px;
   border-radius: 1rem;
 }
-
 .post p:nth-child(5) {
   font-style: italic;
 }
-
 @media screen and (min-width: 2000px) {
   .app {
     max-width: 1900px;

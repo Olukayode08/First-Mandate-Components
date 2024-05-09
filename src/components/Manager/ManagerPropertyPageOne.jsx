@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyProperty from './ManagerEmptyProperty'
 import houseIcon from '../../assets/Frame-2007.png'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const ManagerPropertyPageOne = () => {
   const navigate = useNavigate()
@@ -15,6 +16,15 @@ const ManagerPropertyPageOne = () => {
     }
   )
 
+  if (pageLoading) {
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
+  }
+
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
@@ -23,13 +33,6 @@ const ManagerPropertyPageOne = () => {
     )
   }
 
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
-  }
   return (
     <>
       <ManagerPPO>

@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import LandlordEmptyTenant from './LandlordEmptyTenant'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import Pagination from '../Pagination/Pagination'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const LandlordTenants = () => {
   // Fetch Tenants
@@ -35,11 +36,12 @@ const LandlordTenants = () => {
   }
 
   if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
   }
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (

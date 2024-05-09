@@ -4,6 +4,7 @@ import { useFirstMandateQuery } from '../../data-layer/utils'
 import LandlordEmptyNotification from './LandlordEmptyNotification'
 import Pagination from '../Pagination/Pagination'
 import { useNavigate, useLocation } from 'react-router-dom'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const LandlordNotifications = () => {
   const navigate = useNavigate()
@@ -38,6 +39,15 @@ const LandlordNotifications = () => {
     setCurrentPage(currentPage - 1)
   }
 
+    if (pageLoading) {
+      return [...Array(10).keys()].map((i) => {
+        return <SkeletonPost key={i} />
+      })
+      // <div className='page-spinner'>
+      //   <div className='l-spinner'></div>
+      // </div>
+    }
+
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
@@ -46,13 +56,6 @@ const LandlordNotifications = () => {
     )
   }
 
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
-  }
   return (
     <>
       <LNotifications>

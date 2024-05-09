@@ -11,6 +11,7 @@ import electricity from '../../assets/Frame 2007 (3).png'
 import water from '../../assets/Frame 2007 (2).png'
 import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const DeleteModal = ({
   setShowModal,
@@ -36,8 +37,7 @@ const DeleteModal = ({
     try {
       await deleteReminder()
       setShowModal(false)
-    } catch (e) {
-    }
+    } catch (e) {}
   }
   return (
     <>
@@ -136,17 +136,19 @@ const LandlordReminders = () => {
     },
   })
 
+  if (pageLoading) {
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
+  }
+
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
         <TenantEmptyReminder />
-      </div>
-    )
-  }
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
       </div>
     )
   }

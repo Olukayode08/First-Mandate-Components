@@ -11,7 +11,7 @@ import water from '../../assets/Frame 2007 (2).png'
 import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
 import ManagerEmptyReminder from './ManagerEmptyReminder'
-
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const DeleteModal = ({
   setShowModal,
@@ -137,6 +137,15 @@ const ManagerReminders = () => {
       console.log(data)
     },
   })
+
+  if (pageLoading) {
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
+  }
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
@@ -145,13 +154,6 @@ const ManagerReminders = () => {
     )
   }
 
-  if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
-  }
   return (
     <>
       <ManagerR>

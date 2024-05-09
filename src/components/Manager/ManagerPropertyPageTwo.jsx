@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerPropertyDropdown from '../Dropdowns/ManagerPropertyDropdown'
 import ManagerPropertyUnit from './ManagerPropertyUnit'
+import SkeletonPost from '../skeletons/SkeletonPost'
 
 const ManagerPropertyPageTwo = () => {
   const { singlePropertyId } = useParams()
@@ -24,11 +25,12 @@ const ManagerPropertyPageTwo = () => {
 
 
   if (pageLoading) {
-    return (
-      <div className='page-spinner'>
-        <div className='l-spinner'></div>
-      </div>
-    )
+    return [...Array(10).keys()].map((i) => {
+      return <SkeletonPost key={i} />
+    })
+    // <div className='page-spinner'>
+    //   <div className='l-spinner'></div>
+    // </div>
   }
   return (
     <>
