@@ -23,7 +23,7 @@ const ManagerProfileSettings = () => {
               </div>
             </div>
             <div className='profile-picture'>
-              <img className='p-img' src={profile} alt='Profile' />
+              {/* <img className='p-img' src={profile} alt='Profile' /> */}
               <Link to='/manager/edit-profile' className='edit-p'>
                 <img src={edit} alt='Edit-Profile' />
                 <p>Edit Profile</p>

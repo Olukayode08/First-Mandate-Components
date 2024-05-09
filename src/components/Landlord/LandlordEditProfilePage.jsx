@@ -9,10 +9,10 @@ const LandlordEditProfilePage = () => {
           <div className='a-section'>
             <h3>My Profile</h3>
             <div className='rent-sec'>
-              <div className='profile-picture'>
+              {/* <div className='profile-picture'>
                 <img className='p-img' src={profile} alt='Profile' />
                 <p className='c-picture'>Change Profile Picture</p>
-              </div>
+              </div> */}
               <div className='apartment-details'>
                 <div className='t-details'>
                   <div className='input'>

@@ -10,10 +10,14 @@ import { IoIosArrowUp } from 'react-icons/io'
 import { IoIosArrowDown } from 'react-icons/io'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
+import { BiLogOut } from 'react-icons/bi'
 import { ThemeContext } from '../../context/Darkmode'
+import { FirstMandate } from '../../context/Context'
 
 const TenantSidebar = () => {
   const { active, setActive } = useContext(ThemeContext)
+  const { logOut } = useContext(FirstMandate)
+
   const [screenSize, setScreenSize] = useState(undefined)
   const location = useLocation()
   const navigate = useNavigate()
@@ -151,7 +155,7 @@ const TenantSidebar = () => {
                   <IoNotifications size={20} className='icon' />
                   <p className='desc'>Notices</p>
                 </Link>
-                <Link
+                {/* <Link
                   onClick={closeSidebar}
                   className={
                     location.pathname === '/tenant/due-date'
@@ -162,7 +166,7 @@ const TenantSidebar = () => {
                 >
                   <MdOutlineOnDeviceTraining size={20} className='icon' />
                   <p className='desc'>Rent Due Date</p>
-                </Link>
+                </Link> */}
                 <Link
                   onClick={closeSidebar}
                   className={
@@ -178,6 +182,10 @@ const TenantSidebar = () => {
                 >
                   <LuWalletCards size={20} className='icon' />
                   <p className='desc'>Payment</p>
+                </Link>
+                <Link onClick={logOut} className='links'>
+                  <BiLogOut size={20} className='icon' />
+                  <p className='desc'>Log out</p>
                 </Link>
                 {/* <div className='banner-add'>
                   <img

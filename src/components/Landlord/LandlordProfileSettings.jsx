@@ -21,7 +21,7 @@ const LandlordProfileSettings = () => {
               </div>
             </div>
             <div className='profile-picture'>
-              <img className='p-img' src={profile} alt='Profile' />
+              {/* <img className='p-img' src={profile} alt='Profile' /> */}
               <Link to='/landlord/edit-profile' className='edit-p'>
                 <img src={edit} alt='Edit-Profile' />
                 <p>Edit Profile</p>

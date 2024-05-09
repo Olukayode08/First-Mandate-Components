@@ -23,7 +23,7 @@ const LandlordRentAmountDropdown = () => {
             <label>Rent Amount*</label>
             <div className='select'>
               <select value={selectedOption} onChange={handleDropdownChange}>
-                <option value=''>Select</option>
+                <option value=''>Select payment status</option>
                 <option value='option1'>Monthly</option>
                 <option value='option2'>Yearly</option>
                 <option value='option3'>Bi yearly</option>

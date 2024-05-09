@@ -262,7 +262,7 @@ const ManagerAddNewTenant = () => {
                 />
               </div>
             </div>
-          
+
             <div className='rent-date'>
               <ManagerInstallmentDropdown
                 addTenant={addTenant}
@@ -283,9 +283,9 @@ const ManagerAddNewTenant = () => {
                   onChange={handleChangeAddTenant}
                 >
                   <option value=''>Select</option>
+                  <option value='Paid'>Paid</option>
+                  <option value='Unpaid'>Unpaid</option>
                   <option value='Paid in part'>Paid in part</option>
-                  <option value='Paid in full'>Paid in full</option>
-                  <option value='Not Paid'>Not Paid</option>
                 </select>
               </div>
             </div>
