@@ -10,7 +10,7 @@ const TenantHomePage = () => {
         <section>
           <main className='t-section'>
               <div className='l-name'>
-                <h3>Hello, Peace</h3>
+                <h3>Hello</h3>
                 <p>What would you like to do today?</p>
               </div>
               <div className='l-options'>

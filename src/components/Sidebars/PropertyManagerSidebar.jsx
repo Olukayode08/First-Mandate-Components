@@ -251,6 +251,10 @@ const PMSidebar = styled.section`
     color: #000000;
     padding: 12px 0 12px 12px;
   }
+  .links:hover {
+    background-color: #f6f6f8;
+    border-radius: 10px;
+  }
   .icon {
     margin-right: 10px;
   }
