@@ -9,7 +9,7 @@ import ManagerPropertyDropdown from '../Dropdowns/ManagerPropertyDropdown'
 import ManagerPropertyUnit from './ManagerPropertyUnit'
 import SkeletonPost from '../skeletons/SkeletonPost'
 
-const ManagerPropertyPageTwo = () => {
+const ManagerSingleProperty = () => {
   const { singlePropertyId } = useParams()
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
@@ -23,18 +23,14 @@ const ManagerPropertyPageTwo = () => {
     (property) => property.uuid === singlePropertyId
   )
 
-
   if (pageLoading) {
     return [...Array(10).keys()].map((i) => {
       return <SkeletonPost key={i} />
     })
-    // <div className='page-spinner'>
-    //   <div className='l-spinner'></div>
-    // </div>
   }
   return (
     <>
-      <ManagerPPT>
+      <ManagerSP>
         <section>
           <div className='m-section'>
             <Link to='/manager/add-property' className='add-r'>
@@ -77,11 +73,11 @@ const ManagerPropertyPageTwo = () => {
             </div>
           </div>
         </section>
-      </ManagerPPT>
+      </ManagerSP>
     </>
   )
 }
-const ManagerPPT = styled.section`
+const ManagerSP = styled.section`
   .m-section {
     width: 100%;
     border-radius: 4px;
@@ -163,4 +159,4 @@ const ManagerPPT = styled.section`
     }
   }
 `
-export default ManagerPropertyPageTwo
+export default ManagerSingleProperty

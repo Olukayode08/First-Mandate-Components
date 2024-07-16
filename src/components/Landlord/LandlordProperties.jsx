@@ -18,7 +18,9 @@ const LandlordProperties = () => {
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/properties?page=${currentPage}`,
     {
-      onSuccess: (data) => {},
+      onSuccess: (data) => {
+        console.log(data)
+      },
     }
   )
   if (pageLoading) {

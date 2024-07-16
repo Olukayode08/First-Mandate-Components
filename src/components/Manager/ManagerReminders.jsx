@@ -12,6 +12,8 @@ import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
 import ManagerEmptyReminder from './ManagerEmptyReminder'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import Pagination from '../Pagination/Pagination'
+import usePagination from '../../hooks/usePagination'
 
 const DeleteModal = ({
   setShowModal,
@@ -21,7 +23,7 @@ const DeleteModal = ({
   showModal,
 }) => {
   const { mutateAsync: deleteReminder, error } = useFirstMandateMutation(
-    `/reminders/${reminder.uuid}  `,
+    `/reminders/${reminder.uuid}`,
     {
       method: 'DELETE',
       onSuccess: (data) => {
@@ -119,6 +121,8 @@ const RemainderCard = ({
 }
 
 const ManagerReminders = () => {
+  const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
+    usePagination('/manager/reminders')
   const [showModal, setShowModal] = useState(false)
 
   const handleDeleteReminder = async () => {
@@ -132,7 +136,7 @@ const ManagerReminders = () => {
     isLoading: pageLoading,
     data,
     refetch: refetchReminders,
-  } = useFirstMandateQuery('/reminders', {
+  } = useFirstMandateQuery(`/reminders?page=${currentPage}`, {
     onSuccess: (data) => {
       console.log(data)
     },
@@ -192,6 +196,15 @@ const ManagerReminders = () => {
               </div>
             </div>
           </main>
+          {data?.data?.total > 10 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={data?.data.last_page || 1}
+              handlePrevPage={handlePrevPage}
+              handleNextPage={handleNextPage}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
         </section>
       </ManagerR>
     </>

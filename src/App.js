@@ -15,7 +15,7 @@ import LandlordNotifications from './components/Landlord/LandlordNotifications'
 import LandlordAddReminder from './components/Landlord/LandlordAddReminder'
 import TenantNotifications from './components/Tenant/TenantNotifications'
 import ManagerNotifications from './components/Manager/ManagerNotifications'
-import ManagerPropertyPageOne from './components/Manager/ManagerPropertyPageOne'
+import ManagerProperties from './components/Manager/ManagerProperties'
 import LandlordTenants from './components/Landlord/LandlordTenants'
 import ManagerTenants from './components/Manager/ManagerTenants'
 import LandlordAddNewManager from './components/Landlord/LandlordAddNewManager'
@@ -27,7 +27,7 @@ import ManagerLandlords from './components/Manager/ManagerLandlords'
 import LandlordReminders from './components/Landlord/LandlordReminders'
 import ManagerReminders from './components/Manager/ManagerReminders'
 import TenantApartmentDetails from './components/Tenant/TenantApartmentDetails'
-import ManagerPropertyPageTwo from './components/Manager/ManagerPropertyPageTwo'
+import ManagerSingleProperty from './components/Manager/ManagerSingleProperty'
 import LandlordProperties from './components/Landlord/LandlordProperties'
 import Email from './pages/Email/Email'
 import ResetPasswordEmail from './components/Email/ResetPasswordEmail'
@@ -116,7 +116,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
           <Route path='/new-password/:tokenId' element={<EnterNewPassword />} />
-          <Route path='/activate-user/:userTokenId' element={<ActivateUser />} />
+          <Route
+            path='/activate-user/:userTokenId'
+            element={<ActivateUser />}
+          />
 
           <Route path='/reset-password' element={<ForgotPassword />} />
           <Route
@@ -202,10 +205,10 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path='/manager' element={<PropertyManager />}>
               <Route path='' element={<ManagerHomePage />} />
-              <Route path='properties' element={<ManagerPropertyPageOne />} />
+              <Route path='properties' element={<ManagerProperties />} />
               <Route
                 path='property/:singlePropertyId'
-                element={<ManagerPropertyPageTwo />}
+                element={<ManagerSingleProperty />}
               />
 
               <Route

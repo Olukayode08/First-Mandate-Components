@@ -6,23 +6,27 @@ import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyProperty from './ManagerEmptyProperty'
 import houseIcon from '../../assets/Frame-2007.png'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import usePagination from '../../hooks/usePagination'
+import Pagination from '../Pagination/Pagination'
 
-const ManagerPropertyPageOne = () => {
+const ManagerProperties = () => {
+  const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
+    usePagination('/manager/properties')
   const navigate = useNavigate()
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
-    '/property-manager/properties',
+    `/property-manager/properties?page=${currentPage}`,
     {
       onSuccess: (data) => {},
     }
   )
-
   if (pageLoading) {
-    return [...Array(10).keys()].map((i) => {
-      return <SkeletonPost key={i} />
-    })
-    // <div className='page-spinner'>
-    //   <div className='l-spinner'></div>
-    // </div>
+    return (
+      <div>
+        {[...Array(10).keys()].map((i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    )
   }
 
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
@@ -35,7 +39,7 @@ const ManagerPropertyPageOne = () => {
 
   return (
     <>
-      <ManagerPPO>
+      <ManagerP>
         <section>
           <main className='l-section'>
             <div className='a-ppt'>
@@ -74,12 +78,21 @@ const ManagerPropertyPageOne = () => {
                 ))}
             </div>
           </main>
+          {data?.data?.total > 10 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={data?.data.last_page || 1}
+              handlePrevPage={handlePrevPage}
+              handleNextPage={handleNextPage}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
         </section>
-      </ManagerPPO>
+      </ManagerP>
     </>
   )
 }
-const ManagerPPO = styled.section`
+const ManagerP = styled.section`
   position: relative;
   .l-section {
     display: flex;
@@ -155,4 +168,4 @@ const ManagerPPO = styled.section`
     }
   }
 `
-export default ManagerPropertyPageOne
+export default ManagerProperties
