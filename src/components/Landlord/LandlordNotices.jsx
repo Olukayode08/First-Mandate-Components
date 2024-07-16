@@ -1,45 +1,32 @@
-import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import LandlordEmptyNotice from './LandlordEmptyNotice'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import usePagination from '../../hooks/usePagination'
 
 const LandlordNotices = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const searchParams = new URLSearchParams(location.search)
-  const currentPageParam = parseInt(searchParams.get('page')) || 1
-  const [currentPage, setCurrentPage] = useState(currentPageParam)
+  const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
+    usePagination('/landlord/notices')
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/notices?page=${currentPage}`,
     {
       onSuccess: (data) => {},
     }
   )
-  useEffect(() => {
-    navigate(`/landlord/notices?page=${currentPage}`, { replace: true })
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [currentPage, navigate])
-
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1)
-  }
-
-  const handlePrevPage = () => {
-    setCurrentPage(currentPage - 1)
-  }
 
   if (pageLoading) {
-    return [...Array(10).keys()].map((i) => {
-      return <SkeletonPost key={i} />
-    })
-    // <div className='page-spinner'>
-    //   <div className='l-spinner'></div>
-    // </div>
+    return (
+      <div>
+        {[...Array(10).keys()].map((i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    )
   }
+
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>

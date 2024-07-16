@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import LandlordEmptyReminder from './LandlordEmptyReminder'
 import {
@@ -13,6 +13,7 @@ import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import usePagination from '../../hooks/usePagination'
 
 const DeleteModal = ({
   setShowModal,
@@ -116,12 +117,9 @@ const RemainderCard = ({
 }
 
 const LandlordReminders = () => {
+  const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
+    usePagination('/landlord/reminders')
   const [showModal, setShowModal] = useState(false)
-  const navigate = useNavigate()
-  const location = useLocation()
-  const searchParams = new URLSearchParams(location.search)
-  const currentPageParam = parseInt(searchParams.get('page')) || 1
-  const [currentPage, setCurrentPage] = useState(currentPageParam)
 
   const {
     isLoading: pageLoading,
@@ -130,7 +128,6 @@ const LandlordReminders = () => {
   } = useFirstMandateQuery(`/reminders?page=${currentPage}`, {
     onSuccess: (data) => {},
   })
-  console.log(data)
 
   const handleDeleteReminder = async () => {
     setShowModal(true)
@@ -138,26 +135,15 @@ const LandlordReminders = () => {
   const cancelDelete = () => {
     setShowModal(false)
   }
-  useEffect(() => {
-    navigate(`/landlord/reminders?page=${currentPage}`, { replace: true })
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [currentPage, navigate])
-
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1)
-  }
-
-  const handlePrevPage = () => {
-    setCurrentPage(currentPage - 1)
-  }
 
   if (pageLoading) {
-    return [...Array(10).keys()].map((i) => {
-      return <SkeletonPost key={i}/>
-    })
-    // <div className='page-spinner'>
-    //   <div className='l-spinner'></div>
-    // </div>
+    return (
+      <div>
+        {[...Array(10).keys()].map((i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    )
   }
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
