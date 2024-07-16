@@ -3,10 +3,15 @@ import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerEmptyNotification from './ManagerEmptyNotification'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import usePagination from '../../hooks/usePagination'
+import Pagination from '../Pagination/Pagination'
 
 const ManagerNotifications = () => {
+  const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
+    usePagination('/manager/notifications')
+    
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
-    '/notifications',
+    `/notifications?page=${currentPage}`,
     {
       onSuccess: (data) => {},
     }
@@ -19,12 +24,13 @@ const ManagerNotifications = () => {
   }
 
   if (pageLoading) {
-    return [...Array(10).keys()].map((i) => {
-      return <SkeletonPost key={i} />
-    })
-    // <div className='page-spinner'>
-    //   <div className='l-spinner'></div>
-    // </div>
+    return (
+      <div>
+        {[...Array(10).keys()].map((i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    )
   }
 
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
@@ -79,6 +85,15 @@ const ManagerNotifications = () => {
               </table>
             </div>
           </main>
+          {data?.data?.total > 10 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={data?.data.last_page || 1}
+              handlePrevPage={handlePrevPage}
+              handleNextPage={handleNextPage}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
         </section>
       </ManagerN>
     </>

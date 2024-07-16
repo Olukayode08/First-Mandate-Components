@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ImSearch } from 'react-icons/im'
 import { IoMdCheckmark } from 'react-icons/io'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import LandlordEmptyProperty from './LandlordEmptyProperty'
-import { useNavigate, useParams, useLocation } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import usePagination from '../../hooks/usePagination'
 
 const LandlordSelectUnit = () => {
   const navigate = useNavigate()
-  const location = useLocation()
-  const searchParams = new URLSearchParams(location.search)
-  const currentPageParam = parseInt(searchParams.get('page')) || 1
-  const [currentPage, setCurrentPage] = useState(currentPageParam)
-  const { tenantId } = useParams()
+  const tenantId = useParams()
+  const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
+    usePagination('/landlord/select-unit')
 
   const [occupiedError, setOccupiedError] = useState('')
   const unitOccupied = () => {
@@ -35,26 +34,14 @@ const LandlordSelectUnit = () => {
     }
   )
 
-  useEffect(() => {
-    navigate(`/landlord/select-unit?page=${currentPage}`, { replace: true })
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [currentPage, navigate])
-
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1)
-  }
-
-  const handlePrevPage = () => {
-    setCurrentPage(currentPage - 1)
-  }
-
   if (pageLoading) {
-    return [...Array(10).keys()].map((i) => {
-      return <SkeletonPost key={i} />
-    })
-    // <div className='page-spinner'>
-    //   <div className='l-spinner'></div>
-    // </div>
+    return (
+      <div>
+        {[...Array(10).keys()].map((i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    )
   }
 
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
