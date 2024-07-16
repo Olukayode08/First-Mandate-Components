@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Squash as Hamburger } from 'hamburger-react'
 import icon from '../../assets/Frame 1639.png'
 import { landlordTenants } from '../../datas/LandlordTenant'
-import Calendar from '../Calender/Calendar'
 import calenderIcon from '../../assets/Frame 1770.png'
+import Calendar from '../Calendar/Calendar'
 const LandLordReminderSidebar = () => {
   const [active, setActive] = useState(true)
   const [screenSize, setScreenSize] = useState(undefined)

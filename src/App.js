@@ -90,6 +90,7 @@ import ManagerNotices from './components/Manager/ManagerNotices'
 import TenantNotices from './components/Tenant/TenantNotices'
 import ActivateEmailModal from './components/modal/ActivateEmailModal'
 import ActivateUser from './components/Registration/ActivateUser'
+import LandLordReminderSidebar from './components/Sidebars/LandlordReminderSidebar'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -126,7 +127,7 @@ function App() {
             path='/activate-email/:emailTokenId'
             element={<ActivateEmailModal />}
           />
-          {/* <Route path='/activate-email' element={<ActivateEmailModal />} /> */}
+
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
           <Route path='/calendar' element={<Calendar />} />
@@ -135,6 +136,7 @@ function App() {
           <Route path='/calendar-months' element={<CalendarMonths />} />
           <Route path='/calendar-years' element={<CalendarYears />} />
           <Route path='/big-calendar' element={<BigCalendar />} />
+          <Route path='/landlord-reminder' element={<LandLordReminderSidebar />} />
 
           {/* Landlord page */}
           <Route element={<ProtectedRoute />}>
