@@ -4,24 +4,27 @@ import { useFirstMandateQuery } from '../../data-layer/utils'
 import TenantEmptyApartment from './TenantEmptyApartment'
 import iconHouse from '../../assets/Frame-2007.png'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import usePagination from '../../hooks/usePagination'
+import Pagination from '../Pagination/Pagination'
 
 const TenantApartmentDetails = () => {
+  const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
+    usePagination('/tenant/apartment-details')
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
-    '/tenant/apartments',
+    `/tenant/apartments?page=${currentPage}`,
     {
-      onSuccess: (data) => {
-        console.log(data)
-      },
+      onSuccess: (data) => {},
     }
   )
 
   if (pageLoading) {
-    return [...Array(10).keys()].map((i) => {
-      return <SkeletonPost key={i} />
-    })
-    // <div className='page-spinner'>
-    //   <div className='l-spinner'></div>
-    // </div>
+    return (
+      <div>
+        {[...Array(10).keys()].map((i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    )
   }
   return (
     <>
@@ -130,6 +133,15 @@ const TenantApartmentDetails = () => {
               </div>
             )}
           </div>
+          {data?.data?.total > 10 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={data?.data.last_page || 1}
+              handlePrevPage={handlePrevPage}
+              handleNextPage={handleNextPage}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
         </section>
       </TenantAD>
     </>

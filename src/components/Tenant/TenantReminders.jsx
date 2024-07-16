@@ -12,6 +12,8 @@ import water from '../../assets/Frame 2007 (2).png'
 import security from '../../assets/Frame 2007 (4).png'
 import houseImage from '../../assets/Frame 2007 (6).png'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import Pagination from '../Pagination/Pagination'
+import usePagination from '../../hooks/usePagination'
 
 const DeleteModal = ({
   setShowModal,
@@ -20,7 +22,7 @@ const DeleteModal = ({
   refetchReminders,
   showModal,
 }) => {
-  const { mutateAsync: deleteReminder, error } = useFirstMandateMutation(
+  const { mutateAsync: deleteReminder } = useFirstMandateMutation(
     `/tenant/reminders/${reminder.uuid}  `,
     {
       method: 'DELETE',
@@ -117,6 +119,8 @@ const RemainderCard = ({
 }
 
 const LandlordReminders = () => {
+  const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
+    usePagination('/tenant/reminders')
   const [showModal, setShowModal] = useState(false)
 
   const handleDeleteReminder = async () => {
@@ -130,19 +134,18 @@ const LandlordReminders = () => {
     isLoading: pageLoading,
     data,
     refetch: refetchReminders,
-  } = useFirstMandateQuery('/tenant/reminders', {
-    onSuccess: (data) => {
-      console.log(data)
-    },
+  } = useFirstMandateQuery(`/tenant/reminders?page=${currentPage}`, {
+    onSuccess: (data) => {},
   })
 
   if (pageLoading) {
-    return [...Array(10).keys()].map((i) => {
-      return <SkeletonPost key={i} />
-    })
-    // <div className='page-spinner'>
-    //   <div className='l-spinner'></div>
-    // </div>
+    return (
+      <div>
+        {[...Array(10).keys()].map((i) => (
+          <SkeletonPost key={i} />
+        ))}
+      </div>
+    )
   }
 
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
@@ -190,6 +193,15 @@ const LandlordReminders = () => {
               </div>
             </div>
           </main>
+          {data?.data?.total > 10 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={data?.data.last_page || 1}
+              handlePrevPage={handlePrevPage}
+              handleNextPage={handleNextPage}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
         </section>
       </LandlordR>
     </>
