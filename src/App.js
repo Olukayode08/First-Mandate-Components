@@ -121,13 +121,11 @@ function App() {
             path='/activate-user/:userTokenId'
             element={<ActivateUser />}
           />
-
           <Route path='/reset-password' element={<ForgotPassword />} />
           <Route
             path='/activate-email/:emailTokenId'
             element={<ActivateEmailModal />}
           />
-
           <Route path='/upload-ppt-sidebar' element={<UploadPptSidebar />} />
           <Route path='/checkbox' element={<Checkbox />} />
           <Route path='/calendar' element={<Calendar />} />

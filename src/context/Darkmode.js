@@ -9,6 +9,7 @@ const Darkmode = ({ children }) => {
   const toggleTheme = () => {
     setTheme((curr) => (curr === 'light' ? 'dark' : 'light'))
   }
+  
   return (
     <>
       <ThemeContext.Provider
