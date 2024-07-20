@@ -17,36 +17,37 @@ const Context = ({ children }) => {
   }
 
   // Authentification Timer
-  useEffect(() => {
-    let logoutTimer
+  
+  // useEffect(() => {
+  //   let logoutTimer
 
-    const clearInactiveUser = () => {
-      logout()
-      setIsAuthenticated(false)
-    }
+  //   const clearInactiveUser = () => {
+  //     logout()
+  //     setIsAuthenticated(false)
+  //   }
 
-    const resetLogoutTimer = () => {
-      clearTimeout(logoutTimer)
-      logoutTimer = setTimeout(clearInactiveUser, 10 * 60 * 1000) // 10 minutes
-    }
-    const clearLogoutTimer = () => {
-      clearTimeout(logoutTimer)
-    }
-    const handleUserActivity = () => {
-      resetLogoutTimer()
-    }
-    const userActivityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart']
-    userActivityEvents.forEach((event) => {
-      window.addEventListener(event, handleUserActivity)
-    })
-    resetLogoutTimer()
-    return () => {
-      userActivityEvents.forEach((event) => {
-        window.removeEventListener(event, handleUserActivity)
-      })
-      clearLogoutTimer()
-    }
-  }, [])
+  //   const resetLogoutTimer = () => {
+  //     clearTimeout(logoutTimer)
+  //     logoutTimer = setTimeout(clearInactiveUser, 10 * 60 * 1000) // 10 minutes
+  //   }
+  //   const clearLogoutTimer = () => {
+  //     clearTimeout(logoutTimer)
+  //   }
+  //   const handleUserActivity = () => {
+  //     resetLogoutTimer()
+  //   }
+  //   const userActivityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart']
+  //   userActivityEvents.forEach((event) => {
+  //     window.addEventListener(event, handleUserActivity)
+  //   })
+  //   resetLogoutTimer()
+  //   return () => {
+  //     userActivityEvents.forEach((event) => {
+  //       window.removeEventListener(event, handleUserActivity)
+  //     })
+  //     clearLogoutTimer()
+  //   }
+  // }, [])
 
   // useEffect(() => {
   //   const handleActivity = () => {

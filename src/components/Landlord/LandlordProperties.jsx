@@ -19,10 +19,11 @@ const LandlordProperties = () => {
     `/properties?page=${currentPage}`,
     {
       onSuccess: (data) => {
-        console.log(data)
+        // console.log(data)
       },
     }
   )
+
   if (pageLoading) {
     return (
       <div>
@@ -64,7 +65,7 @@ const LandlordProperties = () => {
                           </p>
                           <p>
                             Unit:
-                            <span> {property.units.length} Units</span>
+                            <span> {property.units.length} Unit</span>
                           </p>
                           <p>
                             Property Type:
@@ -92,7 +93,7 @@ const LandlordProperties = () => {
               totalPages={data?.data.last_page || 1}
               handlePrevPage={handlePrevPage}
               handleNextPage={handleNextPage}
-              setCurrentPage={setCurrentPage}
+              setCurrentPage={setCurrentPage}x
             />
           )}
         </section>
