@@ -91,6 +91,8 @@ import TenantNotices from './components/Tenant/TenantNotices'
 import ActivateEmailModal from './components/modal/ActivateEmailModal'
 import ActivateUser from './components/Registration/ActivateUser'
 import LandLordReminderSidebar from './components/Sidebars/LandlordReminderSidebar'
+import ManagerGenerateDocument from './components/Manager/ManagerGenerateDocument'
+import ManagerGenerateAgreement from './components/Manager/ManagerGenerateAgreement'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -134,7 +136,10 @@ function App() {
           <Route path='/calendar-months' element={<CalendarMonths />} />
           <Route path='/calendar-years' element={<CalendarYears />} />
           <Route path='/big-calendar' element={<BigCalendar />} />
-          <Route path='/landlord-reminder' element={<LandLordReminderSidebar />} />
+          <Route
+            path='/landlord-reminder'
+            element={<LandLordReminderSidebar />}
+          />
 
           {/* Landlord page */}
           <Route element={<ProtectedRoute />}>
@@ -256,7 +261,15 @@ function App() {
               <Route path='due-date' element={<ManagerDueDates />} />
               <Route path='edit-profile' element={<ManagerEditProfilePage />} />
               <Route path='profile' element={<ManagerProfileSettings />} />
-              <Route path='documents' element={<ManagerDocuments />} />
+              <Route path='document' element={<ManagerDocuments />} />
+              <Route
+                path='generate-document'
+                element={<ManagerGenerateDocument />}
+              />
+              <Route
+                path='generate-agreement'
+                element={<ManagerGenerateAgreement />}
+              />
             </Route>
           </Route>
 
