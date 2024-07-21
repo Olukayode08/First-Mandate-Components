@@ -49,23 +49,6 @@ const Context = ({ children }) => {
   //   }
   // }, [])
 
-  // useEffect(() => {
-  //   const handleActivity = () => {
-  //     clearTimeout(logoutTimer)
-  //     logoutTimer = setTimeout(logOut, 5 * 60 * 1000)
-  //   }
-
-  //   let logoutTimer = setTimeout(logOut, 5 * 60 * 1000)
-
-  //   document.addEventListener('mousemove', handleActivity)
-  //   document.addEventListener('keydown', handleActivity)
-
-  //   return () => {
-  //     clearTimeout(logoutTimer)
-  //     document.removeEventListener('mousemove', handleActivity)
-  //     document.removeEventListener('keydown', handleActivity)
-  //   }
-  // }, [])
 
   return (
     <>

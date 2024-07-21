@@ -40,6 +40,8 @@ const LandlordNotifications = () => {
     )
   }
 
+  console.log(data)
+
   return (
     <>
       <LNotifications>
@@ -52,9 +54,10 @@ const LandlordNotifications = () => {
                   <tr className='t-heading'>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Title</th>
-                    <th>Section</th>
+                    {/* <th>Title</th> */}
+                    {/* <th>Section</th> */}
                     <th>Description</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -70,9 +73,10 @@ const LandlordNotifications = () => {
                           <td>
                             {separateDateTime(notification.created_at).time}
                           </td>
-                          <td>{notification.title}</td>
-                          <td>{notification.section}</td>
+                          {/* <td>{notification.title}</td> */}
+                          {/* <td>{notification.section}</td> */}
                           <td>{notification.notification}</td>
+                          <td>{notification.status}</td>
                         </tr>
                       ))
                     : null}

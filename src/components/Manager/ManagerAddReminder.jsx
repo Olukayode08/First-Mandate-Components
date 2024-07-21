@@ -6,7 +6,6 @@ import {
   useFirstMandateQuery,
 } from '../../data-layer/utils'
 
-
 const ManagerAddReminder = () => {
   const navigate = useNavigate()
   const { reminderId } = useParams()
@@ -38,8 +37,7 @@ const ManagerAddReminder = () => {
           navigate('/manager/reminders')
         }, 3000)
       },
-      onError: (error) => {
-      },
+      onError: (error) => {},
     }
   )
 
@@ -165,7 +163,7 @@ const ManagerAddReminder = () => {
                 className='r-date-input'
               />
             </div>
-            <div className='input'>
+            {/* <div className='input'>
               <label>Time</label>
               <input
                 className='r-date-input'
@@ -176,6 +174,25 @@ const ManagerAddReminder = () => {
                 onChange={handleChangeAddReminder}
                 autoComplete='off'
               />
+            </div> */}
+            <div className='select'>
+              <label>Time</label>
+              <div className='user-select'>
+                <select
+                  required
+                  name='reminder_time'
+                  value={addReminder.reminder_time}
+                  onChange={handleChangeAddReminder}
+                  autoComplete='off'
+                >
+                  <option value=''>Select</option>
+                  <option value='9am'>9am</option>
+                  <option value='12pm'>12pm</option>
+                  <option value='3pm'>3pm</option>
+                  <option value='6pm'>6pm</option>
+                  <option value='9pm'>9pm</option>
+                </select>
+              </div>
             </div>
             <button
               disabled={isLoading}
@@ -318,6 +335,31 @@ const MAReminder = styled.section`
     width: 25px;
     height: 25px;
     animation: spin 1s linear infinite;
+  }
+  .select {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .user-select {
+    width: 200px;
+    height: 48px;
+    border: 1px solid black;
+    padding: 0 10px;
+    border-radius: 4px;
+  }
+  select {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    outline: none;
+    background: transparent;
+    border: transparent;
+    color: #000;
+    font-family: inherit;
+  }
+  option {
+    flex-shrink: 0;
   }
   @media screen and (max-width: 600px) {
     .radio-btns {

@@ -127,8 +127,8 @@ const Signup = () => {
               )}
             </button>
             <p className='create-account'>
-              By clicking “Create account” or “Continue with Google”, you agree
-              to the 1st Mandate <span>TOS</span> and
+              By clicking “Create account”, you agree to the 1st Mandate
+              <span> TOS</span> and
               <span> Privacy policy.</span>
             </p>
             <p className='create-account'>

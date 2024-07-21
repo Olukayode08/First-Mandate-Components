@@ -10,7 +10,7 @@ import usePagination from '../../hooks/usePagination'
 const LandlordTenants = () => {
   // Fetch Tenants
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
-    usePagination('/landlord/reminders')
+    usePagination('/landlord/tenants')
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/tenants?page=${currentPage}`,

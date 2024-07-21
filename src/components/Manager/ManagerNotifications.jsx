@@ -9,7 +9,7 @@ import Pagination from '../Pagination/Pagination'
 const ManagerNotifications = () => {
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
     usePagination('/manager/notifications')
-    
+
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/notifications?page=${currentPage}`,
     {
@@ -52,9 +52,11 @@ const ManagerNotifications = () => {
                 <thead>
                   <tr className='t-heading'>
                     <th>Date</th>
-                    <th>Time</th> <th>Title</th>
-                    <th>Section</th>
+                    <th>Time</th>
+                    {/* <th>Title</th>
+                    <th>Section</th> */}
                     <th>Description</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -70,9 +72,10 @@ const ManagerNotifications = () => {
                           <td>
                             {separateDateTime(notification.created_at).time}
                           </td>
-                          <td>{notification.title}</td>
-                          <td>{notification.section}</td>
+                          {/* <td>{notification.title}</td>
+                          <td>{notification.section}</td> */}
                           <td>{notification.notification}</td>
+                          <td>{notification.status}</td>
                           {/* <td>
                             <div className='n-margin'>
                               {notification.acknowledged_status}

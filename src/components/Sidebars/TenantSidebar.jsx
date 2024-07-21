@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react'
 import styled from 'styled-components'
 import { Squash as Hamburger } from 'hamburger-react'
 import { IoHomeOutline } from 'react-icons/io5'
-import { FaFileImport } from 'react-icons/fa'
+import { FaFileImport, FaRegBell } from 'react-icons/fa'
 import { LuWalletCards } from 'react-icons/lu'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { IoNotifications } from 'react-icons/io5'
@@ -72,6 +72,11 @@ const TenantSidebar = () => {
     navigate('/tenant/add-apartment-details')
     setDropdownOpen(false)
   }
+  const handleMyApartmentClick = () => {
+    closeSidebar()
+    navigate('/tenant/apartment-details')
+    setDropdownOpen(false)
+  }
 
   return (
     <>
@@ -102,7 +107,7 @@ const TenantSidebar = () => {
                 </Link>
                 <div className='dropdown-container'>
                   <Link
-                    to='/tenant/apartment-details'
+                    // to='/tenant/apartment-details'
                     className={
                       location.pathname === '/tenant/apartment-details' ||
                       location.pathname === '/tenant/add-apartment-details'
@@ -112,7 +117,7 @@ const TenantSidebar = () => {
                     onClick={handleDropdownToggle}
                   >
                     <FaFileImport size={20} className='icon' />
-                    <p className='desc'>My Apartment</p>
+                    <p className='desc'>Apartment</p>
                     {dropdownOpen ? (
                       <IoIosArrowDown size={15} />
                     ) : (
@@ -121,8 +126,13 @@ const TenantSidebar = () => {
                   </Link>
                   {dropdownOpen && (
                     <div className='dropdown-text'>
-                      {/* <IoHomeOutline size={18} className='icon' /> */}
-                      <p className='desc' onClick={handleAddApartmentClick}>
+                      <p className='desc' onClick={handleMyApartmentClick}>
+                        My Apartment
+                      </p>
+                      <p
+                        className='desc d-text'
+                        onClick={handleAddApartmentClick}
+                      >
                         Add Apartment
                       </p>
                     </div>
@@ -146,6 +156,18 @@ const TenantSidebar = () => {
                 <Link
                   onClick={closeSidebar}
                   className={
+                    location.pathname === '/tenant/notifications'
+                      ? 'active links'
+                      : 'links'
+                  }
+                  to='/tenant/notifications'
+                >
+                  <FaRegBell size={20} className='icon' />
+                  <p className='desc'>Notifications</p>
+                </Link>
+                {/* <Link
+                  onClick={closeSidebar}
+                  className={
                     location.pathname === '/tenant/notices'
                       ? 'active links'
                       : 'links'
@@ -154,7 +176,7 @@ const TenantSidebar = () => {
                 >
                   <IoNotifications size={20} className='icon' />
                   <p className='desc'>Notices</p>
-                </Link>
+                </Link> */}
                 {/* <Link
                   onClick={closeSidebar}
                   className={
@@ -290,10 +312,12 @@ const TenantS = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
-  .dropdown-text {
-    display: flex;
-    align-items: center;
+  .d-text {
+    margin:  15px 0;
+  }
+  p{
     cursor: pointer;
   }
 
