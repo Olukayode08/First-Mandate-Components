@@ -35,6 +35,8 @@ const HeroS = styled.section`
   p {
     font-size: 36px;
     color: #fff;
+    text-align: center;
+    margin: 7px 0;
   }
   .access {
     text-decoration: none;
