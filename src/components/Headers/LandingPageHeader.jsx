@@ -149,10 +149,10 @@ const LPHeader = styled.div`
     flex-direction: column;
   }
   .home-link {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
   }
   .access-link {
-    margin-top: 60px;
+    margin-top: 50px;
   }
 
   @media screen and (max-width: 950px) {
