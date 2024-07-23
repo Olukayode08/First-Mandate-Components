@@ -46,7 +46,9 @@ const LandingPageHeader = () => {
             <Link to='/login' className='link login'>
               Login
             </Link>
-            <Link className='link access'>Early Access</Link>
+            <Link to='/access-password' className='link access'>
+              Early Access
+            </Link>
           </ul>
           {/* Mobile Nav */}
 
