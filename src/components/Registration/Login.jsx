@@ -43,9 +43,9 @@ const Login = () => {
     <>
       <LoginP>
         <section>
-          <div className='logo'>
+          <Link to='/' className='logo'>
             <img src={logo} alt='1st Mandate' />
-          </div>
+          </Link>
           <form onSubmit={handleLogin}>
             <h3>Sign In to 1st Mandate</h3>
             {error && <p className='error'>{error.message}</p>}
@@ -87,7 +87,7 @@ const Login = () => {
             </Link>
             <p className='create-account'>
               No account?{' '}
-              <Link className='link' to='/'>
+              <Link className='link' to='/sign-up'>
                 Create one
               </Link>
             </p>

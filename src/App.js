@@ -93,6 +93,8 @@ import ActivateUser from './components/Registration/ActivateUser'
 import LandLordReminderSidebar from './components/Sidebars/LandlordReminderSidebar'
 import ManagerGenerateDocument from './components/Manager/ManagerGenerateDocument'
 import ManagerGenerateAgreement from './components/Manager/ManagerGenerateAgreement'
+import LandingPage from './pages/LandingPage/LandingPage'
+import AccessPassword from './components/Registration/AccessPassword'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -115,7 +117,9 @@ function App() {
       <Reload />
       <div className='app' id={theme}>
         <Routes>
-          <Route path='/' element={<Signup />} />
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/access-password' element={<AccessPassword />} />
+          <Route path='/sign-up' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
           <Route path='/new-password/:tokenId' element={<EnterNewPassword />} />

@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 // import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
 // import { useUpdateToken } from '../../hooks/useUpdateToken'
 
@@ -75,9 +75,9 @@ const Signup = () => {
     <>
       <SignupP>
         <section>
-          <div className='logo'>
+          <Link to='/' className='logo'>
             <img src={logo} alt='1st Mandate' />
-          </div>
+          </Link>
           <form onSubmit={handleSignup}>
             <h3>Sign Up for 1st Mandate</h3>
             {!!(userError || signupError) && (
