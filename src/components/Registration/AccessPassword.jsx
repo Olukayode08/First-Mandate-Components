@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
 import { Link } from 'react-router-dom'
+import bg from '../../assets/bg-img.jpeg'
 
 const AccessPassword = () => {
   const [password, setPassword] = useState('')
@@ -13,7 +14,7 @@ const AccessPassword = () => {
   return (
     <>
       <LoginP>
-        <section>
+        <section className='background'>
           <Link to='/' className='logo'>
             <img src={logo} alt='1st Mandate' />
           </Link>
@@ -41,10 +42,23 @@ const LoginP = styled.section`
   section {
     position: relative;
   }
+  .background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(${bg});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+  }
   .logo {
     position: absolute;
     top: 40px;
     left: 40px;
+    z-index: 70;
   }
   form {
     display: flex;
