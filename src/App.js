@@ -95,6 +95,8 @@ import ManagerGenerateDocument from './components/Manager/ManagerGenerateDocumen
 import ManagerGenerateAgreement from './components/Manager/ManagerGenerateAgreement'
 import LandingPage from './pages/LandingPage/LandingPage'
 import AccessPassword from './components/Registration/AccessPassword'
+import ManagerDocumentsTwo from './components/Manager/ManagerDocumentsTwo'
+import ManagerDueDatesTwo from './components/Manager/ManagerDueDatesTwo'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -263,9 +265,12 @@ function App() {
               <Route path='notices' element={<ManagerNotices />} />
               <Route path='send-notice' element={<ManagerSendNotices />} />
               <Route path='due-date' element={<ManagerDueDates />} />
+              <Route path='due-date-two' element={<ManagerDueDatesTwo />} />
               <Route path='edit-profile' element={<ManagerEditProfilePage />} />
               <Route path='profile' element={<ManagerProfileSettings />} />
               <Route path='document' element={<ManagerDocuments />} />
+              <Route path='document-two' element={<ManagerDocumentsTwo />} />
+
               <Route
                 path='generate-document'
                 element={<ManagerGenerateDocument />}

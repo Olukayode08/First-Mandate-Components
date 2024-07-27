@@ -20,7 +20,7 @@ const ManagerTenants = () => {
       onSuccess: (data) => {},
     }
   )
-
+  console.log(data)
   if (pageLoading) {
     return (
       <div>
