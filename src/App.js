@@ -97,6 +97,8 @@ import LandingPage from './pages/LandingPage/LandingPage'
 import AccessPassword from './components/Registration/AccessPassword'
 import ManagerDocumentsTwo from './components/Manager/ManagerDocumentsTwo'
 import ManagerDueDatesTwo from './components/Manager/ManagerDueDatesTwo'
+import RentDueDate from './components/Landlord/RentDueDate'
+import TenantWalletTwo from './components/Tenant/TenantWalletTwo'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -204,6 +206,8 @@ function App() {
               <Route path='send-notice' element={<LandlordSendNotice />} />
               <Route path='notifications' element={<LandlordNotifications />} />
               <Route path='due-date' element={<LandlordDueDates />} />
+              <Route path='date' element={<RentDueDate />} />
+
               <Route
                 path='edit-profile'
                 element={<LandlordEditProfilePage />}
@@ -321,6 +325,8 @@ function App() {
                 element={<TenantPaymentReceipt />}
               />
               <Route path='wallet' element={<TenantWallet />} />
+              <Route path='wallet-two' element={<TenantWalletTwo />} />
+
               <Route
                 path='wallet-transaction'
                 element={<TenantWalletTransaction />}
