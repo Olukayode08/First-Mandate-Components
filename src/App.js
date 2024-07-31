@@ -99,6 +99,7 @@ import ManagerDocumentsTwo from './components/Manager/ManagerDocumentsTwo'
 import ManagerDueDatesTwo from './components/Manager/ManagerDueDatesTwo'
 import RentDueDate from './components/Landlord/RentDueDate'
 import TenantWalletTwo from './components/Tenant/TenantWalletTwo'
+import TenantHistoryTwo from './components/Tenant/TenantHistoryTwo'
 
 function App() {
   const { theme } = useContext(ThemeContext)
@@ -332,6 +333,7 @@ function App() {
                 element={<TenantWalletTransaction />}
               />
               <Route path='history' element={<TenantHistory />} />
+              <Route path='history-two' element={<TenantHistoryTwo />} />
               <Route path='calendar' element={<TenantCalendar />} />
             </Route>
           </Route>
