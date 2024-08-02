@@ -207,7 +207,7 @@ function App() {
               <Route path='send-notice' element={<LandlordSendNotice />} />
               <Route path='notifications' element={<LandlordNotifications />} />
               <Route path='due-date' element={<LandlordDueDates />} />
-              <Route path='date' element={<RentDueDate />} />
+              <Route path='due-date-two' element={<RentDueDate />} />
 
               <Route
                 path='edit-profile'
