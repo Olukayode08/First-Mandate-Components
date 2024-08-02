@@ -158,6 +158,9 @@ const DueDate = styled.section`
       align-items: flex-start;
       gap: 15px;
     }
+    h1 {
+      font-size: 16px;
+    }
     .date,
     .status,
     .amount {
@@ -172,11 +175,12 @@ const DueDate = styled.section`
       padding-right: 0;
     }
   }
+
   @media screen and (max-width: 320px) {
     .tabs {
       width: 270px;
     }
-    p{
+    p {
       font-size: 14px;
     }
   }
