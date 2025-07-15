@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { tenantTransactionHistory } from '../../datas/TenantTransactionHistory'
+import { tenantTransactionHistory } from '../../datas/constants'
 
 const TenantHistoryData = () => {
   return (

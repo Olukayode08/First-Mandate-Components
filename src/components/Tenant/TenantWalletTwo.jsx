@@ -5,7 +5,7 @@ import { LuMinusSquare } from 'react-icons/lu'
 import { MdOutlineDelete } from 'react-icons/md'
 import { RiExchangeDollarLine } from 'react-icons/ri'
 import { FaPlus } from 'react-icons/fa6'
-import { wallets } from '../../datas/WalletData'
+import { wallets } from '../../datas/constants'
 
 const TenantWalletTwo = () => {
   return (

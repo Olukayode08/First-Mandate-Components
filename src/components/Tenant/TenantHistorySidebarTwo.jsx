@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Squash as Hamburger } from 'hamburger-react'
 import { GoArrowUpRight } from 'react-icons/go'
-import { walletSidebar } from '../../datas/TenantWalletSidebar'
+import { walletSidebar } from '../../datas/constants'
 
 const TenantHistorySidebarTwo = () => {
   const [active, setActive] = useState(true)

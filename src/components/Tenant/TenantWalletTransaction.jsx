@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { GoArrowDownLeft } from 'react-icons/go'
 import { GoArrowUpRight } from 'react-icons/go'
-import { tenantWalletTransaction } from '../../datas/TenantWalletTransaction'
+import { tenantWalletTransaction } from '../../datas/constants'
 import TenantTransaction from './TenantTransaction'
 
 const TenantWalletTransaction = () => {

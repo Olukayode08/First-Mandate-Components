@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { DocumentTwo } from '../../datas/ManagerDocumentsTwo'
+import { DocumentTwo } from '../../datas/constants'
 
 const ManagerDocumentsTwo = () => {
   return (

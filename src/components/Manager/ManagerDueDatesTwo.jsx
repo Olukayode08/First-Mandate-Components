@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import icon from '../../assets/house-01 (1).png'
-import { managerDueDates } from '../../datas/ManagerDueDates'
+import { managerDueDates } from '../../datas/constants'
 import { FiSearch } from 'react-icons/fi'
 import { MdOutlineDelete } from 'react-icons/md'
 

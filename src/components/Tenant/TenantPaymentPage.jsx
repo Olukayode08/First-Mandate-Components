@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { tenantsPayment } from '../../datas/TenantPaymentPage'
+import { tenantsPayment } from '../../datas/constants'
 import { Link } from 'react-router-dom'
 
 const TenantPaymentPage = () => {

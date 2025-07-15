@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { managerDocuments } from '../../datas/ManagerDocuments'
+import { managerDocuments } from '../../datas/constants'
 import { Link } from 'react-router-dom'
 
 const ManagerDocuments = () => {

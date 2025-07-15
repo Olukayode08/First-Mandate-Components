@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import icon from '../../assets/house-01 (1).png'
-import { tenantDueDates } from '../../datas/TenantDueDates'
+import { tenantDueDates } from '../../datas/constants'
 
 const TenantDueDates = () => {
   return (

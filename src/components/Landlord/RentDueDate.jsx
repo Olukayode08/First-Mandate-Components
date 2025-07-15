@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { dueDates, interview } from '../../datas/Duedates'
+import { dueDates, interview } from '../../datas/constants'
 import { MdOutlineDelete } from 'react-icons/md'
 
 const RentDueDate = () => {

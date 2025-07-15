@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { tenantPaymentReview } from '../../datas/TenantPaymentReview'
+import { tenantPaymentReview } from '../../datas/constants'
 import creditCard from '../../assets/credit-card-pos.png'
 import paypal from '../../assets/paypal.png'
 const TenantPaymentReview = () => {
