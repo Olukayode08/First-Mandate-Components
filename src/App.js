@@ -39,11 +39,11 @@ function App() {
       <div className='app' id={theme}>
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/access-password' element={<AccessPassword />} />
+          {/* <Route path='/access-password' element={<AccessPassword />} /> */}
           <Route path='/sign-up' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />
-          <Route path='/new-password/:tokenId' element={<EnterNewPassword />} />
+          <Route path='/new-password/:token' element={<EnterNewPassword />} />
           <Route path='/reset-password' element={<ForgotPassword />} />
           <Route
             path='/verify-user/:emailTokenId'

@@ -10,7 +10,7 @@ const Hero = () => {
         <section className='background'>
           <p>1st Mandate</p>
           <p>An easier way to manage properties</p>
-          <Link to='access-password' className='link access'>Get Started</Link>
+          <Link to='sign-up' className='link access'>Get Started</Link>
         </section>
       </HeroS>
     </>

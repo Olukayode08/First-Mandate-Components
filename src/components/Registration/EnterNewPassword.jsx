@@ -13,7 +13,7 @@ const EnterNewPassword = () => {
   const [passwordError, setPasswordError] = useState('')
   // const updateToken = useUpdateToken()
   const [cookies] = useCookies(['token'])
-  const { tokenId } = useParams()
+  const { token } = useParams()
   const navigate = useNavigate()
 
   // Validate Password
@@ -58,7 +58,7 @@ const EnterNewPassword = () => {
     }
 
     try {
-      await postNewPassword({ password, tokenId })
+      await postNewPassword({ password, token})
     } catch (e) {
       // console.error(e.message)
     }
