@@ -180,3 +180,37 @@ export const dueDates = {
     ],
   },
 }
+
+export const interview = {
+  'Fantasy': [
+    {
+      title: 'Game of thrones',
+      desc: 'House of westeros',
+    },
+    {
+      title: 'Game of thrones',
+      desc: 'House of westeros',
+    },
+    {
+      title: 'Game of thrones',
+      desc: 'House of westeros',
+    },
+  ],
+  'Scifi': [
+    {
+      title: 'Game of thrones',
+      desc: 'House of westeros',
+    },
+    {
+      title: 'Game of thrones',
+      desc: 'House of westeros',
+    },
+
+  ],
+  'Drama': [
+    {
+      title: 'Game of thrones',
+      desc: 'House of westeros',
+    },
+  ],
+}

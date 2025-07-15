@@ -4,20 +4,17 @@ import { Squash as Hamburger } from 'hamburger-react'
 import { IoHomeOutline } from 'react-icons/io5'
 import { FaFileImport, FaRegBell } from 'react-icons/fa'
 import { LuWalletCards } from 'react-icons/lu'
-import { MdOutlineOnDeviceTraining } from 'react-icons/md'
-import { IoNotifications } from 'react-icons/io5'
 import { IoIosArrowUp } from 'react-icons/io'
 import { IoIosArrowDown } from 'react-icons/io'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
-import ThemeMode from '../BackgroundColor/ThemeMode'
 import { BiLogOut } from 'react-icons/bi'
-import { ThemeContext } from '../../context/Darkmode'
+// import { ThemeContext } from '../../context/Darkmode'
 import { FirstMandate } from '../../context/Context'
+import { useLogout } from '../../hooks/useLogout'
 
 const TenantSidebar = () => {
-  const { active, setActive } = useContext(ThemeContext)
-  const { logOut } = useContext(FirstMandate)
-
+  const { active, setActive } = useContext(FirstMandate)
+  const logOut = useLogout()
   const [screenSize, setScreenSize] = useState(undefined)
   const location = useLocation()
   const navigate = useNavigate()
@@ -40,6 +37,7 @@ const TenantSidebar = () => {
     }
   }, [setActive, screenSize])
 
+  // Set's the screen size
   useEffect(() => {
     const handleSize = () => setScreenSize(window.innerWidth)
     window.addEventListener('resize', handleSize)
@@ -205,7 +203,7 @@ const TenantSidebar = () => {
                   <LuWalletCards size={20} className='icon' />
                   <p className='desc'>Payment</p>
                 </Link>
-                <Link onClick={logOut} className='links'>
+                <Link onClick={() => logOut()} className='links'>
                   <BiLogOut size={20} className='icon' />
                   <p className='desc'>Log out</p>
                 </Link>
@@ -315,9 +313,9 @@ const TenantS = styled.section`
     justify-content: center;
   }
   .d-text {
-    margin:  15px 0;
+    margin: 15px 0;
   }
-  p{
+  p {
     cursor: pointer;
   }
 

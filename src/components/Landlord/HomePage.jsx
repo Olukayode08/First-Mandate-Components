@@ -1,29 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-import { landlordOptions } from '../../datas/LandlordHomePage'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { getFirstName } from '../../hooks/functions'
 
-const LandlordHomePage = () => {
+const HomePage = ({options}) => {
+  const userData = useSelector((state) => state.user.userData)
+  const firstName = getFirstName(userData?.name)
   return (
     <>
       <LandlordHP>
         <section>
           <main className='l-section'>
-              <div className='l-name'>
-                <h3>Hello</h3>
-                <p>What would you like to do today?</p>
-              </div>
-              <div className='l-options'>
-                {landlordOptions.map((option) => {
-                  return (
-                    <Link to={option.navigate} className='options' key={option.id}>
-                      <img className='h-img' src={option.icon} alt='Icon' />
-                      <h1 className='option-h'>{option.heading}</h1>
-                      <p className='option-text'>{option.text}</p>
-                    </Link>
-                  )
-                })}
-              </div>
+            <div className='l-name'>
+              <h3>Hello {firstName}</h3>
+              <p>What would you like to do today?</p>
+            </div>
+            <div className='l-options'>
+              {options.map((option) => (
+                <Link to={option.navigate} className='options' key={option.id}>
+                  <img className='h-img' src={option.icon} alt='Icon' />
+                  <h1 className='option-h'>{option.heading}</h1>
+                  <p className='option-text'>{option.text}</p>
+                </Link>
+              ))}
+            </div>
           </main>
         </section>
       </LandlordHP>
@@ -100,4 +101,4 @@ const LandlordHP = styled.section`
     }
   }
 `
-export default LandlordHomePage
+export default HomePage

@@ -1,14 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import profile from '../../assets/Frame 2007 (1).png'
 import edit from '../../assets/edit-01 (2).png'
 import logout from '../../assets/logout-03.png'
-import { FirstMandate } from '../../context/Context'
 import { Link } from 'react-router-dom'
-
+import { useLogout } from '../../hooks/useLogout'
 
 const ManagerProfileSettings = () => {
-    const { logOut } = useContext(FirstMandate)
+  const logOut = useLogout()
 
   return (
     <>
@@ -17,7 +15,7 @@ const ManagerProfileSettings = () => {
           <main className='l-profile-s'>
             <div className='log-out'>
               <h3>My Profile</h3>
-              <div className='logout-btn' onClick={logOut}>
+              <div className='log-out' onClick={() => logOut()}>
                 <img src={logout} alt='Edit-Profile' />
                 <p>Logout</p>
               </div>

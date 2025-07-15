@@ -6,9 +6,8 @@ import { useNavigate } from 'react-router-dom'
 const LandlordPropertiesDropdown = ({ property }) => {
   const navigate = useNavigate()
   const dropdownRef = useRef(null)
-
   const [showDropdown, setShowDropdown] = useState(false)
-  
+
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown)
   }
@@ -48,12 +47,12 @@ const LandlordPropertiesDropdown = ({ property }) => {
   //   }, 1000)
   // }
 
-    const navigateManager = () => {
+  const navigateManager = () => {
     navigate(`/landlord/add-manager/${property.uuid}`)
-      setTimeout(() => {
-        setShowDropdown(false)
-      }, 1000)
-    }
+    setTimeout(() => {
+      setShowDropdown(false)
+    }, 1000)
+  }
 
   return (
     <>

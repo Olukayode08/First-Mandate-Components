@@ -5,10 +5,12 @@ import { FirstMandate } from '../../context/Context'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
 import { useUpdateToken } from '../../hooks/useUpdateToken'
+import { useDispatch } from 'react-redux'
+import { setUserData } from '../../redux/userSlice'
 
 const Login = () => {
-  const { setIsAuthenticated } = useContext(FirstMandate)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -21,11 +23,10 @@ const Login = () => {
   } = useFirstMandateMutation('/login', {
     onSuccess: (data) => {
       updateToken(data)
-      setIsAuthenticated(true)
+      dispatch(setUserData(data?.data))
       navigate('/landlord')
     },
-    onError: (error) => {
-    },
+    onError: (error) => {},
   })
 
   const handleLogin = async (e) => {
@@ -36,6 +37,7 @@ const Login = () => {
     try {
       await postLogin({ email, password })
     } catch (e) {
+      // console.log(error);
     }
   }
 

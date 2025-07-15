@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { dueDates } from '../../datas/Duedates'
+import { dueDates, interview } from '../../datas/Duedates'
 import { MdOutlineDelete } from 'react-icons/md'
 
 const RentDueDate = () => {
   const [activeTab, setActiveTab] = useState('Upcoming')
+
+  const [active, setActive] = useState('Fantasy')
 
   const renderEvents = (dates) => {
     return dates.map((date) => (
@@ -23,7 +25,6 @@ const RentDueDate = () => {
             <p>{date.amount}</p>
           </div>
         </div>
-
         <div className='btns'>
           <p className='edit'>Edit</p>
           <div className='delete-btn'>
@@ -33,6 +34,10 @@ const RentDueDate = () => {
       </div>
     ))
   }
+  // const months = Object.keys(dueDates[activeTab]);
+  // activeTab holds the current tab category (e.g., 'Upcoming', 'Past', 'Cancelled').
+  // dueDates[activeTab] accesses the object corresponding to the current category.
+  // Object.keys(dueDates[activeTab]) retrieves an array of keys (month names) from this object.
 
   const renderMonths = () => {
     const months = Object.keys(dueDates[activeTab])
@@ -43,6 +48,21 @@ const RentDueDate = () => {
       </div>
     ))
   }
+
+
+  const renderMovies = (movies) => {
+    return movies.map((movie, index) => (
+      <div key={index}>
+        <h1>{movie.title}</h1>
+        <p>{movie.desc}</p>
+      </div>
+    ))
+  }
+
+  const activeMovies = interview[active]
+
+  
+
   return (
     <>
       <DueDate>
@@ -76,6 +96,12 @@ const RentDueDate = () => {
             <main className='months-date'>{renderMonths()}</main>
           </div>
         </main>
+        <main>
+          <p onClick={() => setActive('Fantasy')}>Fantasy</p>
+          <p onClick={() => setActive('Scifi')}>Scifi</p>
+          <p onClick={() => setActive('Drama')}>Drama</p>
+          {renderMovies(activeMovies)}
+        </main>
       </DueDate>
     </>
   )
@@ -94,6 +120,9 @@ const DueDate = styled.section`
     background: #f6f6f8;
     padding: 15px;
     width: 300px;
+  }
+  p {
+    cursor: pointer;
   }
   .active {
     background-color: #fff;

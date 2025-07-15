@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-// import { FirstMandate } from '../../context/Context'
 import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
 import { Link } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
-// import { useUpdateToken } from '../../hooks/useUpdateToken'
 
 const Signup = () => {
-  // const { setIsAuthenticated } = useContext(FirstMandate)
-  // const navigate = useNavigate()
-  // const updateToken = useUpdateToken()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -28,6 +23,7 @@ const Signup = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regex.test(email)
   }
+
   useEffect(() => {
     setSignupError('')
   }, [email, name, password])
@@ -38,15 +34,9 @@ const Signup = () => {
     isSuccess,
     error: userError,
   } = useFirstMandateMutation('/signup', {
-    onSuccess: (data) => {
-      // updateToken(data)
-      // setIsAuthenticated(true)
-      // setTimeout(() => {
-      //   navigate('/landlord')
-      // }, 3000)
-    },
+    onSuccess: (data) => {},
     onError: (error) => {
-      console.log(error)
+      console.log(error, 'error')
     },
   })
 
@@ -65,12 +55,19 @@ const Signup = () => {
     if (!(email || password || name)) {
       return
     }
+    const payload = {
+      email: email,
+      name: name,
+      password: password,
+    }
     try {
-      await postSignup({ email, name, password })
+      await postSignup(payload)
+      // await postSignup({ email, name, password })
     } catch (e) {
       // console.error(e.message)
     }
   }
+
   return (
     <>
       <SignupP>

@@ -40,6 +40,7 @@ const ActivateEmailModal = () => {
                 Congrat!!! Your E-mail has been activated successfully. You can
                 now proceed to login
               </p>
+              <button className='login-btn' onClick={() => navigate('/login')}>Login</button>
             </div>
           </div>
         </section>
@@ -86,7 +87,18 @@ const ActivateEM = styled.section`
     min-width: 300px;
     z-index: 2000;
   }
-
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    background-color: #000;
+    color: #f1f1f1;
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
   .modal-text {
     font-size: 16px;
     line-height: 24px;

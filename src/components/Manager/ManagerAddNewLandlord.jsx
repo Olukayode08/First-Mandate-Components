@@ -6,7 +6,6 @@ import {
   useFirstMandateQuery,
 } from '../../data-layer/utils'
 
-
 const ManagerAddNewLandlord = () => {
   const { propertyId, landlordId } = useParams()
   const [selectedPropertyuuid, setSelectedPropertyUuid] = useState(null)
@@ -47,6 +46,8 @@ const ManagerAddNewLandlord = () => {
       },
     }
   )
+
+  // Edit Landlord(Fetch prev details)
   const { data } = useFirstMandateQuery(
     `/property-manager/landlords/${landlordId}`,
     {
@@ -60,6 +61,7 @@ const ManagerAddNewLandlord = () => {
     }
   )
 
+  //
   const { data: propertiesData } = useFirstMandateQuery(
     '/property-manager/properties',
     {
@@ -110,6 +112,7 @@ const ManagerAddNewLandlord = () => {
                         required
                         onChange={(e) => {
                           const _selectedPropertyuuid = e.target.value
+                          console.log(_selectedPropertyuuid);
                           setSelectedPropertyUuid(_selectedPropertyuuid)
                         }}
                       >

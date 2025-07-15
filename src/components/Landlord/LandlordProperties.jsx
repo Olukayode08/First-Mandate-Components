@@ -12,6 +12,7 @@ import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 
 const LandlordProperties = () => {
+
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
     usePagination('/landlord/properties')
 
@@ -19,7 +20,6 @@ const LandlordProperties = () => {
     `/properties?page=${currentPage}`,
     {
       onSuccess: (data) => {
-        // console.log(data)
       },
     }
   )
@@ -33,6 +33,7 @@ const LandlordProperties = () => {
       </div>
     )
   }
+
   return (
     <>
       <LandlordP>

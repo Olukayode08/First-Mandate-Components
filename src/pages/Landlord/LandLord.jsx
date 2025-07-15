@@ -15,7 +15,6 @@ const LandLord = () => {
           <div className='landlord-sidebar'>
             <LandlordSidebar />
           </div>
-
           <main className='landlord-children'>
             <Outlet />
           </main>

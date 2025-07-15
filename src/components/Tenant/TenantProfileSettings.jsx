@@ -1,20 +1,21 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import profile from '../../assets/Frame 2007 (1).png'
 import edit from '../../assets/edit-01 (2).png'
 import logout from '../../assets/logout-03.png'
-import { FirstMandate } from '../../context/Context'
 import { Link } from 'react-router-dom'
+import { useLogout } from '../../hooks/useLogout'
+import { useSelector } from 'react-redux'
 
 const TenantProfileSettings = () => {
-  const { logOut } = useContext(FirstMandate)
+  const logOut = useLogout()
+  const userData = useSelector((state) => state.user.userData)
 
   return (
     <>
       <TenantPS>
         <section>
           <main className='l-profile-s'>
-            <div className='log-out' onClick={logOut}>
+            <div className='log-out' onClick={() => logOut()}>
               <h3>My Profile</h3>
               <div className='logout-btn'>
                 <img src={logout} alt='Edit-Profile' />
@@ -27,9 +28,9 @@ const TenantProfileSettings = () => {
                 <img src={edit} alt='Edit-Profile' />
                 <p>Edit Profile</p>
               </Link>
-              <p>Peace Adekola</p>
+              <p>{userData.name}</p>
               <p>08146573112</p>
-              <p>peaceadekola2@gmail.com</p>
+              <p>{userData.email}</p>
             </div>
             <h3 className='p-settings'>Settings</h3>
             <div className='profile-s'>

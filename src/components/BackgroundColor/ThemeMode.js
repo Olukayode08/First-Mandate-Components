@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import ReactSwitch from 'react-switch'
 import styled from 'styled-components'
-import { ThemeContext } from '../../context/Darkmode'
+// import { ThemeContext } from '../../context/Darkmode'
+import { FirstMandate } from '../../context/Context'
 
 const ThemeMode = () => {
-  const { toggleTheme, setActive, theme } = useContext(ThemeContext)
+  const { toggleTheme, setActive, theme } = useContext(FirstMandate)
 
   const closeSidebar = () => {
     toggleTheme()

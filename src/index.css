@@ -1,4 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,6 +21,8 @@ h1 {
 button {
   font-family: inherit;
   font-weight: 100;
+  background: transparent;
+  border: none;
 }
 .dark-mode {
   background-color: #fedf7e;
@@ -43,12 +50,6 @@ button {
 }
 button {
   font-family: inherit;
-}
-/* Temporary */
-td,
-p,
-span {
-  text-transform: capitalize;
 }
 td {
   font-size: 13px;

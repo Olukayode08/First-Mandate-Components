@@ -10,18 +10,19 @@ import { IoNotifications } from 'react-icons/io5'
 import { MdOutlineOnDeviceTraining } from 'react-icons/md'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import ThemeMode from '../BackgroundColor/ThemeMode'
-import { ThemeContext } from '../../context/Darkmode'
+// import { ThemeContext } from '../../context/Darkmode'
 import { FaRegBell } from 'react-icons/fa6'
 import { FirstMandate } from '../../context/Context'
 import { BiLogOut } from 'react-icons/bi'
+import { useLogout } from '../../hooks/useLogout'
 
 const PropertyManagerSidebar = () => {
-  const { active, setActive } = useContext(ThemeContext)
-  const { logOut } = useContext(FirstMandate)
+  const { active, setActive } = useContext(FirstMandate)
   const [screenSize, setScreenSize] = useState(undefined)
   const location = useLocation()
   const { singlePropertyId, propertyId, unitId, tenantId } = useParams()
   const activeRef = useRef(null)
+  const logOut = useLogout()
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -185,7 +186,7 @@ const PropertyManagerSidebar = () => {
                   <IoNotifications size={20} className='icon' />
                   <p className='desc'>Notices</p>
                 </Link>
-                <Link onClick={logOut} className='links'>
+                <Link onClick={() => logOut()} className='links'>
                   <BiLogOut size={20} className='icon' />
                   <p className='desc'>Log out</p>
                 </Link>

@@ -9,6 +9,8 @@ import {
 const LandlordAddReminder = () => {
   const navigate = useNavigate()
   const { reminderId } = useParams()
+
+
   const [addReminder, setAddReminder] = useState({
     reminder_type: '',
     short_description: '',
@@ -44,7 +46,7 @@ const LandlordAddReminder = () => {
   const { data } = useFirstMandateQuery(`/reminders/${reminderId}`, {
     enabled: !!reminderId,
     onSuccess: (data) => {
-      console.log(data)
+      // console.log(data)
       handleReminderUpdate('reminder_type', data?.data?.reminder_type)
       handleReminderUpdate('short_description', data?.data?.short_description)
       handleReminderUpdate('next_reminder_date', data?.data?.next_reminder_date)

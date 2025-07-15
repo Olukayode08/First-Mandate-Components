@@ -12,6 +12,7 @@ const ActivateUserModal = () => {
               <p className='modal-text'>
                Your account has been activated successfully. You can now proceed to login to your account.
               </p>
+              <button>Login</button>
             </div>
           </div>
         </section>

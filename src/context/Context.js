@@ -5,25 +5,24 @@ const FirstMandate = createContext()
 
 const Context = ({ children }) => {
   const [cookies] = useCookies(['token'])
+
   const logout = useLogout()
 
-  // Signup and Login Validation States
-  const [isAuthenticated, setIsAuthenticated] = useState(!!cookies?.token)
+  const [theme, setTheme] = useState('light')
 
-  // Function to log the user out if inactive
-  const logOut = () => {
-    setIsAuthenticated(false)
-    logout()
+  const [active, setActive] = useState(true)
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === 'light' ? 'dark' : 'light'))
   }
 
   // Authentification Timer
-  
+
   // useEffect(() => {
   //   let logoutTimer
 
   //   const clearInactiveUser = () => {
   //     logout()
-  //     setIsAuthenticated(false)
   //   }
 
   //   const resetLogoutTimer = () => {
@@ -49,14 +48,14 @@ const Context = ({ children }) => {
   //   }
   // }, [])
 
-
   return (
     <>
       <FirstMandate.Provider
         value={{
-          isAuthenticated,
-          setIsAuthenticated,
-          logOut,
+          theme,
+          toggleTheme,
+          active,
+          setActive,
         }}
       >
         {children}
