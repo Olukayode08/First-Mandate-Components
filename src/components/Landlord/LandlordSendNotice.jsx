@@ -76,46 +76,24 @@ const LandlordSendNotice = () => {
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='Rent due date'
+                    value='Rent amount review'
                     name='type'
                     onChange={handleChangeAddReminder}
-                    checked={addReminder.type === 'Rent due date'}
+                    checked={addReminder.type === 'Rent amount review'}
                     className='btn-input'
                   />
-                  <p className='n-details'>Rent due date</p>
+                  <p className='n-details'>Rent amount review</p>
                 </div>
                 <div className='radio-btn'>
                   <input
                     type='radio'
-                    value='Electricity Payment'
+                    value='Tenancy term renewal'
                     name='type'
                     onChange={handleChangeAddReminder}
-                    checked={addReminder.type === 'Electricity Payment'}
+                    checked={addReminder.type === 'Tenancy term renewal'}
                     className='btn-input'
                   />
-                  <p className='n-details'>Electricity Payment</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='Water bill'
-                    name='type'
-                    onChange={handleChangeAddReminder}
-                    checked={addReminder.type === 'Water bill'}
-                    className='btn-input'
-                  />
-                  <p className='n-details'>Water bill</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='Security fee'
-                    name='type'
-                    onChange={handleChangeAddReminder}
-                    checked={addReminder.type === 'Security fee'}
-                    className='btn-input'
-                  />
-                  <p className='n-details'>Security fee</p>
+                  <p className='n-details'>Tenancy term renewal</p>
                 </div>
               </div>
             </div>

@@ -6,6 +6,7 @@ import LandlordEmptyNotice from './LandlordEmptyNotice'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
+import { separateDateTime } from '../../hooks/functions'
 
 const LandlordNotices = () => {
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
@@ -65,8 +66,12 @@ const LandlordNotices = () => {
                   data.data.data.length > 0
                     ? data.data.data.map((notification) => (
                         <tr key={notification.uuid} className='t-notifications'>
-                          <td>{notification.notice_date}</td>
-                          <td>{notification.notice_time}</td>
+                          <td>
+                            {separateDateTime(notification.created_at).date}
+                          </td>
+                          <td>
+                            {separateDateTime(notification.created_at).time}
+                          </td>
                           <td>{notification.description}</td>
                           <td>{notification?.tenant?.name}</td>
                           <td>{notification.remarks}</td>
@@ -127,7 +132,7 @@ const LNotices = styled.section`
     background-color: #ffe48e;
     padding: 15px;
     border-radius: 4px;
-    width: 250px;
+    width: 150px;
     color: #000;
     cursor: pointer;
     text-decoration: none;

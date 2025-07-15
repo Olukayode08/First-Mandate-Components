@@ -5,6 +5,9 @@ import ManagerEmptyNotification from './ManagerEmptyNotification'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 import Pagination from '../Pagination/Pagination'
+import { separateDateTime } from '../../hooks/functions'
+import { FaRegPlusSquare } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const ManagerNotifications = () => {
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
@@ -16,12 +19,6 @@ const ManagerNotifications = () => {
       onSuccess: (data) => {},
     }
   )
-  const separateDateTime = (dateTimeString) => {
-    const dateTime = new Date(dateTimeString)
-    const date = dateTime.toLocaleDateString()
-    const time = dateTime.toLocaleTimeString()
-    return { date, time }
-  }
 
   if (pageLoading) {
     return (
@@ -46,7 +43,13 @@ const ManagerNotifications = () => {
       <ManagerN>
         <section>
           <main className='l-notify'>
-            <h1>Notifications</h1>
+            <div className='a-tenant'>
+              <h3>Notifications</h3>
+              <Link to='/manager/send-notice' className='add-r'>
+                <h4>Send Notice</h4>
+                <FaRegPlusSquare size={20} />
+              </Link>
+            </div>{' '}
             <div className='table'>
               <table>
                 <thead>
@@ -114,6 +117,25 @@ const ManagerN = styled.section`
     font-size: 18px;
     margin: 20px 0;
   }
+  .a-tenant {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0;
+  }
+  .add-r {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #ffe48e;
+    padding: 15px;
+    border-radius: 4px;
+    width: 150px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+  }
   .table {
     overflow-x: scroll;
     width: 100%;
@@ -142,6 +164,15 @@ const ManagerN = styled.section`
     margin: 15px 0;
     padding: 7px 10px;
     border-radius: 4px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .a-tenant {
+      flex-direction: column;
+    }
+    .add-r {
+      margin: 20px 0 10px 0;
+    }
   }
 `
 export default ManagerNotifications

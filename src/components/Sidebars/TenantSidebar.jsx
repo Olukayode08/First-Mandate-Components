@@ -201,7 +201,7 @@ const TenantSidebar = () => {
                   to='/tenant/payment'
                 >
                   <LuWalletCards size={20} className='icon' />
-                  <p className='desc'>Payment</p>
+                  <p className='desc'>Pay Bills</p>
                 </Link>
                 <Link onClick={() => logOut()} className='links'>
                   <BiLogOut size={20} className='icon' />
