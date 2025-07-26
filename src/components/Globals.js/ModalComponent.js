@@ -1,29 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const CongratsModal = () => {
-
+const ModalComponent = ({
+  textOne,
+  textTwo,
+  btnFunction,
+  btnText = 'Login',
+}) => {
   return (
     <>
-      <CModal>
+      <ModalC>
         <section>
           <div className='modal'>
             <div className='overlay'></div>
             <div className='modal-content'>
-              <p className='modal-text'>Congratulations, your property has been uploaded successfully</p>
+              <p className='modal-text'>{textOne}</p>
+              {textTwo && <p className='modal-text'>{textTwo}</p>}
+              {btnFunction && (
+                <button className='login-btn' onClick={btnFunction}>
+                  {btnText}
+                </button>
+              )}
             </div>
           </div>
         </section>
-      </CModal>
+      </ModalC>
     </>
   )
 }
-const CModal = styled.section`
+const ModalC = styled.section`
   /* TOAST NOTIFICATION */
   body.active-modal {
     overflow-y: hidden;
   }
-
   .modal,
   .overlay {
     width: 100vw;
@@ -64,5 +73,18 @@ const CModal = styled.section`
     text-align: center;
     color: #000;
   }
+
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    background-color: #000;
+    color: #f1f1f1;
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 `
-export default CongratsModal
+export default ModalComponent

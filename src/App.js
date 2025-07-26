@@ -6,12 +6,11 @@ import Login from './components/Registration/Login'
 import VerificationCode from './components/Registration/VerificationCode'
 import EnterNewPassword from './components/Registration/EnterNewPassword'
 import ForgotPassword from './components/Registration/ForgotPassword'
-import ErrorPage from './components/Error/ErrorPage'
+import ErrorPage from './pages/ErrorPage'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import ProtectedRoute from './hooks/ProtectedRoute'
-import ActivateEmailModal from './components/modal/ActivateEmailModal'
-import LandingPage from './pages/LandingPage/LandingPage'
-import AccessPassword from './components/Registration/AccessPassword'
+import ActivateEmailModal from './components/Registration/ActivateEmailModal'
+import LandingPage from './pages/LandingPage'
 import { FirstMandate } from './context/Context'
 import { landlordRoutes } from './routes/landlordRoutes'
 import { managerRoutes } from './routes/managerRoutes'
@@ -39,7 +38,6 @@ function App() {
       <div className='app' id={theme}>
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          {/* <Route path='/access-password' element={<AccessPassword />} /> */}
           <Route path='/sign-up' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />

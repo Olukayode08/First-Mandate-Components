@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import PropertyManager from '../pages/PropertyManager/PropertyManager'
+import PropertyManager from '../pages/PropertyManager'
 import ManagerProperties from '../components/Manager/ManagerProperties'
 import ManagerSingleProperty from '../components/Manager/ManagerSingleProperty'
 import ManagerUploadPropertyPage from '../components/Manager/ManagerUploadPropertyPage'

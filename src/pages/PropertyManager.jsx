@@ -1,65 +1,66 @@
 import React from 'react'
-import TenantSidebar from '../../components/Sidebars/TenantSidebar'
-import Header from '../../components/Headers/Header'
+import PropertyManagerSidebar from '../components/Sidebars/PropertyManagerSidebar'
+import Header from '../components/Headers/Header'
 import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Tenant = () => {
+const PropertyManager = () => {
   return (
     <>
-      <TenantMP>
-        <section className='tenant-page'>
-          <div className='tenant-header'>
+      <PManagerMP>
+        <section className='p-manager-page'>
+          <div className='p-manager-h'>
             <Header />
           </div>
-          <div className='tenant-sidebar'>
-            <TenantSidebar />
+          <div className='p-manager-sidebar'>
+            <PropertyManagerSidebar />
           </div>
-          <main className='tenant-children'>
+
+          <main className='p-manager-children'>
             <Outlet />
           </main>
         </section>
-      </TenantMP>
+      </PManagerMP>
     </>
   )
 }
 
-const TenantMP = styled.section`
-  .tenant-page {
+const PManagerMP = styled.section`
+  .p-manager-page {
     position: relative;
     width: 100%;
   }
-  .tenant-header {
+  .p-manager-header {
     position: absolute;
     top: 0;
     width: 100%;
     height: 86px;
   }
-  .tenant-sidebar {
+  .p-manager-sidebar {
     position: absolute;
     top: 0;
     left: 0;
     width: 230px;
   }
-  .tenant-children {
+  .p-manager-children {
     position: absolute;
     top: 106px;
     right: 20px;
     width: 81%;
   }
   @media screen and (min-width: 2000px) {
-    .tenant-children {
+    .p-manager-children {
       width: 84%;
       margin: 20px auto;
     }
   }
   @media screen and (max-width: 1350px) {
-    .tenant-children {
+    .p-manager-children {
       width: 79%;
     }
   }
   @media screen and (max-width: 1250px) {
-    .tenant-children {
+    .p-manager-children {
       width: 95%;
       top: 86px;
       left: 0;
@@ -68,10 +69,10 @@ const TenantMP = styled.section`
     }
   }
   @media screen and (max-width: 550px) {
-    .tenant-children {
+    .p-manager-children {
       margin: 10px auto;
     }
   }
 `
 
-export default Tenant
+export default PropertyManager

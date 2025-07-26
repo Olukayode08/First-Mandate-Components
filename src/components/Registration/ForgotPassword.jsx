@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import EmailCongratsModal from '../modal/EmailCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
 import { Link } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
+import ModalComponent from '../Globals.js/ModalComponent'
 
 const ResetPassword = () => {
   const [email, setEmail] = useState('')
@@ -69,7 +69,13 @@ const ResetPassword = () => {
           </form>
         </section>
       </ResetP>
-      <div>{isSuccess && <EmailCongratsModal />}</div>
+      <div>
+        {isSuccess && (
+          <ModalComponent
+            textOne='Password reset request is successful and link to reset has been sent to the email address provided.'
+          />
+        )}
+      </div>
     </>
   )
 }

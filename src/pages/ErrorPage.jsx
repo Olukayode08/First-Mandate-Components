@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../../assets/1st mandate logo 1.png'
+import logo from '../assets/1st mandate logo 1.png'
 import { useNavigate } from 'react-router-dom'
 
 const ErrorPage = () => {

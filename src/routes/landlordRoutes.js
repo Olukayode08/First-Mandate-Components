@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import LandLord from '../pages/Landlord/LandLord'
+import LandLord from '../pages/LandLord'
 import HomePage from '../components/Landlord/HomePage'
 import LandlordProperties from '../components/Landlord/LandlordProperties'
 import LandlordSingleProperty from '../components/Landlord/LandlordSingleProperty'

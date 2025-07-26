@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import SignupCongratsModal from '../modal/SignupCongratsModal'
 import logo from '../../assets/1st mandate logo 1.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
+import ModalComponent from '../Globals.js/ModalComponent'
 
 const Signup = () => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [signupError, setSignupError] = useState('')
+  const navigate = useNavigate()
 
   // Validate Password
   const validatePassword = (password) => {
@@ -34,7 +35,11 @@ const Signup = () => {
     isSuccess,
     error: userError,
   } = useFirstMandateMutation('/signup', {
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+      setTimeout(() => {
+        navigate('/login')
+      }, 3000)
+    },
     onError: (error) => {
       console.log(error, 'error')
     },
@@ -62,10 +67,7 @@ const Signup = () => {
     }
     try {
       await postSignup(payload)
-      // await postSignup({ email, name, password })
-    } catch (e) {
-      // console.error(e.message)
-    }
+    } catch (e) {}
   }
 
   return (
@@ -137,7 +139,15 @@ const Signup = () => {
           </form>
         </section>
       </SignupP>
-      <div>{isSuccess && <SignupCongratsModal />}</div>
+      <div>
+        {isSuccess && (
+          <ModalComponent
+            textOne='You have successfully signed up to 1st Mandate.'
+            textTwo='Please check the email you provided to activate and confirm your account.'
+            btnFunction={() => navigate('/login')}
+          />
+        )}
+      </div>
     </>
   )
 }

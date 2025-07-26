@@ -1,6 +1,6 @@
 import React from 'react'
-import LandingPageHeader from '../../components/Headers/LandingPageHeader'
-import Hero from '../../components/LandingPage/Hero'
+import LandingPageHeader from '../components/Headers/LandingPageHeader'
+import Hero from '../components/LandingPage/Hero'
 
 const LandingPage = () => {
   return (

@@ -6,7 +6,7 @@ import { useFirstMandateMutation } from '../../data-layer/utils'
 import { useNavigate } from 'react-router-dom'
 import ManagerUploadPropertyOne from './ManagerUploadPropertyOne'
 import ManagerUploadPropertyTwo from './ManagerUploadPropertyTwo'
-import ManagerCongratsModal from '../modal/ManagerCongratsModal'
+import ModalComponent from '../Globals.js/ModalComponent'
 
 const totalSteps = 2
 const ManagerUploadPropertyStepper = () => {
@@ -201,7 +201,14 @@ const ManagerUploadPropertyStepper = () => {
         </section>
       </MUploadPS>
       {/* Congratulations Conponent */}
-      <div>{isSuccess && <ManagerCongratsModal />}</div>
+      <div>
+        {isSuccess && (
+          <ModalComponent
+            textOne='Congratulations, your property has been uploaded successfully'
+            textTwo='Redirecting...'
+          />
+        )}
+      </div>
     </>
   )
 }

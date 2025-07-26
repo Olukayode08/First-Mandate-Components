@@ -2,16 +2,18 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { useFirstMandateMutation } from '../../data-layer/utils'
-// import { useUpdateToken } from '../../hooks/useUpdateToken'
 
 const ActivateEmailModal = () => {
   const { emailTokenId } = useParams()
   const navigate = useNavigate()
-  // const updateToken = useUpdateToken()
 
-  const { mutateAsync: postEmail } = useFirstMandateMutation('/activate', {
+  const {
+    mutateAsync: postEmail,
+    isSuccess,
+    isError,
+    error,
+  } = useFirstMandateMutation('/activate', {
     onSuccess: (data) => {
-      //   updateToken(data)
       setTimeout(() => {
         navigate('/login')
       }, 3000)
@@ -22,7 +24,7 @@ const ActivateEmailModal = () => {
   useEffect(() => {
     const handleEmail = async () => {
       try {
-        await postEmail({ emailTokenId })
+        await postEmail({ token: emailTokenId })
       } catch (error) {}
     }
     // Call handleEmail when the component mounts
@@ -35,13 +37,31 @@ const ActivateEmailModal = () => {
         <section>
           <div className='modal'>
             <div className='overlay'></div>
-            <div className='modal-content'>
-              <p className='modal-text'>
-                Congrat!!! Your E-mail has been activated successfully. You can
-                now proceed to login
-              </p>
-              <button className='login-btn' onClick={() => navigate('/login')}>Login</button>
-            </div>
+            {isSuccess && (
+              <div className='modal-content'>
+                <p className='modal-text'>
+                  Congrat!!! Your E-mail has been activated successfully. You
+                  can now proceed to login
+                </p>
+                <button
+                  className='login-btn'
+                  onClick={() => navigate('/login')}
+                >
+                  Login
+                </button>
+              </div>
+            )}
+            {isError && (
+              <div className='modal-content'>
+                <p className='modal-text'>{error?.message}</p>
+                <button
+                  className='login-btn'
+                  onClick={() => navigate('/login')}
+                >
+                  Login
+                </button>
+              </div>
+            )}
           </div>
         </section>
       </ActivateEM>

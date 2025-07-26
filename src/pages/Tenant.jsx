@@ -1,66 +1,65 @@
 import React from 'react'
-import styled from 'styled-components'
-import LandlordSidebar from '../../components/Sidebars/LandlordSidebar'
-import Header from '../../components/Headers/Header'
+import TenantSidebar from '../components/Sidebars/TenantSidebar'
+import Header from '../components/Headers/Header'
 import { Outlet } from 'react-router-dom'
+import styled from 'styled-components'
 
-const LandLord = () => {
+const Tenant = () => {
   return (
     <>
-      <LandlordMP>
-        <section className='landlord-page'>
-          <div className='landlord-header'>
+      <TenantMP>
+        <section className='tenant-page'>
+          <div className='tenant-header'>
             <Header />
           </div>
-          <div className='landlord-sidebar'>
-            <LandlordSidebar />
+          <div className='tenant-sidebar'>
+            <TenantSidebar />
           </div>
-          <main className='landlord-children'>
+          <main className='tenant-children'>
             <Outlet />
           </main>
         </section>
-      </LandlordMP>
+      </TenantMP>
     </>
   )
 }
-const LandlordMP = styled.section`
-  .landlord-page {
+
+const TenantMP = styled.section`
+  .tenant-page {
     position: relative;
     width: 100%;
   }
-  .landlord-header {
+  .tenant-header {
     position: absolute;
     top: 0;
     width: 100%;
     height: 86px;
   }
-  .landlord-sidebar {
+  .tenant-sidebar {
     position: absolute;
     top: 0;
     left: 0;
     width: 230px;
   }
-  .landlord-children {
+  .tenant-children {
     position: absolute;
     top: 106px;
     right: 20px;
     width: 81%;
-    display: flex;
-    flex-direction: column;
   }
   @media screen and (min-width: 2000px) {
-    .landlord-children {
+    .tenant-children {
       width: 84%;
       margin: 20px auto;
     }
   }
   @media screen and (max-width: 1350px) {
-    .landlord-children {
+    .tenant-children {
       width: 79%;
     }
   }
   @media screen and (max-width: 1250px) {
-    .landlord-children {
+    .tenant-children {
       width: 95%;
       top: 86px;
       left: 0;
@@ -69,9 +68,10 @@ const LandlordMP = styled.section`
     }
   }
   @media screen and (max-width: 550px) {
-    .landlord-children {
+    .tenant-children {
       margin: 10px auto;
     }
   }
 `
-export default LandLord
+
+export default Tenant

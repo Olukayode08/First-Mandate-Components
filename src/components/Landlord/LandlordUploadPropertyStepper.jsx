@@ -6,7 +6,7 @@ import { useFirstMandateMutation } from '../../data-layer/utils'
 import { useNavigate } from 'react-router-dom'
 import LandlordUploadPropertyOne from './LandlordUploadPropertyOne'
 import LandlordUploadPropertyTwo from './LandlordUploadPropertyTwo'
-import LandlordCongratsModal from '../modal/LandlordCongratsModal'
+import ModalComponent from '../Globals.js/ModalComponent'
 
 const totalSteps = 2
 const LandlordUploadPropertyStepper = () => {
@@ -42,16 +42,6 @@ const LandlordUploadPropertyStepper = () => {
   })
 
   const handleAddProperty = async (e) => {
-    // const payload = {
-    //   title: addProperty.title,
-    //   address: addProperty.address,
-    //   country: addProperty.country,
-    //   city: addProperty.city,
-    //   state: addProperty.state,
-    //   manager_name: addProperty.manager_name,
-    //   manager_email: addProperty.manager_email,
-    //   manager_phone: addProperty.manager_phone,
-    // }
     const {
       title,
       address,
@@ -198,7 +188,14 @@ const LandlordUploadPropertyStepper = () => {
         </section>
       </LUploadPS>
       {/* Congratulations Conponent */}
-      <div>{isSuccess && <LandlordCongratsModal />}</div>
+      <div>
+        {isSuccess && (
+          <ModalComponent
+            textOne='Congratulations, your property has been uploaded successfully'
+            textTwo='Redirecting...'
+          />
+        )}
+      </div>
     </>
   )
 }
