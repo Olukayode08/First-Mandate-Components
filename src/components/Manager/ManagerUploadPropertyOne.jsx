@@ -1,128 +1,98 @@
 import React from 'react'
-import styled from 'styled-components'
-import ManagerCountryDropdown from '../Dropdowns/ManagerCountryDropdown'
+import { formValidation } from '../../hooks/functions'
+import FormInput from '../Globals.js/FormInput'
 
-const ManagerUploadPropertyOne = ({
-  handleChangeAddProperty,
-  addProperty,
-}) => {
+const ManagerUploadPropertyOne = ({ register, errors }) => {
   return (
     <>
-      <MUploadPO>
-        <section>
-          <div className='section'>
-            <div className='input'>
-              <label>Property Title*</label>
-              <input
+      <div className='flex flex-col gap-2.5 w-full'>
+        <div className='w-[90%] md:w-[500px]'>
+          <FormInput
+            label='Property Title*'
+            name='title'
+            type='text'
+            placeholder='Enter a brief title / name of the property'
+            {...register('title', formValidation('text', true))}
+            error={errors?.title}
+          />
+        </div>
+        <div className='w-[90%] md:w-[500px]'>
+          <FormInput
+            label='Area*'
+            name='address'
+            type='text'
+            placeholder='eg GRA, Egbeda, Oke-Ado'
+            {...register('address', formValidation('text', true))}
+            error={errors?.address}
+          />
+        </div>
+
+        <div className='flex flex-col gap-2.5 w-full'>
+          <label>Location</label>
+          <section className='flex gap-2.5 items-center flex-wrap w-full'>
+            <div className='w-[70%] md:w-[180px]'>
+              <FormInput
                 type='text'
-                placeholder='Enter a brief title / name of the property'
-                required
-                name='title'
-                value={addProperty.title}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
+                name='country'
+                placeholder='Country eg Nigeria'
+                {...register('country', formValidation('text', true))}
+                error={errors?.country}
               />
             </div>
-            <div className='input'>
-              <label>Area*</label>
-              <input
+            <div className='w-[70%] md:w-[180px]'>
+              <FormInput
                 type='text'
-                placeholder='eg GRA, Egbeda, Oke-Ado'
-                required
-                name='address'
-                value={addProperty.address}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
+                name='state'
+                placeholder='State eg Lagos'
+                {...register('state', formValidation('text', true))}
+                error={errors?.state}
               />
             </div>
-            <div className='location'>
-              <label>Location</label>
-              <ManagerCountryDropdown
-                addProperty={addProperty}
-                handleChangeAddProperty={handleChangeAddProperty}
-              />
-            </div>
-            <div className='input'>
-              <label>Landlord's Name</label>
-              <input
+            <div className='w-[70%] md:w-[180px]'>
+              <FormInput
                 type='text'
-                placeholder='Enter Full name'
-                name='landlord_name'
-                value={addProperty.landlord_name}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
+                name='city'
+                placeholder='City eg Ikeja'
+                {...register('city', formValidation('text', true))}
+                error={errors?.city}
               />
             </div>
-            <div className='input'>
-              <label>Landlord's Email</label>
-              <input
-                type='email'
-                placeholder='Enter Email'
-                name='landlord_email'
-                value={addProperty.landlord_email}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
-              />
-            </div>
-            <div className='input'>
-              <label>Landlord's Phone</label>
-              <input
-                type='text'
-                placeholder='+234'
-                name='landlord_phone'
-                value={addProperty.landlord_phone}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
-              />
-            </div>
-          </div>
-        </section>
-      </MUploadPO>
+          </section>
+        </div>
+        <div className='w-[90%] md:w-[500px]'>
+          <FormInput
+            label={`Landlord's Name`}
+            name='landlord_name'
+            type='text'
+            placeholder='Enter Full name'
+            {...register('landlord_name', formValidation('text', true))}
+            error={errors?.landlord_name}
+          />
+        </div>
+        <div className='w-[90%] md:w-[500px]'>
+          <FormInput
+            label={`Landlord's Email`}
+            name='landlord_email'
+            type='email'
+            placeholder='Enter Email'
+            {...register('landlord_email', formValidation('email', true))}
+            error={errors?.landlord_email}
+          />
+        </div>
+
+        <div className='w-[90%] md:w-[500px]'>
+          <FormInput
+            label={`Landlord's Phone`}
+            name='landlord_phone'
+            type='text'
+            placeholder='+234'
+            {...register('landlord_phone', formValidation('text', true))}
+            error={errors?.landlord_phone}
+          />
+        </div>
+      </div>
     </>
   )
 }
-const MUploadPO = styled.section`
-  .section {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .input {
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    margin: 10px 0;
-  }
-  label {
-    margin: 10px 0;
-    font-size: 18px;
-  }
-  input {
-    outline: none;
-    background: transparent;
-    border: 1px solid black;
-    padding: 0 20px;
-    font-family: inherit;
-    font-size: 16px;
-    color: #000;
-    border-radius: 2px;
-  }
-  .name-input-field {
-    width: 100%;
-    height: 48px;
-  }
-  .location {
-    margin: 10px 0;
-  }
-  @media screen and (max-width: 550px) {
-    .input {
-      width: 95%;
-    }
-  }
-`
+
 export default ManagerUploadPropertyOne

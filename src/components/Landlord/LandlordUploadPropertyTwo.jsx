@@ -1,130 +1,95 @@
 import React from 'react'
-import styled from 'styled-components'
-import LandlordRentTermsDropdown from '../Dropdowns/LandlordRentTermsDropdown'
-import LandlordRentAmountDropdown from '../Dropdowns/LandlordRentAmountDropdown'
+import CustomSelector from '../Globals.js/CustomSelector'
+import FormInput from '../Globals.js/FormInput'
+import { formValidation } from '../../hooks/functions'
 
 const LandlordUploadPropertyTwo = ({
-  handleChangeAddProperty,
-  setAddProperty,
+  setValue,
   addProperty,
+  register,
+  errors,
 }) => {
+  const durationOptions = [
+    { label: '1 years', value: '1' },
+    { label: '2 years', value: '2' },
+    { label: '3 years', value: '3' },
+  ]
+
+  const paymentStatus = [
+    { label: 'Monthly', value: 'Monthly' },
+    { label: 'Yearly', value: 'Yearly' },
+    { label: 'Bi Yearly', value: 'Bi Yearly' },
+  ]
   return (
     <>
-      <LUploadPTwo>
-        <section>
-          <div>
-            <LandlordRentTermsDropdown />
-          </div>
-          <div>
-            <LandlordRentAmountDropdown />
-          </div>
-          <div className='utilities'>
-            <label>Payments to be managed apart from Rent</label>
-            <div className='checkboxes'>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Security</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Electricity</p>
-              </div>
-              <div className='checkbox'>
-                <input type='checkbox' className='checkbox-input' />
-                <p className='ppt-details'>Water</p>
-              </div>
+      <section className='flex flex-col w-full gap-2.5'>
+        <label>Rent Duration*</label>
+
+        <div className='h-12 w-[200px]'>
+          <CustomSelector
+            placeholder='Select Duration Terms'
+            options={durationOptions}
+            value={addProperty.rent_duration}
+            onChange={(selected) => setValue('rent_duration', selected)}
+            multiple={false}
+          />
+        </div>
+        <div className='flex flex-col flex-wrap w-full gap-2.5'>
+          <label>Rent Amount*</label>
+          <div className='flex items-center gap-2.5'>
+            <div className='h-12 w-[200px]'>
+              <CustomSelector
+                placeholder='Select Payment Status'
+                options={paymentStatus}
+                value={addProperty.payment_status}
+                onChange={(selected) => setValue('payment_status', selected)}
+                multiple={false}
+              />
+            </div>
+            <div className='w-[150px]'>
+              <FormInput
+                type='text'
+                name={'amount'}
+                placeholder='#40,000.00k'
+                {...register('amount', formValidation('text', true))}
+                error={errors?.amount}
+              />
             </div>
           </div>
-        </section>
-      </LUploadPTwo>
+        </div>
+        <div className='flex flex-col gap-2.5 mt-4'>
+          <label className='text-base'>
+            Payments to be managed apart from Rent
+          </label>
+          <div className='flex flex-wrap gap-5 w-full '>
+            <div className='w-[150px]'>
+              <FormInput
+                type='checkbox'
+                label='Security'
+                value='Security'
+                {...register('utilities')}
+              />
+            </div>
+            <div className='w-[150px]'>
+              <FormInput
+                type='checkbox'
+                label='Electricity'
+                value='Electricity'
+                {...register('utilities')}
+              />
+            </div>{' '}
+            <div className='w-[150px]'>
+              <FormInput
+                type='checkbox'
+                label='Water'
+                value='Water'
+                {...register('utilities')}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
-const LUploadPTwo = styled.section`
-  .section {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .input {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-  }
-  label {
-    margin: 10px 0;
-    font-size: 18px;
-  }
-  .p-status {
-    display: flex;
-    gap: 20px;
-  }
-  .payment {
-    height: 48px;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    color: #ffff;
-    text-align: center;
-  }
-  .part-p {
-    background-color: #ff7a00;
-  }
-  .full-p {
-    background-color: #159e23;
-  }
-  .not-p {
-    background-color: #ff0000;
-  }
-  input {
-    outline: none;
-    border: 1px solid black;
-    padding: 0 20px;
-    font-family: inherit;
-    font-size: 15px;
-    color: #000;
-    border-radius: 4px;
-    background: transparent;
-  }
-  /* Checkbox */
-  .utilities {
-    margin: 10px 0;
-  }
-  .checkboxes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    width: 450px;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .checkbox {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .ppt-details {
-    flex-shrink: 0;
-  }
-  .checkbox-input {
-    width: 18px;
-    height: 18px;
-  }
-  @media screen and (max-width: 750px) {
-    .p-status {
-      flex-direction: column;
-      gap: 15px;
-    }
-  }
-  @media screen and (max-width: 520px) {
-    .checkboxes {
-      justify-content: space-between;
-      width: 95%;
-    }
-  }
-`
 export default LandlordUploadPropertyTwo

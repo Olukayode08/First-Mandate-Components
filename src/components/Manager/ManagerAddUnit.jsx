@@ -1,37 +1,48 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { IoMdArrowBack } from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
-import ManagerUnitTypeDropdown from '../Dropdowns/ManagerUnitTypeDropdown'
+import { useForm } from 'react-hook-form'
+import Button from '../Globals.js/Button'
+import CustomSelector from '../Globals.js/CustomSelector'
+import FormInput from '../Globals.js/FormInput'
+import { formValidation } from '../../hooks/functions'
 
 const ManagerAddUnit = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
+    // mode: 'onChange',
+    defaultValues: {
+      unit_name: '',
+      unit_type: '',
+      no_of_bedrooms: '',
+      occupation_status: '',
+    },
+  })
+  const formValues = watch()
+  const occupationStatus = watch('occupation_status')
   const navigate = useNavigate()
   const { propertyId } = useParams()
   const [buttonType, setButtonType] = useState()
   const [unitError, setUnitError] = useState(null)
   const [successError, setSuccessError] = useState(null)
 
-  const [addUnit, setAddUnit] = useState({
-    unit_name: '',
-    unit_type: '',
-    no_of_bedrooms: '',
-    occupation_status: '',
-  })
   const backProperties = () => {
     navigate(`/manager/property/${propertyId}`)
   }
-  const handleChangeAddUnit = (e) => {
-    setAddUnit({ ...addUnit, [e.target.name]: e.target.value })
-  }
-  // Clear Error
+
   useEffect(() => {
     setUnitError('')
   }, [
-    addUnit.unit_name,
-    addUnit.unit_type,
-    addUnit.no_of_bedrooms,
-    addUnit.occupation_status,
+    formValues.unit_name,
+    formValues.occupation_status,
+    formValues.no_of_bedrooms,
+    formValues.occupation_status,
   ])
 
   const {
@@ -42,41 +53,8 @@ const ManagerAddUnit = () => {
     `/property-manager/properties/${propertyId}/units`,
     {
       onSuccess: (data) => {
-        const unitUuid = data?.data?.uuid
-        if (addUnit.occupation_status === 'Occupied') {
-          setTimeout(() => {
-            navigate(`/manager/add-tenant/${unitUuid}/tenants`, {
-              state: { unitName: addUnit.unit_name },
-            })
-          }, 5000)
-        }
-      },
-      onError: (error) => {},
-    }
-  )
-
-  const payload = {
-    unit_name: addUnit.unit_name,
-    unit_type: addUnit.unit_type,
-    no_of_bedrooms: addUnit.no_of_bedrooms,
-    occupation_status: addUnit.occupation_status,
-  }
-
-  const handleAddUnit = async (_buttonType) => {
-    setButtonType(_buttonType)
-    if (
-      !addUnit.unit_name ||
-      !addUnit.unit_type ||
-      !addUnit.no_of_bedrooms ||
-      !addUnit.occupation_status
-    ) {
-      setUnitError('Please fill in all required fields.')
-      return
-    }
-    try {
-      await postUnit(payload)
-      setTimeout(() => {
-        if (addUnit.occupation_status === 'Occupied') {
+        const unitDetails = data?.data
+        if (unitDetails.occupation_status === 'Occupied') {
           setSuccessError(
             'Congratulations, your unit has been added successfully. You are required to add a tenant to the already occupied unit'
           )
@@ -85,317 +63,172 @@ const ManagerAddUnit = () => {
             'Congratulations, your unit has been added successfully.'
           )
         }
-        setAddUnit({
-          unit_name: '',
-          unit_type: '',
-          no_of_bedrooms: '',
-          occupation_status: '',
-        })
+        if (unitDetails.occupation_status === 'Occupied') {
+          setTimeout(() => {
+            navigate(`/manager/add-tenant/${unitDetails.uuid}/tenants`, {
+              state: { unitName: unitDetails.unit_name },
+            })
+          }, 5000)
+        }
         setTimeout(() => {
-          setSuccessError('')
           if (
-            _buttonType === 'continue' &&
-            addUnit.occupation_status !== 'Occupied'
+            buttonType === 'continue' &&
+            unitDetails.occupation_status !== 'Occupied'
           ) {
             navigate(`/manager/property/${propertyId}`)
-          } else if (_buttonType === 'addNew') {
+          } else if (buttonType === 'addNew') {
             setSuccessError('')
           }
         }, 5000)
-      }, 200)
+        reset()
+      },
+      onError: (error) => {},
+    }
+  )
+
+  const handleAddUnit = async (data) => {
+    if (
+      !data.unit_name ||
+      !data.unit_type ||
+      !data.no_of_bedrooms ||
+      !data.occupation_status
+    ) {
+      setUnitError('Please fill in all required fields.')
+      return
+    }
+    try {
+      await postUnit(data)
     } catch (e) {
       console.error(e.message)
     }
   }
 
+  const apartmentOptions = [
+    { label: 'Duplex', value: 'Duplex' },
+    { label: 'Flat', value: 'Flat' },
+    { label: 'Self Contain', value: 'Self Contain' },
+    { label: 'Bungalow', value: 'Bungalow' },
+  ]
+
+  const bedroomOptions = [
+    { label: '1', value: '1' },
+    { label: '2', value: '2' },
+    { label: '3', value: '3' },
+    { label: '4', value: '4' },
+    { label: '5', value: '5' },
+  ]
+
   return (
     <>
-      <MAUnit>
-        <section>
-          <div className='upload-unit'>
-            {!!(addUnitError || unitError) && (
-              <p className='error'>{unitError || addUnitError?.error}</p>
-            )}
-            {!!successError && <p className='error success'>{successError}</p>}
-            <h3>Add Unit</h3>
-            <div className='section'>
-              <div className='input'>
-                <label>Unit Name</label>
-                <input
-                  type='text'
-                  name='unit_name'
-                  value={addUnit.unit_name}
-                  onChange={handleChangeAddUnit}
-                  autoComplete='off'
-                  placeholder='Enter full name'
-                  className='u-name-input'
-                />
-              </div>
-            </div>
-            <div className='unit-type'>
-              <label>Unit Type*</label>
-              <ManagerUnitTypeDropdown
-                addUnit={addUnit}
-                handleChangeAddUnit={handleChangeAddUnit}
+      <form onSubmit={handleSubmit((data) => handleAddUnit(data))}>
+        <div className='w-full bg-white p-5'>
+          {!!(addUnitError || unitError) && (
+            <p className='text-error text-left'>
+              {unitError || addUnitError?.error}
+            </p>
+          )}
+          {!!successError && (
+            <p className='text-success text-left'>{successError}</p>
+          )}
+          <h3 className='my-2.5'>Add Apartment</h3>
+          <div className='flex flex-col gap-4'>
+            <div className='w-[90%] md:w-[500px]'>
+              <FormInput
+                label='Apartment Name'
+                type='text'
+                name={'unit_name'}
+                placeholder='Enter apartment name'
+                {...register('unit_name', formValidation('text', true))}
+                error={errors?.unit_name}
               />
             </div>
-            <div className='rent-status'>
-              <label>
+            <div className='flex flex-col gap-2.5'>
+              <label className='text-base'>Apartment Type*</label>
+              <div className='flex md:flex-row flex-col items-center gap-2.5'>
+                <div className='h-12 w-[240px]'>
+                  <CustomSelector
+                    placeholder='Select Type'
+                    options={apartmentOptions}
+                    value={formValues.unit_type}
+                    onChange={(selected) => setValue('unit_type', selected)}
+                    multiple={false}
+                  />
+                </div>
+                <div className='h-12 w-[240px]'>
+                  <CustomSelector
+                    placeholder='No. of bedrooms.'
+                    options={bedroomOptions}
+                    value={formValues.no_of_bedrooms}
+                    onChange={(selected) =>
+                      setValue('no_of_bedrooms', selected)
+                    }
+                    multiple={false}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='flex flex-col gap-2.5'>
+              <label className='text-base'>
                 Rent Status (Are there occupants in the apartment already)
               </label>
-              <div className='radio-btns'>
-                <div className='radio-btn'>
-                  <input
+              <div className='flex md:flex-row flex-col items-center gap-2.5'>
+                <div className='w-[200px]'>
+                  <FormInput
+                    label='Occupied'
                     type='radio'
                     value='Occupied'
-                    name='occupation_status'
-                    onChange={handleChangeAddUnit}
-                    checked={addUnit.occupation_status === 'Occupied'}
-                    className='btn-input'
+                    {...register(
+                      'occupation_status',
+                      formValidation('text', true)
+                    )}
+                    checked={occupationStatus === 'Occupied'}
                   />
-                  <p className='ppt-details'>Occupied</p>
                 </div>
-                <div className='radio-btn'>
-                  <input
+                <div className='w-[200px]'>
+                  <FormInput
+                    label='Vacant'
                     type='radio'
-                    name='occupation_status'
                     value='Vacant'
-                    checked={addUnit.occupation_status === 'Vacant'}
-                    onChange={handleChangeAddUnit}
-                    className='btn-input'
+                    {...register(
+                      'occupation_status',
+                      formValidation('text', true)
+                    )}
+                    checked={occupationStatus === 'Vacant'}
                   />
-                  <p className='ppt-details'>Vacant</p>
                 </div>
               </div>
-            </div>
-            <div className='step-buttons'>
-              <div onClick={backProperties} className='back'>
-                <IoMdArrowBack />
-                <button>Go back</button>
-              </div>
-              <button
-                onClick={() => handleAddUnit('addNew')}
-                disabled={isLoading}
-                type='submit'
-                className={`btn add-unit ${
-                  isLoading && buttonType === 'addNew' && 'btn-disabled'
-                }`}
-              >
-                {isLoading && buttonType === 'addNew' ? (
-                  <div className='login-spinner'>
-                    <div className='spinner'></div>
-                    <p>Save & Add New Unit</p>
-                  </div>
-                ) : (
-                  <p className='login-btn'>Save & Add New Unit</p>
-                )}
-              </button>
-              <button
-                onClick={() => handleAddUnit('continue')}
-                disabled={isLoading}
-                type='submit'
-                className={`next-btn next-button ${
-                  isLoading && buttonType === 'continue' && 'next-btn-disabled'
-                }`}
-              >
-                {isLoading && buttonType === 'continue' ? (
-                  <div className='login-spinner'>
-                    <div className='spinner'></div>
-                    <p>Save & Continue</p>
-                  </div>
-                ) : (
-                  <p className='login-btn'>Save & Continue</p>
-                )}
-              </button>
             </div>
           </div>
-        </section>
-      </MAUnit>
+
+          <div className='flex items-center flex-wrap gap-2.5 mt-5'>
+            <div className='w-[150px] h-12'>
+              <Button
+                icon='back'
+                btnText='Go back'
+                btnFunction={backProperties}
+                theme='secondary'
+              />
+            </div>
+            <div className='w-[250px] h-12'>
+              <Button
+                btnText='Save & Add New Apartment'
+                isLoading={isLoading && buttonType === 'addNew'}
+                btnFunction={() => setButtonType('addNew')}
+                theme='primary'
+              />
+            </div>
+            <div className='w-[180px] h-12'>
+              <Button
+                btnText='Save & Continue'
+                isLoading={isLoading && buttonType === 'continue'}
+                btnFunction={() => setButtonType('continue')}
+              />
+            </div>
+          </div>
+        </div>
+      </form>
     </>
   )
 }
-const MAUnit = styled.section`
-  .upload-unit {
-    width: 100%;
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 20px;
-  }
-  .error {
-    color: #ff0000;
-    text-align: left;
-    margin: 10px 0;
-  }
-  .success {
-    color: green;
-  }
-  h3 {
-    margin: 10px 0;
-  }
-  .section {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .input {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    width: 100%;
-  }
-  input {
-    outline: none;
-    border: 1px solid black;
-    background: transparent;
-    padding: 0 20px;
-    font-family: inherit;
-    font-weight: 17px;
-    color: #000;
-    border-radius: 4px;
-  }
-  .u-name-input {
-    width: 500px;
-    height: 48px;
-  }
-  .unit-type {
-    margin: 10px 0;
-  }
-  /* Rent Status */
-  .rent-status {
-    display: flex;
-    flex-direction: column;
-  }
-  label {
-    margin: 10px 0;
-    font-size: 18px;
-  }
-  .radio-btns {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    width: 280px;
-  }
-  .radio-btn {
-    display: flex;
-    align-items: center;
-    width: 130px;
-    flex-shrink: 0;
-  }
-  .btn-input {
-    width: 18px;
-    height: 18px;
-  }
-  .ppt-details {
-    margin-left: 10px;
-    flex-shrink: 0;
-  }
-  /* Step buttons */
-  .step-buttons {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 100%;
-  }
-  .back {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    flex-shrink: 0;
-  }
-  button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #000;
-    flex-shrink: 0;
-    cursor: pointer;
-    font-size: 16px;
-    height: 50px;
-  }
-  .add-unit,
-  .back,
-  .next-button {
-    border-radius: 4px;
-    padding: 0 18px;
-  }
-  .back {
-    background-color: #ffdfe2;
-  }
-  .add-unit {
-    height: 48px;
-  }
-  .btn {
-    background-color: #ffffff;
-    border: 1px solid black;
-    color: #000;
-    height: 48px;
-  }
-  .btn-disabled {
-    background: #00000080;
-    color: #fff;
-    cursor: not-allowed;
-    border: none;
-    height: 48px;
-  }
-  .next-btn {
-    background-color: #fedf7e;
-    color: #000;
-  }
-  .next-btn-disabled {
-    background: #00000080;
-    color: #fff;
-    cursor: not-allowed;
-  }
-  .login-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .login-spinner {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  }
-  .spinner {
-    border: 3px solid #fff;
-    border-top: 3px solid #3498db;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @media screen and (max-width: 550px) {
-    .u-name-input {
-      width: 98%;
-    }
-    label {
-      font-size: 16px;
-      line-height: 22px;
-    }
-  }
-  @media screen and (max-width: 350px) {
-    .u-name-input {
-      width: 98%;
-    }
-  }
-`
 
 export default ManagerAddUnit

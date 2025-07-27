@@ -15,6 +15,7 @@ import { FirstMandate } from './context/Context'
 import { landlordRoutes } from './routes/landlordRoutes'
 import { managerRoutes } from './routes/managerRoutes'
 import { tenantRoutes } from './routes/tenantRoutes'
+import Test from './components/LandingPage/Test'
 
 function App() {
   const { theme } = useContext(FirstMandate)
@@ -38,6 +39,8 @@ function App() {
       <div className='app' id={theme}>
         <Routes>
           <Route path='/' element={<LandingPage />} />
+          <Route path='/test' element={<Test />} />
+
           <Route path='/sign-up' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify-code' element={<VerificationCode />} />

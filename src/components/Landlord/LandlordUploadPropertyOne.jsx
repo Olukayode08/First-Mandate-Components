@@ -1,131 +1,97 @@
 import React from 'react'
-import styled from 'styled-components'
-import LandlordCountryDropdown from '../Dropdowns/LandlordCountryDropdown'
+import FormInput from '../Globals.js/FormInput'
+import { formValidation } from '../../hooks/functions'
 
-const LandlordUploadPropertyOne = ({
-  handleChangeAddProperty,
-  addProperty,
-}) => {
+const LandlordUploadPropertyOne = ({ register, errors }) => {
   return (
     <>
-      <LUploadPO>
-        <section>
-          <div className='section'>
-            <div className='input'>
-              <label>Property Title*</label>
-              <input
-                type='text'
-                placeholder='Enter a brief title / name of the property'
-                required
-                name='title'
-                value={addProperty.title}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
-              />
-            </div>
-            <div className='input'>
-              <label>Area*</label>
-              <input
-                type='text'
-                placeholder='eg GRA, Egbeda, Oke-Ado'
-                required
-                name='address'
-                value={addProperty.address}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
-              />
-            </div>
-            <div className='location'>
-              <label>Location</label>
-              <LandlordCountryDropdown
-                addProperty={addProperty}
-                handleChangeAddProperty={handleChangeAddProperty}
-              />
-            </div>
-            <div className='input'>
-              <label>Manager's Name</label>
-              <input
-                type='text'
-                placeholder='Enter Full name'
-                required
-                name='manager_name'
-                value={addProperty.manager_name}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
-              />
-            </div>
-            <div className='input'>
-              <label>Manager's Email</label>
-              <input
-                type='email'
-                placeholder='Enter Email'
-                required
-                name='manager_email'
-                value={addProperty.manager_email}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
-              />
-            </div>
-            <div className='input'>
-              <label>Manager's Phone</label>
-              <input
-                type='text'
-                placeholder='+234'
-                required
-                name='manager_phone'
-                value={addProperty.manager_phone}
-                onChange={handleChangeAddProperty}
-                autoComplete='off'
-                className='name-input-field'
-              />
-            </div>
+        <div className='flex flex-col gap-2.5 w-full'>
+          <div className='w-[90%] md:w-[500px]'>
+            <FormInput
+              label='Property Title*'
+              name='title'
+              type='text'
+              placeholder='Enter a brief title / name of the property'
+              {...register('title', formValidation('text', true))}
+              error={errors?.title}
+            />
           </div>
-        </section>
-      </LUploadPO>
+          <div className='w-[90%] md:w-[500px]'>
+            <FormInput
+              label='Area*'
+              name='address'
+              type='text'
+              placeholder='eg GRA, Egbeda, Oke-Ado'
+              {...register('address', formValidation('text', true))}
+              error={errors?.address}
+            />
+          </div>
+
+          <div className='flex flex-col gap-2.5 w-full'>
+            <label>Location</label>
+            <section className='flex gap-2.5 items-center flex-wrap w-full'>
+              <div className='w-[70%] md:w-[180px]'>
+                <FormInput
+                  type='text'
+                  name='country'
+                  placeholder='Country eg Nigeria'
+                  {...register('country', formValidation('text', true))}
+                  error={errors?.country}
+                />
+              </div>
+              <div className='w-[70%] md:w-[180px]'>
+                <FormInput
+                  type='text'
+                  name='state'
+                  placeholder='State eg Lagos'
+                  {...register('state', formValidation('text', true))}
+                  error={errors?.state}
+                />
+              </div>
+              <div className='w-[70%] md:w-[180px]'>
+                <FormInput
+                  type='text'
+                  name='city'
+                  placeholder='City eg Ikeja'
+                  {...register('city', formValidation('text', true))}
+                  error={errors?.city}
+                />
+              </div>
+            </section>
+          </div>
+          <div className='w-[90%] md:w-[500px]'>
+            <FormInput
+              label={`Manager's Name`}
+              name='manager_name'
+              type='text'
+              placeholder='Enter Full name'
+              {...register('manager_name', formValidation('text', true))}
+              error={errors?.manager_name}
+            />
+          </div>
+          <div className='w-[90%] md:w-[500px]'>
+            <FormInput
+              label={`Manager's Email`}
+              name='manager_email'
+              type='email'
+              placeholder='Enter Email'
+              {...register('manager_email', formValidation('email', true))}
+              error={errors?.manager_email}
+            />
+          </div>
+
+          <div className='w-[90%] md:w-[500px]'>
+            <FormInput
+              label={`Manager's Phone`}
+              name='manager_phone'
+              type='text'
+              placeholder='+234'
+              {...register('manager_phone', formValidation('text', true))}
+              error={errors?.manager_phone}
+            />
+          </div>
+        </div>
     </>
   )
 }
-const LUploadPO = styled.section`
-  .section {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .input {
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    margin: 10px 0;
-  }
-  label {
-    margin: 10px 0;
-    font-size: 18px;
-  }
-  input {
-    outline: none;
-    background: transparent;
-    border: 1px solid black;
-    padding: 0 20px;
-    font-family: inherit;
-    font-size: 16px;
-    color: #000;
-    border-radius: 2px;
-  }
-  .name-input-field {
-    width: 100%;
-    height: 48px;
-  }
-  .location {
-    margin: 10px 0;
-  }
-  @media screen and (max-width: 550px) {
-    .input {
-      width: 95%;
-    }
-  }
-`
 export default LandlordUploadPropertyOne
