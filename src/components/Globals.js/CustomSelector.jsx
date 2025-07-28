@@ -57,7 +57,10 @@ const CustomSelector = ({
   }
 
   return (
-    <div className='relative w-full h-full' ref={dropdownRef}>
+    <div
+      className='flex flex-col gap-2.5 relative w-full h-full'
+      ref={dropdownRef}
+    >
       <div
         className={`flex justify-between items-center px-3 py-2.5 border border-black cursor-pointer h-full w-full ${bgColor} ${textColor} ${borderRadius}`}
         onClick={() => setIsOpen((prev) => !prev)}
@@ -79,7 +82,7 @@ const CustomSelector = ({
 
       {isOpen && (
         <div
-          className={`absolute my-2 top-full text-black rounded-md shadow-md left-0 w-full ${bgColor} h-[160px] overflow-y-scroll z-20`}
+          className={`absolute my-2 top-full text-black rounded-md shadow-md left-0 w-full ${bgColor} h-[130px] overflow-y-scroll z-20`}
         >
           {options.map((option) => (
             <div

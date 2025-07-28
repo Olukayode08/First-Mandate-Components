@@ -61,12 +61,12 @@ const LandlordSelectUnit = () => {
             <div className='search-p'>
               {isEdit ? (
                 <p className='search-text'>
-                  Please select which property or unit you would love to edit a
+                  Please select which apartment you would love to edit a
                   tenant
                 </p>
               ) : (
                 <p className='search-text'>
-                  Please select which property or unit you would love to add a
+                  Please select which apartment you would love to add a
                   tenant to
                 </p>
               )}

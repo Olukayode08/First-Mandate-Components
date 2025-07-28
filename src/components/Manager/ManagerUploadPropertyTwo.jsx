@@ -27,7 +27,7 @@ const ManagerUploadPropertyTwo = ({
 
         <div className='h-12 w-[200px]'>
           <CustomSelector
-            placeholder='Select Duration Terms'
+            placeholder='Select Duration'
             options={durationOptions}
             value={addProperty.rent_duration}
             onChange={(selected) => setValue('rent_duration', selected)}

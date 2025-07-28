@@ -1,26 +1,14 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import {
   useFirstMandateMutation,
   useFirstMandateQuery,
 } from '../../data-layer/utils'
-import LandlordInstallmentDropdown from '../Dropdowns/LandlordInstallmentDropdown'
-
-const rentTerms = [
-  '1 month',
-  '2 month',
-  '3 month',
-  '4 month',
-  '5 month',
-  '6 month',
-  '7 month',
-  '8 month',
-  '9 month',
-  '10 month',
-  '11 month',
-  '12 month',
-]
+import { useForm } from 'react-hook-form'
+import FormInput from '../Globals.js/FormInput'
+import { formValidation } from '../../hooks/functions'
+import Button from '../Globals.js/Button'
+import CustomSelector from '../Globals.js/CustomSelector'
 
 const findUnit = (unitId, items) => {
   /**
@@ -43,6 +31,32 @@ const findUnit = (unitId, items) => {
 }
 
 const LandlordAddNewTenant = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
+    // mode: 'onChange',
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      phone_two: '',
+      lease_start: '',
+      lease_end: '',
+      payment_type: '',
+      no_of_installments: '',
+      rent_amount: '',
+      rent_payment_status: '',
+      rent_term: '',
+      rent_due_date: '',
+    },
+  })
+  const addTenant = watch()
+
   const navigate = useNavigate()
   const location = useLocation()
   const unitName = location.state && location.state.unitName
@@ -51,36 +65,30 @@ const LandlordAddNewTenant = () => {
   const pageUrl = window.location.href
   const isEdit = pageUrl.includes('edit')
 
-  const [addTenant, setAddTenant] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    phone_two: '',
-    lease_start: '',
-    lease_end: '',
-    payment_type: '',
-    no_of_installments: '',
-    rent_amount: '',
-    rent_payment_status: '',
-    rent_terms: '',
-    rent_due_date: '',
-  })
+  const termsOptions = [
+    { label: '1 month', value: '1 month' },
+    { label: '2 month', value: '2 month' },
+    { label: '3 month', value: '3 month' },
+    { label: '4 month', value: '4 month' },
+    { label: '5 month', value: '5 month' },
+    { label: '6 month', value: '6 month' },
+    { label: '7 month', value: '7 month' },
+    { label: '8 month', value: '8 month' },
+    { label: '9 month', value: '9 month' },
+    { label: '10 month', value: '10 month' },
+    { label: '11 month', value: '11 month' },
+    { label: '12 month', value: '12 month' },
+  ]
 
-  const handlePaymentTypeChange = (e) => {
-    const { value } = e.target
-    setAddTenant({ ...addTenant, payment_type: value, no_of_installments: '' })
-  }
+  const paymentOptions = [
+    { label: 'Paid', value: 'Paid' },
+    { label: 'Unpaid', value: 'Unpaid' },
+    { label: 'Paid in part', value: 'Paid in part' },
+  ]
 
-  const handleInstallmentChange = (e) => {
-    const { value } = e.target
-    setAddTenant({ ...addTenant, no_of_installments: value })
-  }
-  const handleChangeAddTenant = (e) => {
-    setAddTenant({ ...addTenant, [e.target.name]: e.target.value })
-  }
 
   const handleTenantUpdate = (fieldName, value) => {
-    setAddTenant((prev) => ({ ...prev, [fieldName]: value }))
+    setValue(fieldName, value)
   }
 
   const {
@@ -96,6 +104,7 @@ const LandlordAddNewTenant = () => {
         setTimeout(() => {
           navigate('/landlord/tenants')
         }, 3000)
+        reset()
       },
     }
   )
@@ -115,397 +124,245 @@ const LandlordAddNewTenant = () => {
       handleTenantUpdate('no_of_installments', tenant?.no_of_installments)
       handleTenantUpdate('rent_amount', tenant?.rent_amount)
       handleTenantUpdate('rent_payment_status', tenant?.rent_payment_status)
-      handleTenantUpdate('rent_terms', tenant?.rent_terms)
+      handleTenantUpdate('rent_term', tenant?.rent_term)
       handleTenantUpdate('rent_due_date', tenant?.rent_due_date)
     },
     onError: (error) => {},
   })
 
-  const { data: propertiesData } = useFirstMandateQuery(
-    `/properties`,
-    {
-      select: (data) => findUnit(unitId, data?.data?.data),
-      onSuccess: (data) => {
-      },
-    }
-  )
+  const { data: propertiesData } = useFirstMandateQuery(`/properties`, {
+    select: (data) => findUnit(unitId, data?.data?.data),
+    onSuccess: (data) => {},
+  })
 
-  const handleTenant = async (e) => {
-    e.preventDefault()
-    const payload = {
-      name: addTenant.name,
-      email: addTenant.email,
-      phone: addTenant.phone,
-      lease_start: addTenant.lease_start,
-      lease_end: addTenant.lease_end,
-      payment_type: addTenant.payment_type,
-      no_of_installments: addTenant.no_of_installments,
-      rent_amount: addTenant.rent_amount,
-      rent_payment_status: addTenant.rent_payment_status,
-      rent_terms: addTenant.rent_terms,
-      rent_due_date: addTenant.rent_due_date,
-    }
+  const handleTenant = async (data) => {
     try {
-      await postTenant(payload)
+      await postTenant(data)
     } catch (e) {}
   }
 
+  const paymentTypeOptions = [
+    { label: 'One Time', value: 'One Time' },
+    { label: 'Installment', value: 'Installment' },
+  ]
+
+  const [amountPerInstallment, setAmountPerInstallment] = useState('')
+
+  useEffect(() => {
+    if (addTenant.payment_type === 'One Time') {
+      setValue('no_of_installments', '1')
+      setAmountPerInstallment(addTenant.rent_amount)
+    } else if (addTenant.no_of_installments && addTenant.rent_amount) {
+      const amountPerInstallment =
+        parseFloat(addTenant.rent_amount) /
+        parseFloat(addTenant.no_of_installments)
+      setAmountPerInstallment(amountPerInstallment.toFixed(2))
+    }
+  }, [
+    addTenant.payment_type,
+    addTenant.no_of_installments,
+    addTenant.rent_amount,
+    setValue,
+  ])
+
   return (
     <>
-      <LANTenant>
-        <section>
-          <form onSubmit={handleTenant} className='l-section'>
-            {error && <p className='error'>{error?.message}</p>}
-            {isSuccess && (
-              <p className='error success'>
-                {isEdit
-                  ? 'Tenant edited successfully'
-                  : 'Tenant was added successfully'}
-              </p>
-            )}
-            <h3>{isEdit ? 'Edit Tenant' : 'Add New Tenant'}</h3>
-            <div className='input'>
-              <label>Unit Name</label>
-              <p className='unit'>
-                {propertiesData?.unit_name || unitName || ''}
-              </p>
-            </div>
-            <div className='input'>
-              <label>Name</label>
-              <input
+        <form
+          onSubmit={handleSubmit(handleTenant)}
+          className='w-full flex flex-col gap-2.5 bg-white p-5 rounded-md'
+        >
+          {error && <p className='text-error text-left'>{error?.message}</p>}
+          {isSuccess && (
+            <p className='text-success text-left'>
+              {isEdit
+                ? 'Tenant edited successfully'
+                : 'Tenant was added successfully'}
+            </p>
+          )}
+          <h3>{isEdit ? 'Edit Tenant' : 'Add New Tenant'}</h3>
+          <div className='flex flex-col gap-2.5'>
+            <label>Apartment Name</label>
+            <p className='border border-black rounded-md text-left w-[200px] h-12 flex items-center justify-center'>
+              {propertiesData?.unit_name || unitName || ''}
+            </p>
+          </div>
+          <div className='w-[90%] md:w-[500px]'>
+            <FormInput
+              label='Name'
+              type='text'
+              name={'name'}
+              value={addTenant.name}
+              placeholder='Enter apartment name'
+              {...register('name', formValidation('text', true))}
+              error={errors?.name}
+            />
+          </div>
+          <div className='w-[90%] md:w-[500px]'>
+            <FormInput
+              label='Email'
+              type='email'
+              name={'email'}
+              value={addTenant.email}
+              placeholder='Enter email address'
+              {...register('email', formValidation('email', true))}
+              error={errors?.email}
+            />
+          </div>
+          <div className='w-[90%] md:w-[500px]'>
+            <FormInput
+              label='Phone'
+              type='text'
+              name={'phone'}
+              value={addTenant.phone}
+              placeholder='+234'
+              {...register('phone', formValidation('text', true))}
+              error={errors?.phone}
+            />
+          </div>
+          {!unitId && (
+            <div className='w-[90%] md:w-[500px]'>
+              <FormInput
+                label='Phone'
                 type='text'
-                name='name'
-                required
-                value={addTenant.name}
-                onChange={handleChangeAddTenant}
-                autoComplete='off'
-                placeholder="Enter tenant's name"
-                className='t-name-input'
-              />
-            </div>
-            <div className='input'>
-              <label>Email</label>
-              <input
-                type='email'
-                name='email'
-                required
-                value={addTenant.email}
-                onChange={handleChangeAddTenant}
-                autoComplete='off'
-                placeholder='Enter email address'
-                className='t-name-input'
-              />
-            </div>
-            <div className='input'>
-              <label>Phone</label>
-              <input
-                type='text'
-                name='phone'
-                required
-                value={addTenant.phone}
-                onChange={handleChangeAddTenant}
-                autoComplete='off'
+                name={'phone_two'}
+                value={addTenant.phone_two}
                 placeholder='+234'
-                className='t-name-input'
+                {...register('phone_two', formValidation('text', true))}
+                error={errors?.phone_two}
               />
             </div>
-            {!unitId && (
-              <div className='input'>
-                <label>Phone</label>
-                <input
-                  type='text'
-                  name='phone_two'
-                  value={addTenant.phone_two}
-                  onChange={handleChangeAddTenant}
-                  autoComplete='off'
-                  placeholder='+234'
-                  className='t-name-input'
-                />
-              </div>
-            )}
-            <div className='rent-date'>
-              <div className='start-date'>
-                <label>Lease Start Date</label>
-                <input
-                  type='date'
-                  name='lease_start'
-                  required
-                  value={addTenant.lease_start}
-                  onChange={handleChangeAddTenant}
-                  autoComplete='off'
-                  placeholder='dd/mm/yyyy'
-                  className='r-date-input'
-                />
-              </div>
-              <div className='end-date'>
-                <label>Lease End Date</label>
-                <input
-                  type='date'
-                  name='lease_end'
-                  required
-                  value={addTenant.lease_end}
-                  onChange={handleChangeAddTenant}
-                  autoComplete='off'
-                  placeholder='dd/mm/yyyy'
-                  className='r-date-input'
-                />
-              </div>
-            </div>
-            <div className='rent-date'>
-              <LandlordInstallmentDropdown
-                addTenant={addTenant}
-                handleInstallmentChange={handleInstallmentChange}
-                handlePaymentTypeChange={handlePaymentTypeChange}
-                handleChangeAddTenant={handleChangeAddTenant}
-              />
-            </div>
-            <div className='select'>
-              <label>Rent Payment Status*</label>
-              <div className='user-select'>
-                <select
-                  id='rent_payment_status'
-                  name='rent_payment_status'
-                  required
-                  value={addTenant.rent_payment_status}
-                  onChange={handleChangeAddTenant}
-                >
-                  <option value=''>Select</option>
-                  <option value='Paid'>Paid</option>
-                  <option value='Unpaid'>Unpaid</option>
-                  <option value='Paid in part'>Paid in part</option>
-                </select>
-              </div>
-            </div>
-            <div className='select'>
-              <label>Rent Terms*</label>
-              <div className='user-select'>
-                <select
-                  id='rent_terms'
-                  name='rent_terms'
-                  value={addTenant.rent_terms}
-                  required
-                  onChange={handleChangeAddTenant}
-                >
-                  <option value=''>Select</option>
-                  {rentTerms.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className='due-date'>
-              <label>Rent Payment Due Date</label>
-              <input
+          )}
+          <div className='flex items-center gap-2.5'>
+            <div className='w-[45%] md:w-[240px]'>
+              <FormInput
+                label='Lease Start Date'
                 type='date'
-                name='rent_due_date'
-                required
-                value={addTenant.rent_due_date}
-                onChange={handleChangeAddTenant}
-                autoComplete='off'
-                placeholder='dd/mm/yyyy'
-                className='due-date-input'
+                name={'lease_start'}
+                value={addTenant.lease_start}
+                {...register('lease_start', formValidation('date', true))}
+                error={errors?.lease_start}
               />
             </div>
-            <button
-              disabled={isLoading}
-              className={
-                isLoading ? 'btn-disabled add-tenant' : 'btn add-tenant'
-              }
-            >
-              {isLoading ? (
-                <div className='login-spinner'>
-                  <div className='spinner'></div>
-                  <p>{isEdit ? 'Edit Tenant' : 'Add Tenant'}</p>
-                </div>
-              ) : (
-                <p className='login-btn'>
-                  {isEdit ? 'Edit Tenant' : 'Add Tenant'}
-                </p>
-              )}
-            </button>
-          </form>
-        </section>
-      </LANTenant>
+            <div className='w-[45%] md:w-[240px]'>
+              <FormInput
+                label='Lease End Date'
+                type='date'
+                name={'lease_end'}
+                value={addTenant.lease_end}
+                {...register('lease_end', formValidation('date', true))}
+                error={errors?.lease_end}
+              />
+            </div>
+          </div>
+          <div className='w-[45%] md:w-[240px]'>
+            <FormInput
+              label='Rent Amount'
+              type='text'
+              name='rent_amount'
+              value={addTenant.rent_amount}
+              placeholder='100,000'
+              {...register('rent_amount', {
+                required: 'Rent amount is required',
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: 'Please enter a valid number',
+                },
+              })}
+              error={errors?.rent_amount}
+            />
+          </div>
+          <div className='flex gap-2.5'>
+            <div className='flex flex-col gap-2.5'>
+              <label className='text-base'>Rent Payment Type*</label>
+              <div className='h-12 w-[240px]'>
+                <CustomSelector
+                  placeholder='Select'
+                  options={paymentTypeOptions}
+                  value={addTenant.payment_type}
+                  onChange={(selected) => setValue('payment_type', selected)}
+                  multiple={false}
+                />
+              </div>
+            </div>
+
+            <div className='w-[45%] md:w-[240px]'>
+              <FormInput
+                label='Number of Installments*'
+                type='text'
+                name='no_of_installments'
+                value={addTenant.no_of_installments}
+                placeholder='Enter number of installments'
+                disabled={!addTenant.payment_type}
+                {...register('no_of_installments', {
+                  required:
+                    addTenant.payment_type === 'Installment'
+                      ? 'Number of installments is required'
+                      : false,
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: 'Please enter a valid number',
+                  },
+                })}
+                error={errors?.no_of_installments}
+              />
+            </div>
+
+            <div className='w-[45%] md:w-[240px]'>
+              <FormInput
+                label='Amount for each Installment*'
+                type='text'
+                name='amount_per_installment'
+                value={amountPerInstallment}
+                isLoading={true}
+              />
+            </div>
+          </div>
+          <div className='flex flex-col gap-2.5'>
+            <label className='text-base'>Rent Payment Status*</label>
+            <div className='h-12 w-[240px]'>
+              <CustomSelector
+                placeholder='Select'
+                options={paymentOptions}
+                value={addTenant.rent_payment_status}
+                onChange={(selected) =>
+                  setValue('rent_payment_status', selected)
+                }
+                multiple={false}
+              />
+            </div>
+          </div>
+
+          <div className='flex flex-col gap-2.5'>
+            <label className='text-base'>Rent Terms*</label>
+            <div className='h-12 w-[240px]'>
+              <CustomSelector
+                placeholder='Select'
+                options={termsOptions}
+                value={addTenant.rent_term}
+                onChange={(selected) => setValue('rent_term', selected)}
+                multiple={false}
+              />
+            </div>
+          </div>
+          <div className='w-[45%] md:w-[240px]'>
+            <FormInput
+              label='Rent Payment Due Date'
+              type='date'
+              name={'rent_due_date'}
+              value={addTenant.rent_due_date}
+              {...register('rent_due_date', formValidation('date', true))}
+              error={errors?.rent_due_date}
+            />
+          </div>
+          <div className='w-[180px] h-12'>
+            <Button
+              btnText={isEdit ? 'Edit Tenant' : 'Add Tenant'}
+              isLoading={isLoading}
+            />
+          </div>
+        </form>
     </>
   )
 }
-const LANTenant = styled.section`
-  .l-section {
-    width: 100%;
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 20px;
-  }
-  .error {
-    color: #ff0000;
-    text-align: left;
-    margin: 10px 0;
-  }
-  .success {
-    color: green;
-  }
-  .add-t {
-    margin: 20px 0;
-  }
-  .unit {
-    padding: 13px 20px;
-    border: 1px solid black;
-    border-radius: 4px;
-    text-align: center;
-  }
-  .input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    margin: 10px 0;
-    width: 100%;
-  }
-  input {
-    outline: none;
-    border: 1px solid black;
-    padding: 0 20px;
-    font-family: inherit;
-    font-size: 16px;
-    color: #000;
-    border-radius: 4px;
-    background: transparent;
-  }
-  label {
-    margin: 10px 0;
-    font-size: 18px;
-  }
-  .t-name-input {
-    width: 500px;
-    height: 48px;
-  }
-  .rent-date {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    margin: 10px 0;
-  }
-  .due-date-input,
-  .r-date-input {
-    height: 48px;
-    width: 220px;
-  }
-  .due-date,
-  .start-date,
-  .end-date,
-  .rent-status {
-    display: flex;
-    flex-direction: column;
-  }
-  .due-date,
-  .rent-status {
-    margin: 10px 0;
-  }
-  .not-p {
-    background-color: #ff0000;
-    color: #ffffff;
-    padding: 12px 0;
-    width: 120px;
-    text-align: center;
-    border-radius: 4px;
-  }
-  .add-tenant {
-    width: 220px;
-    text-align: center;
-    height: 50px;
-    border-radius: 4px;
-    border: transparent;
-    margin: 10px 0;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .btn {
-    background-color: #fedf7e;
-    color: #000;
-  }
-  .btn-disabled {
-    background: #00000080;
-    color: #fff;
-    cursor: not-allowed;
-  }
-  .login-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .login-spinner {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  }
-  .spinner {
-    border: 3px solid #fff;
-    border-top: 3px solid #3498db;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    animation: spin 1s linear infinite;
-  }
-  .select {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .user-select {
-    width: 200px;
-    height: 48px;
-    border: 1px solid black;
-    padding: 0 10px;
-    border-radius: 4px;
-  }
-  select {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    outline: none;
-    background: transparent;
-    border: transparent;
-    color: #000;
-    font-family: inherit;
-  }
-  option {
-    flex-shrink: 0;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @media screen and (max-width: 600px) {
-    .rent-date {
-      gap: 10px;
-    }
-    .start-date,
-    .end-date {
-      width: 100%;
-    }
-    .t-name-input {
-      width: 95%;
-    }
-    .r-date-input {
-      width: 90%;
-    }
-    .due-date-input {
-      width: 280px;
-    }
-  }
-`
 
 export default LandlordAddNewTenant

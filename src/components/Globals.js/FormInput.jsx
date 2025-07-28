@@ -35,7 +35,7 @@ const FormInput = React.forwardRef((props, ref) => {
             placeholder={placeholder}
             value={value}
             ref={ref}
-            className={`w-full border rounded-[2px] bg-transparent outline-none text-base text-black px-4 h-12 ${
+            className={`w-full border rounded-md bg-transparent outline-none text-base text-black px-4 h-12 ${
               error ? 'border-red-500' : 'border-black'
             }`}
             onChange={onChange}
@@ -48,7 +48,7 @@ const FormInput = React.forwardRef((props, ref) => {
         <div className='flex items-center gap-2.5'>
           <input
             checked={checked}
-            className={`bg-transparent w-[18px] h-[18px] rounded-[2px] outline-none 
+            className={`bg-transparent w-[18px] h-[18px] rounded-md outline-none 
             ${type === 'checkbox' && 'accent-baseColor'}
              `}
             name={name}

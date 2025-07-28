@@ -1,21 +1,34 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
+import { useForm } from 'react-hook-form'
+import FormInput from '../Globals.js/FormInput'
+import FormTextArea from '../Globals.js/FormTextArea'
+import CustomSelector from '../Globals.js/CustomSelector'
+import { formValidation } from '../../hooks/functions'
+import Button from '../Globals.js/Button'
 
 const LandlordSendReminder = () => {
   const navigate = useNavigate()
   const { tenantId } = useParams()
-  const [addReminder, setAddReminder] = useState({
-    reminder_type: '',
-    short_description: '',
-    next_reminder_date: '',
-    reminder_time: '',
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
+    // mode: 'onChange',
+    defaultValues: {
+      reminder_type: '',
+      short_description: '',
+      next_reminder_date: '',
+      reminder_time: '',
+    },
   })
-
-  const handleChangeAddReminder = (e) => {
-    setAddReminder({ ...addReminder, [e.target.name]: e.target.value })
-  }
+  const addReminder = watch()
+  const reminderType = watch('reminder_type')
 
   const {
     mutateAsync: postReminder,
@@ -28,296 +41,120 @@ const LandlordSendReminder = () => {
       setTimeout(() => {
         navigate('/landlord/tenants')
       }, 3000)
+      reset()
     },
     onError: (error) => {},
   })
 
-  const handleReminder = async (e) => {
-    e.preventDefault()
-    const payload = {
-      reminder_type: addReminder.reminder_type,
-      short_description: addReminder.short_description,
-      next_reminder_date: addReminder.next_reminder_date,
-      reminder_time: addReminder.reminder_time,
-    }
-
+  const handleReminder = async (data) => {
     try {
-      await postReminder(payload)
+      await postReminder(data)
     } catch (e) {
       console.error(e)
     }
   }
+
+  const timeOptions = [
+    { label: '9am', value: '9am' },
+    { label: '12pm', value: '12pm' },
+    { label: '3pm', value: '3pm' },
+    { label: '6pm', value: '6pm' },
+    { label: '9pm', value: '9pm' },
+  ]
   return (
     <>
-      <LSReminder>
-        <section>
-          <form onSubmit={handleReminder} className='n-section'>
-            {error && <p className='error'>{error?.message}</p>}
-            {isSuccess && (
-              <p className='error success'>Reminder was sent successfully</p>
-            )}
-            <div className='input'>
-              <label className='reminder-h'>Send Reminder</label>
-            </div>
-            <div className='n-status'>
-              <label>Reminder Type</label>
-              <div className='radio-btns'>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='Rent due date'
-                    name='reminder_type'
-                    onChange={handleChangeAddReminder}
-                    checked={addReminder.reminder_type === 'Rent due date'}
-                    className='btn-input'
-                  />
-                  <p className='n-details'>Rent due date</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='Electricity Payment'
-                    name='reminder_type'
-                    onChange={handleChangeAddReminder}
-                    checked={
-                      addReminder.reminder_type === 'Electricity Payment'
-                    }
-                    className='btn-input'
-                  />
-                  <p className='n-details'>Electricity Payment</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='Water bill'
-                    name='reminder_type'
-                    onChange={handleChangeAddReminder}
-                    checked={addReminder.reminder_type === 'Water bill'}
-                    className='btn-input'
-                  />
-                  <p className='n-details'>Water bill</p>
-                </div>
-                <div className='radio-btn'>
-                  <input
-                    type='radio'
-                    value='Security fee'
-                    name='reminder_type'
-                    onChange={handleChangeAddReminder}
-                    checked={addReminder.reminder_type === 'Security fee'}
-                    className='btn-input'
-                  />
-                  <p className='n-details'>Security fee</p>
-                </div>
-              </div>
-            </div>
-            {/* Text Boxes */}
-            <div className='input'>
-              <label>Short description</label>
-              <input
-                type='text'
-                required
-                name='short_description'
-                value={addReminder.short_description}
-                onChange={handleChangeAddReminder}
-                autoComplete='off'
-                className='r-desc-input'
+      <form
+        onSubmit={handleSubmit(handleReminder)}
+        className='w-full flex flex-col gap-2.5 bg-white p-5 rounded-md'
+      >
+        {error && <p className='text-error text-left'>{error?.message}</p>}
+        {isSuccess && (
+          <p className='text-left text-success'>
+            Reminder was sent successfully
+          </p>
+        )}
+        <label className='text-[18px]'>Send Reminder</label>
+        <div className='flex flex-col gap-2.5'>
+          <label>Reminder Type</label>
+          <div className='flex md:flex-row flex-col items-center gap-2.5'>
+            <div className='w-[170px]'>
+              <FormInput
+                label='Rent due date'
+                type='radio'
+                value='Rent due date'
+                {...register('reminder_type', formValidation('text', true))}
+                checked={reminderType === 'Rent due date'}
               />
             </div>
-            <div className='input'>
-              <label>Date</label>
-              <input
-                type='date'
-                required
-                placeholder='dd/mm/yyy'
-                name='next_reminder_date'
-                value={addReminder.next_reminder_date}
-                onChange={handleChangeAddReminder}
-                autoComplete='off'
-                className='r-date-input'
+            <div className='w-[200px]'>
+              <FormInput
+                label='Electricity Payment'
+                type='radio'
+                value='Electricity Payment'
+                {...register('reminder_type', formValidation('text', true))}
+                checked={reminderType === 'Electricity Payment'}
               />
             </div>
-            <div className='input'>
-              <label>Time</label>
-              <input
-                className='r-date-input'
-                type='time'
-                required
-                name='reminder_time'
-                value={addReminder.reminder_time}
-                onChange={handleChangeAddReminder}
-                autoComplete='off'
+            <div className='w-[170px]'>
+              <FormInput
+                label='Water bill'
+                type='radio'
+                value='Water bill'
+                {...register('reminder_type', formValidation('text', true))}
+                checked={reminderType === 'Water bill'}
               />
             </div>
-            <button
-              disabled={isLoading}
-              className={isLoading ? 'btn-disabled save-btn' : 'btn save-btn'}
-            >
-              {isLoading ? (
-                <div className='login-spinner'>
-                  <div className='spinner'></div>
-                  <p>Send Reminder</p>
-                </div>
-              ) : (
-                <p>Send Reminder</p>
-              )}
-            </button>
-          </form>
-        </section>
-      </LSReminder>
+            <div className='w-[170px]'>
+              <FormInput
+                label='Security fee'
+                type='radio'
+                value='Security fee'
+                {...register('reminder_type', formValidation('text', true))}
+                checked={reminderType === 'Security fee'}
+              />
+            </div>
+          </div>
+        </div>
+        {/* Text Boxes */}
+        <div className='w-[90%] md:w-[500px]'>
+          <FormTextArea
+            label='Short description'
+            type='text'
+            name={'short_description'}
+            value={addReminder.short_description}
+            placeholder='Enter description'
+            {...register('short_description', formValidation('text', true))}
+            error={errors?.short_description}
+          />
+        </div>
+        <div className='w-[45%] md:w-[300px]'>
+          <FormInput
+            label='Date'
+            type='date'
+            name={'next_reminder_date'}
+            value={addReminder.next_reminder_date}
+            {...register('next_reminder_date', formValidation('date', true))}
+            error={errors?.next_reminder_date}
+          />
+        </div>
+        <div className='flex flex-col gap-2.5'>
+          <label className='text-base'>Time</label>
+          <div className='h-12 w-[240px]'>
+            <CustomSelector
+              placeholder='Select'
+              options={timeOptions}
+              value={addReminder.reminder_time}
+              onChange={(selected) => setValue('reminder_time', selected)}
+              multiple={false}
+            />
+          </div>
+        </div>
+        <div className='w-[180px] h-12'>
+          <Button btnText={'Send Reminder'} isLoading={isLoading} />
+        </div>
+      </form>
     </>
   )
 }
-const LSReminder = styled.section`
-  .n-section {
-    width: 100%;
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 20px;
-  }
-  .error {
-    color: #ff0000;
-    text-align: left;
-    margin: 10px 0;
-  }
-  .success {
-    color: green;
-  }
-  h3 {
-    margin: 10px 0 25px 0;
-  }
-  /* Notification Status */
-  .n-status {
-    display: flex;
-    flex-direction: column;
-  }
 
-  label {
-    margin: 10px 0;
-    font-size: 16px;
-  }
-  .reminder-h {
-    font-size: 18px;
-  }
-  .radio-btns {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 10px 0;
-    gap: 20px;
-  }
-  .radio-btn {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin: 5px 0;
-    flex-shrink: 0;
-  }
-  .btn-input {
-    width: 18px;
-    height: 18px;
-  }
-  .n-details {
-    font-size: 16px;
-  }
-  /* Text Boxes */
-  .section {
-    display: flex;
-    flex-direction: column;
-  }
-  .input {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-  }
-
-  input {
-    outline: none;
-    border: 1px solid black;
-    padding: 0 20px;
-    font-family: inherit;
-    font-size: 16px;
-    color: #000;
-    border-radius: 4px;
-    background: transparent;
-  }
-  .user-select {
-    width: 500px;
-    height: 50px;
-    border: 1px solid black;
-    padding: 0 10px;
-    border-radius: 4px;
-  }
-  select {
-    width: 100%;
-    height: 100%;
-    outline: none;
-    background: transparent;
-    border: none;
-    font-family: inherit;
-    font-size: 16px;
-  }
-  .r-desc-input {
-    height: 80px;
-    width: 500px;
-  }
-  .r-date-input {
-    height: 50px;
-    width: 250px;
-  }
-  .save-btn {
-    width: 200px;
-    height: 50px;
-    text-align: center;
-    border: transparent;
-    border-radius: 4px;
-    margin: 20px 0;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  .btn {
-    background-color: #fedf7e;
-    color: #000;
-  }
-  .btn-disabled {
-    background: #00000080;
-    color: #fff;
-    cursor: not-allowed;
-  }
-  .login-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .login-spinner {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  }
-  .spinner {
-    border: 3px solid #fff;
-    border-top: 3px solid #3498db;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    animation: spin 1s linear infinite;
-  }
-  @media screen and (max-width: 600px) {
-    .radio-btns {
-      width: 95%;
-    }
-  }
-  @media screen and (max-width: 550px) {
-    .user-select,
-    .save-btn,
-    .r-desc-input {
-      width: 95%;
-    }
-  }
-`
 export default LandlordSendReminder

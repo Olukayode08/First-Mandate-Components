@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import LandlordEmptyTenant from './LandlordEmptyTenant'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import Pagination from '../Pagination/Pagination'
@@ -8,6 +8,7 @@ import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 
 const LandlordTenants = () => {
+  const navigate = useNavigate()
   // Fetch Tenants
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
     usePagination('/landlord/tenants')
