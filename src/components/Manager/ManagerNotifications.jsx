@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import ManagerEmptyNotification from './ManagerEmptyNotification'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 import Pagination from '../Pagination/Pagination'
 import { separateDateTime } from '../../hooks/functions'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
+import EmptyState from '../Globals.js/EmptyState'
 
 const ManagerNotifications = () => {
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
@@ -33,7 +34,7 @@ const ManagerNotifications = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <ManagerEmptyNotification />
+        <EmptyState textOne='No notifications here.' icon={icon} />
       </div>
     )
   }

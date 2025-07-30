@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import logo from '../../assets/1st mandate logo 1.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateMutation } from '../../data-layer/utils'
 import ModalComponent from '../Globals.js/ModalComponent'
 
 const ResetPassword = () => {
   const [email, setEmail] = useState('')
+  const navigate = useNavigate()
   const {
     mutateAsync: postResetPassword,
     isLoading,
@@ -20,7 +21,7 @@ const ResetPassword = () => {
   const handleResetPassword = async (e) => {
     e.preventDefault()
 
-    if (!(email)) {
+    if (!email) {
       return
     }
 
@@ -73,6 +74,7 @@ const ResetPassword = () => {
         {isSuccess && (
           <ModalComponent
             textOne='Password reset request is successful and link to reset has been sent to the email address provided.'
+            btnFunction={() => navigate('/login')}
           />
         )}
       </div>

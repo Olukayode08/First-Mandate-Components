@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import TenantEmptyApartment from './TenantEmptyApartment'
 import iconHouse from '../../assets/Frame-2007.png'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 import Pagination from '../Pagination/Pagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/empty-house-01 (2).png'
 
 const TenantApartmentDetails = () => {
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
@@ -129,7 +130,12 @@ const TenantApartmentDetails = () => {
               ))
             ) : (
               <div>
-                <TenantEmptyApartment />
+                <EmptyState
+                  textOne='Please rent an apartment to see rent details'
+                  btnText={'Rent an Apartment'}
+                  btnFunction={'/tenant/add-apartment-details'}
+                  icon={icon}
+                />{' '}
               </div>
             )}
           </div>

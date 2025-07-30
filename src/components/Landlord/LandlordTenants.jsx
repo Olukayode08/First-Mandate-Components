@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
-import LandlordEmptyTenant from './LandlordEmptyTenant'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/empty-house-01 (2).png'
 
 const LandlordTenants = () => {
   const navigate = useNavigate()
@@ -33,7 +34,13 @@ const LandlordTenants = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <LandlordEmptyTenant />
+        <EmptyState
+          textOne='You have not added a tenant yet.'
+          textTwo={'Please add tenants to see the list of your tenants.'}
+          btnText={'Add New Tenant'}
+          btnFunction={'/landlord/select-unit'}
+          icon={icon}
+        />
       </div>
     )
   }

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import LandlordEmptyReminder from './LandlordEmptyReminder'
 import {
   useFirstMandateQuery,
   useFirstMandateMutation,
@@ -14,6 +13,8 @@ import houseImage from '../../assets/Frame 2007 (6).png'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
 
 const DeleteModal = ({
   setShowModal,
@@ -151,7 +152,12 @@ const LandlordReminders = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <LandlordEmptyReminder />
+        <EmptyState
+          textOne='Please add a reminder to see a list of your reminders here.'
+          icon={icon}
+          btnText={'Add Reminder'}
+          btnFunction={'/landlord/add-reminder'}
+        />
       </div>
     )
   }

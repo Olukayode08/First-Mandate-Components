@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import { ImSearch } from 'react-icons/im'
 import { IoMdCheckmark } from 'react-icons/io'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import LandlordEmptyProperty from './LandlordEmptyProperty'
 import { useNavigate, useParams } from 'react-router'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/empty-house-01 (2).png'
 
 const LandlordSelectUnit = () => {
   const navigate = useNavigate()
@@ -47,7 +48,12 @@ const LandlordSelectUnit = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <LandlordEmptyProperty />
+        <EmptyState
+          textOne='Please upload new property to see a list of your properties.'
+          btnText={'Upload New Property'}
+          btnFunction={'/landlord/add-property'}
+          icon={icon}
+        />
       </div>
     )
   }

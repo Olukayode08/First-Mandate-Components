@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import LandlordPropertiesDropdown from '../Dropdowns/LandlordPropertiesDropdown'
-import LandlordEmptyProperty from './LandlordEmptyProperty'
 import LandlordPropertyUnit from './LandlordPropertyUnit'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import iconHouse from '../../assets/unavailable.svg'
@@ -11,6 +10,8 @@ import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 import Button from '../Globals.js/Button'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/empty-house-01 (2).png'
 
 const LandlordProperties = () => {
   const navigate = useNavigate()
@@ -95,7 +96,12 @@ const LandlordProperties = () => {
               ))
             ) : (
               <div>
-                <LandlordEmptyProperty />
+                <EmptyState
+                  textOne='Please upload new property to see a list of your properties.'
+                  btnText={'Upload New Property'}
+                  btnFunction={'/landlord/add-property'}
+                  icon={icon}
+                />{' '}
               </div>
             )}
           </div>

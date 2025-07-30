@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import LandlordEmptyNotification from './LandlordEmptyNotification'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 import { separateDateTime } from '../../hooks/functions'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
 
 const LandlordNotifications = () => {
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
@@ -32,7 +33,7 @@ const LandlordNotifications = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <LandlordEmptyNotification />
+        <EmptyState textOne='No notifications here.' icon={icon} />
       </div>
     )
   }

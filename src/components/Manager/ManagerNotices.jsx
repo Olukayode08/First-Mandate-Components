@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import ManagerEmptyNotice from './ManagerEmptyNotice'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import Pagination from '../Pagination/Pagination'
 import usePagination from '../../hooks/usePagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
 
 const ManagerNotices = () => {
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
@@ -31,7 +32,12 @@ const ManagerNotices = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <ManagerEmptyNotice />
+        <EmptyState
+          textOne='Please send a notice to see a list of your notice here.'
+          btnText={'Send Notice'}
+          btnFunction={'/manager/send-notice'}
+          icon={icon}
+        />
       </div>
     )
   }

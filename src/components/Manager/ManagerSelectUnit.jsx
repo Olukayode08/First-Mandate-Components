@@ -4,10 +4,11 @@ import { ImSearch } from 'react-icons/im'
 import { IoMdCheckmark } from 'react-icons/io'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import { useNavigate, useParams } from 'react-router'
-import ManagerEmptyProperty from './ManagerEmptyProperty'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 import Pagination from '../Pagination/Pagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/empty-house-01 (2).png'
 
 const ManagerSelectUnit = () => {
   const navigate = useNavigate()
@@ -47,7 +48,12 @@ const ManagerSelectUnit = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <ManagerEmptyProperty />
+        <EmptyState
+          textOne='Please upload new property to see a list of your properties.'
+          btnText={'Upload New Property'}
+          btnFunction={'/manager/add-property'}
+          icon={icon}
+        />
       </div>
     )
   }

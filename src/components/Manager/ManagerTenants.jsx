@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import ManagerEmptyTenant from './ManagerEmptyTenant'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 import Pagination from '../Pagination/Pagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/empty-house-01 (2).png'
 
 const ManagerTenants = () => {
   // Fetch Tenants
@@ -20,7 +21,6 @@ const ManagerTenants = () => {
       onSuccess: (data) => {},
     }
   )
-  console.log(data)
   if (pageLoading) {
     return (
       <div>
@@ -33,7 +33,13 @@ const ManagerTenants = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <ManagerEmptyTenant />
+        <EmptyState
+          textOne='You have not added a tenant yet.'
+          textTwo={'Please add tenants to see the list of your tenants.'}
+          btnText={'Add New Tenant'}
+          btnFunction={'/manager/select-unit'}
+          icon={icon}
+        />
       </div>
     )
   }

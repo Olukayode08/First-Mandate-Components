@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
-import LandlordEmptyManager from './LandlordEmptyManager'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/file-02.png'
 
 const LandlordManagers = () => {
   const navigate = useNavigate()
@@ -19,8 +20,6 @@ const LandlordManagers = () => {
       onSuccess: (data) => {},
     }
   )
-
-
 
   if (pageLoading) {
     return (
@@ -35,7 +34,13 @@ const LandlordManagers = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <LandlordEmptyManager />
+        <EmptyState
+          textOne='You have not added a manager yet.'
+          textTwo={'Please add manager to see the list'}
+          btnText={'Add New Manager'}
+          btnFunction={'/landlord/add-manager'}
+          icon={icon}
+        />
       </div>
     )
   }

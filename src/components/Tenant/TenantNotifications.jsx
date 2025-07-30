@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFirstMandateQuery } from '../../data-layer/utils'
-import TenantEmptyNotification from './TenantEmptyNotification'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
 import Pagination from '../Pagination/Pagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
 
 const TenantNotifications = () => {
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
@@ -36,7 +37,7 @@ const TenantNotifications = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <TenantEmptyNotification />
+        <EmptyState textOne='No notifications here.' icon={icon} />
       </div>
     )
   }

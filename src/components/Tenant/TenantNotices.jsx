@@ -4,10 +4,11 @@ import {
   useFirstMandateMutation,
   useFirstMandateQuery,
 } from '../../data-layer/utils'
-import TenantEmptyNotice from './TenantEmptyNotice'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import Pagination from '../Pagination/Pagination'
 import usePagination from '../../hooks/usePagination'
+import EmptyState from '../Globals.js/EmptyState'
+import icon from '../../assets/undraw_new_notifications_re_xpcv.png'
 
 const AcknowledgeModal = ({
   modal,
@@ -163,7 +164,12 @@ const TenantNotices = () => {
   if (!data || !data.data || !data.data.data || data.data.data.length === 0) {
     return (
       <div>
-        <TenantEmptyNotice />
+        <EmptyState
+          textOne='Please send a notice to see a list of your notice here.'
+          btnText={'Send Notice'}
+          btnFunction={'/tenant/send-notice'}
+          icon={icon}
+        />
       </div>
     )
   }
