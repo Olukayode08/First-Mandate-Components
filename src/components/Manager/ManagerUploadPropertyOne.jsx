@@ -28,7 +28,7 @@ const ManagerUploadPropertyOne = ({ register, errors }) => {
         </div>
 
         <div className='flex flex-col gap-2.5 w-full'>
-          <label>Location</label>
+          <label>Location*</label>
           <section className='flex gap-2.5 items-center flex-wrap w-full'>
             <div className='w-[70%] md:w-[180px]'>
               <FormInput
@@ -65,7 +65,7 @@ const ManagerUploadPropertyOne = ({ register, errors }) => {
             name='landlord_name'
             type='text'
             placeholder='Enter Full name'
-            {...register('landlord_name', formValidation('text', true))}
+            {...register('landlord_name', formValidation('text', false))}
             error={errors?.landlord_name}
           />
         </div>
@@ -75,7 +75,7 @@ const ManagerUploadPropertyOne = ({ register, errors }) => {
             name='landlord_email'
             type='email'
             placeholder='Enter Email'
-            {...register('landlord_email', formValidation('email', true))}
+            {...register('landlord_email', formValidation('email', false))}
             error={errors?.landlord_email}
           />
         </div>
@@ -86,7 +86,7 @@ const ManagerUploadPropertyOne = ({ register, errors }) => {
             name='landlord_phone'
             type='text'
             placeholder='+234'
-            {...register('landlord_phone', formValidation('text', true))}
+            {...register('landlord_phone', formValidation('phone', false))}
             error={errors?.landlord_phone}
           />
         </div>

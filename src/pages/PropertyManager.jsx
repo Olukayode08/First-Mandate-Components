@@ -31,19 +31,21 @@ const PManagerMP = styled.section`
     width: 100%;
   }
   .p-manager-header {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height: 86px;
+    z-index: 100;
   }
   .p-manager-sidebar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 230px;
   }
   .p-manager-children {
     position: absolute;
+    overflow-y: auto;
     top: 106px;
     right: 20px;
     width: 81%;

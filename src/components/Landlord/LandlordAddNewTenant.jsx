@@ -37,6 +37,7 @@ const LandlordAddNewTenant = () => {
     watch,
     setValue,
     reset,
+    trigger,
     formState: { errors },
   } = useForm({
     // mode: 'onChange',
@@ -85,7 +86,6 @@ const LandlordAddNewTenant = () => {
     { label: 'Unpaid', value: 'Unpaid' },
     { label: 'Paid in part', value: 'Paid in part' },
   ]
-
 
   const handleTenantUpdate = (fieldName, value) => {
     setValue(fieldName, value)
@@ -136,6 +136,10 @@ const LandlordAddNewTenant = () => {
   })
 
   const handleTenant = async (data) => {
+    const isValid = await trigger()
+    if (!isValid) {
+      return
+    }
     try {
       await postTenant(data)
     } catch (e) {}
@@ -167,200 +171,198 @@ const LandlordAddNewTenant = () => {
 
   return (
     <>
-        <form
-          onSubmit={handleSubmit(handleTenant)}
-          className='w-full flex flex-col gap-2.5 bg-white p-5 rounded-md'
-        >
-          {error && <p className='text-error text-left'>{error?.message}</p>}
-          {isSuccess && (
-            <p className='text-success text-left'>
-              {isEdit
-                ? 'Tenant edited successfully'
-                : 'Tenant was added successfully'}
-            </p>
-          )}
-          <h3>{isEdit ? 'Edit Tenant' : 'Add New Tenant'}</h3>
-          <div className='flex flex-col gap-2.5'>
-            <label>Apartment Name</label>
-            <p className='border border-black rounded-md text-left w-[200px] h-12 flex items-center justify-center'>
-              {propertiesData?.unit_name || unitName || ''}
-            </p>
-          </div>
-          <div className='w-[90%] md:w-[500px]'>
-            <FormInput
-              label='Name'
-              type='text'
-              name={'name'}
-              value={addTenant.name}
-              placeholder='Enter apartment name'
-              {...register('name', formValidation('text', true))}
-              error={errors?.name}
-            />
-          </div>
-          <div className='w-[90%] md:w-[500px]'>
-            <FormInput
-              label='Email'
-              type='email'
-              name={'email'}
-              value={addTenant.email}
-              placeholder='Enter email address'
-              {...register('email', formValidation('email', true))}
-              error={errors?.email}
-            />
-          </div>
+      <form
+        onSubmit={handleSubmit(handleTenant)}
+        className='w-full flex flex-col gap-2.5 bg-white p-5 rounded-md'
+      >
+        {error && <p className='text-error text-left'>{error?.message}</p>}
+        {isSuccess && (
+          <p className='text-success text-left'>
+            {isEdit
+              ? 'Tenant edited successfully'
+              : 'Tenant was added successfully'}
+          </p>
+        )}
+        <h3>{isEdit ? 'Edit Tenant' : 'Add New Tenant'}</h3>
+        <div className='flex flex-col gap-2.5'>
+          <label>Apartment Name</label>
+          <p className='border border-black rounded-md text-left w-[200px] h-12 flex items-center justify-center'>
+            {propertiesData?.unit_name || unitName || ''}
+          </p>
+        </div>
+        <div className='w-[90%] md:w-[500px]'>
+          <FormInput
+            label='Name'
+            type='text'
+            name={'name'}
+            value={addTenant.name}
+            placeholder='Enter apartment name'
+            {...register('name', formValidation('text', true))}
+            error={errors?.name}
+          />
+        </div>
+        <div className='w-[90%] md:w-[500px]'>
+          <FormInput
+            label='Email'
+            type='email'
+            name={'email'}
+            value={addTenant.email}
+            placeholder='Enter email address'
+            {...register('email', formValidation('email', true))}
+            error={errors?.email}
+          />
+        </div>
+        <div className='w-[90%] md:w-[500px]'>
+          <FormInput
+            label='Phone'
+            type='text'
+            name={'phone'}
+            value={addTenant.phone}
+            placeholder='+234'
+            {...register('phone', formValidation('phone', true))}
+            error={errors?.phone}
+          />
+        </div>
+        {!unitId && (
           <div className='w-[90%] md:w-[500px]'>
             <FormInput
               label='Phone'
               type='text'
-              name={'phone'}
-              value={addTenant.phone}
+              name={'phone_two'}
+              value={addTenant.phone_two}
               placeholder='+234'
-              {...register('phone', formValidation('text', true))}
-              error={errors?.phone}
+              {...register('phone_two', formValidation('phone', true))}
+              error={errors?.phone_two}
             />
           </div>
-          {!unitId && (
-            <div className='w-[90%] md:w-[500px]'>
-              <FormInput
-                label='Phone'
-                type='text'
-                name={'phone_two'}
-                value={addTenant.phone_two}
-                placeholder='+234'
-                {...register('phone_two', formValidation('text', true))}
-                error={errors?.phone_two}
-              />
-            </div>
-          )}
-          <div className='flex items-center gap-2.5'>
-            <div className='w-[45%] md:w-[240px]'>
-              <FormInput
-                label='Lease Start Date'
-                type='date'
-                name={'lease_start'}
-                value={addTenant.lease_start}
-                {...register('lease_start', formValidation('date', true))}
-                error={errors?.lease_start}
-              />
-            </div>
-            <div className='w-[45%] md:w-[240px]'>
-              <FormInput
-                label='Lease End Date'
-                type='date'
-                name={'lease_end'}
-                value={addTenant.lease_end}
-                {...register('lease_end', formValidation('date', true))}
-                error={errors?.lease_end}
-              />
-            </div>
+        )}
+        <div className='flex items-center gap-2.5'>
+          <div className='w-[45%] md:w-[240px]'>
+            <FormInput
+              label='Lease Start Date'
+              type='date'
+              name={'lease_start'}
+              value={addTenant.lease_start}
+              {...register('lease_start', formValidation('date', true))}
+              error={errors?.lease_start}
+            />
           </div>
           <div className='w-[45%] md:w-[240px]'>
             <FormInput
-              label='Rent Amount'
+              label='Lease End Date'
+              type='date'
+              name={'lease_end'}
+              value={addTenant.lease_end}
+              {...register('lease_end', formValidation('date', true))}
+              error={errors?.lease_end}
+            />
+          </div>
+        </div>
+        <div className='w-[45%] md:w-[240px]'>
+          <FormInput
+            label='Rent Amount'
+            type='text'
+            name='rent_amount'
+            value={addTenant.rent_amount}
+            placeholder='100,000'
+            {...register('rent_amount', {
+              required: 'Rent amount is required',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: 'Please enter a valid number',
+              },
+            })}
+            error={errors?.rent_amount}
+          />
+        </div>
+        <div className='flex gap-2.5'>
+          <div className='flex flex-col gap-2.5'>
+            <label className='text-base'>Rent Payment Type*</label>
+            <div className='h-12 w-[240px]'>
+              <CustomSelector
+                placeholder='Select'
+                options={paymentTypeOptions}
+                value={addTenant.payment_type}
+                onChange={(selected) => setValue('payment_type', selected)}
+                multiple={false}
+              />
+            </div>
+          </div>
+
+          <div className='w-[45%] md:w-[240px]'>
+            <FormInput
+              label='Number of Installments*'
               type='text'
-              name='rent_amount'
-              value={addTenant.rent_amount}
-              placeholder='100,000'
-              {...register('rent_amount', {
-                required: 'Rent amount is required',
+              name='no_of_installments'
+              value={addTenant.no_of_installments}
+              placeholder='Enter number of installments'
+              disabled={!addTenant.payment_type}
+              {...register('no_of_installments', {
+                required:
+                  addTenant.payment_type === 'Installment'
+                    ? 'Number of installments is required'
+                    : false,
                 pattern: {
                   value: /^[0-9]+$/,
                   message: 'Please enter a valid number',
                 },
               })}
-              error={errors?.rent_amount}
+              error={errors?.no_of_installments}
             />
           </div>
-          <div className='flex gap-2.5'>
-            <div className='flex flex-col gap-2.5'>
-              <label className='text-base'>Rent Payment Type*</label>
-              <div className='h-12 w-[240px]'>
-                <CustomSelector
-                  placeholder='Select'
-                  options={paymentTypeOptions}
-                  value={addTenant.payment_type}
-                  onChange={(selected) => setValue('payment_type', selected)}
-                  multiple={false}
-                />
-              </div>
-            </div>
 
-            <div className='w-[45%] md:w-[240px]'>
-              <FormInput
-                label='Number of Installments*'
-                type='text'
-                name='no_of_installments'
-                value={addTenant.no_of_installments}
-                placeholder='Enter number of installments'
-                disabled={!addTenant.payment_type}
-                {...register('no_of_installments', {
-                  required:
-                    addTenant.payment_type === 'Installment'
-                      ? 'Number of installments is required'
-                      : false,
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: 'Please enter a valid number',
-                  },
-                })}
-                error={errors?.no_of_installments}
-              />
-            </div>
-
-            <div className='w-[45%] md:w-[240px]'>
-              <FormInput
-                label='Amount for each Installment*'
-                type='text'
-                name='amount_per_installment'
-                value={amountPerInstallment}
-                isLoading={true}
-              />
-            </div>
-          </div>
-          <div className='flex flex-col gap-2.5'>
-            <label className='text-base'>Rent Payment Status*</label>
-            <div className='h-12 w-[240px]'>
-              <CustomSelector
-                placeholder='Select'
-                options={paymentOptions}
-                value={addTenant.rent_payment_status}
-                onChange={(selected) =>
-                  setValue('rent_payment_status', selected)
-                }
-                multiple={false}
-              />
-            </div>
-          </div>
-
-          <div className='flex flex-col gap-2.5'>
-            <label className='text-base'>Rent Terms*</label>
-            <div className='h-12 w-[240px]'>
-              <CustomSelector
-                placeholder='Select'
-                options={termsOptions}
-                value={addTenant.rent_term}
-                onChange={(selected) => setValue('rent_term', selected)}
-                multiple={false}
-              />
-            </div>
-          </div>
           <div className='w-[45%] md:w-[240px]'>
             <FormInput
-              label='Rent Payment Due Date'
-              type='date'
-              name={'rent_due_date'}
-              value={addTenant.rent_due_date}
-              {...register('rent_due_date', formValidation('date', true))}
-              error={errors?.rent_due_date}
+              label='Amount for each Installment*'
+              type='text'
+              name='amount_per_installment'
+              value={amountPerInstallment}
+              isLoading={true}
             />
           </div>
-          <div className='w-[180px] h-12'>
-            <Button
-              btnText={isEdit ? 'Edit Tenant' : 'Add Tenant'}
-              isLoading={isLoading}
+        </div>
+        <div className='flex flex-col gap-2.5'>
+          <label className='text-base'>Rent Payment Status*</label>
+          <div className='h-12 w-[240px]'>
+            <CustomSelector
+              placeholder='Select'
+              options={paymentOptions}
+              value={addTenant.rent_payment_status}
+              onChange={(selected) => setValue('rent_payment_status', selected)}
+              multiple={false}
             />
           </div>
-        </form>
+        </div>
+
+        <div className='flex flex-col gap-2.5'>
+          <label className='text-base'>Rent Terms*</label>
+          <div className='h-12 w-[240px]'>
+            <CustomSelector
+              placeholder='Select'
+              options={termsOptions}
+              value={addTenant.rent_term}
+              onChange={(selected) => setValue('rent_term', selected)}
+              multiple={false}
+            />
+          </div>
+        </div>
+        <div className='w-[45%] md:w-[240px]'>
+          <FormInput
+            label='Rent Payment Due Date'
+            type='date'
+            name={'rent_due_date'}
+            value={addTenant.rent_due_date}
+            {...register('rent_due_date', formValidation('date', true))}
+            error={errors?.rent_due_date}
+          />
+        </div>
+        <div className='w-[180px] h-12'>
+          <Button
+            btnText={isEdit ? 'Edit Tenant' : 'Add Tenant'}
+            isLoading={isLoading}
+          />
+        </div>
+      </form>
     </>
   )
 }

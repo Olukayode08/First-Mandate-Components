@@ -37,6 +37,7 @@ const ManagerAddNewTenant = () => {
     watch,
     setValue,
     reset,
+    trigger,
     formState: { errors },
   } = useForm({
     // mode: 'onChange',
@@ -144,6 +145,10 @@ const ManagerAddNewTenant = () => {
   )
 
   const handleTenant = async (data) => {
+    const isValid = await trigger()
+    if (!isValid) {
+      return
+    }
     try {
       await postTenant(data)
     } catch (e) {

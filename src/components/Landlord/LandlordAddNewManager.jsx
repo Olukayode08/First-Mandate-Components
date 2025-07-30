@@ -18,6 +18,7 @@ const LandlordAddNewManager = () => {
     watch,
     setValue,
     reset,
+    trigger,
     formState: { errors },
   } = useForm({
     // mode: 'onChange',
@@ -81,6 +82,10 @@ const LandlordAddNewManager = () => {
       phone: data.phone,
       name: data.name,
       property_uuid: propertyId || selectedPropertyuuid,
+    }
+    const isValid = await trigger()
+    if (!isValid) {
+      return
     }
     try {
       await postManager(payload)
@@ -154,7 +159,7 @@ const LandlordAddNewManager = () => {
             name={'phone'}
             value={addManager.phone}
             placeholder='+234'
-            {...register('phone', formValidation('text', true))}
+            {...register('phone', formValidation('phone', true))}
             error={errors?.phone}
           />
         </div>

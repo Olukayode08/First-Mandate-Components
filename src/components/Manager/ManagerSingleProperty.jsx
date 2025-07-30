@@ -1,15 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { RiRadioButtonLine } from 'react-icons/ri'
 import { useParams } from 'react-router-dom'
 import { useFirstMandateQuery } from '../../data-layer/utils'
 import ManagerPropertyDropdown from '../Dropdowns/ManagerPropertyDropdown'
 import ManagerPropertyUnit from './ManagerPropertyUnit'
 import SkeletonPost from '../skeletons/SkeletonPost'
+import Button from '../Globals.js/Button'
 
 const ManagerSingleProperty = () => {
+  const navigate = useNavigate()
   const { singlePropertyId } = useParams()
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
@@ -63,7 +65,17 @@ const ManagerSingleProperty = () => {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className='flex items-center gap-2.5'>
+                  <div className='w-[150px] h-12'>
+                    <Button
+                      btnText={'Add Apartment'}
+                      btnFunction={() =>
+                        navigate(
+                          `/manager/add-unit/${selectedProperty.uuid}/units`
+                        )
+                      }
+                    />
+                  </div>
                   <ManagerPropertyDropdown
                     selectedProperty={selectedProperty}
                   />

@@ -16,6 +16,7 @@ const ManagerUploadPropertyPage = () => {
     watch,
     setValue,
     reset,
+    trigger,
     formState: { errors },
   } = useForm({
     // mode: 'onChange',
@@ -69,7 +70,8 @@ const ManagerUploadPropertyPage = () => {
     addProperty.landlord_phone,
   ])
 
-  const nextStep = () => {
+  const nextStep = async () => {
+    const isValid = await trigger()
     if (
       addProperty.title &&
       addProperty.address &&
@@ -77,10 +79,14 @@ const ManagerUploadPropertyPage = () => {
       addProperty.city &&
       addProperty.state
     ) {
-      setStep(step + 1)
-    } else {
       setUploadError('Please fill in all required fields.')
+      return
     }
+    if (!isValid) {
+      setUploadError('Please correct the errors before proceeding.')
+      return
+    }
+    setStep(step + 1)
   }
 
   const prevStep = () => {

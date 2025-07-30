@@ -14,9 +14,24 @@ export const formValidation = (type, required, min, max) => {
   if (type === 'email') {
     return {
       required: required ? 'Email address is required' : false,
-      pattern: {
-        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        message: 'Invalid email address',
+      validate: (value) => {
+        if (!required && !value) return true
+        return (
+          /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value) ||
+          'Invalid email address'
+        )
+      },
+    }
+  } else if (type === 'phone') {
+    return {
+      required: required ? 'Phone number is required' : false,
+      validate: (value) => {
+        if (!required && !value) return true
+        // Must start with +, followed by exactly 13 digits (14 characters total)
+        return (
+          /^\+[0-9]{13}$/.test(value) ||
+          'Phone must start with + and contain 13 digits (e.g., +23480123456789)'
+        )
       },
     }
   } else if (type === 'text') {

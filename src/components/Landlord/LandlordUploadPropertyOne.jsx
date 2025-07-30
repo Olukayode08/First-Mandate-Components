@@ -28,7 +28,7 @@ const LandlordUploadPropertyOne = ({ register, errors }) => {
           </div>
 
           <div className='flex flex-col gap-2.5 w-full'>
-            <label>Location</label>
+            <label>Location*</label>
             <section className='flex gap-2.5 items-center flex-wrap w-full'>
               <div className='w-[70%] md:w-[180px]'>
                 <FormInput
@@ -65,7 +65,7 @@ const LandlordUploadPropertyOne = ({ register, errors }) => {
               name='manager_name'
               type='text'
               placeholder='Enter Full name'
-              {...register('manager_name', formValidation('text', true))}
+              {...register('manager_name', formValidation('text', false))}
               error={errors?.manager_name}
             />
           </div>
@@ -75,7 +75,7 @@ const LandlordUploadPropertyOne = ({ register, errors }) => {
               name='manager_email'
               type='email'
               placeholder='Enter Email'
-              {...register('manager_email', formValidation('email', true))}
+              {...register('manager_email', formValidation('email', false))}
               error={errors?.manager_email}
             />
           </div>
@@ -86,7 +86,7 @@ const LandlordUploadPropertyOne = ({ register, errors }) => {
               name='manager_phone'
               type='text'
               placeholder='+234'
-              {...register('manager_phone', formValidation('text', true))}
+              {...register('manager_phone', formValidation('phone', false))}
               error={errors?.manager_phone}
             />
           </div>

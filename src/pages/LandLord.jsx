@@ -29,19 +29,21 @@ const LandlordMP = styled.section`
     width: 100%;
   }
   .landlord-header {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height: 86px;
+    z-index: 100;
   }
   .landlord-sidebar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 230px;
   }
   .landlord-children {
     position: absolute;
+    overflow-y: auto;
     top: 106px;
     right: 20px;
     width: 81%;

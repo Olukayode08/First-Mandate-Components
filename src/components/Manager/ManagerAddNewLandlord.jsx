@@ -20,6 +20,7 @@ const ManagerAddNewLandlord = () => {
     watch,
     setValue,
     reset,
+    trigger,
     formState: { errors },
   } = useForm({
     // mode: 'onChange',
@@ -90,6 +91,10 @@ const ManagerAddNewLandlord = () => {
     })) || []
 
   const handleManager = async (data) => {
+    const isValid = await trigger()
+    if (!isValid) {
+      return
+    }
     const payload = {
       email: data.email,
       phone: data.phone,
@@ -179,7 +184,7 @@ const ManagerAddNewLandlord = () => {
             name={'phone'}
             value={addManager.phone}
             placeholder='+234'
-            {...register('phone', formValidation('text', true))}
+            {...register('phone', formValidation('phone', true))}
             error={errors?.phone}
           />
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaRegPlusSquare } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import LandlordPropertiesDropdown from '../Dropdowns/LandlordPropertiesDropdown'
 import LandlordEmptyProperty from './LandlordEmptyProperty'
 import LandlordPropertyUnit from './LandlordPropertyUnit'
@@ -10,17 +10,17 @@ import iconHouse from '../../assets/unavailable.svg'
 import Pagination from '../Pagination/Pagination'
 import SkeletonPost from '../skeletons/SkeletonPost'
 import usePagination from '../../hooks/usePagination'
+import Button from '../Globals.js/Button'
 
 const LandlordProperties = () => {
-
+  const navigate = useNavigate()
   const { currentPage, handleNextPage, handlePrevPage, setCurrentPage } =
     usePagination('/landlord/properties')
 
   const { data, isLoading: pageLoading } = useFirstMandateQuery(
     `/properties?page=${currentPage}`,
     {
-      onSuccess: (data) => {
-      },
+      onSuccess: (data) => {},
     }
   )
 
@@ -75,7 +75,18 @@ const LandlordProperties = () => {
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div className='flex items-center gap-2.5'>
+                      <div className='w-[150px] h-12'>
+                        <Button
+                          btnText={'Add Apartment'}
+                          btnFunction={() =>
+                            navigate(
+                              `/landlord/add-unit/${property.uuid}/units`
+                            )
+                          }
+                        />
+                      </div>
+
                       <LandlordPropertiesDropdown property={property} />
                     </div>
                   </div>
@@ -94,7 +105,8 @@ const LandlordProperties = () => {
               totalPages={data?.data.last_page || 1}
               handlePrevPage={handlePrevPage}
               handleNextPage={handleNextPage}
-              setCurrentPage={setCurrentPage}x
+              setCurrentPage={setCurrentPage}
+              x
             />
           )}
         </section>

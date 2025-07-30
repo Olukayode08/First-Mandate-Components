@@ -54,7 +54,7 @@ const ManagerPropertyDropdown = ({ selectedProperty }) => {
         {showDropdown && (
           <div className='navigate-dropdown'>
             <p onClick={navigateUnit} className='nav'>
-              Add Units
+              Add Apartment
             </p>
             {/* <p onClick={navigateLandlord} className='nav'>
               Add Landlord
